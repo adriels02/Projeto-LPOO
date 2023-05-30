@@ -50,7 +50,7 @@ local.properties
 .apt_generated/
 .apt_generated_test/
 
-# Scala IDE specific (Scala & Java development for Eclipse)
+# Scala IDE specific ( Scala & Java development for Eclipse )
 .cache-main
 .scala_dependencies
 .worksheet
