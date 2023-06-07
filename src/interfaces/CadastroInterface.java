@@ -1,6 +1,9 @@
-package cadastroCliente;
+package interfaces;
 
+import cadastroCliente.Cliente;
 import java.awt.BorderLayout;
+
+import reservaQuartos.Reserva;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,12 +13,16 @@ import net.miginfocom.swing.MigLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import cadastroCliente.ArmazenarCadastroCliente;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import com.jgoodies.forms.layout.FormSpecs;
@@ -41,6 +48,7 @@ public class CadastroInterface extends JFrame {
 	private JTextField txtfDataReserva;
 	private JTextField txtfHoraEntrada;
 	private JTextField txtfHoraSaida;
+	private ButtonGroup bg = new ButtonGroup();
 	/**
 	 * @wbp.nonvisual location=-10,19
 	 */
@@ -143,6 +151,9 @@ public class CadastroInterface extends JFrame {
 		bttPessoaJuridica.setBounds(368, 159, 128, 23);
 		contentPane.add(bttPessoaJuridica);
 		
+		bg.add(bttPessoaJuridica);
+		bg.add(bttPessoaFisica);
+		
 		JLabel lblNewLabel_7 = new JLabel("Dados Reserva");
 		lblNewLabel_7.setBounds(10, 193, 121, 14);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -158,7 +169,7 @@ public class CadastroInterface extends JFrame {
 		txtfNumeroReserva.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Nº Apt");
-		lblNewLabel_9.setBounds(152, 218, 32, 14);
+		lblNewLabel_9.setBounds(152, 218, 59, 14);
 		contentPane.add(lblNewLabel_9);
 		
 		txtfNumeroApt = new JTextField();
@@ -203,7 +214,7 @@ public class CadastroInterface extends JFrame {
 		txtfQtdAdulto.setColumns(10);
 		
 		JLabel lblNewLabel_14 = new JLabel("Qtd Criança");
-		lblNewLabel_14.setBounds(365, 268, 57, 14);
+		lblNewLabel_14.setBounds(365, 268, 84, 14);
 		contentPane.add(lblNewLabel_14);
 		
 		txtfQtdCrianca = new JTextField();
@@ -238,8 +249,8 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(txtfHoraSaida);
 		txtfHoraSaida.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Finalizar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton bttFinalizar = new JButton("Finalizar");
+		bttFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
 				cliente.setNome(txtfNome.getText());
@@ -248,6 +259,8 @@ public class CadastroInterface extends JFrame {
 				cliente.setRg(txtfRg.getText());
 				cliente.setEmail(txtfEmail.getText());
 				cliente.setTelefone(txtfTelefone.getText());
+			
+				
 				
 				if (armazenarCadastro.salvar(cliente)) {
 					JOptionPane.showMessageDialog(null,"Hóspede cadastrado com sucesso!");
@@ -265,9 +278,9 @@ public class CadastroInterface extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(371, 335, 99, 23);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		contentPane.add(btnNewButton);
+		bttFinalizar.setBounds(371, 335, 99, 23);
+		bttFinalizar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		contentPane.add(bttFinalizar);
 	}
 	
 }

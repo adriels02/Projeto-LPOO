@@ -12,6 +12,7 @@ public boolean salvar(Cliente cliente) {
 		return false;
 	}
 }
+
 public ArrayList<Cliente> mostrarTodosClientes(){
 	return clientes;
 }
