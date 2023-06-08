@@ -4,7 +4,7 @@ public class Cliente {
 private String nome;
 private String sobrenome;
 private String cpf;
-private String rg;
+private String cnpj;
 private String telefone;
 private String email;
 private boolean pessoaFisica;
@@ -27,11 +27,11 @@ public String getCpf() {
 public void setCpf(String cpf) {
 	this.cpf = cpf;
 }
-public String getRg() {
-	return rg;
+public String getCnpj() {
+	return cnpj;
 }
-public void setRg(String rg) {
-	this.rg = rg;
+public void setCnpj(String rg) {
+	this.cnpj = rg;
 }
 public String getTelefone() {
 	return telefone;

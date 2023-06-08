@@ -34,8 +34,8 @@ public class CadastroInterface extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtfNome;
 	private JTextField txtfSobrenome;
-	private JTextField txtfRg;
 	private JTextField txtfCpf;
+	private JTextField txtfCnpj;
 	private JTextField txtfTelefone;
 	private JTextField txtfEmail;
 	private JTextField txtfNumeroReserva;
@@ -107,11 +107,11 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(txtfSobrenome);
 		txtfSobrenome.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("RG");
+		JLabel lblNewLabel_3 = new JLabel("CPF");
 		lblNewLabel_3.setBounds(10, 84, 43, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("CPF");
+		JLabel lblNewLabel_4 = new JLabel("CNPJ");
 		lblNewLabel_4.setBounds(152, 84, 32, 14);
 		contentPane.add(lblNewLabel_4);
 		
@@ -119,15 +119,15 @@ public class CadastroInterface extends JFrame {
 		lblNewLabel_5.setBounds(293, 84, 68, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		txtfRg = new JTextField();
-		txtfRg.setBounds(10, 109, 121, 20);
-		contentPane.add(txtfRg);
-		txtfRg.setColumns(10);
-		
 		txtfCpf = new JTextField();
-		txtfCpf.setBounds(152, 109, 121, 20);
+		txtfCpf.setBounds(10, 109, 121, 20);
 		contentPane.add(txtfCpf);
 		txtfCpf.setColumns(10);
+		
+		txtfCnpj = new JTextField();
+		txtfCnpj.setBounds(152, 109, 121, 20);
+		contentPane.add(txtfCnpj);
+		txtfCnpj.setColumns(10);
 		
 		txtfTelefone = new JTextField();
 		txtfTelefone.setBounds(293, 109, 171, 20);
@@ -256,7 +256,7 @@ public class CadastroInterface extends JFrame {
 				cliente.setNome(txtfNome.getText());
 				cliente.setSobrenome(txtfSobrenome.getText());
 				cliente.setCpf(txtfCpf.getText());
-				cliente.setRg(txtfRg.getText());
+				cliente.setCnpj(txtfCnpj.getText());
 				cliente.setEmail(txtfEmail.getText());
 				cliente.setTelefone(txtfTelefone.getText());
 			
@@ -266,8 +266,8 @@ public class CadastroInterface extends JFrame {
 					JOptionPane.showMessageDialog(null,"Hóspede cadastrado com sucesso!");
 					txtfNome.setText("");
 					txtfSobrenome.setText("");
+					txtfCnpj.setText("");
 					txtfCpf.setText("");
-					txtfRg.setText("");
 					txtfEmail.setText("");
 					txtfTelefone.setText("");
 					txtfNome.setText("");
