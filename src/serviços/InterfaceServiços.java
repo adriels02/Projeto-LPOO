@@ -3,18 +3,18 @@ package serviços;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class InterfaceServiços {
+public class InterfaceServiços extends JFrame {
 
-	private JFrame frmServios;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -23,8 +23,8 @@ public class InterfaceServiços {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceServiços window = new InterfaceServiços();
-					window.frmServios.setVisible(true);
+					InterfaceServiços frame = new InterfaceServiços();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,49 +33,59 @@ public class InterfaceServiços {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public InterfaceServiços() {
-		initialize();
-	}
+		setTitle("Serviços");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmServios = new JFrame();
-		frmServios.setTitle("Serviços");
-		frmServios.setBounds(100, 100, 450, 303);
-		frmServios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmServios.getContentPane().setLayout(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Serviços:");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel.setBounds(195, 11, 65, 14);
-		frmServios.getContentPane().add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setBounds(183, 11, 84, 14);
+		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Serviço de quarto");
-		btnNewButton.setBounds(48, 61, 117, 23);
-		frmServios.getContentPane().add(btnNewButton);
+		JButton btnTranslado = new JButton("Translado");
+		btnTranslado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceTranslado interfaceTranslado = new InterfaceTranslado();
+				interfaceTranslado.setVisible(true);
+				dispose();
+			}
+		});
+		btnTranslado.setBounds(34, 68, 138, 23);
+		contentPane.add(btnTranslado);
 		
-		JButton btnNewButton_1 = new JButton("Restaurante");
-		btnNewButton_1.setBounds(48, 131, 117, 23);
-		frmServios.getContentPane().add(btnNewButton_1);
+		JButton btnWiFi = new JButton("Wi-Fi");
+		btnWiFi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceWiFi interfaceWiFi = new InterfaceWiFi();
+				interfaceWiFi.setVisible(true);
+				dispose();
+			}
+		});
+		btnWiFi.setBounds(34, 130, 138, 23);
+		contentPane.add(btnWiFi);
 		
-		JButton btnNewButton_2 = new JButton("Wi-Fi");
-		btnNewButton_2.setBounds(47, 201, 118, 23);
-		frmServios.getContentPane().add(btnNewButton_2);
+		JButton btnEstacionamento = new JButton("Estacionamento");
+		btnEstacionamento.setBounds(34, 191, 138, 23);
+		contentPane.add(btnEstacionamento);
 		
-		JButton btnNewButton_3 = new JButton("Estacionamento");
-		btnNewButton_3.setBounds(279, 61, 117, 23);
-		frmServios.getContentPane().add(btnNewButton_3);
+		JButton btnArrumacao = new JButton("Arrumação");
+		btnArrumacao.setBounds(261, 68, 138, 23);
+		contentPane.add(btnArrumacao);
 		
-		JButton btnNewButton_4 = new JButton("Arrumação");
-		btnNewButton_4.setBounds(279, 131, 117, 23);
-		frmServios.getContentPane().add(btnNewButton_4);
+		JButton btnRestaurante = new JButton("Restaurante");
+		btnRestaurante.setBounds(261, 130, 138, 23);
+		contentPane.add(btnRestaurante);
 		
-		JButton btnNewButton_5 = new JButton("Translado");
-		btnNewButton_5.setBounds(279, 201, 117, 23);
-		frmServios.getContentPane().add(btnNewButton_5);
+		JButton btnServicoDeQuarto = new JButton("Serviço de quarto");
+		btnServicoDeQuarto.setBounds(261, 191, 138, 23);
+		contentPane.add(btnServicoDeQuarto);
 	}
 }

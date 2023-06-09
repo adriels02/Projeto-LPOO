@@ -6,6 +6,11 @@ public class Serviço {
 	private double preco;
 	private String descricao;
 
+	public Serviço() {
+		
+	}
+	
+	
 	public Serviço(double preco, String descricao, String id) {
 
 		this.preco = preco;
