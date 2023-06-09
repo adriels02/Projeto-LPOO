@@ -24,6 +24,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.SpringLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class InterfaceTranslado extends JFrame {
 
@@ -64,9 +67,9 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("<<< Voltar");
+		lblNewLabel.setBounds(15, 16, 76, 14);
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -85,69 +88,55 @@ public class InterfaceTranslado extends JFrame {
 				lblNewLabel.setForeground(Color.black);
 			}
 		});
-		lblNewLabel.setBounds(10, 11, 76, 14);
-		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Translado");
+		lblNewLabel_1.setBounds(293, 13, 93, 14);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(288, 8, 93, 14);
-		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Serviço de transporte");
+		lblNewLabel_2.setBounds(263, 38, 154, 14);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(258, 33, 154, 14);
-		contentPane.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Endereço coleta:");
-		lblNewLabel_3.setBounds(22, 83, 117, 14);
-		contentPane.add(lblNewLabel_3);
+		lblNewLabel_3.setBounds(27, 87, 117, 14);
 
 		txtEnderecoColeta = new JTextField();
-		txtEnderecoColeta.setBounds(10, 108, 129, 20);
-		contentPane.add(txtEnderecoColeta);
+		txtEnderecoColeta.setBounds(15, 116, 129, 20);
 		txtEnderecoColeta.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Endereço Destino:");
-		lblNewLabel_4.setBounds(22, 139, 117, 14);
-		contentPane.add(lblNewLabel_4);
+		lblNewLabel_4.setBounds(27, 150, 117, 14);
 
 		txtEnderecoDestino = new JTextField();
-		txtEnderecoDestino.setBounds(10, 164, 129, 20);
-		contentPane.add(txtEnderecoDestino);
+		txtEnderecoDestino.setBounds(15, 175, 129, 20);
 		txtEnderecoDestino.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Quantidade de Passageiros:");
-		lblNewLabel_5.setBounds(0, 195, 162, 14);
-		contentPane.add(lblNewLabel_5);
+		lblNewLabel_5.setBounds(5, 206, 162, 14);
 
 		txtQuantidadePassageiros = new JTextField();
-		txtQuantidadePassageiros.setBounds(10, 220, 129, 20);
-		contentPane.add(txtQuantidadePassageiros);
+		txtQuantidadePassageiros.setBounds(15, 231, 129, 20);
 		txtQuantidadePassageiros.setColumns(10);
 
 		JLabel lblNewLabel_6 = new JLabel("Data:");
-		lblNewLabel_6.setBounds(55, 251, 46, 14);
-		contentPane.add(lblNewLabel_6);
+		lblNewLabel_6.setBounds(60, 262, 46, 14);
 
 		txtData = new JTextField();
-		txtData.setBounds(10, 280, 129, 20);
-		contentPane.add(txtData);
+		txtData.setBounds(15, 291, 129, 20);
 		txtData.setColumns(10);
 
 		JLabel lblNewLabel_7 = new JLabel("Hora:");
-		lblNewLabel_7.setBounds(55, 312, 46, 14);
-		contentPane.add(lblNewLabel_7);
+		lblNewLabel_7.setBounds(60, 323, 46, 14);
 
 		txtHora = new JTextField();
-		txtHora.setBounds(10, 338, 129, 20);
-		contentPane.add(txtHora);
+		txtHora.setBounds(15, 349, 129, 20);
 		txtHora.setColumns(10);
 
 		JLabel lblNewLabel_8 = new JLabel("Histórico de viagens:");
-		lblNewLabel_8.setBounds(355, 111, 121, 14);
-		contentPane.add(lblNewLabel_8);
+		lblNewLabel_8.setBounds(360, 119, 121, 14);
 
 		JButton btnRemoverHistorico = new JButton("Remover");
+		btnRemoverHistorico.setBounds(399, 401, 89, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -162,8 +151,7 @@ public class InterfaceTranslado extends JFrame {
 			}
 		});
 		btnRemoverHistorico.setEnabled(false);
-		btnRemoverHistorico.setBounds(394, 390, 89, 23);
-		contentPane.add(btnRemoverHistorico);
+		list.setBounds(175, 149, 496, 240);
 
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -171,10 +159,9 @@ public class InterfaceTranslado extends JFrame {
 
 			}
 		});
-		list.setBounds(170, 138, 496, 240);
-		contentPane.add(list);
 
 		JButton btnNewButton = new JButton("Adicionar");
+		btnNewButton.setBounds(15, 401, 129, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -199,8 +186,23 @@ public class InterfaceTranslado extends JFrame {
 
 			}
 		});
-
-		btnNewButton.setBounds(10, 390, 129, 23);
+		contentPane.setLayout(null);
+		contentPane.add(lblNewLabel);
+		contentPane.add(lblNewLabel_1);
+		contentPane.add(lblNewLabel_2);
+		contentPane.add(lblNewLabel_3);
+		contentPane.add(txtEnderecoColeta);
+		contentPane.add(lblNewLabel_4);
+		contentPane.add(txtEnderecoDestino);
+		contentPane.add(lblNewLabel_5);
+		contentPane.add(txtQuantidadePassageiros);
+		contentPane.add(lblNewLabel_6);
+		contentPane.add(txtData);
+		contentPane.add(lblNewLabel_7);
+		contentPane.add(txtHora);
+		contentPane.add(lblNewLabel_8);
+		contentPane.add(btnRemoverHistorico);
+		contentPane.add(list);
 		contentPane.add(btnNewButton);
 
 	}

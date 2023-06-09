@@ -81,6 +81,13 @@ public class InterfaceServiços extends JFrame {
 		contentPane.add(btnArrumacao);
 		
 		JButton btnRestaurante = new JButton("Restaurante");
+		btnRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceRestaurante interfaceRestaurante = new InterfaceRestaurante();
+				interfaceRestaurante.setVisible(true);
+				dispose();
+			}
+		});
 		btnRestaurante.setBounds(261, 130, 138, 23);
 		contentPane.add(btnRestaurante);
 		
