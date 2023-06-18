@@ -28,6 +28,11 @@ import javax.swing.JButton;
 import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class CadastroInterface extends JFrame {
 
@@ -78,175 +83,374 @@ public class CadastroInterface extends JFrame {
 		setTitle("Cadastro Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 411);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JButton btnNewButton = new JButton("Voltar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		menuBar.add(btnNewButton);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{121, 93, 22, 0, 68, 131, 0};
+		gbl_contentPane.rowHeights = new int[]{14, 14, 20, 14, 20, 0, 0, 14, 23, 14, 14, 20, 14, 20, 23, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Dados Cliente");
-		lblNewLabel.setBounds(10, 11, 121, 14);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		contentPane.add(lblNewLabel);
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 0;
+		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nome");
-		lblNewLabel_1.setBounds(10, 36, 121, 14);
-		contentPane.add(lblNewLabel_1);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 1;
+		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sobrenome");
-		lblNewLabel_2.setBounds(152, 36, 93, 14);
-		contentPane.add(lblNewLabel_2);
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 1;
+		gbc_lblNewLabel_2.gridy = 1;
+		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		txtfNome = new JTextField();
-		txtfNome.setBounds(10, 53, 121, 20);
-		contentPane.add(txtfNome);
+		GridBagConstraints gbc_txtfNome = new GridBagConstraints();
+		gbc_txtfNome.anchor = GridBagConstraints.NORTH;
+		gbc_txtfNome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfNome.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfNome.gridx = 0;
+		gbc_txtfNome.gridy = 2;
+		contentPane.add(txtfNome, gbc_txtfNome);
 		txtfNome.setColumns(10);
 		
 		txtfSobrenome = new JTextField();
-		txtfSobrenome.setBounds(152, 53, 312, 20);
-		contentPane.add(txtfSobrenome);
+		GridBagConstraints gbc_txtfSobrenome = new GridBagConstraints();
+		gbc_txtfSobrenome.anchor = GridBagConstraints.NORTH;
+		gbc_txtfSobrenome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfSobrenome.insets = new Insets(0, 0, 5, 0);
+		gbc_txtfSobrenome.gridwidth = 5;
+		gbc_txtfSobrenome.gridx = 1;
+		gbc_txtfSobrenome.gridy = 2;
+		contentPane.add(txtfSobrenome, gbc_txtfSobrenome);
 		txtfSobrenome.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("CPF");
-		lblNewLabel_3.setBounds(10, 84, 43, 14);
-		contentPane.add(lblNewLabel_3);
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 0;
+		gbc_lblNewLabel_3.gridy = 3;
+		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("CNPJ");
-		lblNewLabel_4.setBounds(152, 84, 32, 14);
-		contentPane.add(lblNewLabel_4);
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 1;
+		gbc_lblNewLabel_4.gridy = 3;
+		contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Telefone");
-		lblNewLabel_5.setBounds(293, 84, 68, 14);
-		contentPane.add(lblNewLabel_5);
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_5.gridx = 4;
+		gbc_lblNewLabel_5.gridy = 3;
+		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		txtfCpf = new JTextField();
-		txtfCpf.setBounds(10, 109, 121, 20);
-		contentPane.add(txtfCpf);
+		GridBagConstraints gbc_txtfCpf = new GridBagConstraints();
+		gbc_txtfCpf.anchor = GridBagConstraints.NORTH;
+		gbc_txtfCpf.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfCpf.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfCpf.gridx = 0;
+		gbc_txtfCpf.gridy = 4;
+		contentPane.add(txtfCpf, gbc_txtfCpf);
 		txtfCpf.setColumns(10);
 		
 		txtfCnpj = new JTextField();
-		txtfCnpj.setBounds(152, 109, 121, 20);
-		contentPane.add(txtfCnpj);
+		GridBagConstraints gbc_txtfCnpj = new GridBagConstraints();
+		gbc_txtfCnpj.anchor = GridBagConstraints.NORTH;
+		gbc_txtfCnpj.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfCnpj.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfCnpj.gridwidth = 2;
+		gbc_txtfCnpj.gridx = 1;
+		gbc_txtfCnpj.gridy = 4;
+		contentPane.add(txtfCnpj, gbc_txtfCnpj);
 		txtfCnpj.setColumns(10);
 		
 		txtfTelefone = new JTextField();
-		txtfTelefone.setBounds(293, 109, 171, 20);
-		contentPane.add(txtfTelefone);
+		GridBagConstraints gbc_txtfTelefone = new GridBagConstraints();
+		gbc_txtfTelefone.anchor = GridBagConstraints.NORTH;
+		gbc_txtfTelefone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfTelefone.insets = new Insets(0, 0, 5, 0);
+		gbc_txtfTelefone.gridwidth = 2;
+		gbc_txtfTelefone.gridx = 4;
+		gbc_txtfTelefone.gridy = 4;
+		contentPane.add(txtfTelefone, gbc_txtfTelefone);
 		txtfTelefone.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("E-mail");
-		lblNewLabel_6.setBounds(10, 140, 66, 14);
-		contentPane.add(lblNewLabel_6);
+		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_6.gridx = 0;
+		gbc_lblNewLabel_6.gridy = 5;
+		contentPane.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		txtfEmail = new JTextField();
-		txtfEmail.setBounds(10, 160, 235, 20);
-		contentPane.add(txtfEmail);
+		GridBagConstraints gbc_txtfEmail = new GridBagConstraints();
+		gbc_txtfEmail.anchor = GridBagConstraints.NORTH;
+		gbc_txtfEmail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfEmail.gridwidth = 2;
+		gbc_txtfEmail.gridx = 0;
+		gbc_txtfEmail.gridy = 6;
+		contentPane.add(txtfEmail, gbc_txtfEmail);
 		txtfEmail.setColumns(10);
 		
 		JRadioButton bttPessoaFisica = new JRadioButton("Pessoa Física");
-		bttPessoaFisica.setBounds(251, 159, 110, 23);
-		contentPane.add(bttPessoaFisica);
-		
-		JRadioButton bttPessoaJuridica = new JRadioButton("Pessoa Jurídica");
-		bttPessoaJuridica.setBounds(368, 159, 128, 23);
-		contentPane.add(bttPessoaJuridica);
-		
-		bg.add(bttPessoaJuridica);
+		GridBagConstraints gbc_bttPessoaFisica = new GridBagConstraints();
+		gbc_bttPessoaFisica.anchor = GridBagConstraints.NORTH;
+		gbc_bttPessoaFisica.fill = GridBagConstraints.HORIZONTAL;
+		gbc_bttPessoaFisica.insets = new Insets(0, 0, 5, 5);
+		gbc_bttPessoaFisica.gridwidth = 3;
+		gbc_bttPessoaFisica.gridx = 2;
+		gbc_bttPessoaFisica.gridy = 6;
+		contentPane.add(bttPessoaFisica, gbc_bttPessoaFisica);
 		bg.add(bttPessoaFisica);
 		
+		JRadioButton bttPessoaJuridica = new JRadioButton("Pessoa Jurídica");
+		GridBagConstraints gbc_bttPessoaJuridica = new GridBagConstraints();
+		gbc_bttPessoaJuridica.anchor = GridBagConstraints.NORTH;
+		gbc_bttPessoaJuridica.fill = GridBagConstraints.HORIZONTAL;
+		gbc_bttPessoaJuridica.insets = new Insets(0, 0, 5, 0);
+		gbc_bttPessoaJuridica.gridx = 5;
+		gbc_bttPessoaJuridica.gridy = 6;
+		contentPane.add(bttPessoaJuridica, gbc_bttPessoaJuridica);
+		
+		bg.add(bttPessoaJuridica);
+		
 		JLabel lblNewLabel_7 = new JLabel("Dados Reserva");
-		lblNewLabel_7.setBounds(10, 193, 121, 14);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		contentPane.add(lblNewLabel_7);
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_7.gridx = 0;
+		gbc_lblNewLabel_7.gridy = 7;
+		contentPane.add(lblNewLabel_7, gbc_lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("Nº Reserva");
-		lblNewLabel_8.setBounds(10, 218, 121, 14);
-		contentPane.add(lblNewLabel_8);
-		
-		txtfNumeroReserva = new JTextField();
-		txtfNumeroReserva.setBounds(10, 237, 121, 20);
-		contentPane.add(txtfNumeroReserva);
-		txtfNumeroReserva.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+		gbc_lblNewLabel_8.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel_8.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_8.gridx = 0;
+		gbc_lblNewLabel_8.gridy = 8;
+		contentPane.add(lblNewLabel_8, gbc_lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("Nº Apt");
-		lblNewLabel_9.setBounds(152, 218, 59, 14);
-		contentPane.add(lblNewLabel_9);
-		
-		txtfNumeroApt = new JTextField();
-		txtfNumeroApt.setBounds(152, 237, 93, 20);
-		contentPane.add(txtfNumeroApt);
-		txtfNumeroApt.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
+		gbc_lblNewLabel_9.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_9.gridx = 1;
+		gbc_lblNewLabel_9.gridy = 8;
+		contentPane.add(lblNewLabel_9, gbc_lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("Tipo Apt");
-		lblNewLabel_10.setBounds(262, 218, 99, 14);
-		contentPane.add(lblNewLabel_10);
+		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+		gbc_lblNewLabel_10.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_10.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_10.gridwidth = 3;
+		gbc_lblNewLabel_10.gridx = 2;
+		gbc_lblNewLabel_10.gridy = 8;
+		contentPane.add(lblNewLabel_10, gbc_lblNewLabel_10);
+		
+		txtfNumeroReserva = new JTextField();
+		GridBagConstraints gbc_txtfNumeroReserva = new GridBagConstraints();
+		gbc_txtfNumeroReserva.anchor = GridBagConstraints.NORTH;
+		gbc_txtfNumeroReserva.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfNumeroReserva.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfNumeroReserva.gridx = 0;
+		gbc_txtfNumeroReserva.gridy = 9;
+		contentPane.add(txtfNumeroReserva, gbc_txtfNumeroReserva);
+		txtfNumeroReserva.setColumns(10);
+		
+		txtfNumeroApt = new JTextField();
+		GridBagConstraints gbc_txtfNumeroApt = new GridBagConstraints();
+		gbc_txtfNumeroApt.anchor = GridBagConstraints.NORTH;
+		gbc_txtfNumeroApt.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfNumeroApt.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfNumeroApt.gridx = 1;
+		gbc_txtfNumeroApt.gridy = 9;
+		contentPane.add(txtfNumeroApt, gbc_txtfNumeroApt);
+		txtfNumeroApt.setColumns(10);
 		
 		txtfTipoApt = new JTextField();
-		txtfTipoApt.setBounds(262, 237, 202, 20);
-		contentPane.add(txtfTipoApt);
+		GridBagConstraints gbc_txtfTipoApt = new GridBagConstraints();
+		gbc_txtfTipoApt.anchor = GridBagConstraints.NORTH;
+		gbc_txtfTipoApt.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfTipoApt.insets = new Insets(0, 0, 5, 0);
+		gbc_txtfTipoApt.gridwidth = 4;
+		gbc_txtfTipoApt.gridx = 2;
+		gbc_txtfTipoApt.gridy = 9;
+		contentPane.add(txtfTipoApt, gbc_txtfTipoApt);
 		txtfTipoApt.setColumns(10);
 		
 		JLabel lblNewLabel_11 = new JLabel("Nº Diárias");
-		lblNewLabel_11.setBounds(10, 268, 121, 14);
-		contentPane.add(lblNewLabel_11);
-		
-		txtfNumeroDiarias = new JTextField();
-		txtfNumeroDiarias.setBounds(10, 285, 121, 20);
-		contentPane.add(txtfNumeroDiarias);
-		txtfNumeroDiarias.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
+		gbc_lblNewLabel_11.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_11.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_11.gridx = 0;
+		gbc_lblNewLabel_11.gridy = 10;
+		contentPane.add(lblNewLabel_11, gbc_lblNewLabel_11);
 		
 		JLabel lblNewLabel_12 = new JLabel("Valor Diárias");
-		lblNewLabel_12.setBounds(152, 268, 93, 14);
-		contentPane.add(lblNewLabel_12);
-		
-		txtfValorDiarias = new JTextField();
-		txtfValorDiarias.setBounds(152, 285, 93, 20);
-		contentPane.add(txtfValorDiarias);
-		txtfValorDiarias.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
+		gbc_lblNewLabel_12.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel_12.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_12.gridx = 1;
+		gbc_lblNewLabel_12.gridy = 10;
+		contentPane.add(lblNewLabel_12, gbc_lblNewLabel_12);
 		
 		JLabel lblNewLabel_13 = new JLabel("Qtd Adulto");
-		lblNewLabel_13.setBounds(262, 268, 99, 14);
-		contentPane.add(lblNewLabel_13);
-		
-		txtfQtdAdulto = new JTextField();
-		txtfQtdAdulto.setBounds(262, 285, 99, 20);
-		contentPane.add(txtfQtdAdulto);
-		txtfQtdAdulto.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
+		gbc_lblNewLabel_13.anchor = GridBagConstraints.NORTH;
+		gbc_lblNewLabel_13.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_13.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_13.gridwidth = 3;
+		gbc_lblNewLabel_13.gridx = 2;
+		gbc_lblNewLabel_13.gridy = 10;
+		contentPane.add(lblNewLabel_13, gbc_lblNewLabel_13);
 		
 		JLabel lblNewLabel_14 = new JLabel("Qtd Criança");
-		lblNewLabel_14.setBounds(365, 268, 84, 14);
-		contentPane.add(lblNewLabel_14);
+		GridBagConstraints gbc_lblNewLabel_14 = new GridBagConstraints();
+		gbc_lblNewLabel_14.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblNewLabel_14.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_14.gridx = 5;
+		gbc_lblNewLabel_14.gridy = 10;
+		contentPane.add(lblNewLabel_14, gbc_lblNewLabel_14);
+		
+		txtfNumeroDiarias = new JTextField();
+		GridBagConstraints gbc_txtfNumeroDiarias = new GridBagConstraints();
+		gbc_txtfNumeroDiarias.anchor = GridBagConstraints.NORTH;
+		gbc_txtfNumeroDiarias.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfNumeroDiarias.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfNumeroDiarias.gridx = 0;
+		gbc_txtfNumeroDiarias.gridy = 11;
+		contentPane.add(txtfNumeroDiarias, gbc_txtfNumeroDiarias);
+		txtfNumeroDiarias.setColumns(10);
+		
+		txtfValorDiarias = new JTextField();
+		GridBagConstraints gbc_txtfValorDiarias = new GridBagConstraints();
+		gbc_txtfValorDiarias.anchor = GridBagConstraints.NORTH;
+		gbc_txtfValorDiarias.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfValorDiarias.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfValorDiarias.gridx = 1;
+		gbc_txtfValorDiarias.gridy = 11;
+		contentPane.add(txtfValorDiarias, gbc_txtfValorDiarias);
+		txtfValorDiarias.setColumns(10);
+		
+		txtfQtdAdulto = new JTextField();
+		GridBagConstraints gbc_txtfQtdAdulto = new GridBagConstraints();
+		gbc_txtfQtdAdulto.anchor = GridBagConstraints.NORTH;
+		gbc_txtfQtdAdulto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfQtdAdulto.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfQtdAdulto.gridwidth = 3;
+		gbc_txtfQtdAdulto.gridx = 2;
+		gbc_txtfQtdAdulto.gridy = 11;
+		contentPane.add(txtfQtdAdulto, gbc_txtfQtdAdulto);
+		txtfQtdAdulto.setColumns(10);
 		
 		txtfQtdCrianca = new JTextField();
-		txtfQtdCrianca.setBounds(365, 285, 99, 20);
-		contentPane.add(txtfQtdCrianca);
+		GridBagConstraints gbc_txtfQtdCrianca = new GridBagConstraints();
+		gbc_txtfQtdCrianca.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfQtdCrianca.anchor = GridBagConstraints.NORTH;
+		gbc_txtfQtdCrianca.insets = new Insets(0, 0, 5, 0);
+		gbc_txtfQtdCrianca.gridx = 5;
+		gbc_txtfQtdCrianca.gridy = 11;
+		contentPane.add(txtfQtdCrianca, gbc_txtfQtdCrianca);
 		txtfQtdCrianca.setColumns(10);
 		
 		JLabel lblNewLabel_15 = new JLabel("Data Reserva");
-		lblNewLabel_15.setBounds(10, 316, 66, 14);
-		contentPane.add(lblNewLabel_15);
-		
-		txtfDataReserva = new JTextField();
-		txtfDataReserva.setBounds(10, 336, 121, 20);
-		contentPane.add(txtfDataReserva);
-		txtfDataReserva.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_15 = new GridBagConstraints();
+		gbc_lblNewLabel_15.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblNewLabel_15.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_15.gridx = 0;
+		gbc_lblNewLabel_15.gridy = 12;
+		contentPane.add(lblNewLabel_15, gbc_lblNewLabel_15);
 		
 		JLabel lblNewLabel_16 = new JLabel("Hora Entrada");
-		lblNewLabel_16.setBounds(152, 316, 93, 14);
-		contentPane.add(lblNewLabel_16);
-		
-		txtfHoraEntrada = new JTextField();
-		txtfHoraEntrada.setBounds(152, 336, 93, 20);
-		contentPane.add(txtfHoraEntrada);
-		txtfHoraEntrada.setColumns(10);
+		GridBagConstraints gbc_lblNewLabel_16 = new GridBagConstraints();
+		gbc_lblNewLabel_16.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_16.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_16.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_16.gridx = 1;
+		gbc_lblNewLabel_16.gridy = 12;
+		contentPane.add(lblNewLabel_16, gbc_lblNewLabel_16);
 		
 		JLabel lblNewLabel_17 = new JLabel("Hora Saída");
-		lblNewLabel_17.setBounds(262, 316, 99, 14);
-		contentPane.add(lblNewLabel_17);
+		GridBagConstraints gbc_lblNewLabel_17 = new GridBagConstraints();
+		gbc_lblNewLabel_17.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_17.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNewLabel_17.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_17.gridwidth = 3;
+		gbc_lblNewLabel_17.gridx = 2;
+		gbc_lblNewLabel_17.gridy = 12;
+		contentPane.add(lblNewLabel_17, gbc_lblNewLabel_17);
+		
+		txtfDataReserva = new JTextField();
+		GridBagConstraints gbc_txtfDataReserva = new GridBagConstraints();
+		gbc_txtfDataReserva.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfDataReserva.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfDataReserva.gridx = 0;
+		gbc_txtfDataReserva.gridy = 13;
+		contentPane.add(txtfDataReserva, gbc_txtfDataReserva);
+		txtfDataReserva.setColumns(10);
+		
+		txtfHoraEntrada = new JTextField();
+		GridBagConstraints gbc_txtfHoraEntrada = new GridBagConstraints();
+		gbc_txtfHoraEntrada.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfHoraEntrada.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfHoraEntrada.gridx = 1;
+		gbc_txtfHoraEntrada.gridy = 13;
+		contentPane.add(txtfHoraEntrada, gbc_txtfHoraEntrada);
+		txtfHoraEntrada.setColumns(10);
 		
 		txtfHoraSaida = new JTextField();
-		txtfHoraSaida.setBounds(262, 336, 99, 20);
-		contentPane.add(txtfHoraSaida);
+		GridBagConstraints gbc_txtfHoraSaida = new GridBagConstraints();
+		gbc_txtfHoraSaida.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfHoraSaida.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfHoraSaida.gridwidth = 3;
+		gbc_txtfHoraSaida.gridx = 2;
+		gbc_txtfHoraSaida.gridy = 13;
+		contentPane.add(txtfHoraSaida, gbc_txtfHoraSaida);
 		txtfHoraSaida.setColumns(10);
 		
 		JButton bttFinalizar = new JButton("Finalizar");
@@ -261,8 +465,11 @@ public class CadastroInterface extends JFrame {
 				cliente.setTelefone(txtfTelefone.getText());
 			
 				
+if (txtfNome.getText().isEmpty()||txtfSobrenome.getText().isEmpty()||txtfCpf.getText().isEmpty()||txtfCnpj.getText().isEmpty()||txtfEmail.getText().isEmpty()||txtfTelefone.getText().isEmpty()){
+			JOptionPane.showMessageDialog(null,"Erro! Por favor preencha os campos em branco");
+		}
 				
-				if (armazenarCadastro.salvar(cliente)) {
+else if (armazenarCadastro.salvar(cliente)) {
 					JOptionPane.showMessageDialog(null,"Hóspede cadastrado com sucesso!");
 					txtfNome.setText("");
 					txtfSobrenome.setText("");
@@ -278,9 +485,13 @@ public class CadastroInterface extends JFrame {
 				}
 			}
 		});
-		bttFinalizar.setBounds(371, 335, 99, 23);
 		bttFinalizar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		contentPane.add(bttFinalizar);
+		GridBagConstraints gbc_bttFinalizar = new GridBagConstraints();
+		gbc_bttFinalizar.insets = new Insets(0, 0, 5, 0);
+		gbc_bttFinalizar.anchor = GridBagConstraints.NORTH;
+		gbc_bttFinalizar.gridx = 5;
+		gbc_bttFinalizar.gridy = 13;
+		contentPane.add(bttFinalizar, gbc_bttFinalizar);
 	}
 	
 }
