@@ -1,6 +1,6 @@
-package serviços;
+package servicos;
 
-public class Wifi extends Serviço {
+public class Wifi extends Servico {
 
 	private String nome; // Nome do Wi-Fi
 	private String senha; // senha do Wi-Fi

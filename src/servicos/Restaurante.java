@@ -1,10 +1,10 @@
-package serviços;
+package servicos;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
-public class Restaurante extends Serviço {
+public class Restaurante extends Servico {
 
 	private double precoCafeDaManha;
 	private double precoAlmoco;

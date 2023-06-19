@@ -1,16 +1,16 @@
-package serviços;
+package servicos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ServiçoDeQuarto extends Serviço {
+public class ServicoDeQuarto extends Servico {
 
 	LocalDateTime dataHoraAtual = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	String dataHoraFormatada = dataHoraAtual.format(formatter);
 	private double taxa;
 
-	public ServiçoDeQuarto(double preco, String descricao, String id, double taxa) {
+	public ServicoDeQuarto(double preco, String descricao, String id, double taxa) {
 		super(preco, descricao, id);
 		this.taxa = taxa;
 	}

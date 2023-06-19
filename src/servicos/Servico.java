@@ -1,24 +1,24 @@
-package serviços;
+package servicos;
 
-public class Serviço {
+public class Servico {
 	
 	private String id;
 	private double preco;
 	private String descricao;
 
-	public Serviço() {
+	public Servico() {
 		
 	}
 	
 	
-	public Serviço(double preco, String descricao, String id) {
+	public Servico(double preco, String descricao, String id) {
 
 		this.preco = preco;
 		this.descricao = descricao;
 		this.id = id;
 	}
 	
-	public Serviço( String descricao, String id) {
+	public Servico( String descricao, String id) {
 
 		this.descricao = descricao;
 		this.id = id;

@@ -1,6 +1,6 @@
-package serviços;
+package servicos;
 
-public class Estacionamento extends Serviço {
+public class Estacionamento extends Servico {
 
 	private int reservaDeVagas;
 

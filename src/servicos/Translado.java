@@ -1,8 +1,8 @@
-package serviços;
+package servicos;
 
 import java.time.*;
 
-public class Translado extends Serviço {
+public class Translado extends Servico {
 
 	private String enderecoColeta;
 	private String enderecoDestino;
