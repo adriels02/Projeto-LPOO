@@ -19,6 +19,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfaceWiFi extends JFrame {
 
@@ -107,28 +109,26 @@ public class InterfaceWiFi extends JFrame {
 		gbc_lblNewLabel_1.gridwidth = 6;
 		gbc_lblNewLabel_1.weighty = 1.0;
 		gbc_lblNewLabel_1.weightx = 1.0;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 0;
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Serviço de Wi-Fi do hotel");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.weighty = 1.0;
-		gbc_lblNewLabel_2.weightx = 1.0;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridwidth = 6;
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 1;
-		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JLabel lblError = new JLabel("");
+		lblError.setForeground(new Color(255, 0, 0));
+		GridBagConstraints gbc_lblError = new GridBagConstraints();
+		gbc_lblError.gridwidth = 6;
+		gbc_lblError.insets = new Insets(0, 0, 5, 5);
+		gbc_lblError.gridx = 0;
+		gbc_lblError.gridy = 1;
+		contentPane.add(lblError, gbc_lblError);
 		
 		JLabel lblNewLabel_7 = new JLabel("Modificar:");
 		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 		gbc_lblNewLabel_7.weightx = 1.0;
 		gbc_lblNewLabel_7.weighty = 1.0;
-		gbc_lblNewLabel_7.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_7.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_7.gridx = 5;
 		gbc_lblNewLabel_7.gridy = 2;
 		contentPane.add(lblNewLabel_7, gbc_lblNewLabel_7);
@@ -237,9 +237,22 @@ public class InterfaceWiFi extends JFrame {
 		textField_5.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Modificar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 5;
 		gbc_btnNewButton.gridy = 6;
 		contentPane.add(btnNewButton, gbc_btnNewButton);

@@ -26,6 +26,8 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class InterfaceRestaurante extends JFrame {
 
@@ -112,11 +114,22 @@ public class InterfaceRestaurante extends JFrame {
 						GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 						gbc_lblNewLabel_1.weighty = 1.0;
 						gbc_lblNewLabel_1.weightx = 1.0;
-						gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+						gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 						gbc_lblNewLabel_1.gridwidth = 5;
 						gbc_lblNewLabel_1.gridx = 0;
 						gbc_lblNewLabel_1.gridy = 0;
 						contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+				
+				JLabel lblError = new JLabel("");
+				lblError.setForeground(new Color(255, 0, 0));
+				GridBagConstraints gbc_lblError = new GridBagConstraints();
+				gbc_lblError.weighty = 1.0;
+				gbc_lblError.weightx = 1.0;
+				gbc_lblError.gridwidth = 5;
+				gbc_lblError.insets = new Insets(0, 0, 5, 5);
+				gbc_lblError.gridx = 0;
+				gbc_lblError.gridy = 1;
+				contentPane.add(lblError, gbc_lblError);
 		
 				JLabel lblNewLabel_2 = new JLabel("Observação para alergias etc:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -224,6 +237,15 @@ public class InterfaceRestaurante extends JFrame {
 						contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 				txtIDQuarto = new JTextField();
+				txtIDQuarto.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						String caracteres="0987654321";
+						if(!caracteres.contains(e.getKeyChar()+"")){
+						e.consume();
+						}
+					}
+				});
 				GridBagConstraints gbc_txtIDQuarto = new GridBagConstraints();
 				gbc_txtIDQuarto.weighty = 1.0;
 				gbc_txtIDQuarto.weightx = 1.0;
@@ -269,7 +291,7 @@ public class InterfaceRestaurante extends JFrame {
 				gbc_btnAdicionar.weighty = 1.0;
 				gbc_btnAdicionar.weightx = 1.0;
 				gbc_btnAdicionar.anchor = GridBagConstraints.NORTH;
-				gbc_btnAdicionar.insets = new Insets(0, 0, 0, 5);
+				gbc_btnAdicionar.insets = new Insets(0, 0, 5, 5);
 				gbc_btnAdicionar.gridx = 0;
 				gbc_btnAdicionar.gridy = 8;
 				contentPane.add(btnAdicionar, gbc_btnAdicionar);

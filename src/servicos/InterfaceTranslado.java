@@ -31,6 +31,8 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class InterfaceTranslado extends JFrame {
 
@@ -160,6 +162,15 @@ public class InterfaceTranslado extends JFrame {
 										gbc_lblNewLabel_2.gridx = 0;
 										gbc_lblNewLabel_2.gridy = 1;
 										contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+								
+								JLabel lblError = new JLabel("");
+								lblError.setForeground(new Color(255, 0, 0));
+								GridBagConstraints gbc_lblError = new GridBagConstraints();
+								gbc_lblError.gridwidth = 4;
+								gbc_lblError.insets = new Insets(0, 0, 5, 5);
+								gbc_lblError.gridx = 0;
+								gbc_lblError.gridy = 2;
+								contentPane.add(lblError, gbc_lblError);
 						
 								JLabel lblNewLabel_3 = new JLabel("Endereço coleta:");
 								GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -227,7 +238,7 @@ public class InterfaceTranslado extends JFrame {
 								gbc_list.weighty = 1.0;
 								gbc_list.weightx = 1.0;
 								gbc_list.fill = GridBagConstraints.BOTH;
-								gbc_list.insets = new Insets(0, 0, 5, 0);
+								gbc_list.insets = new Insets(0, 0, 5, 5);
 								gbc_list.gridheight = 9;
 								gbc_list.gridwidth = 2;
 								gbc_list.gridx = 1;
@@ -256,6 +267,15 @@ public class InterfaceTranslado extends JFrame {
 								contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 				
 						txtQuantidadePassageiros = new JTextField();
+						txtQuantidadePassageiros.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyTyped(KeyEvent e) {
+								String caracteres="0987654321";
+								if(!caracteres.contains(e.getKeyChar()+"")){
+								e.consume();
+								}
+							}
+						});
 						txtQuantidadePassageiros.setColumns(10);
 						GridBagConstraints gbc_txtQuantidadePassageiros = new GridBagConstraints();
 						gbc_txtQuantidadePassageiros.weighty = 1.0;
@@ -319,6 +339,7 @@ public class InterfaceTranslado extends JFrame {
 				
 				btnRemoverHistorico.setEnabled(false);
 				GridBagConstraints gbc_btnRemoverHistorico = new GridBagConstraints();
+				gbc_btnRemoverHistorico.insets = new Insets(0, 0, 0, 5);
 				gbc_btnRemoverHistorico.gridwidth = 2;
 				gbc_btnRemoverHistorico.weighty = 1.0;
 				gbc_btnRemoverHistorico.weightx = 1.0;
