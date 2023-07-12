@@ -1,60 +1,51 @@
 package reservaQuartos;
 
+import java.time.LocalDateTime;
+
 public class Reserva {
-	private int id;
-	private Quarto quarto;
-	private int dataEntrada;
-	private int dataSaida;
-	private boolean confirmacao;
+	private int numeroQuarto;
+	private LocalDateTime dataEntrada;
+	private LocalDateTime dataSaida;
+	private String observacaoReserva;
 	
-	public Reserva(int id, Quarto quarto, int dataEntrada, int dataSaida, boolean confirmacao) {
+	public Reserva(int numeroQuarto, LocalDateTime dataEntrada, LocalDateTime dataSaida, String observacaoReserva) {
 		super();
-		this.id = id;
-		this.quarto = quarto;
+		this.numeroQuarto = numeroQuarto;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.confirmacao = confirmacao;
+		this.observacaoReserva = observacaoReserva;
 	}
 
-	public int getId() {
-		return id;
+	public int getNumeroQuarto() {
+		return numeroQuarto;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setNumeroQuarto(int numeroQuarto) {
+		this.numeroQuarto = numeroQuarto;
 	}
 
-	public Quarto getQuarto() {
-		return quarto;
-	}
-
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
-	}
-
-	public int getDataEntrada() {
+	public LocalDateTime getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(int dataEntrada) {
+	public void setDataEntrada(LocalDateTime dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
-	public int getDataSaida() {
+	public LocalDateTime getDataSaida() {
 		return dataSaida;
 	}
 
-	public void setDataSaida(int dataSaida) {
+	public void setDataSaida(LocalDateTime dataSaida) {
 		this.dataSaida = dataSaida;
 	}
 
-	public boolean isConfirmacao() {
-		return confirmacao;
+	public String getObservacaoReserva() {
+		return observacaoReserva;
 	}
 
-	public void setConfirmacao(boolean confirmacao) {
-		this.confirmacao = confirmacao;
+	public void setObservacaoReserva(String observacaoReserva) {
+		this.observacaoReserva = observacaoReserva;
 	}
-	
 	
 }

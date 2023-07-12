@@ -1,32 +1,39 @@
 package reservaQuartos;
 
 public class Quarto {
-	private int numeroQuarto;
+	private int idQuartos;
+	private String numeroQuarto;
 	private String tipoQuarto;
-	private boolean disponibilidade;
-	private double precoDiario;
-	private int capacidade;
-	private String descricao;
-	private String observacao;
-
+	private String disponibilidade;
+	private double precoQuarto;
+	private String capacidade;
+	private String descricaoQuarto;
 	
-	public Quarto(int numeroQuarto, String tipoQuarto, boolean disponibilidade,double precoDiario, int capacidade,
-			String descricao, String observacao) {
+	public Quarto(int idQuartos, String numeroQuarto, String tipoQuarto, String disponibilidade, double precoQuarto,
+			String capacidade, String descricaoQuarto) {
 		super();
+		this.idQuartos = idQuartos;
 		this.numeroQuarto = numeroQuarto;
 		this.tipoQuarto = tipoQuarto;
 		this.disponibilidade = disponibilidade;
-		this.precoDiario = precoDiario;
+		this.precoQuarto = precoQuarto;
 		this.capacidade = capacidade;
-		this.descricao = descricao;
-		this.observacao = observacao;
+		this.descricaoQuarto = descricaoQuarto;
 	}
 
-	public int getNumeroQuarto() {
+	public int getIdQuartos() {
+		return idQuartos;
+	}
+
+	public void setIdQuartos(int idQuartos) {
+		this.idQuartos = idQuartos;
+	}
+
+	public String getNumeroQuarto() {
 		return numeroQuarto;
 	}
 
-	public void setNumeroQuarto(int numeroQuarto) {
+	public void setNumeroQuarto(String numeroQuarto) {
 		this.numeroQuarto = numeroQuarto;
 	}
 
@@ -38,46 +45,41 @@ public class Quarto {
 		this.tipoQuarto = tipoQuarto;
 	}
 
-	public boolean isDisponibilidade() {
+	public String getDisponibilidade() {
 		return disponibilidade;
 	}
 
-	public void setDisponibilidade(boolean disponibilidade) {
+	public void setDisponibilidade(String disponibilidade) {
 		this.disponibilidade = disponibilidade;
 	}
-	
-	public double getPrecoDiario() {
-		return precoDiario;
+
+	public double getPrecoQuarto() {
+		return precoQuarto;
 	}
 
-	public void setPrecoDiario(double precoDiario) {
-		this.precoDiario = precoDiario;
+	public void setPrecoQuarto(double precoQuarto) {
+		this.precoQuarto = precoQuarto;
 	}
 
-	public int getCapacidade() {
+	public String getCapacidade() {
 		return capacidade;
 	}
 
-	public void setCapacidade(int capacidade) {
+	public void setCapacidade(String capacidade) {
 		this.capacidade = capacidade;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoQuarto() {
+		return descricaoQuarto;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setDescricaoQuarto(String descricaoQuarto) {
+		this.descricaoQuarto = descricaoQuarto;
 	}
 	
 	
 	
 }
+	
+	
+	
