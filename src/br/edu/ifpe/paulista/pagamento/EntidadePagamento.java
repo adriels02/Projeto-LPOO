@@ -1,6 +1,7 @@
 package br.edu.ifpe.paulista.pagamento;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class EntidadePagamento {
 	private int idFatura;
@@ -11,8 +12,8 @@ public class EntidadePagamento {
 	private String cpf;
 	private Date data;
 	private String nomecliente;
-	private String nomeServicos[];
-	private int precoSrevicos[];
+	private ArrayList<String> nomeServico = new ArrayList<String>();
+	private ArrayList<Double> precoServico = new ArrayList<Double>();
 	
 	public String getCpf() {
 		return cpf;
@@ -25,18 +26,6 @@ public class EntidadePagamento {
 	}
 	public void setNomecliente(String nomecliente) {
 		this.nomecliente = nomecliente;
-	}
-	public String[] getNomeServicos() {
-		return nomeServicos;
-	}
-	public void setNomeServicos(String[] nomeServicos) {
-		this.nomeServicos = nomeServicos;
-	}
-	public int[] getPrecoSrevicos() {
-		return precoSrevicos;
-	}
-	public void setPrecoSrevicos(int[] precoSrevicos) {
-		this.precoSrevicos = precoSrevicos;
 	}
 	public int getIdFatura() {
 		return idFatura;
@@ -73,6 +62,18 @@ public class EntidadePagamento {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public ArrayList<String> getNomeServico() {
+		return nomeServico;
+	}
+	public void setNomeServico(ArrayList<String> nomeServico) {
+		this.nomeServico = nomeServico;
+	}
+	public ArrayList<Double> getPrecoServico() {
+		return precoServico;
+	}
+	public void setPrecoServico(ArrayList<Double> precoServico) {
+		this.precoServico = precoServico;
 	}
 	
 }
