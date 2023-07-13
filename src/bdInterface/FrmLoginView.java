@@ -15,10 +15,17 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//import Java.io.Serializable;
+//import java.io.Serializable;
+//import javax.swing.SwingConstants;
+//import java.awt.Component;
 
-public class FrmLoginView extends JFrame {
+//public class FrmLoginView extends JFrame implements Serializable {
+public class FrmLoginView extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5222909009672886717L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField txtSenha;
@@ -43,8 +50,8 @@ public class FrmLoginView extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmLoginView() {
-		setTitle("Tela Login");
 		setResizable(false);
+		setTitle("Tela Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -77,6 +84,8 @@ public class FrmLoginView extends JFrame {
 		txtSenha.setColumns(10);
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setAlignmentY(1.0f);
+		btnEntrar.setAlignmentX(1.0f);
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -85,7 +94,7 @@ public class FrmLoginView extends JFrame {
 					//System.out.println("Acesso liberado");
 					JOptionPane.showMessageDialog( null, "Acesso liberado");
 				} else {
-					JOptionPane.showMessageDialog( null, "Acesso Negado");
+					JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
 					//System.out.println("Acesso Negado");
 				}
 				
