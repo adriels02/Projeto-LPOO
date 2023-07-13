@@ -1,4 +1,4 @@
-package br.edu.ifpe.paulista.pagamento;
+package br.edu.ifpe.paulista.pagamento.core;
 
 import java.sql.Date;
 import java.util.ArrayList;

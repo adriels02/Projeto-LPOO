@@ -1,41 +1,58 @@
 package br.edu.ifpe.paulista.pagamento.data;
 
-import br.edu.ifpe.paulista.pagamento.EntidadePagamento;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+import br.edu.ifpe.paulista.pagamento.core.EntidadePagamento;
 
 public class PagamentoDAO extends PagamentoGenericDAO {
-
-	public void InserirDadosBDFatura(EntidadePagamento pgmt) throws SQLException {
-		String ins = "INSERT INTO Fatura(idFatura, idReserva,  tipoPagamento, precoFinal) VALUES(?,?,?,?)";
-		insert(ins, pgmt.getIdFatura(), pgmt.getIdReserva(), pgmt.getTipoPagamento(), pgmt.getPrecoFinal());
+	public PagamentoDAO() throws PagamentoDataException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (Exception e) {
+			throw new PagamentoDataException("A fatal error has occurred", e);
+		}
 	}
 
-	public EntidadePagamento BuscarDadosFatura(int idFatura) throws SQLException {
-		String selectFatura = "SELECT * FROM fatura WHERE idFatura = ?";
-		EntidadePagamento pgmt = null;
-		PreparedStatement stmt = getConnection().prepareStatement(selectFatura);
-
-		stmt.setInt(1, idFatura);
-		ResultSet rs = stmt.executeQuery();
-
-		while (rs.next()) {
-			pgmt = new EntidadePagamento();
-			pgmt.setIdFatura(rs.getInt("idFatura"));
-			pgmt.setIdReserva(rs.getInt("idReserva"));
-			pgmt.setTipoPagamento(rs.getString("tipoPagamento"));
-			pgmt.setPrecoFinal(rs.getDouble("precoFinal"));
+	public void InserirDadosBDFatura(EntidadePagamento pgmt) throws PagamentoDataException {
+		try {
+			
+			String ins = "INSERT INTO Fatura(idFatura, idReserva,  tipoPagamento, precoFinal) VALUES(?,?,?,?)";
+			insert(ins, pgmt.getIdFatura(), pgmt.getIdReserva(), pgmt.getTipoPagamento(), pgmt.getPrecoFinal());
+		} catch (Exception e) {
+			
+			throw new PagamentoDataException("Acesso negado") ;
 		}
+	}
 
-		rs.close();
-		stmt.close();
-		getConnection().close();
+	public EntidadePagamento BuscarDadosFatura(int idFatura) throws PagamentoDataException {
+		
+		try {
+			String selectFatura = "SELECT * FROM fatura WHERE idFatura = ?";
+			EntidadePagamento pgmt = null;
+			PreparedStatement stmt = getConnection().prepareStatement(selectFatura);
 
-		return pgmt;
+			stmt.setInt(1, idFatura);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				pgmt = new EntidadePagamento();
+				pgmt.setIdFatura(rs.getInt("idFatura"));
+				pgmt.setIdReserva(rs.getInt("idReserva"));
+				pgmt.setTipoPagamento(rs.getString("tipoPagamento"));
+				pgmt.setPrecoFinal(rs.getDouble("precoFinal"));
+			}
+
+			rs.close();
+			stmt.close();
+			getConnection().close();
+
+			return pgmt;
+		} catch (Exception e) {
+			throw new PagamentoDataException("Acesso negado") ;
+			
+		}
 	}
 
 	public EntidadePagamento BDConstruirEntidade(String c) throws SQLException {
@@ -52,6 +69,35 @@ public class PagamentoDAO extends PagamentoGenericDAO {
 				pgmt.setIdCliente(rs.getInt("idCliente"));
 				pgmt.setNomecliente(rs.getString("nomeCliente"));
 			}
+			String selectReserva = "SELECT * FROM reserva WHERE idCliente = ?";
+			stmt = getConnection().prepareStatement(selectReserva);
+			stmt.setInt(1, pgmt.getIdCliente());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				pgmt.setData(rs.getDate("dataSaida"));
+				pgmt.setIdReserva(rs.getInt("idReserva"));
+			}
+
+			String selectServicos = "SELECT * FROM servicos WHERE idReserva = ?";
+			stmt = getConnection().prepareStatement(selectServicos);
+			stmt.setInt(1, pgmt.getIdReserva());
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				 ArrayList<String> nomeServico = new ArrayList<String>();
+				 ArrayList<Double> precoServico = new ArrayList<Double>();
+				nomeServico.add(rs.getString("nomeServico"));
+				precoServico.add(rs.getDouble("precoServico"));
+				pgmt.setPrecoServico(precoServico);
+				pgmt.setNomeServico(nomeServico);
+			}
+			rs.close();
+			stmt.close();
+			getConnection().close();
+
+		return pgmt;
+			
 		} else {
 
 			String selectCliente = "SELECT * FROM pessoaJuridica WHERE cnpj = ?";
