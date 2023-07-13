@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bdConexao.UsuarioConexao;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -13,7 +16,11 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+
+import bdTransferencia.UsuarioTransferencia;
 
 //import java.io.Serializable;
 //import javax.swing.SwingConstants;
@@ -22,9 +29,7 @@ import java.awt.event.ActionEvent;
 //public class FrmLoginView extends JFrame implements Serializable {
 public class FrmLoginView extends JFrame{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 5222909009672886717L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
@@ -89,13 +94,45 @@ public class FrmLoginView extends JFrame{
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (checkUsuario(txtUsuario.getText(),  txtSenha.getText() )) {
+				try {
+				String nomeUsuario, senhaUsuario;
+				
+				nomeUsuario=txtUsuario.getText();
+				senhaUsuario = txtSenha.getText();
+				
+				UsuarioTransferencia objUsuarioTransferencia = new UsuarioTransferencia();
+				objUsuarioTransferencia.setNomeUsuario(nomeUsuario);
+				objUsuarioTransferencia.setSenhaUsuario(senhaUsuario);
+				
+				UsuarioConexao objUsuarioConexao = new UsuarioConexao ();
+				ResultSet resultadoUsuarioConexao = objUsuarioConexao.autenticacaoUsuario(objUsuarioTransferencia);
+				
+				if(resultadoUsuarioConexao.next()) {
+				/* chamar tela que eu quero abrir, trocar após definir tela
 					
-					//System.out.println("Acesso liberado");
-					JOptionPane.showMessageDialog( null, "Acesso liberado");
-				} else {
-					JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
-					//System.out.println("Acesso Negado");
+					Tela (interface) que quer abrir + Nome de objeto criado aqui = tela a ser recebida novamente*/
+					FrmTelaPrincipalView objFrmTelaPrincipalView = new FrmTelaPrincipalView();
+					
+					//para tornar a tela visivel 
+					objFrmTelaPrincipalView.setVisible(true);
+					
+					//fechar a tela anterior
+					dispose();
+				}				
+				/*if (checkUsuario(txtUsuario.getText(),  txtSenha.getText())) {
+				
+				//System.out.println("Acesso liberado");
+				JOptionPane.showMessageDialog( null, "Acesso liberado");
+			}*/ 
+				
+				else {
+				JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
+				
+			}
+				
+				} catch (SQLException erro) {
+					JOptionPane.showMessageDialog( null, "erro no FrmLoginView" + erro);
+					
 				}
 				
 			}
@@ -115,10 +152,10 @@ public class FrmLoginView extends JFrame{
 	}
 	        
 	
-	public boolean checkUsuario (String usuario, String login) {
-		return usuario.equals("usuario") && login.equals("123");
+	//public boolean checkUsuario (String usuario, String login) {
+		//return usuario.equals("usuario") && login.equals("123");
 		
 		
-	}
+	//}
 
 }
