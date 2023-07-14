@@ -1,4 +1,4 @@
-# HotelOverlook 
+# Hotel Overlook 
 Repositório dedicado ao projeto de LPOO do IFPE Campus Paulista.
 
 # Nome completo dos integrantes
