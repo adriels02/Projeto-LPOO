@@ -1,5 +1,5 @@
 # Hotel Overlook 
-Repositório dedicado ao projeto de LPOO.
+Repositório dedicado ao projeto de LPOO do IFPE Campus Paulista.
 
 # Nome completo dos integrantes
 Adriel Leite da Silva;
@@ -26,10 +26,15 @@ Fazer o check-in do cliente;
 
 Fazer o check-out do cliente;
 
-#Venda de serviços extras (translado, consumo, passeios…);
+Venda de serviços extras (translado, consumo, passeios…);
+
 Visualizar perfil do cliente;
+
 Confirmar limpeza do quarto;
+
 Gerar valores do quarto (quarto, serviços e totais);
+
 Gerar comprovante do pagamento;
+
 Gerar relatório gerencial.
 
