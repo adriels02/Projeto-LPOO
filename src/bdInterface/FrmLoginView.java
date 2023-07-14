@@ -57,6 +57,7 @@ public class FrmLoginView extends JFrame{
 	public FrmLoginView() {
 		setResizable(false);
 		setTitle("Tela Login");
+		//setSize(1000,720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,6 +66,8 @@ public class FrmLoginView extends JFrame{
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		//abrir no meio da tela
+		setLocationRelativeTo(null);
 		
 		JLabel lblNewLabel = new JLabel("Usu\u00E1rio");
 		lblNewLabel.setForeground(new Color(88, 68, 188));

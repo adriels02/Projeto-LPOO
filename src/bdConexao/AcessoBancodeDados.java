@@ -7,15 +7,20 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class AcessoBancodeDados{
+	private static final String url = "jdbc:mysql://localhost:3306/overlook";
+	private static final String usuario = "root";
+	private static final String senha = "#123Mila123*";
+	
 	
 	public Connection conexaoBD() {
+		
 		Connection conexao = null;
 		
 		
 		try {
-			Class.forName("com.mysq.jdbc.Driver");
-			String acessoBD = "jdbc:mysql://localhost:3306/overlook?user=root&password=#123Mila123*";
-			conexao = DriverManager.getConnection(acessoBD);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//String acessoBD = "jdbc:mysql://localhost:3306/overlook?user=root&password=#123Mila123*";
+			conexao = DriverManager.getConnection(url,usuario,senha);
 			
 		} catch (ClassNotFoundException e){
 		    System.out.println("Banco de dados não localizado");
