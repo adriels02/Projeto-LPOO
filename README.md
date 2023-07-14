@@ -2,9 +2,12 @@
 Repositório dedicado ao projeto de LPOO.
 
 # Nome completo dos integrantes
-Adriel Leite da Silva; 
+Adriel Leite da Silva;
+
 Cesar Rodrigues Barros Coelho;
+
 Hilda Aleixo Dantas Miranda Costa;
+
 Kamila Rocha Pimentel;
 Murilo Alves Silva Filho;
 Yasmim Patricia Souza Silva.
