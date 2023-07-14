@@ -2,9 +2,7 @@
 Repositório dedicado ao projeto de LPOO do IFPE Campus Paulista.
 
 # Nome completo dos integrantes
-Adriel Leite da Silva;
-
-Cesar Rodrigues Barros Coelho;
+Adriel Leite da Silva; <br /> Cesar Rodrigues Barros Coelho;
 
 Hilda Aleixo Dantas Miranda Costa;
 
