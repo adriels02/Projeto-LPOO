@@ -3,23 +3,24 @@ package br.edu.ifpe.paulista.pagamento.core;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class EntidadePagamento {
+public class PagamentoEntidade {//Entidade e seus getter e setters.
 	private int idFatura;
 	private int idCliente;
 	private int idReserva;
 	private String tipoPagamento;
 	private double precoFinal;
-	private String cpf;
+	private String cpfOuCnpj;
 	private Date data;
 	private String nomecliente;
 	private ArrayList<String> nomeServico = new ArrayList<String>();
 	private ArrayList<Double> precoServico = new ArrayList<Double>();
+	private double precoQuarto;
 	
 	public String getCpf() {
-		return cpf;
+		return cpfOuCnpj;
 	}
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		this.cpfOuCnpj = cpf;
 	}
 	public String getNomecliente() {
 		return nomecliente;
@@ -74,6 +75,12 @@ public class EntidadePagamento {
 	}
 	public void setPrecoServico(ArrayList<Double> precoServico) {
 		this.precoServico = precoServico;
+	}
+	public double getPrecoQuarto() {
+		return precoQuarto;
+	}
+	public void setPrecoQuarto(double precoQuarto) {
+		this.precoQuarto = precoQuarto;
 	}
 	
 }
