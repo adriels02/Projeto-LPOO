@@ -56,7 +56,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 		}
 	}
 
-	public PagamentoEntidade BDConstruirEntidade(String c) throws PagamentoDataException { // Verifica se foi informado um cpf ou cnpj. Constroi a entidade EntidadePagamento por meio de consultas ao banco de dados, em diversas tabelas e da return com a entidade. 
+	public PagamentoEntidade BDConstruirEntidade(String c, String tipoPagamento) throws PagamentoDataException { // Verifica se foi informado um cpf ou cnpj. Constroi a entidade EntidadePagamento por meio de consultas ao banco de dados, em diversas tabelas e da return com a entidade. 
 		PagamentoEntidade pgmt = new PagamentoEntidade();
 
 		try {
@@ -114,7 +114,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				rs.close();
 				stmt.close();
 				getConnection().close();
-
+				return pgmt;
 			} else {
 
 				String selectCliente = "SELECT * FROM pessoaJuridica WHERE cnpj = ?";
@@ -181,20 +181,14 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				rs.close();
 				stmt.close();
 				getConnection().close();
-
+				return pgmt;
 			}
 		} catch (SQLException e) {
 			throw new PagamentoDataException("Informações não encontradas no banco de dados.", e) ;
 
 		}	
-		return pgmt;
 	}
 
-	@Override
-	public void BuscarDadosFatura() throws PagamentoDataException {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
 //Verificar padroes onde querys sao atribuidas a entidades 

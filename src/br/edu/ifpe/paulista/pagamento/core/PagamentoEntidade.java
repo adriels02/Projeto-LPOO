@@ -16,10 +16,10 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	private ArrayList<Double> precoServico = new ArrayList<Double>();
 	private double precoQuarto;
 	
-	public String getCpf() {
+	public String getCpfOuCnpj() {
 		return cpfOuCnpj;
 	}
-	public void setCpf(String cpf) {
+	public void setCpfOuCnpj(String cpf) {
 		this.cpfOuCnpj = cpf;
 	}
 	public String getNomecliente() {
