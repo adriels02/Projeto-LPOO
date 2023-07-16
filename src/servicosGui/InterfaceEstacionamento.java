@@ -1,4 +1,4 @@
-package servicos;
+package servicosGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -28,8 +28,8 @@ import java.awt.event.KeyEvent;
 public class InterfaceEstacionamento extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtQuantidadeVeiculos;
+	private JTextField txtIdQuarto;
 
 	/**
 	 * Launch the application.
@@ -147,8 +147,8 @@ public class InterfaceEstacionamento extends JFrame {
 		gbc_lblNewLabel_3.gridy = 2;
 		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		txtQuantidadeVeiculos = new JTextField();
+		txtQuantidadeVeiculos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				String caracteres="0987654321";
@@ -157,16 +157,18 @@ public class InterfaceEstacionamento extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 0;
-		gbc_textField.gridy = 3;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
+		GridBagConstraints gbc_txtQuantidadeVeiculos = new GridBagConstraints();
+		gbc_txtQuantidadeVeiculos.weighty = 1.0;
+		gbc_txtQuantidadeVeiculos.weightx = 1.0;
+		gbc_txtQuantidadeVeiculos.insets = new Insets(0, 40, 5, 40);
+		gbc_txtQuantidadeVeiculos.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtQuantidadeVeiculos.gridx = 0;
+		gbc_txtQuantidadeVeiculos.gridy = 3;
+		contentPane.add(txtQuantidadeVeiculos, gbc_txtQuantidadeVeiculos);
+		txtQuantidadeVeiculos.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.addKeyListener(new KeyAdapter() {
+		txtIdQuarto = new JTextField();
+		txtIdQuarto.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				String caracteres="0987654321";
@@ -175,26 +177,28 @@ public class InterfaceEstacionamento extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 3;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		GridBagConstraints gbc_txtIdQuarto = new GridBagConstraints();
+		gbc_txtIdQuarto.weighty = 1.0;
+		gbc_txtIdQuarto.weightx = 1.0;
+		gbc_txtIdQuarto.insets = new Insets(0, 40, 5, 40);
+		gbc_txtIdQuarto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtIdQuarto.gridx = 2;
+		gbc_txtIdQuarto.gridy = 3;
+		contentPane.add(txtIdQuarto, gbc_txtIdQuarto);
+		txtIdQuarto.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Adicionar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.weighty = 1.0;
-		gbc_btnNewButton.weightx = 1.0;
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 5;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbc_btnAdicionar = new GridBagConstraints();
+		gbc_btnAdicionar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnAdicionar.weighty = 1.0;
+		gbc_btnAdicionar.weightx = 1.0;
+		gbc_btnAdicionar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAdicionar.gridx = 1;
+		gbc_btnAdicionar.gridy = 5;
+		contentPane.add(btnAdicionar, gbc_btnAdicionar);
 	}
 }

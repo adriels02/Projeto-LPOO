@@ -1,4 +1,4 @@
-package servicos;
+package servicosGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -118,7 +118,7 @@ public class InterfaceWiFi extends JFrame {
 		lblError.setForeground(new Color(255, 0, 0));
 		GridBagConstraints gbc_lblError = new GridBagConstraints();
 		gbc_lblError.gridwidth = 6;
-		gbc_lblError.insets = new Insets(0, 0, 5, 5);
+		gbc_lblError.insets = new Insets(0, 0, 5, 0);
 		gbc_lblError.gridx = 0;
 		gbc_lblError.gridy = 1;
 		contentPane.add(lblError, gbc_lblError);
@@ -173,6 +173,19 @@ public class InterfaceWiFi extends JFrame {
 		contentPane.add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
 		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.weightx = 1.0;
+		gbc_textField_1.anchor = GridBagConstraints.EAST;
+		gbc_textField_1.weighty = 1.0;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.gridwidth = 2;
+		gbc_textField_1.gridx = 0;
+		gbc_textField_1.gridy = 4;
+		contentPane.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
+		
 		JLabel lblNewLabel_9 = new JLabel("Nome:");
 		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
 		gbc_lblNewLabel_9.anchor = GridBagConstraints.EAST;
@@ -199,21 +212,21 @@ public class InterfaceWiFi extends JFrame {
 		gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 5;
+		gbc_lblNewLabel_5.gridy = 4;
 		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.weightx = 1.0;
-		gbc_textField_1.anchor = GridBagConstraints.EAST;
-		gbc_textField_1.weighty = 1.0;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridwidth = 2;
-		gbc_textField_1.gridx = 0;
-		gbc_textField_1.gridy = 5;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+		gbc_textField_2.weightx = 1.0;
+		gbc_textField_2.anchor = GridBagConstraints.EAST;
+		gbc_textField_2.weighty = 1.0;
+		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_2.gridwidth = 2;
+		gbc_textField_2.gridx = 0;
+		gbc_textField_2.gridy = 5;
+		contentPane.add(textField_2, gbc_textField_2);
+		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Senha:");
 		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
@@ -257,19 +270,6 @@ public class InterfaceWiFi extends JFrame {
 		gbc_btnNewButton.gridy = 6;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.weightx = 1.0;
-		gbc_textField_2.anchor = GridBagConstraints.EAST;
-		gbc_textField_2.weighty = 1.0;
-		gbc_textField_2.insets = new Insets(0, 0, 0, 5);
-		gbc_textField_2.gridwidth = 2;
-		gbc_textField_2.gridx = 0;
-		gbc_textField_2.gridy = 7;
-		contentPane.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
-		
 		JLabel lblNewLabel_6 = new JLabel("Senha:");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.anchor = GridBagConstraints.EAST;
@@ -277,7 +277,7 @@ public class InterfaceWiFi extends JFrame {
 		gbc_lblNewLabel_6.weightx = 1.0;
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_6.gridx = 0;
-		gbc_lblNewLabel_6.gridy = 7;
+		gbc_lblNewLabel_6.gridy = 5;
 		contentPane.add(lblNewLabel_6, gbc_lblNewLabel_6);
 	}
 }

@@ -1,4 +1,4 @@
-package servicos;
+package servicosCore;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

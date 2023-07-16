@@ -1,5 +1,4 @@
-package servicos;
-
+package servicosGui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -21,13 +20,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import servicosCore.Restaurante;
+import servicosCore.ServicoDeQuarto;
+
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 public class InterfaceServicoDeQuarto extends JFrame {
 
 	private JPanel contentPane;
@@ -74,7 +75,7 @@ public class InterfaceServicoDeQuarto extends JFrame {
 	public InterfaceServicoDeQuarto() {
 		setTitle("Serviço de quarto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 605, 422);
+		setBounds(100, 100, 653, 453);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -159,7 +160,6 @@ public class InterfaceServicoDeQuarto extends JFrame {
 				JRadioButton rdbtnCafeDaManha = new JRadioButton("Café da manhã");
 				grupoBotoesRefeicao.add(rdbtnCafeDaManha);
 				GridBagConstraints gbc_rdbtnCafeDaManha = new GridBagConstraints();
-				gbc_rdbtnCafeDaManha.anchor = GridBagConstraints.EAST;
 				gbc_rdbtnCafeDaManha.weighty = 1.0;
 				gbc_rdbtnCafeDaManha.weightx = 1.0;
 				gbc_rdbtnCafeDaManha.insets = new Insets(0, 0, 5, 5);

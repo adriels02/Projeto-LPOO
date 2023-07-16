@@ -1,4 +1,4 @@
-package servicos;
+package servicosCore;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

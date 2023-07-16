@@ -1,4 +1,4 @@
-package servicos;
+package servicosGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -61,13 +61,13 @@ public class InterfaceArrumacao extends JFrame {
 	 */
 	public InterfaceArrumacao() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 567, 300);
+		setBounds(100, 100, 552, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 				GridBagLayout gbl_contentPane = new GridBagLayout();
-				gbl_contentPane.columnWidths = new int[]{88, 88, 88, 0, 88, 88, 88, 0};
+				gbl_contentPane.columnWidths = new int[]{88, 88, 88, 0, 88, 88, 60, 0};
 				gbl_contentPane.rowHeights = new int[]{50, 50, 50, 50, 50, 0};
 				gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 				gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -122,7 +122,7 @@ public class InterfaceArrumacao extends JFrame {
 				gbc_lblErro.weighty = 1.0;
 				gbc_lblErro.weightx = 1.0;
 				gbc_lblErro.gridwidth = 7;
-				gbc_lblErro.insets = new Insets(0, 0, 5, 5);
+				gbc_lblErro.insets = new Insets(0, 0, 5, 0);
 				gbc_lblErro.gridx = 0;
 				gbc_lblErro.gridy = 1;
 				contentPane.add(lblErro, gbc_lblErro);
@@ -174,12 +174,13 @@ public class InterfaceArrumacao extends JFrame {
 					}
 				});
 				GridBagConstraints gbc_table = new GridBagConstraints();
+				gbc_table.insets = new Insets(0, 0, 0, 5);
 				gbc_table.gridheight = 3;
 				gbc_table.gridwidth = 2;
 				gbc_table.fill = GridBagConstraints.BOTH;
 				gbc_table.weighty = 1.0;
 				gbc_table.weightx = 1.0;
-				gbc_table.gridx = 5;
+				gbc_table.gridx = 4;
 				gbc_table.gridy = 2;
 				contentPane.add(table, gbc_table);
 				

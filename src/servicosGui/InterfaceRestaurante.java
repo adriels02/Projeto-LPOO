@@ -1,4 +1,4 @@
-package servicos;
+package servicosGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -22,13 +22,15 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import servicosCore.Restaurante;
+
 import javax.swing.event.ListSelectionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 public class InterfaceRestaurante extends JFrame {
 
 	DefaultListModel<String> historicoPedidos = new DefaultListModel<>();

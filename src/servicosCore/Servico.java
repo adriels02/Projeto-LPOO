@@ -1,4 +1,4 @@
-package servicos;
+package servicosCore;
 
 public class Servico {
 	

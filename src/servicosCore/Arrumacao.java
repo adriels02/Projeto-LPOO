@@ -1,4 +1,4 @@
-package servicos;
+package servicosCore;
 
 public class Arrumacao extends Servico {
 
@@ -6,15 +6,15 @@ public class Arrumacao extends Servico {
 
 	public Arrumacao(double preco, String descricao, String id) {
 		super(preco, descricao, id);
-	
+
 	}
 
 	public Arrumacao(String descricao, String id, boolean arrumado) {
-		super( descricao, id);
+		super(descricao, id);
 		this.arrumado = arrumado;
 	}
 
-	public boolean isArrumado() {
+	public boolean getArrumado() {
 		return arrumado;
 	}
 
@@ -22,11 +22,10 @@ public class Arrumacao extends Servico {
 		this.arrumado = arrumado;
 	}
 
-	
-	
-	
-	
-	
-	
-	
+	public boolean arrumacao(int idQuarto) {
+
+		return arrumado;
+
+	}
+
 }

@@ -1,4 +1,4 @@
-package servicos;
+package servicosGui;
 
 import java.awt.EventQueue;
 
@@ -78,6 +78,8 @@ public class InterfaceServicos extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.weighty = 1.0;
+		gbc_lblNewLabel.weightx = 1.0;
 		gbc_lblNewLabel.gridwidth = 2;
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -85,6 +87,8 @@ public class InterfaceServicos extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		GridBagConstraints gbc_btnTranslado = new GridBagConstraints();
+		gbc_btnTranslado.weighty = 1.0;
+		gbc_btnTranslado.weightx = 1.0;
 		gbc_btnTranslado.fill = GridBagConstraints.BOTH;
 		gbc_btnTranslado.insets = new Insets(0, 0, 5, 5);
 		gbc_btnTranslado.gridx = 0;
@@ -120,18 +124,24 @@ public class InterfaceServicos extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnArrumacao = new GridBagConstraints();
+		gbc_btnArrumacao.weighty = 1.0;
+		gbc_btnArrumacao.weightx = 1.0;
 		gbc_btnArrumacao.fill = GridBagConstraints.BOTH;
 		gbc_btnArrumacao.insets = new Insets(0, 0, 5, 0);
 		gbc_btnArrumacao.gridx = 1;
 		gbc_btnArrumacao.gridy = 1;
 		contentPane.add(btnArrumacao, gbc_btnArrumacao);
 		GridBagConstraints gbc_btnWiFi = new GridBagConstraints();
+		gbc_btnWiFi.weighty = 1.0;
+		gbc_btnWiFi.weightx = 1.0;
 		gbc_btnWiFi.fill = GridBagConstraints.BOTH;
 		gbc_btnWiFi.insets = new Insets(0, 0, 5, 5);
 		gbc_btnWiFi.gridx = 0;
 		gbc_btnWiFi.gridy = 2;
 		contentPane.add(btnWiFi, gbc_btnWiFi);
 		GridBagConstraints gbc_btnRestaurante = new GridBagConstraints();
+		gbc_btnRestaurante.weighty = 1.0;
+		gbc_btnRestaurante.weightx = 1.0;
 		gbc_btnRestaurante.fill = GridBagConstraints.BOTH;
 		gbc_btnRestaurante.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRestaurante.gridx = 1;
@@ -158,12 +168,16 @@ public class InterfaceServicos extends JFrame {
 			}
 		});
 		GridBagConstraints gbc_btnEstacionamento = new GridBagConstraints();
+		gbc_btnEstacionamento.weighty = 1.0;
+		gbc_btnEstacionamento.weightx = 1.0;
 		gbc_btnEstacionamento.fill = GridBagConstraints.BOTH;
 		gbc_btnEstacionamento.insets = new Insets(0, 0, 0, 5);
 		gbc_btnEstacionamento.gridx = 0;
 		gbc_btnEstacionamento.gridy = 3;
 		contentPane.add(btnEstacionamento, gbc_btnEstacionamento);
 		GridBagConstraints gbc_btnServicoDeQuarto = new GridBagConstraints();
+		gbc_btnServicoDeQuarto.weighty = 1.0;
+		gbc_btnServicoDeQuarto.weightx = 1.0;
 		gbc_btnServicoDeQuarto.fill = GridBagConstraints.BOTH;
 		gbc_btnServicoDeQuarto.gridx = 1;
 		gbc_btnServicoDeQuarto.gridy = 3;

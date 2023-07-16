@@ -1,39 +1,28 @@
 package interfaces;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
-import java.awt.Insets;
-import javax.swing.JTextField;
-import java.awt.CardLayout;
-import java.awt.BorderLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import serviços.InterfaceRestaurante;
-import serviços.InterfaceServiços;
-import serviços.InterfaceTranslado;
-import serviços.InterfaceWiFi;
-import javax.swing.ImageIcon;
-import java.awt.Color;
+
+import servicosGui.InterfaceRestaurante;
+import servicosGui.InterfaceServicos;
+import servicosGui.InterfaceTranslado;
+import servicosGui.InterfaceWiFi;
 public class MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
@@ -194,7 +183,7 @@ public class MenuPrincipal extends JFrame {
 		btnNewButton_1.setBackground(new Color(223, 223, 255));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InterfaceServiços interfaceServicos =  new InterfaceServiços();
+				InterfaceServicos interfaceServicos =  new InterfaceServicos();
 				interfaceServicos.setVisible(true);
 				dispose();
 			}
