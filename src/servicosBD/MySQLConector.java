@@ -18,15 +18,15 @@ public class MySQLConector implements ControleAcessoBD{
 	public void registroTranslado(Translado translado) throws BDException { 
 		
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/teste", "root", "7135937");
+			Connection conn = DriverManager.getConnection("");
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO cliente(idcliente ) VALUES(?)");
-			stmt.setDouble(1, 1);
+			stmt.setDouble(1, 6);
 //			stmt.setString(2, translado.getNome());
 //			stmt.setString(3, translado.getDescricao());
 //			stmt.setDouble(4, translado.getPreco());
 			stmt.execute();
 		} catch (Exception e) {
-			throw new BDException("Ocorreu um erro fatal");
+			throw new BDException(e.getMessage());
 		}
 
 	}
