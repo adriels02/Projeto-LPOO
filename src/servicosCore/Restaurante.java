@@ -10,16 +10,12 @@ public class Restaurante extends Servico {
 	private double precoAlmoco;
 	private double precoJantar;
 
-	public Restaurante(String descricao, String id) {
-
-		super(descricao, id);
-
+	public Restaurante(int id, String nome, String descricao,double preco, double taxa) {
+		super(id, nome, descricao, preco);
 	}
-	
+
 	public Restaurante() {
-
 		super();
-
 	}
 
 	public double getPrecoCafeDaManha() {

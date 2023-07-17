@@ -46,6 +46,7 @@ public class InterfaceTranslado extends JFrame {
 
 	DefaultListModel<String> historicoTranslado = new DefaultListModel<>();
 	JList list = new JList(historicoTranslado);
+	private JTextField txtIdReserva;
 
 	/**
 	 * Launch the application.
@@ -86,16 +87,16 @@ public class InterfaceTranslado extends JFrame {
 	public InterfaceTranslado() {
 		setTitle("Translado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 692, 481);
+		setBounds(100, 100, 738, 504);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 162, 211, 272, 0 };
-		gbl_contentPane.rowHeights = new int[] { 17, 14, 35, 14, 20, 15, 20, 14, 20, 14, 20, 14, 40, 23, 0 };
+		gbl_contentPane.rowHeights = new int[] { 17, 14, 35, 0, 0, 14, 20, 15, 20, 14, 20, 14, 20, 14, 40, 23, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
@@ -107,6 +108,78 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblError.gridx = 0;
 		gbc_lblError.gridy = 2;
 		contentPane.add(lblError, gbc_lblError);
+		
+		JLabel lblNewLabel_9 = new JLabel("Id Reserva:");
+		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
+		gbc_lblNewLabel_9.weighty = 1.0;
+		gbc_lblNewLabel_9.weightx = 1.0;
+		gbc_lblNewLabel_9.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_9.gridx = 0;
+		gbc_lblNewLabel_9.gridy = 3;
+		contentPane.add(lblNewLabel_9, gbc_lblNewLabel_9);
+		
+				JLabel lblNewLabel_8 = new JLabel("Histórico de viagens:");
+				GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+				gbc_lblNewLabel_8.weighty = 1.0;
+				gbc_lblNewLabel_8.weightx = 1.0;
+				gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 0);
+				gbc_lblNewLabel_8.gridwidth = 3;
+				gbc_lblNewLabel_8.gridx = 1;
+				gbc_lblNewLabel_8.gridy = 3;
+				contentPane.add(lblNewLabel_8, gbc_lblNewLabel_8);
+		
+		txtIdReserva = new JTextField();
+		txtIdReserva.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				String caracteres = "0987654321";
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+			}
+		});
+		GridBagConstraints gbc_txtIdReserva = new GridBagConstraints();
+		gbc_txtIdReserva.weighty = 1.0;
+		gbc_txtIdReserva.weightx = 1.0;
+		gbc_txtIdReserva.insets = new Insets(0, 0, 5, 5);
+		gbc_txtIdReserva.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtIdReserva.gridx = 0;
+		gbc_txtIdReserva.gridy = 4;
+		contentPane.add(txtIdReserva, gbc_txtIdReserva);
+		txtIdReserva.setColumns(10);
+		
+		JButton btnRemoverHistorico = new JButton("Remover");
+		btnRemoverHistorico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (!list.isSelectionEmpty()) {
+					String elementoSelecionado = (String) list.getSelectedValue();
+					historicoTranslado.removeElement(elementoSelecionado);
+					list.revalidate();
+					list.repaint();
+				}
+				btnRemoverHistorico.setEnabled(false);
+
+			}
+		});
+
+				list.addListSelectionListener(new ListSelectionListener() {
+					public void valueChanged(ListSelectionEvent e) {
+						btnRemoverHistorico.setEnabled(true);
+		
+					}
+				});
+				GridBagConstraints gbc_list = new GridBagConstraints();
+				gbc_list.weighty = 1.0;
+				gbc_list.weightx = 1.0;
+				gbc_list.fill = GridBagConstraints.BOTH;
+				gbc_list.insets = new Insets(0, 0, 5, 5);
+				gbc_list.gridheight = 11;
+				gbc_list.gridwidth = 2;
+				gbc_list.gridx = 1;
+				gbc_list.gridy = 4;
+				contentPane.add(list, gbc_list);
 
 		JFormattedTextField ftxtfData = new JFormattedTextField(setMascara("##/##/####"));
 		GridBagConstraints gbc_ftxtfData = new GridBagConstraints();
@@ -115,7 +188,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_ftxtfData.weightx = 1.0;
 		gbc_ftxtfData.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtfData.gridx = 0;
-		gbc_ftxtfData.gridy = 10;
+		gbc_ftxtfData.gridy = 12;
 		contentPane.add(ftxtfData, gbc_ftxtfData);
 
 		JFormattedTextField ftxtHora = new JFormattedTextField(setMascara("##:##"));
@@ -125,7 +198,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_ftxtHora.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtHora.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtHora.gridx = 0;
-		gbc_ftxtHora.gridy = 12;
+		gbc_ftxtHora.gridy = 14;
 		contentPane.add(ftxtHora, gbc_ftxtHora);
 
 		JButton btnAdicionarhistorico = new JButton("Adicionar");
@@ -136,6 +209,12 @@ public class InterfaceTranslado extends JFrame {
 				if (QuantidadeDePassadeiros.equals("")) {
 					QuantidadeDePassadeiros = "0";
 				}
+				
+				String idReserva = txtIdReserva.getText();
+				if (idReserva.equals("")) {
+					idReserva = "0";
+				}
+				int numeroidReserva = Integer.parseInt(idReserva);
 				int numeroPassageiros = Integer.parseInt(QuantidadeDePassadeiros);
 
 				try {
@@ -155,10 +234,13 @@ public class InterfaceTranslado extends JFrame {
 
 				try {
 
-				ControladorDeAcessos translado = new ControladorDeAcessos();
-					translado.RegistroHistoricoDeViagem(txtEnderecoColeta.getText(),
+				ControladorDeAcessos historicotranslado = new ControladorDeAcessos();
+					historicotranslado.RegistroHistoricoDeViagem(numeroidReserva ,txtEnderecoColeta.getText(),
 							txtEnderecoDestino.getText(), numeroPassageiros, dataFormatada, horaFormatada);
-
+	
+				ControladorDeAcessos registroServico = new ControladorDeAcessos();
+					 registroServico.registroServiçoTranslado(numeroidReserva, numeroPassageiros);
+					 
 				} catch (ServicosException exception) {
 
 					lblError.setText(exception.getMessage());
@@ -169,7 +251,7 @@ public class InterfaceTranslado extends JFrame {
 				txtEnderecoDestino.setText("");
 				ftxtHora.setText("");
 				txtQuantidadePassageiros.setText("");
-
+				txtIdReserva.setText("");
 			}
 		});
 
@@ -230,18 +312,8 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblNewLabel_3.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 3;
+		gbc_lblNewLabel_3.gridy = 5;
 		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
-
-		JLabel lblNewLabel_8 = new JLabel("Histórico de viagens:");
-		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
-		gbc_lblNewLabel_8.weighty = 1.0;
-		gbc_lblNewLabel_8.weightx = 1.0;
-		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_8.gridwidth = 3;
-		gbc_lblNewLabel_8.gridx = 1;
-		gbc_lblNewLabel_8.gridy = 3;
-		contentPane.add(lblNewLabel_8, gbc_lblNewLabel_8);
 
 		txtEnderecoColeta = new JTextField();
 		txtEnderecoColeta.setColumns(10);
@@ -251,7 +323,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_txtEnderecoColeta.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEnderecoColeta.insets = new Insets(0, 0, 5, 5);
 		gbc_txtEnderecoColeta.gridx = 0;
-		gbc_txtEnderecoColeta.gridy = 4;
+		gbc_txtEnderecoColeta.gridy = 6;
 		contentPane.add(txtEnderecoColeta, gbc_txtEnderecoColeta);
 
 		JLabel lblNewLabel_4 = new JLabel("Endereço Destino:");
@@ -261,41 +333,10 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblNewLabel_4.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
-		gbc_lblNewLabel_4.gridy = 5;
+		gbc_lblNewLabel_4.gridy = 7;
 		contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
-		JButton btnRemoverHistorico = new JButton("Remover");
-		btnRemoverHistorico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				if (!list.isSelectionEmpty()) {
-					String elementoSelecionado = (String) list.getSelectedValue();
-					historicoTranslado.removeElement(elementoSelecionado);
-					list.revalidate();
-					list.repaint();
-				}
-				btnRemoverHistorico.setEnabled(false);
-
-			}
-		});
-
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				btnRemoverHistorico.setEnabled(true);
-
-			}
-		});
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.weighty = 1.0;
-		gbc_list.weightx = 1.0;
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.gridheight = 9;
-		gbc_list.gridwidth = 2;
-		gbc_list.gridx = 1;
-		gbc_list.gridy = 4;
-		contentPane.add(list, gbc_list);
-
+		
 		txtEnderecoDestino = new JTextField();
 		txtEnderecoDestino.setColumns(10);
 		GridBagConstraints gbc_txtEnderecoDestino = new GridBagConstraints();
@@ -304,7 +345,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_txtEnderecoDestino.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEnderecoDestino.insets = new Insets(0, 0, 5, 5);
 		gbc_txtEnderecoDestino.gridx = 0;
-		gbc_txtEnderecoDestino.gridy = 6;
+		gbc_txtEnderecoDestino.gridy = 8;
 		contentPane.add(txtEnderecoDestino, gbc_txtEnderecoDestino);
 
 		JLabel lblNewLabel_5 = new JLabel("Quantidade de Passageiros:");
@@ -314,7 +355,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblNewLabel_5.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 7;
+		gbc_lblNewLabel_5.gridy = 9;
 		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 
 		txtQuantidadePassageiros = new JTextField();
@@ -334,7 +375,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_txtQuantidadePassageiros.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtQuantidadePassageiros.insets = new Insets(0, 0, 5, 5);
 		gbc_txtQuantidadePassageiros.gridx = 0;
-		gbc_txtQuantidadePassageiros.gridy = 8;
+		gbc_txtQuantidadePassageiros.gridy = 10;
 		contentPane.add(txtQuantidadePassageiros, gbc_txtQuantidadePassageiros);
 
 		JLabel lblNewLabel_6 = new JLabel("Data:");
@@ -344,7 +385,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblNewLabel_6.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 0;
-		gbc_lblNewLabel_6.gridy = 9;
+		gbc_lblNewLabel_6.gridy = 11;
 		contentPane.add(lblNewLabel_6, gbc_lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("Hora:");
@@ -354,7 +395,7 @@ public class InterfaceTranslado extends JFrame {
 		gbc_lblNewLabel_7.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_7.gridx = 0;
-		gbc_lblNewLabel_7.gridy = 11;
+		gbc_lblNewLabel_7.gridy = 13;
 		contentPane.add(lblNewLabel_7, gbc_lblNewLabel_7);
 
 		GridBagConstraints gbc_btnAdicionarhistorico = new GridBagConstraints();
@@ -363,18 +404,25 @@ public class InterfaceTranslado extends JFrame {
 		gbc_btnAdicionarhistorico.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnAdicionarhistorico.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAdicionarhistorico.gridx = 0;
-		gbc_btnAdicionarhistorico.gridy = 13;
+		gbc_btnAdicionarhistorico.gridy = 15;
 		contentPane.add(btnAdicionarhistorico, gbc_btnAdicionarhistorico);
+		
+		JButton btnNewButton = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.weighty = 1.0;
+		gbc_btnNewButton.weightx = 1.0;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 15;
+		contentPane.add(btnNewButton, gbc_btnNewButton);
 
 		btnRemoverHistorico.setEnabled(false);
 		GridBagConstraints gbc_btnRemoverHistorico = new GridBagConstraints();
 		gbc_btnRemoverHistorico.insets = new Insets(0, 0, 0, 5);
-		gbc_btnRemoverHistorico.gridwidth = 2;
 		gbc_btnRemoverHistorico.weighty = 1.0;
 		gbc_btnRemoverHistorico.weightx = 1.0;
-		gbc_btnRemoverHistorico.anchor = GridBagConstraints.NORTH;
-		gbc_btnRemoverHistorico.gridx = 1;
-		gbc_btnRemoverHistorico.gridy = 13;
+		gbc_btnRemoverHistorico.gridx = 2;
+		gbc_btnRemoverHistorico.gridy = 15;
 		contentPane.add(btnRemoverHistorico, gbc_btnRemoverHistorico);
 
 	}

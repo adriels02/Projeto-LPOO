@@ -2,35 +2,37 @@ package servicosCore;
 
 public class Servico {
 	
-	private String id;
-	private double preco;
+	private int idReserva;
+	private String nome;
 	private String descricao;
+	private double preco;
+
+	public Servico(int idReserva, String nome, String descricao, double preco) {
+
+		this.idReserva = idReserva;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
 
 	public Servico() {
-		
-	}
-	
-	
-	public Servico(double preco, String descricao, String id) {
-
-		this.preco = preco;
-		this.descricao = descricao;
-		this.id = id;
-	}
-	
-	public Servico( String descricao, String id) {
-
-		this.descricao = descricao;
-		this.id = id;
-	}
-	
-
-	public double getPreco() {
-		return preco;
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public int getIdReserva() {
+		return idReserva;
+	}
+
+	public void setIdReserva(int idReserva) {
+		this.idReserva = idReserva;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -41,13 +43,14 @@ public class Servico {
 		this.descricao = descricao;
 	}
 
-	public String getId() {
-		return id;
+	public double getPreco() {
+		return preco;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
+
 
 }

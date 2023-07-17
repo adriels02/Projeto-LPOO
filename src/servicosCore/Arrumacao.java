@@ -2,29 +2,9 @@ package servicosCore;
 
 public class Arrumacao extends Servico {
 
-	private boolean arrumado;
 
-	public Arrumacao(double preco, String descricao, String id) {
-		super(preco, descricao, id);
-
-	}
-
-	public Arrumacao(String descricao, String id, boolean arrumado) {
-		super(descricao, id);
-		this.arrumado = arrumado;
-	}
-
-	public boolean getArrumado() {
-		return arrumado;
-	}
-
-	public void setArrumado(boolean arrumado) {
-		this.arrumado = arrumado;
-	}
-
-	public boolean arrumacao(int idQuarto) {
-
-		return arrumado;
+	public Arrumacao(double preco, String descricao, int id, String nome) {
+		super(id, nome, descricao, preco);
 
 	}
 

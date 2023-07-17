@@ -10,8 +10,8 @@ public class ServicoDeQuarto extends Servico {
 	String dataHoraFormatada = dataHoraAtual.format(formatter);
 	private double taxa;
 
-	public ServicoDeQuarto(double preco, String descricao, String id, double taxa) {
-		super(preco, descricao, id);
+	public ServicoDeQuarto(int id, String nome, String descricao,double preco, double taxa) {
+		super(id, nome, descricao, preco);
 		this.taxa = taxa;
 	}
 
