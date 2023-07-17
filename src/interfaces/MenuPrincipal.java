@@ -3,6 +3,7 @@ package interfaces;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -23,8 +24,13 @@ import servicosGui.InterfaceRestaurante;
 import servicosGui.InterfaceServicos;
 import servicosGui.InterfaceTranslado;
 import servicosGui.InterfaceWiFi;
+
 public class MenuPrincipal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4903225871769519708L;
 	private JPanel contentPane;
 
 	/**
@@ -50,6 +56,8 @@ public class MenuPrincipal extends JFrame {
 		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 420);
+		//abrir no meio da tela
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -159,76 +167,82 @@ public class MenuPrincipal extends JFrame {
 		gbc_panel.gridy = 0;
 		contentPane.add(panel, gbc_panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/telainicilILUSTRAÇAOPrancheta 9.png")));
-		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Novo Cadastro");
-		btnNewButton.setBackground(new Color(223, 223, 255));
-		btnNewButton.addActionListener(new ActionListener() {
+		JLabel imgMenuInicial = new JLabel("");
+		imgMenuInicial.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/telainicilILUSTRAÇAOPrancheta 9.png")));
+		panel.add(imgMenuInicial); 
+					
+			
+		JButton bntNovoCadastro = new JButton("Novo Cadastro");
+		bntNovoCadastro.setBackground(new Color(223, 223, 255));
+		bntNovoCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CadastroInterface cadastroInterface =  new CadastroInterface();
 				cadastroInterface.setVisible(true);
 				dispose();
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 1;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+		GridBagConstraints gbc_bntNovoCadastro = new GridBagConstraints();
+		gbc_bntNovoCadastro.fill = GridBagConstraints.BOTH;
+		gbc_bntNovoCadastro.insets = new Insets(0, 0, 5, 5);
+		gbc_bntNovoCadastro.gridx = 0;
+		gbc_bntNovoCadastro.gridy = 1;
+		contentPane.add(bntNovoCadastro, gbc_bntNovoCadastro);
 		
-		JButton btnNewButton_1 = new JButton("Novo Serviço");
-		btnNewButton_1.setBackground(new Color(223, 223, 255));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton bntServico = new JButton("Novo Serviço");
+		bntServico.setBackground(new Color(223, 223, 255));
+		bntServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceServicos interfaceServicos =  new InterfaceServicos();
 				interfaceServicos.setVisible(true);
 				dispose();
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 2;
-		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
+		GridBagConstraints gbc_bntServico = new GridBagConstraints();
+		gbc_bntServico.fill = GridBagConstraints.BOTH;
+		gbc_bntServico.insets = new Insets(0, 0, 5, 5);
+		gbc_bntServico.gridx = 0;
+		gbc_bntServico.gridy = 2;
+		contentPane.add(bntServico, gbc_bntServico);
 		
-		JButton btnNewButton_2 = new JButton("Reserva");
-		btnNewButton_2.setBackground(new Color(223, 223, 255));
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 0;
-		gbc_btnNewButton_2.gridy = 3;
-		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
+		JButton bntReserva = new JButton("Reserva");
+		bntReserva.setBackground(new Color(223, 223, 255));
+		GridBagConstraints gbc_bntReserva = new GridBagConstraints();
+		gbc_bntReserva.fill = GridBagConstraints.BOTH;
+		gbc_bntReserva.insets = new Insets(0, 0, 5, 5);
+		gbc_bntReserva.gridx = 0;
+		gbc_bntReserva.gridy = 3;
+		contentPane.add(bntReserva, gbc_bntReserva);
 		
-		JButton btnNewButton_3 = new JButton("Check In");
-		btnNewButton_3.setBackground(new Color(223, 223, 255));
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_3.gridx = 0;
-		gbc_btnNewButton_3.gridy = 4;
-		contentPane.add(btnNewButton_3, gbc_btnNewButton_3);
+		JButton bntCheckIn = new JButton("Check In");
+		bntCheckIn.setBackground(new Color(223, 223, 255));
+		GridBagConstraints gbc_bntCheckIn = new GridBagConstraints();
+		gbc_bntCheckIn.fill = GridBagConstraints.BOTH;
+		gbc_bntCheckIn.insets = new Insets(0, 0, 5, 5);
+		gbc_bntCheckIn.gridx = 0;
+		gbc_bntCheckIn.gridy = 4;
+		contentPane.add(bntCheckIn, gbc_bntCheckIn);
 		
-		JButton btnNewButton_4 = new JButton("Check Out");
-		btnNewButton_4.setBackground(new Color(223, 223, 255));
-		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_4.gridx = 0;
-		gbc_btnNewButton_4.gridy = 5;
-		contentPane.add(btnNewButton_4, gbc_btnNewButton_4);
+		JButton bntCheckOut = new JButton("Check Out");
+		bntCheckOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		bntCheckOut.setBackground(new Color(223, 223, 255));
+		GridBagConstraints gbc_bntCheckOut = new GridBagConstraints();
+		gbc_bntCheckOut.fill = GridBagConstraints.BOTH;
+		gbc_bntCheckOut.insets = new Insets(0, 0, 5, 5);
+		gbc_bntCheckOut.gridx = 0;
+		gbc_bntCheckOut.gridy = 5;
+		contentPane.add(bntCheckOut, gbc_bntCheckOut);
 		
-		JButton btnNewButton_5 = new JButton("Consulta");
-		btnNewButton_5.setBackground(new Color(223, 223, 255));
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_5.gridx = 0;
-		gbc_btnNewButton_5.gridy = 6;
-		contentPane.add(btnNewButton_5, gbc_btnNewButton_5);
+		JButton bntConsulta = new JButton("Consulta");
+		bntConsulta.setBackground(new Color(223, 223, 255));
+		GridBagConstraints gbc_bntConsulta = new GridBagConstraints();
+		gbc_bntConsulta.fill = GridBagConstraints.BOTH;
+		gbc_bntConsulta.insets = new Insets(0, 0, 0, 5);
+		gbc_bntConsulta.gridx = 0;
+		gbc_bntConsulta.gridy = 6;
+		contentPane.add(bntConsulta, gbc_bntConsulta);
 	}
 }

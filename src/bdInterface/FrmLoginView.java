@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import bdConexao.UsuarioConexao;
+import interfaces.MenuPrincipal;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -55,13 +57,15 @@ public class FrmLoginView extends JFrame{
 	 * Create the frame.
 	 */
 	public FrmLoginView() {
-		setResizable(false);
+		//setResizable(false);
 		setTitle("Tela Login");
-		//setSize(1000,720);
+		//setSize(1000,720); aumenta a tela mais nao expande os componetes
+		Frame frame = new Frame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -111,10 +115,10 @@ public class FrmLoginView extends JFrame{
 				ResultSet resultadoUsuarioConexao = objUsuarioConexao.autenticacaoUsuario(objUsuarioTransferencia);
 				
 				if(resultadoUsuarioConexao.next()) {
-				/* chamar tela que eu quero abrir, trocar após definir tela
+				/* chamar tela que eu quero abrir, trocar apï¿½s definir tela
 					
 					Tela (interface) que quer abrir + Nome de objeto criado aqui = tela a ser recebida novamente*/
-					FrmTelaPrincipalView objFrmTelaPrincipalView = new FrmTelaPrincipalView();
+					MenuPrincipal objFrmTelaPrincipalView = new MenuPrincipal();
 					
 					//para tornar a tela visivel 
 					objFrmTelaPrincipalView.setVisible(true);
@@ -129,7 +133,7 @@ public class FrmLoginView extends JFrame{
 			}*/ 
 				
 				else {
-				JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog( null, "Dados invï¿½lidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
 				
 			}
 				
@@ -143,22 +147,8 @@ public class FrmLoginView extends JFrame{
 		btnEntrar.setBounds(284, 176, 89, 23);
 		contentPane.add(btnEntrar);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(FrmLoginView.class.getResource("/imagens/logoOverlookPQ.jpg")));
-		lblNewLabel_2.setBounds(82, 23, 112, 112);
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(23, 26, 223, 214);
 		contentPane.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(FrmLoginView.class.getResource("/imagens/logoOverlookNome.jpg")));
-		lblNewLabel_3.setBounds(24, 151, 228, 88);
-		contentPane.add(lblNewLabel_3);
 	}
-	        
-	
-	//public boolean checkUsuario (String usuario, String login) {
-		//return usuario.equals("usuario") && login.equals("123");
-		
-		
-	//}
-
 }

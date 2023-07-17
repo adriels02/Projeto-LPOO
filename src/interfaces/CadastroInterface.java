@@ -71,6 +71,8 @@ public class CadastroInterface extends JFrame {
 		setTitle("Cadastro Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 411);
+		//abrir no meio da tela
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -91,8 +93,8 @@ public class CadastroInterface extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{121, 93, 22, 0, 68, 131, 0};
 		gbl_contentPane.rowHeights = new int[]{14, 14, 20, 14, 20, 0, 0, 14, 23, 14, 14, 20, 14, 20, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Dados Cliente");
@@ -441,8 +443,8 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(txtfHoraSaida, gbc_txtfHoraSaida);
 		txtfHoraSaida.setColumns(10);
 		
-		JButton bttFinalizar = new JButton("Finalizar");
-		bttFinalizar.addActionListener(new ActionListener() {
+		JButton bntFinalizarCadastro = new JButton("Finalizar");
+		bntFinalizarCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente cliente = new Cliente();
 				cliente.setNome(txtfNome.getText());
@@ -473,13 +475,20 @@ else if (armazenarCadastro.salvar(cliente)) {
 				}
 			}
 		});
-		bttFinalizar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_bttFinalizar = new GridBagConstraints();
-		gbc_bttFinalizar.insets = new Insets(0, 0, 5, 0);
-		gbc_bttFinalizar.anchor = GridBagConstraints.NORTH;
-		gbc_bttFinalizar.gridx = 5;
-		gbc_bttFinalizar.gridy = 13;
-		contentPane.add(bttFinalizar, gbc_bttFinalizar);
+		bntFinalizarCadastro.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_bntFinalizarCadastro = new GridBagConstraints();
+		gbc_bntFinalizarCadastro.insets = new Insets(0, 0, 5, 0);
+		gbc_bntFinalizarCadastro.anchor = GridBagConstraints.NORTH;
+		gbc_bntFinalizarCadastro.gridx = 5;
+		gbc_bntFinalizarCadastro.gridy = 13;
+		contentPane.add(bntFinalizarCadastro, gbc_bntFinalizarCadastro);
+		
+		JLabel lblNewLabel_18 = new JLabel("");
+		GridBagConstraints gbc_lblNewLabel_18 = new GridBagConstraints();
+		gbc_lblNewLabel_18.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_18.gridx = 0;
+		gbc_lblNewLabel_18.gridy = 14;
+		contentPane.add(lblNewLabel_18, gbc_lblNewLabel_18);
 	}
 	
 }
