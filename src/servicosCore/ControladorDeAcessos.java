@@ -46,7 +46,7 @@ public class ControladorDeAcessos {
 			throw new ServicosException("Os endereços de coleta e destino estão iguais");
 		}
 
-		HistoricoTranslado translado = new HistoricoTranslado(idReserva, enderecoDestino, enderecoDestino, passageiros, data, horario);
+		HistoricoTranslado translado = new HistoricoTranslado(idReserva, enderecoColeta, enderecoDestino, passageiros, data, horario);
 
 		try {
 			repositorio.registroTranslado(translado);
