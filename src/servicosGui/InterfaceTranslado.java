@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -58,7 +59,7 @@ public class InterfaceTranslado extends JFrame {
 		MaskFormatter mask = null;
 		try {
 			mask = new MaskFormatter(mascara);
-		} catch (java.text.ParseException ex) {
+		} catch (ParseException ex) {
 		}
 		return mask;
 	}
@@ -89,7 +90,7 @@ public class InterfaceTranslado extends JFrame {
 	public InterfaceTranslado() {
 		setTitle("Translado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 738, 504);
+		setBounds(100, 100, 777, 504);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -174,11 +175,7 @@ public class InterfaceTranslado extends JFrame {
 			) {
 			    Class[] columnTypes = new Class[] {
 			        Object.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
-			    };
-
-			    public Class getColumnClass(int columnIndex) {
-			        return columnTypes[columnIndex];
-			    }
+			    };			  
 			};
 
 		
@@ -235,17 +232,20 @@ public class InterfaceTranslado extends JFrame {
 		btnAdicionarhistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String QuantidadeDePassadeiros = txtQuantidadePassageiros.getText();
-				if (QuantidadeDePassadeiros.equals("")) {
-					QuantidadeDePassadeiros = "0";
+				lblError.setText("");
+				
+				String QuantidadeDePassageiros = txtQuantidadePassageiros.getText();
+				if (QuantidadeDePassageiros.equals("")) {
+					QuantidadeDePassageiros = "0";
 				}
 				
 				String idReserva = txtIdReserva.getText();
 				if (idReserva.equals("")) {
 					idReserva = "0";
 				}
+				
 				int numeroidReserva = Integer.parseInt(idReserva);
-				int numeroPassageiros = Integer.parseInt(QuantidadeDePassadeiros);
+				int numeroPassageiros = Integer.parseInt(QuantidadeDePassageiros);
 
 				try {
 					DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -450,7 +450,9 @@ public class InterfaceTranslado extends JFrame {
 		JButton btnAtualizar = new JButton("Atualizar ");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
+				lblError.setText("Tabela atualizada");
+				 
 				tableModel.setNumRows(0);				
 				try {
 				    MySQLConector leitor = new MySQLConector();

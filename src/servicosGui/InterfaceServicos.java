@@ -1,10 +1,14 @@
 package servicosGui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import interfaces.MenuPrincipal;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -18,6 +22,8 @@ import javax.swing.UIManager;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InterfaceServicos extends JFrame {
 
@@ -73,16 +79,43 @@ public class InterfaceServicos extends JFrame {
 				dispose();
 			}
 		});
+		
+		JLabel lblVoltar = new JLabel("<<< Voltar");
+		lblVoltar.addMouseListener(new MouseAdapter() {
+		
+			public void mouseEntered(MouseEvent e) {
+				
+				lblVoltar.setForeground(Color.RED);		
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblVoltar.setForeground(Color.BLACK);
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				menuPrincipal.setVisible(true);
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_lblVoltar = new GridBagConstraints();
+		gbc_lblVoltar.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblVoltar.insets = new Insets(0, 0, 5, 5);
+		gbc_lblVoltar.gridx = 0;
+		gbc_lblVoltar.gridy = 0;
+		contentPane.add(lblVoltar, gbc_lblVoltar);
 
 		JLabel lblNewLabel = new JLabel("Serviços:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 2;
 		gbc_lblNewLabel.weighty = 1.0;
 		gbc_lblNewLabel.weightx = 1.0;
-		gbc_lblNewLabel.gridwidth = 2;
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);

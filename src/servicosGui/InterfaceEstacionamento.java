@@ -1,11 +1,15 @@
 package servicosGui;
 
 import java.awt.Color;
+import servicosCore.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import servicosCore.ServicosException;
+
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
@@ -29,7 +33,7 @@ public class InterfaceEstacionamento extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtQuantidadeVeiculos;
-	private JTextField txtIdQuarto;
+	private JTextField txtIdReserva;
 
 	/**
 	 * Launch the application.
@@ -60,19 +64,14 @@ public class InterfaceEstacionamento extends JFrame {
 	public InterfaceEstacionamento() {
 		setTitle("Estacionamento");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 489, 337);
+		setBounds(100, 100, 500, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{70, 153, 87, 0};
-		gbl_contentPane.rowHeights = new int[]{55, 0, 50, 30, 45, 55, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
 		
 				JLabel lblNewLabel = new JLabel("<<< Voltar");
+				lblNewLabel.setBounds(6, 6, 65, 16);
 				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 				lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -95,59 +94,29 @@ public class InterfaceEstacionamento extends JFrame {
 						lblNewLabel.setForeground(Color.black);
 					}
 				});
-				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-				gbc_lblNewLabel.weighty = 1.0;
-				gbc_lblNewLabel.weightx = 1.0;
-				gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
-				gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-				gbc_lblNewLabel.gridx = 0;
-				gbc_lblNewLabel.gridy = 0;
-				contentPane.add(lblNewLabel, gbc_lblNewLabel);
+				contentPane.setLayout(null);
+				contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Estacionamento");
+		lblNewLabel_1.setBounds(180, 6, 124, 60);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 3;
-		gbc_lblNewLabel_1.weighty = 1.0;
-		gbc_lblNewLabel_1.weightx = 1.0;
-		gbc_lblNewLabel_1.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 0;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblErro = new JLabel("");
+		lblErro.setBounds(0, 0, 0, 0);
 		lblErro.setForeground(new Color(255, 0, 0));
-		GridBagConstraints gbc_lblErro = new GridBagConstraints();
-		gbc_lblErro.weighty = 1.0;
-		gbc_lblErro.weightx = 1.0;
-		gbc_lblErro.gridwidth = 3;
-		gbc_lblErro.insets = new Insets(0, 0, 5, 5);
-		gbc_lblErro.gridx = 0;
-		gbc_lblErro.gridy = 1;
-		contentPane.add(lblErro, gbc_lblErro);
+		contentPane.add(lblErro);
 		
 		JLabel lblNewLabel_2 = new JLabel("Quantidade de veículos:");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.weighty = 1.0;
-		gbc_lblNewLabel_2.weightx = 1.0;
-		gbc_lblNewLabel_2.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 2;
-		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		lblNewLabel_2.setBounds(110, 86, 116, 55);
+		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("ID do quarto:");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.weighty = 1.0;
-		gbc_lblNewLabel_3.weightx = 1.0;
-		gbc_lblNewLabel_3.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_3.gridx = 2;
-		gbc_lblNewLabel_3.gridy = 2;
-		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel("ID Reserva:");
+		lblNewLabel_3.setBounds(305, 86, 73, 55);
+		contentPane.add(lblNewLabel_3);
 		
 		txtQuantidadeVeiculos = new JTextField();
+		txtQuantidadeVeiculos.setBounds(140, 153, 54, 20);
 		txtQuantidadeVeiculos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -157,18 +126,47 @@ public class InterfaceEstacionamento extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_txtQuantidadeVeiculos = new GridBagConstraints();
-		gbc_txtQuantidadeVeiculos.weighty = 1.0;
-		gbc_txtQuantidadeVeiculos.weightx = 1.0;
-		gbc_txtQuantidadeVeiculos.insets = new Insets(0, 40, 5, 40);
-		gbc_txtQuantidadeVeiculos.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtQuantidadeVeiculos.gridx = 0;
-		gbc_txtQuantidadeVeiculos.gridy = 3;
-		contentPane.add(txtQuantidadeVeiculos, gbc_txtQuantidadeVeiculos);
+		contentPane.add(txtQuantidadeVeiculos);
 		txtQuantidadeVeiculos.setColumns(10);
 		
-		txtIdQuarto = new JTextField();
-		txtIdQuarto.addKeyListener(new KeyAdapter() {
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.setBounds(164, 241, 173, 23);
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				lblErro.setText("");
+				
+				String numeroId = txtIdReserva.getText();
+				if (numeroId.equals("")) {
+					numeroId = "0";
+				}
+				
+				String numeroVagas = txtQuantidadeVeiculos.getText();
+				if (numeroVagas.equals("")) {
+					numeroVagas = "0";
+				}
+
+				int id = Integer.parseInt(numeroId);
+				int vagas = Integer.parseInt(numeroVagas);		
+				
+				try {
+					
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+					controlador.registroServiçoTranslado(id, vagas);
+					
+				}	catch (ServicosException exception) {
+					
+					lblErro.setText(exception.getMessage());
+					
+				}
+				
+				
+			}
+		});
+		
+		txtIdReserva = new JTextField();
+		txtIdReserva.setBounds(305, 153, 54, 20);
+		txtIdReserva.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				String caracteres="0987654321";
@@ -177,28 +175,8 @@ public class InterfaceEstacionamento extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_txtIdQuarto = new GridBagConstraints();
-		gbc_txtIdQuarto.weighty = 1.0;
-		gbc_txtIdQuarto.weightx = 1.0;
-		gbc_txtIdQuarto.insets = new Insets(0, 40, 5, 40);
-		gbc_txtIdQuarto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtIdQuarto.gridx = 2;
-		gbc_txtIdQuarto.gridy = 3;
-		contentPane.add(txtIdQuarto, gbc_txtIdQuarto);
-		txtIdQuarto.setColumns(10);
-		
-		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GridBagConstraints gbc_btnAdicionar = new GridBagConstraints();
-		gbc_btnAdicionar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAdicionar.weighty = 1.0;
-		gbc_btnAdicionar.weightx = 1.0;
-		gbc_btnAdicionar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAdicionar.gridx = 1;
-		gbc_btnAdicionar.gridy = 5;
-		contentPane.add(btnAdicionar, gbc_btnAdicionar);
+		contentPane.add(txtIdReserva);
+		txtIdReserva.setColumns(10);
+		contentPane.add(btnAdicionar);
 	}
 }

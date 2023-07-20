@@ -47,13 +47,13 @@ public class HistoricoTranslado {
 	}
 
 	public Date getData() {
-		 Date date = java.sql.Date.valueOf(data);
+		 Date date = Date.valueOf(data);
 		 
 		 return date;
 	}
 
 	public Time getHora() {
-			Time time = java.sql.Time.valueOf(hora);
+			Time time = Time.valueOf(hora);
 		return time;
 	}
 

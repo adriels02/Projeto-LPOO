@@ -1,5 +1,5 @@
 package servicosGui;
-
+import servicosCore.*;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -14,6 +14,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import servicosBD.BDException;
+import servicosBD.MySQLConector;
+
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import java.awt.event.KeyAdapter;
@@ -26,12 +30,15 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfaceArrumacao extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtQuarto;
 	private JTable table;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -61,16 +68,16 @@ public class InterfaceArrumacao extends JFrame {
 	 */
 	public InterfaceArrumacao() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 552, 300);
+		setBounds(100, 100, 622, 384);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 				GridBagLayout gbl_contentPane = new GridBagLayout();
-				gbl_contentPane.columnWidths = new int[]{88, 88, 88, 0, 88, 88, 60, 0};
-				gbl_contentPane.rowHeights = new int[]{50, 50, 50, 50, 50, 0};
-				gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-				gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_contentPane.columnWidths = new int[] {88, 88, 88, 88, 88, 88, 60, 0};
+				gbl_contentPane.rowHeights = new int[]{50, 30, 50, 50, 50, 0, 0};
+				gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 				contentPane.setLayout(gbl_contentPane);
 						
 								JLabel lblVoltar = new JLabel("<<< Voltar");
@@ -138,8 +145,8 @@ public class InterfaceArrumacao extends JFrame {
 				gbc_lblNewLabel.gridy = 2;
 				contentPane.add(lblNewLabel, gbc_lblNewLabel);
 				
-				textField = new JTextField();
-				textField.addKeyListener(new KeyAdapter() {
+				txtQuarto = new JTextField();
+				txtQuarto.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
 						String caracteres="0987654321";
@@ -148,41 +155,38 @@ public class InterfaceArrumacao extends JFrame {
 						}
 					}
 				});
-				GridBagConstraints gbc_textField = new GridBagConstraints();
-				gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField.weighty = 1.0;
-				gbc_textField.weightx = 1.0;
-				gbc_textField.insets = new Insets(0, 0, 5, 5);
-				gbc_textField.gridx = 1;
-				gbc_textField.gridy = 2;
-				contentPane.add(textField, gbc_textField);
-				textField.setColumns(10);
+				GridBagConstraints gbc_txtQuarto = new GridBagConstraints();
+				gbc_txtQuarto.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtQuarto.weighty = 1.0;
+				gbc_txtQuarto.weightx = 1.0;
+				gbc_txtQuarto.insets = new Insets(0, 0, 5, 5);
+				gbc_txtQuarto.gridx = 1;
+				gbc_txtQuarto.gridy = 2;
+				contentPane.add(txtQuarto, gbc_txtQuarto);
+				txtQuarto.setColumns(10);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+				gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+				gbc_scrollPane.gridwidth = 4;
+				gbc_scrollPane.gridheight = 3;
+				gbc_scrollPane.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane.gridx = 3;
+				gbc_scrollPane.gridy = 2;
+				contentPane.add(scrollPane, gbc_scrollPane);
 				
 				table = new JTable();
 				table.setModel(new DefaultTableModel(
 					new Object[][] {
 					},
 					new String[] {
-						"Quarto", "Status"
+						"N\u00FAmero Quarto", "estado"
 					}
-				) {
-					Class[] columnTypes = new Class[] {
-						Integer.class, String.class
-					};
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-				});
-				GridBagConstraints gbc_table = new GridBagConstraints();
-				gbc_table.insets = new Insets(0, 0, 0, 5);
-				gbc_table.gridheight = 3;
-				gbc_table.gridwidth = 2;
-				gbc_table.fill = GridBagConstraints.BOTH;
-				gbc_table.weighty = 1.0;
-				gbc_table.weightx = 1.0;
-				gbc_table.gridx = 4;
-				gbc_table.gridy = 2;
-				contentPane.add(table, gbc_table);
+				));
+				
+				
+				
+				scrollPane.setViewportView(table);
 				
 				JLabel lblNewLabel_2 = new JLabel("Status:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -208,13 +212,116 @@ public class InterfaceArrumacao extends JFrame {
 				contentPane.add(comboBox, gbc_comboBox);
 				
 				JButton btnAlterarStatusArrumacao = new JButton("Alterar");
+				btnAlterarStatusArrumacao.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+									
+						lblErro.setText("");
+												
+						String quarto = txtQuarto.getText();
+						if (quarto.equals("")) {
+							quarto = "0";
+						}
+						
+						int numeroQuarto = Integer.parseInt(quarto);
+								
+						
+						try {
+							
+							if (comboBox.getSelectedItem().equals("Arrumado")) {
+								
+								ControladorDeAcessos controlador = new ControladorDeAcessos();
+								controlador.alterarArrumacao(numeroQuarto, "Arrumado");
+								
+							}
+								
+							
+							if (comboBox.getSelectedItem().equals("Desarrumado")) {
+								
+								ControladorDeAcessos controlador = new ControladorDeAcessos();
+													controlador.alterarArrumacao(numeroQuarto, "Desarrumado");
+									
+							}													
+							
+						} catch (ServicosException mensagem) {
+							
+							lblErro.setText(mensagem.getMessage());					
+						}
+		
+				    }
+				});
+				
+				
+				DefaultTableModel tableModel = new DefaultTableModel(
+					    new Object[][] {},
+					    new String[] {
+					        "Número do Quarto", "estado"
+					    }
+					);
+					
+				try {
+				    MySQLConector leitor = new MySQLConector();
+
+				    for (Arrumacao p : leitor.leituraArrumacao()) {
+				        tableModel.addRow(new Object[] {
+				            p.getNumeroQuarto(), p.getEstado()
+			        });
+				    }
+				} catch (BDException exception) {
+					lblErro.setText(exception.getMessage());			
+					}
+				
+				table.setModel(tableModel);
+				
+				
+				
+				
 				GridBagConstraints gbc_btnAlterarStatusArrumacao = new GridBagConstraints();
-				gbc_btnAlterarStatusArrumacao.gridwidth = 2;
 				gbc_btnAlterarStatusArrumacao.weighty = 1.0;
 				gbc_btnAlterarStatusArrumacao.weightx = 1.0;
-				gbc_btnAlterarStatusArrumacao.insets = new Insets(0, 0, 0, 5);
-				gbc_btnAlterarStatusArrumacao.gridx = 0;
+				gbc_btnAlterarStatusArrumacao.insets = new Insets(0, 0, 5, 5);
+				gbc_btnAlterarStatusArrumacao.gridx = 1;
 				gbc_btnAlterarStatusArrumacao.gridy = 4;
 				contentPane.add(btnAlterarStatusArrumacao, gbc_btnAlterarStatusArrumacao);
+				
+				JButton btnAtualizar = new JButton("Atualizar");
+				btnAtualizar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						lblErro.setText("Tabela atualizada");
+						
+						tableModel.setNumRows(0);
+						
+						DefaultTableModel tableModel = new DefaultTableModel(
+							    new Object[][] {},
+							    new String[] {
+							        "Número do Quarto", "estado"
+							    }
+							);
+							
+						try {
+						    MySQLConector leitor = new MySQLConector();
+
+						    for (Arrumacao p : leitor.leituraArrumacao()) {
+						        tableModel.addRow(new Object[] {
+						            p.getNumeroQuarto(), p.getEstado()
+					        });
+						    }
+						} catch (BDException exception) {
+							lblErro.setText(exception.getMessage());			
+							}
+						
+						table.setModel(tableModel);
+						
+						
+					}
+				});
+				GridBagConstraints gbc_btnAtualizar = new GridBagConstraints();
+				gbc_btnAtualizar.gridwidth = 4;
+				gbc_btnAtualizar.weighty = 1.0;
+				gbc_btnAtualizar.weightx = 1.0;
+				gbc_btnAtualizar.insets = new Insets(0, 0, 0, 5);
+				gbc_btnAtualizar.gridx = 3;
+				gbc_btnAtualizar.gridy = 5;
+				contentPane.add(btnAtualizar, gbc_btnAtualizar);
 	}
 }

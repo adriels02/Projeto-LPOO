@@ -2,7 +2,18 @@ package servicosCore;
 
 public class Estacionamento extends Servico {
 
-	public Estacionamento(double preco, String descricao, int id, String nome) {
-		super(id, nome, descricao, preco);
+	public Estacionamento(int vagas, int id) {
+		
+		super(id, "Estacionamento", "Serviço de estacionamento do hotel", 30 * vagas);
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
