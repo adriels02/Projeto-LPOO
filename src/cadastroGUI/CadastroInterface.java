@@ -1,24 +1,31 @@
-package interfaces;
+package cadastroGUI;
 
-import java.awt.*;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*; 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import cadastroCORE.CadastroController;
+import interfaces.MenuPrincipal;
 
-import cadastroCliente.ArmazenarCadastroCliente;
-import cadastroCliente.Cliente;
-import java.awt.Toolkit;
-
-@SuppressWarnings("serial")
 public class CadastroInterface extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtfNome;
-	private JTextField txtfSobrenome;
 	private JTextField txtfCpf;
-	private JTextField txtfCnpj;
+	private JTextField txtfDataNascimento;
 	private JTextField txtfTelefone;
 	private JTextField txtfEmail;
 	private JTextField txtfNumeroReserva;
@@ -31,14 +38,12 @@ public class CadastroInterface extends JFrame {
 	private JTextField txtfDataReserva;
 	private JTextField txtfHoraEntrada;
 	private JTextField txtfHoraSaida;
-	private ButtonGroup bg = new ButtonGroup();
+	
 	/**
 	 * @wbp.nonvisual location=-10,19
 	 */
-	@SuppressWarnings("unused")
 	private final JPanel panel = new JPanel();
 
-	ArmazenarCadastroCliente armazenarCadastro = new ArmazenarCadastroCliente();
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +64,6 @@ public class CadastroInterface extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroInterface() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroInterface.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setTitle("Cadastro Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 411);
@@ -83,7 +87,7 @@ public class CadastroInterface extends JFrame {
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{121, 93, 22, 0, 68, 131, 0};
+		gbl_contentPane.columnWidths = new int[]{121, 93, 22, 0, 68, 124, 0};
 		gbl_contentPane.rowHeights = new int[]{14, 14, 20, 14, 20, 0, 0, 14, 23, 14, 14, 20, 14, 20, 23, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
@@ -108,17 +112,9 @@ public class CadastroInterface extends JFrame {
 		gbc_lblNewLabel_1.gridy = 1;
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Sobrenome");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 1;
-		gbc_lblNewLabel_2.gridy = 1;
-		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
 		txtfNome = new JTextField();
 		GridBagConstraints gbc_txtfNome = new GridBagConstraints();
+		gbc_txtfNome.gridwidth = 6;
 		gbc_txtfNome.anchor = GridBagConstraints.NORTH;
 		gbc_txtfNome.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtfNome.insets = new Insets(0, 0, 5, 5);
@@ -126,17 +122,6 @@ public class CadastroInterface extends JFrame {
 		gbc_txtfNome.gridy = 2;
 		contentPane.add(txtfNome, gbc_txtfNome);
 		txtfNome.setColumns(10);
-		
-		txtfSobrenome = new JTextField();
-		GridBagConstraints gbc_txtfSobrenome = new GridBagConstraints();
-		gbc_txtfSobrenome.anchor = GridBagConstraints.NORTH;
-		gbc_txtfSobrenome.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtfSobrenome.insets = new Insets(0, 0, 5, 0);
-		gbc_txtfSobrenome.gridwidth = 5;
-		gbc_txtfSobrenome.gridx = 1;
-		gbc_txtfSobrenome.gridy = 2;
-		contentPane.add(txtfSobrenome, gbc_txtfSobrenome);
-		txtfSobrenome.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("CPF");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -146,7 +131,7 @@ public class CadastroInterface extends JFrame {
 		gbc_lblNewLabel_3.gridy = 3;
 		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("CNPJ");
+		JLabel lblNewLabel_4 = new JLabel("Data de Nascimento");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
@@ -173,16 +158,16 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(txtfCpf, gbc_txtfCpf);
 		txtfCpf.setColumns(10);
 		
-		txtfCnpj = new JTextField();
-		GridBagConstraints gbc_txtfCnpj = new GridBagConstraints();
-		gbc_txtfCnpj.anchor = GridBagConstraints.NORTH;
-		gbc_txtfCnpj.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtfCnpj.insets = new Insets(0, 0, 5, 5);
-		gbc_txtfCnpj.gridwidth = 2;
-		gbc_txtfCnpj.gridx = 1;
-		gbc_txtfCnpj.gridy = 4;
-		contentPane.add(txtfCnpj, gbc_txtfCnpj);
-		txtfCnpj.setColumns(10);
+		txtfDataNascimento = new JTextField();
+		GridBagConstraints gbc_txtfDataNascimento = new GridBagConstraints();
+		gbc_txtfDataNascimento.anchor = GridBagConstraints.NORTH;
+		gbc_txtfDataNascimento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtfDataNascimento.insets = new Insets(0, 0, 5, 5);
+		gbc_txtfDataNascimento.gridwidth = 3;
+		gbc_txtfDataNascimento.gridx = 1;
+		gbc_txtfDataNascimento.gridy = 4;
+		contentPane.add(txtfDataNascimento, gbc_txtfDataNascimento);
+		txtfDataNascimento.setColumns(10);
 		
 		txtfTelefone = new JTextField();
 		GridBagConstraints gbc_txtfTelefone = new GridBagConstraints();
@@ -208,33 +193,11 @@ public class CadastroInterface extends JFrame {
 		gbc_txtfEmail.anchor = GridBagConstraints.NORTH;
 		gbc_txtfEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtfEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_txtfEmail.gridwidth = 2;
+		gbc_txtfEmail.gridwidth = 6;
 		gbc_txtfEmail.gridx = 0;
 		gbc_txtfEmail.gridy = 6;
 		contentPane.add(txtfEmail, gbc_txtfEmail);
 		txtfEmail.setColumns(10);
-		
-		JRadioButton bttPessoaFisica = new JRadioButton("Pessoa Física");
-		GridBagConstraints gbc_bttPessoaFisica = new GridBagConstraints();
-		gbc_bttPessoaFisica.anchor = GridBagConstraints.NORTH;
-		gbc_bttPessoaFisica.fill = GridBagConstraints.HORIZONTAL;
-		gbc_bttPessoaFisica.insets = new Insets(0, 0, 5, 5);
-		gbc_bttPessoaFisica.gridwidth = 3;
-		gbc_bttPessoaFisica.gridx = 2;
-		gbc_bttPessoaFisica.gridy = 6;
-		contentPane.add(bttPessoaFisica, gbc_bttPessoaFisica);
-		bg.add(bttPessoaFisica);
-		
-		JRadioButton bttPessoaJuridica = new JRadioButton("Pessoa Jurídica");
-		GridBagConstraints gbc_bttPessoaJuridica = new GridBagConstraints();
-		gbc_bttPessoaJuridica.anchor = GridBagConstraints.NORTH;
-		gbc_bttPessoaJuridica.fill = GridBagConstraints.HORIZONTAL;
-		gbc_bttPessoaJuridica.insets = new Insets(0, 0, 5, 0);
-		gbc_bttPessoaJuridica.gridx = 5;
-		gbc_bttPessoaJuridica.gridy = 6;
-		contentPane.add(bttPessoaJuridica, gbc_bttPessoaJuridica);
-		
-		bg.add(bttPessoaJuridica);
 		
 		JLabel lblNewLabel_7 = new JLabel("Dados Reserva");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -438,34 +401,28 @@ public class CadastroInterface extends JFrame {
 		JButton bntFinalizarCadastro = new JButton("Finalizar");
 		bntFinalizarCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cliente cliente = new Cliente();
-				cliente.setNome(txtfNome.getText());
-				cliente.setSobrenome(txtfSobrenome.getText());
-				cliente.setCpf(txtfCpf.getText());
-				cliente.setCnpj(txtfCnpj.getText());
-				cliente.setEmail(txtfEmail.getText());
-				cliente.setTelefone(txtfTelefone.getText());
-			
 				
-if (txtfNome.getText().isEmpty()||txtfSobrenome.getText().isEmpty()||txtfCpf.getText().isEmpty()||txtfCnpj.getText().isEmpty()||txtfEmail.getText().isEmpty()||txtfTelefone.getText().isEmpty()){
-			JOptionPane.showMessageDialog(null,"Erro! Por favor preencha os campos em branco");
-		}
-				
-else if (armazenarCadastro.salvar(cliente)) {
-					JOptionPane.showMessageDialog(null,"Hóspede cadastrado com sucesso!");
-					txtfNome.setText("");
-					txtfSobrenome.setText("");
-					txtfCnpj.setText("");
-					txtfCpf.setText("");
-					txtfEmail.setText("");
-					txtfTelefone.setText("");
-					txtfNome.setText("");
-					
-					txtfNome.requestFocus();
-				} else {
-					JOptionPane.showMessageDialog(null,"Erro! Cadastro não realizado.");
-				}
+		boolean sucesso;
+				try {
+					CadastroController cadastroController = new CadastroController();
+					sucesso = cadastroController.cadastrarCliente(txtfNome.getText(), txtfCpf.getText(), txtfTelefone.getText(),txtfEmail.getText(),txtfDataNascimento.getText());
+					if (sucesso) {
+						JOptionPane.showMessageDialog(null,"Cadastro concluído com sucesso");
+						txtfNome.setText("");
+						txtfDataNascimento.setText("");
+						txtfCpf.setText("");
+						txtfEmail.setText("");
+						txtfTelefone.setText("");
+						txtfNome.setText("");
+						
+						txtfNome.requestFocus();
+					} else {
+						JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+					}
+				} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null,"Erro: " + ex);
 			}
+			}	
 		});
 		bntFinalizarCadastro.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_bntFinalizarCadastro = new GridBagConstraints();

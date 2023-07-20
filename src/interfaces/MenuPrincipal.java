@@ -7,7 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
+import cadastroGUI.CadastroInterface;
+import cadastroGUI.InterfaceCadastroDependentes;
+import servicosGui.InterfaceArrumacao;
+import servicosGui.InterfaceEstacionamento;
 import servicosGui.InterfaceRestaurante;
+import servicosGui.InterfaceServicoDeQuarto;
 import servicosGui.InterfaceServicos;
 import servicosGui.InterfaceTranslado;
 import servicosGui.InterfaceWiFi;
@@ -64,10 +69,24 @@ public class MenuPrincipal extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcionário");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Dependentes");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceCadastroDependentes ict = new InterfaceCadastroDependentes();
+				ict.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Usuário");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicial tl = new TelaInicial();
+				tl.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_8);
 		
 		JMenu mnNewMenu_1 = new JMenu("Serviços");
@@ -104,12 +123,33 @@ public class MenuPrincipal extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Estacionamento");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceEstacionamento it = new InterfaceEstacionamento();
+				it.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_5);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Arrumação");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceArrumacao ia = new InterfaceArrumacao();
+				ia.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_6);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Serviço de quarto");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceServicoDeQuarto isq = new InterfaceServicoDeQuarto();
+				isq.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_7);
 		
 		JMenu mnNewMenu_2 = new JMenu("Reservas");
