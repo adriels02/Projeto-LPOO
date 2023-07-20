@@ -3,6 +3,8 @@ package br.edu.ifpe.paulista.pagamento.core;
 import br.edu.ifpe.paulista.pagamento.data.PagamentoDataException;
 import br.edu.ifpe.paulista.pagamento.data.PagamentoRepository;
 import br.edu.ifpe.paulista.pagamento.data.PagamentoDAO;
+
+
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,11 +32,14 @@ public class PagamentoController {
 
 	}
 
-	public static boolean acharCHInvalido(String c) throws PagamentoExcecoesRegraNegocio {
+	public boolean acharCHInvalido(String c) throws PagamentoExcecoesRegraNegocio {
 		char[] ch = c.toCharArray();
 		boolean invalido = false;
-		for (int i = 0; i < ch.length; i++) {
+		for (int i = 0; i < ch.length;) {
 			switch (ch[i]) {
+			case '0':
+				i++;
+				break;
 			case '1':
 				i++;
 				break;
@@ -68,7 +73,7 @@ public class PagamentoController {
 		}
 		return invalido;
 	}
-	public static void criarPdf(PagamentoEntidade pgmt) {
+	public void criarPdf(PagamentoEntidade pgmt) throws PagamentoExcecoesRegraNegocio {
 		final String senhaUser = "honduras";  
 		final String senhaMaster = "senegal";
 		final String enderecoDocumentos = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();  
@@ -111,8 +116,8 @@ public class PagamentoController {
 			fos.close(); 
 		}
 		catch (Exception e) {
-			// TODO: handle exception
-		}
+			throw new PagamentoExcecoesRegraNegocio("erro ao criar pdf");
+			}
 	}
 
 	public void inserirDadosController(PagamentoEntidade pgmt) throws PagamentoExcecoesRegraNegocio {
@@ -124,7 +129,10 @@ public class PagamentoController {
 	}
 
 	public void construirEntidadeController(String c, String tipoPagamento) throws PagamentoExcecoesRegraNegocio {
-		if (c.trim().isBlank()) {
+		
+
+		try { 
+			if (c.trim().isBlank()) {
 
 			throw new PagamentoExcecoesRegraNegocio("Insira os números do documento");
 		}
@@ -134,15 +142,13 @@ public class PagamentoController {
 			throw new PagamentoExcecoesRegraNegocio("Símbolo inválido inserido. Por favor Tente novamente Com somente números.");
 		}
 
-
-		try { 
 			PagamentoEntidade pgmt = repository.BDConstruirEntidade(c, tipoPagamento);
 			criarPdf(pgmt);
 
 
 		} catch (PagamentoDataException e) {
 
-			throw new PagamentoExcecoesRegraNegocio(e.getMessage(), e);
+			throw new PagamentoExcecoesRegraNegocio("Erro ao gerar pdf", e);
 
 		}
 	}

@@ -61,17 +61,21 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 
 		try {
 			if (c.trim().length() == 11) {
-				String selectCliente = "SELECT * FROM pessoaFisica WHERE cpf = ?";
-				PreparedStatement stmt = getConnection().prepareStatement(selectCliente);
+				String selectidCliente = "SELECT * FROM pessoaFisica WHERE cpf = ?";
+				PreparedStatement stmt = getConnection().prepareStatement(selectidCliente);
 
 				stmt.setString(1, c);
 				ResultSet rs = stmt.executeQuery();
 
 				while (rs.next()) {
 					pgmt.setIdCliente(rs.getInt("idCliente"));
-					pgmt.setNomecliente(rs.getString("nomeCliente"));
 				}
-				String selectReserva = "SELECT * FROM reserva WHERE idCliente = ?";
+				String selectNomeCliente = "SELECT * FROM Cliente WHERE cpf = ?";
+				stmt = getConnection().prepareStatement(selectNomeCliente);
+				while (rs.next()) {
+				pgmt.setNomecliente(rs.getString("nomeCliente"));
+				}
+				String selectReserva = "SELECT * FROM Reserva WHERE idCliente = ?";
 				stmt = getConnection().prepareStatement(selectReserva);
 				stmt.setInt(1, pgmt.getIdCliente());
 				rs = stmt.executeQuery();
@@ -81,7 +85,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 					pgmt.setIdReserva(rs.getInt("idReserva"));
 				}
 
-				String selectServicos = "SELECT * FROM servicos WHERE idReserva = ?";
+				String selectServicos = "SELECT * FROM Servicos WHERE idReserva = ?";
 				stmt = getConnection().prepareStatement(selectServicos);
 				stmt.setInt(1, pgmt.getIdReserva());
 				rs = stmt.executeQuery();
@@ -115,10 +119,10 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				stmt.close();
 				getConnection().close();
 				return pgmt;
-			} else {
+			} else if(c.length()==14) {
 
-				String selectCliente = "SELECT * FROM pessoaJuridica WHERE cnpj = ?";
-				PreparedStatement stmt = getConnection().prepareStatement(selectCliente);
+				String selectidCliente = "SELECT * FROM pessoaJuridica WHERE cnpj = ?";
+				PreparedStatement stmt = getConnection().prepareStatement(selectidCliente);
 
 				stmt.setString(1, c);
 				ResultSet rs = stmt.executeQuery();
@@ -127,6 +131,11 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 					pgmt.setIdCliente(rs.getInt("idCliente"));
 					pgmt.setNomecliente(rs.getString("nomeCliente"));
 
+				}
+				String selectNomeCliente = "SELECT * FROM Cliente WHERE cpf = ?";
+				stmt = getConnection().prepareStatement(selectNomeCliente);
+				while (rs.next()) {
+				pgmt.setNomecliente(rs.getString("nomeCliente"));
 				}
 
 				String selectReserva = "SELECT * FROM reserva WHERE idCliente = ?";
@@ -182,6 +191,9 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				stmt.close();
 				getConnection().close();
 				return pgmt;
+			}
+			else {
+				throw new PagamentoDataException("Número inválido");
 			}
 		} catch (SQLException e) {
 			throw new PagamentoDataException("Informações não encontradas no banco de dados.", e) ;
