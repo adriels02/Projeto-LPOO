@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import cadastroCORE.CadastroController;
 import interfaces.MenuPrincipal;
+import javax.swing.JMenuItem;
 
 public class CadastroInterface extends JFrame {
 
@@ -82,6 +83,27 @@ public class CadastroInterface extends JFrame {
 			}
 		});
 		menuBar.add(btnNewButton);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Cadastrar Dependentes");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceCadastroDependentes icd = new InterfaceCadastroDependentes();
+				icd.setVisible(true);
+				dispose();
+				
+			}
+		});
+		menuBar.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Consultar Hóspedes");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceConsultaHospedes ich = new InterfaceConsultaHospedes();
+				ich.setVisible(true);
+				dispose();
+			}
+		});
+		menuBar.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -413,7 +435,7 @@ public class CadastroInterface extends JFrame {
 						txtfCpf.setText("");
 						txtfEmail.setText("");
 						txtfTelefone.setText("");
-						txtfNome.setText("");
+						
 						
 						txtfNome.requestFocus();
 					} else {

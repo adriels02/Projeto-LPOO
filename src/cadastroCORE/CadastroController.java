@@ -83,5 +83,39 @@ null && telefone.length() > 0 && email != null && email.length() > 0 && dataNasc
  }
  return false;
  }
+
+
+ 
+ public boolean cadastrarDependente(String nomeDependente, String cpfTitular, String cpfDependente, String telefoneDependente,String dataNascimentoDependente) throws ParseException {
+	 
+		if (nomeDependente != null && nomeDependente.length() > 0 && cpfTitular != null && cpfTitular.length() > 0 && cpfDependente != null && cpfDependente.length() > 0 && telefoneDependente != null && telefoneDependente.length() > 0 && dataNascimentoDependente != null && dataNascimentoDependente.length() > 0) {
+
+
+Cliente cliente = new Cliente(nomeDependente, cpfTitular,cpfDependente,telefoneDependente,dataNascimentoDependente);
+try {
+cliente.cadastrarCliente(cliente);
+return true;
+} catch (ExceptionDAO e) {
+e.printStackTrace();
+return false;
+}
+}
+return false;
+}
+
+ public boolean validarCpfDependente(String cpfDependente){
+for (int i = 0; i < cpfDependente.length();i++){
+if (! Character.isDigit(cpfDependente.charAt(i))){
+if (! (i==3 || i == 7 || i == 11)){
+return false;
+}
+}
+}
+return true;
+} 
+ 
+ 
+ 
+ 
  
 }

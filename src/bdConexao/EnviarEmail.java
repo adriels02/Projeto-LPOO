@@ -2,7 +2,6 @@ package bdConexao;
 
 //import javax.mail.Authenticator;
 
-import org.apache.commons.mail.*;
 /*import java.util.Properties;
 import javax.activation.*;
 import javax.mail.*;

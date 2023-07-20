@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import cadastroGUI.CadastroInterface;
 import cadastroGUI.InterfaceCadastroDependentes;
+import cadastroGUI.InterfaceConsultaHospedes;
 import servicosGui.InterfaceArrumacao;
 import servicosGui.InterfaceEstacionamento;
 import servicosGui.InterfaceRestaurante;
@@ -88,6 +89,16 @@ public class MenuPrincipal extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_8);
+		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Consulta");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceConsultaHospedes ict = new InterfaceConsultaHospedes();
+				ict.setVisible(true);
+				dispose();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_12);
 		
 		JMenu mnNewMenu_1 = new JMenu("Serviços");
 		menuBar.add(mnNewMenu_1);
@@ -286,6 +297,13 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(bntCheckOut, gbc_bntCheckOut);
 		
 		JButton bntConsulta = new JButton("Consulta");
+		bntConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceConsultaHospedes ic = new InterfaceConsultaHospedes();
+				ic.setVisible(true);
+				dispose();
+			}
+		});
 		bntConsulta.setBackground(new Color(223, 223, 255));
 		GridBagConstraints gbc_bntConsulta = new GridBagConstraints();
 		gbc_bntConsulta.fill = GridBagConstraints.BOTH;
