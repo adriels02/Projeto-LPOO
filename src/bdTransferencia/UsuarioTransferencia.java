@@ -6,14 +6,7 @@ public class UsuarioTransferencia {
 	private String nomeUsuario;
 	private String senhaUsuario;
 	
-	
-	/*public UsuarioTransferencia (int idusuario, String nomeusuario, String senhausuario) {
-		this.idusuario(idusuario);
-		this.nomeusuario = nomeusuario;
-		this.senhausuario(senhausuario);
 		
-	}*/
-	
 	public int getIdUsuario() {
 		return idUsuario;
 	}

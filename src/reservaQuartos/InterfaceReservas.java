@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 public class InterfaceReservas {
 
@@ -58,6 +59,7 @@ public class InterfaceReservas {
 	 */
 	private void initialize() {
 		frmCadastroDasReservas = new JFrame();
+		frmCadastroDasReservas.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceReservas.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		frmCadastroDasReservas.setTitle("CADASTRO DAS RESERVAS");
 		frmCadastroDasReservas.setBounds(100, 100, 807, 474);
 		frmCadastroDasReservas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

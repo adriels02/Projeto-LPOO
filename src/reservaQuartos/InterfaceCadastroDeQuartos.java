@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 public class InterfaceCadastroDeQuartos {
 
@@ -60,6 +61,7 @@ public class InterfaceCadastroDeQuartos {
 	 */
 	private void initialize() {
 		frmCadastroDeQuartos = new JFrame();
+		frmCadastroDeQuartos.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		frmCadastroDeQuartos.setTitle("CADASTRO DE QUARTOS");
 		frmCadastroDeQuartos.setBounds(100, 100, 807, 474);
 		frmCadastroDeQuartos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

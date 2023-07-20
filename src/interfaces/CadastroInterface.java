@@ -1,27 +1,17 @@
 package interfaces;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
 import cadastroCliente.ArmazenarCadastroCliente;
 import cadastroCliente.Cliente;
+import java.awt.Toolkit;
 
+@SuppressWarnings("serial")
 public class CadastroInterface extends JFrame {
 
 	private JPanel contentPane;
@@ -45,6 +35,7 @@ public class CadastroInterface extends JFrame {
 	/**
 	 * @wbp.nonvisual location=-10,19
 	 */
+	@SuppressWarnings("unused")
 	private final JPanel panel = new JPanel();
 
 	ArmazenarCadastroCliente armazenarCadastro = new ArmazenarCadastroCliente();
@@ -68,6 +59,7 @@ public class CadastroInterface extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroInterface() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroInterface.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setTitle("Cadastro Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 411);

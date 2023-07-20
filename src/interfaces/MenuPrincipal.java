@@ -1,29 +1,17 @@
 package interfaces;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
 import servicosGui.InterfaceRestaurante;
 import servicosGui.InterfaceServicos;
 import servicosGui.InterfaceTranslado;
 import servicosGui.InterfaceWiFi;
+
 
 public class MenuPrincipal extends JFrame {
 
@@ -53,6 +41,7 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 420);
@@ -168,6 +157,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(panel, gbc_panel);
 		
 		
+		//IMAGEM 
 		JLabel imgMenuInicial = new JLabel("");
 		imgMenuInicial.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/telainicilILUSTRAÇAOPrancheta 9.png")));
 		panel.add(imgMenuInicial); 
@@ -180,6 +170,25 @@ public class MenuPrincipal extends JFrame {
 				CadastroInterface cadastroInterface =  new CadastroInterface();
 				cadastroInterface.setVisible(true);
 				dispose();
+				
+				/*if(txtUsuario.getText().isEmpty() || String.valueOf(txtSenha.getPassword()).isEmpty()) {
+				JOptionPane.showMessageDialog(null,"Erro ao cadastrar! Por favor preencha todos os campos de texto.");
+				txtUsuario.setText("");
+				txtSenha.setText("");
+				txtUsuario.requestFocus();
+		}
+			else {
+				login.setUsuario(txtUsuario.getText());
+				login.setSenha(String.valueOf(txtSenha.getPassword()));
+				JOptionPane.showMessageDialog(null,"Login cadastrado com sucesso!");
+				txtUsuario.setText("");
+				txtSenha.setText("");
+				txtUsuario.requestFocus();
+			}*/
+				
+				
+					
+				
 			}
 		});
 		GridBagConstraints gbc_bntNovoCadastro = new GridBagConstraints();
