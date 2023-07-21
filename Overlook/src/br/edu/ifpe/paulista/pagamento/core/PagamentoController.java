@@ -146,10 +146,22 @@ public class PagamentoController {
 		
 
 		try { 
-		if (c.isBlank()) {
+		
+			if (c.isBlank()) {
 
 			throw new PagamentoExcecoesRegraNegocio("Insira os números do documento");
 		}
+		
+		if (c.length() < 11) {
+
+			throw new PagamentoExcecoesRegraNegocio("Um cpf deve conter 11 digitos");
+		}
+		
+		if (c.length() > 11 && c.length()< 14) {
+
+			throw new PagamentoExcecoesRegraNegocio("Um cnpj deve conter 14 digitos");
+		}
+
 
 		if (acharCHInvalido(c) == true) {
 
