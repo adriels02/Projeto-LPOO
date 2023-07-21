@@ -61,9 +61,9 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 88, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lbllogo = new JLabel("");
@@ -104,12 +104,21 @@ public class TelaApresentaçaoPagamento extends JFrame {
 				dispose();
 			}
 		});
+		
+		JRadioButton rdbtnBoleto = new JRadioButton("Boleto");
+		buttonGroup.add(rdbtnBoleto);
+		GridBagConstraints gbc_rdbtnBoleto = new GridBagConstraints();
+		gbc_rdbtnBoleto.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnBoleto.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnBoleto.gridx = 4;
+		gbc_rdbtnBoleto.gridy = 5;
+		contentPane.add(rdbtnBoleto, gbc_rdbtnBoleto);
 
 		GridBagConstraints gbc_btntelaprincipal = new GridBagConstraints();
 		gbc_btntelaprincipal.insets = new Insets(0, 0, 5, 5);
 		btnMenuPrincipal.setBackground(new Color(223, 223, 255));
 		gbc_btntelaprincipal.gridx = 1;
-		gbc_btntelaprincipal.gridy = 5;
+		gbc_btntelaprincipal.gridy = 6;
 		contentPane.add(btnMenuPrincipal, gbc_btntelaprincipal);
 
 		JRadioButton rdbtnPix = new JRadioButton("Pix");
@@ -118,7 +127,7 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		gbc_rdbtnPix.insets = new Insets(0, 0, 5, 220);
 		gbc_rdbtnPix.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnPix.gridx = 4;
-		gbc_rdbtnPix.gridy = 5;
+		gbc_rdbtnPix.gridy = 6;
 		contentPane.add(rdbtnPix, gbc_rdbtnPix);
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Cartão de débito");
@@ -127,7 +136,7 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnNewRadioButton.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnNewRadioButton.gridx = 4;
-		gbc_rdbtnNewRadioButton.gridy = 6;
+		gbc_rdbtnNewRadioButton.gridy = 7;
 		contentPane.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
 
 		JRadioButton rdbtnTED = new JRadioButton("TED");
@@ -136,18 +145,10 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		gbc_rdbtnTED.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnTED.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnTED.gridx = 4;
-		gbc_rdbtnTED.gridy = 7;
+		gbc_rdbtnTED.gridy = 8;
 		contentPane.add(rdbtnTED, gbc_rdbtnTED);
 		
 		JLabel errorLabel = new JLabel(" ");
-		
-		JRadioButton rdbtnBoleto = new JRadioButton("Boleto");
-		GridBagConstraints gbc_rdbtnBoleto = new GridBagConstraints();
-		gbc_rdbtnBoleto.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnBoleto.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnBoleto.gridx = 4;
-		gbc_rdbtnBoleto.gridy = 8;
-		contentPane.add(rdbtnBoleto, gbc_rdbtnBoleto);
 
 		JButton btnGerarpdf = new JButton("New button");
 		btnGerarpdf.addActionListener(new ActionListener() {
@@ -184,7 +185,7 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 9;
+		gbc_textField.gridy = 10;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
@@ -197,12 +198,12 @@ public class TelaApresentaçaoPagamento extends JFrame {
 			gbc_lblNewLabel_5.gridwidth = 2;
 			gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_5.gridx = 2;
-			gbc_lblNewLabel_5.gridy = 10;
+			gbc_lblNewLabel_5.gridy = 11;
 			contentPane.add(errorLabel, gbc_lblNewLabel_5);
 		GridBagConstraints gbc_btnGerarpdf = new GridBagConstraints();
 		gbc_btnGerarpdf.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGerarpdf.gridx = 4;
-		gbc_btnGerarpdf.gridy = 11;
+		gbc_btnGerarpdf.gridy = 12;
 		contentPane.add(btnGerarpdf, gbc_btnGerarpdf);
 
 

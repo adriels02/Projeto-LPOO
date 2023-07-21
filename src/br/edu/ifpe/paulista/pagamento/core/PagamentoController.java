@@ -121,10 +121,24 @@ public class PagamentoController {
 	}
 
 	public void inserirDadosController(PagamentoEntidade pgmt) throws PagamentoExcecoesRegraNegocio {
+		try {	
+			repository.InserirDadosBDFatura(pgmt);
+			
+		} catch (PagamentoDataException e) {
 
+			throw new PagamentoExcecoesRegraNegocio("Erro ao Inserir Dados ao Banco", e);
+
+		}
 	}
 
 	public void buscarDadosController(int idFatura) throws PagamentoExcecoesRegraNegocio {
+		try {
+			repository.BuscarDadosFatura(idFatura);
+		} catch (PagamentoDataException e) {
+
+			throw new PagamentoExcecoesRegraNegocio("Erro na Busca ao Banco", e);
+
+		}
 
 	}
 
@@ -132,7 +146,7 @@ public class PagamentoController {
 		
 
 		try { 
-			if (c.trim().isBlank()) {
+		if (c.isBlank()) {
 
 			throw new PagamentoExcecoesRegraNegocio("Insira os números do documento");
 		}
@@ -140,12 +154,16 @@ public class PagamentoController {
 		if (acharCHInvalido(c) == true) {
 
 			throw new PagamentoExcecoesRegraNegocio("Símbolo inválido inserido. Por favor Tente novamente Com somente números.");
+		
 		}
+		
+		PagamentoController pgc = new PagamentoController();
 
-			PagamentoEntidade pgmt = repository.BDConstruirEntidade(c, tipoPagamento);
-			criarPdf(pgmt);
-
-
+		PagamentoEntidade pgmt = repository.BDConstruirEntidade(c, tipoPagamento);
+		
+		pgc.inserirDadosController(pgmt);
+		pgc.buscarDadosController(pgmt.getIdFatura());
+		pgc.criarPdf(pgmt);
 		} catch (PagamentoDataException e) {
 
 			throw new PagamentoExcecoesRegraNegocio("Erro ao gerar pdf", e);
