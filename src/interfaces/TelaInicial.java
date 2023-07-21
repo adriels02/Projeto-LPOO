@@ -55,7 +55,7 @@ public class TelaInicial extends JFrame {
 		setBounds(100, 100, 566, 426);
 		//a tela abrir inteira fixa
 		//setExtendedState(MAXIMIZED_BOTH);
-		//a imagem nao está abrindo proporcional
+		
 		setSize(1000,720); 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

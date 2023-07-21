@@ -18,7 +18,7 @@ public class UsuarioConexao {
 		
 		
 		try {
-			String sql = "select *from usuario where nomeUsuario = ? and senhaUsuario = ?";
+			String sql = "select *from Usuario where nomeUsuario = ? and senhaUsuario = ?";
 			PreparedStatement informacoesUsuario = conexao.prepareStatement(sql);
 			informacoesUsuario.setString(1, objUsuarioTransferencia.getNomeUsuario());
 			informacoesUsuario.setString(2, objUsuarioTransferencia.getSenhaUsuario());
