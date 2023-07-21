@@ -11,10 +11,6 @@ public class AcessoBancodeDados{
 	private static final String usuario = "overlook_user";
 	private static final String senha = "#BDhotel123";
 	
-	//private static final String url = "jdbc:mysql://localhost:3306/overlook";
-	//private static final String usuario = "root";
-	//private static final String senha = "#123Mila123*";
-	
 	
 	public Connection conexaoBD() {
 		
@@ -23,7 +19,6 @@ public class AcessoBancodeDados{
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			//String acessoBD = "jdbc:mysql://localhost:3306/overlook?user=root&password=#123Mila123*";
 			conexao = DriverManager.getConnection(url,usuario,senha);
 			
 		} catch (ClassNotFoundException e){
