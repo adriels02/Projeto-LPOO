@@ -1,14 +1,22 @@
 package cadastroCORE;
 
-import cadastroBD.CadastroClienteDAO;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import cadastroBD.CadastroDependenteDAO;
 import cadastroBD.ExceptionDAO;
 
 public class Dependentes {
 	private String nomeDependente;
 	private String cpfTitular;
 	private String cpfDependente;
+	private String telefoneDependente;
+	private Date dataNascimentoDependente;
+	
+
+
 	public Dependentes(String nomeDependente, String cpfTitular, String cpfDependente, String telefoneDependente,
-			String dataNascimentoDependente) {
+			Date dataNascimentoDependente) {
 		super();
 		this.nomeDependente = nomeDependente;
 		this.cpfTitular = cpfTitular;
@@ -16,9 +24,8 @@ public class Dependentes {
 		this.telefoneDependente = telefoneDependente;
 		this.dataNascimentoDependente = dataNascimentoDependente;
 	}
-
-	private String telefoneDependente;
-	private String dataNascimentoDependente;
+	public Dependentes() {
+	}
 	public String getNomeDependente() {
 		return nomeDependente;
 	}
@@ -43,14 +50,27 @@ public class Dependentes {
 	public void setTelefoneDependente(String telefoneDependente) {
 		this.telefoneDependente = telefoneDependente;
 	}
-	public String getDataNascimentoDependente() {
+	public Date getDataNascimentoDependente() {
 		return dataNascimentoDependente;
 	}
-	public void setDataNascimentoDependente(String dataNascimentoDependente) {
+	public void setDataNascimentoDependente(Date dataNascimentoDependente) {
 		this.dataNascimentoDependente = dataNascimentoDependente;
 	}
 	
-	public void cadastrarDependente(Cliente cliente) throws ExceptionDAO {
-		 new CadastroClienteDAO().cadastrarCliente(cliente);
-		 }
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimentoDependente = dataNascimento;
+	}
+	
+	public void cadastrarDependente(Dependentes dependente) throws ExceptionDAO {
+	 new CadastroDependenteDAO().cadastrarDependente(dependente);
+	 }
+	 public ArrayList<Dependentes> listarDependentes(String cpf) throws ExceptionDAO {
+	 return new CadastroDependenteDAO().listarDependentes(cpf);
+	 }
+	 public void alterarCadastroDependente(Dependentes dependente) throws ExceptionDAO {
+	 new CadastroDependenteDAO().alterarCadastroDependente(dependente);
+	 }
+	 public void apagarCadastroDependente(Dependentes dependente) throws ExceptionDAO {
+	 new CadastroDependenteDAO().apagarCadastroDependente(dependente);
+	 }
 }

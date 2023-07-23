@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
+import br.edu.ifpe.paulista.pagamento.gui.TelaApresentaçaoPagamento;
+import br.edu.ifpe.paulista.relatorio.gui.TelaRelatorio;
 import cadastroGUI.CadastroInterface;
 import cadastroGUI.InterfaceCadastroDependentes;
 import cadastroGUI.InterfaceConsultaHospedes;
@@ -169,17 +171,30 @@ public class MenuPrincipal extends JFrame {
 		JMenu mnNewMenu_3 = new JMenu("Check Out");
 		menuBar.add(mnNewMenu_3);
 		
-		JMenu mnNewMenu_4 = new JMenu("Controle");
+		JMenu mnNewMenu_4 = new JMenu("Pagamento");
 		menuBar.add(mnNewMenu_4);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Relatório Geral");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaRelatorio telaRelatorio = new TelaRelatorio();
+				telaRelatorio.setVisible(true);
+				dispose();
+				
+			}
+		});
 		mnNewMenu_4.add(mntmNewMenuItem_9);
 		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Relatório Clientes");
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Pagamento");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaApresentaçaoPagamento telaApresentacaoPagamento = new TelaApresentaçaoPagamento();
+				telaApresentacaoPagamento.setVisible(true);
+				dispose();
+			}
+		});
 		mnNewMenu_4.add(mntmNewMenuItem_10);
-		
-		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Relatório Funcionários");
-		mnNewMenu_4.add(mntmNewMenuItem_11);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -274,7 +289,7 @@ public class MenuPrincipal extends JFrame {
 		gbc_bntReserva.gridy = 3;
 		contentPane.add(bntReserva, gbc_bntReserva);
 		
-		JButton bntCheckIn = new JButton("Check In");
+		JButton bntCheckIn = new JButton("CheckIn-CheckOut");
 		bntCheckIn.setBackground(new Color(223, 223, 255));
 		GridBagConstraints gbc_bntCheckIn = new GridBagConstraints();
 		gbc_bntCheckIn.fill = GridBagConstraints.BOTH;
@@ -283,9 +298,12 @@ public class MenuPrincipal extends JFrame {
 		gbc_bntCheckIn.gridy = 4;
 		contentPane.add(bntCheckIn, gbc_bntCheckIn);
 		
-		JButton bntCheckOut = new JButton("Check Out");
+		JButton bntCheckOut = new JButton("Pagamento");
 		bntCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaApresentaçaoPagamento telaApresentacao = new TelaApresentaçaoPagamento();
+				telaApresentacao.setVisible(true);
+				dispose();
 			}
 		});
 		bntCheckOut.setBackground(new Color(223, 223, 255));
