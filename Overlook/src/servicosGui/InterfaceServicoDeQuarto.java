@@ -29,6 +29,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 public class InterfaceServicoDeQuarto extends JFrame {
 
 	private JPanel contentPane;
@@ -73,9 +74,10 @@ public class InterfaceServicoDeQuarto extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceServicoDeQuarto() {
-		setTitle("Serviço de quarto");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceServicoDeQuarto.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 653, 453);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

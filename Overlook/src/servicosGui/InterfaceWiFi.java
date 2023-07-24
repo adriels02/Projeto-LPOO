@@ -21,6 +21,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class InterfaceWiFi extends JFrame {
 
@@ -59,9 +60,10 @@ public class InterfaceWiFi extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceWiFi() {
-		setTitle("Wi-Fi");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceWiFi.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 689, 441);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

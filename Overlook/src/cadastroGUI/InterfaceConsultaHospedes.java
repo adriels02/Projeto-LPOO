@@ -24,6 +24,7 @@ import cadastroCORE.Cliente;
 import cadastroBD.CadastroClienteDAO;
 import cadastroBD.ExceptionDAO;
 import interfaces.MenuPrincipal;
+import java.awt.Toolkit;
 
 public class InterfaceConsultaHospedes extends JFrame {
 
@@ -51,8 +52,10 @@ public class InterfaceConsultaHospedes extends JFrame {
      * Create the frame.
      */
     public InterfaceConsultaHospedes() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceConsultaHospedes.class.getResource("/interfaces/imagens/iconeOverlook.png")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 676, 458);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -106,7 +109,7 @@ public class InterfaceConsultaHospedes extends JFrame {
 
         String[] colunas = { "CPF", "Nome", "Telefone", "Email", "Data Nascimento" };
         DefaultTableModel model = new DefaultTableModel(colunas, 0) {
-            @Override
+            
             public boolean isCellEditable(int row, int column) {
                 return true; 
             }

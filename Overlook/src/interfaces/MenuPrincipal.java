@@ -50,11 +50,11 @@ public class MenuPrincipal extends JFrame {
 	 */
 	public MenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/interfaces/imagens/iconeOverlook.png")));
-		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 420);
 		//abrir no meio da tela
 		setLocationRelativeTo(null);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

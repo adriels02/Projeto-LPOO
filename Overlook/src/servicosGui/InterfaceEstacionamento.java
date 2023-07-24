@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 public class InterfaceEstacionamento extends JFrame {
 
@@ -62,9 +63,10 @@ public class InterfaceEstacionamento extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceEstacionamento() {
-		setTitle("Estacionamento");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceEstacionamento.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 342);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

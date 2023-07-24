@@ -46,8 +46,6 @@ public class TelaInicial extends JFrame {
 	public TelaInicial() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setResizable(false);
-		
-		setTitle("Tela Login");
 		//Frame frame = new Frame();
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
@@ -92,13 +90,15 @@ public class TelaInicial extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-							
+				TelaNovoUsuarioSistema objTelaNovoUsuarioSistema  = new TelaNovoUsuarioSistema();
+				objTelaNovoUsuarioSistema.setVisible(true);
+				dispose();			
 
 			}
 		});
 		btnNewButton.setForeground(new Color(38, 9, 55));
 		btnNewButton.setBackground(new Color(225, 225, 225));
-		btnNewButton.setBounds(612, 245, 279, 15);
+		btnNewButton.setBounds(670, 249, 238, 15);
 		contentPane.add(btnNewButton);
 		
 		JButton btnEntrar = new JButton("Entrar");
@@ -107,10 +107,24 @@ public class TelaInicial extends JFrame {
 			
 		public void actionPerformed(ActionEvent e) {
 		Logar();
+		txtUsuario.setText("");
+		txtSenha.setText("");
 									
 			}
 		});
-	
+	    
+		JLabel lblMensagemNvUsuarioLinha1 = new JLabel("Para alterar a senha do usuário ou criar um novo usuário");
+		lblMensagemNvUsuarioLinha1.setForeground(new Color(38, 9, 55));
+		lblMensagemNvUsuarioLinha1.setBounds(583, 233, 341, 15);
+		contentPane.add(lblMensagemNvUsuarioLinha1);
+		
+		
+		JLabel lblMensagemNvUsuarioLinha2 = new JLabel("click no botão");
+		lblMensagemNvUsuarioLinha2.setForeground(new Color(38, 9, 55));
+		lblMensagemNvUsuarioLinha2.setBounds(583, 249, 86, 15);
+		contentPane.add(lblMensagemNvUsuarioLinha2);
+		
+					
 		btnEntrar.setForeground(new Color(38, 9, 55));
 		btnEntrar.setBackground(new Color(225, 225, 225));
 		btnEntrar.setBounds(689, 521, 124, 23);
@@ -120,7 +134,7 @@ public class TelaInicial extends JFrame {
 		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBemVindo.setForeground(new Color(15, 19, 51));
 		lblBemVindo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblBemVindo.setBounds(653, 170, 196, 30);
+		lblBemVindo.setBounds(653, 150, 196, 30);
 		contentPane.add(lblBemVindo);
 		
 		JLabel lblFraseTelaInicial = new JLabel("Gerenciamento de clientes em hotelaria");
@@ -135,8 +149,7 @@ public class TelaInicial extends JFrame {
 		lblImageTelaInicial.setBounds(0, 0, 984, 681);
 		contentPane.add(lblImageTelaInicial);
 		
-			
-				   	
+						   	
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -156,26 +169,24 @@ public class TelaInicial extends JFrame {
 			
 			if(resultadoUsuarioConexao.next()) {
 			/* chamar tela que eu quero abrir, trocar apos definir tela
-				
 				Tela (interface) que quer abrir + Nome de objeto criado aqui = tela a ser recebida novamente*/
 			    MenuPrincipal objMenuPrincipal = new MenuPrincipal();
-				
 				//para tornar a tela visivel 
 				objMenuPrincipal.setVisible(true);
-				
 				//fechar a tela anterior
 				dispose();
 			}				
 			
 			else {
-			JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
+			  JOptionPane.showMessageDialog( null, "Dados inválidos", "Mensagem",JOptionPane.ERROR_MESSAGE);
 			
 		}
 			
 			} catch (SQLException erro) {
-				JOptionPane.showMessageDialog( null, "TelaInicial" + erro);
+			  JOptionPane.showMessageDialog( null, "TelaInicial" + erro);
 				
 			}
 		
 	}
+
 }

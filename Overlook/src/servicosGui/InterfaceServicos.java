@@ -24,6 +24,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class InterfaceServicos extends JFrame {
 
@@ -57,9 +58,10 @@ public class InterfaceServicos extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceServicos() {
-		setTitle("Serviços");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceServicos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

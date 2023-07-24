@@ -81,9 +81,10 @@ public class InterfaceRestaurante extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceRestaurante() {
-		setTitle("Restaurante");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceRestaurante.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 766, 407);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

@@ -60,8 +60,8 @@ public class InterfaceReservas {
 	private void initialize() {
 		frmCadastroDasReservas = new JFrame();
 		frmCadastroDasReservas.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceReservas.class.getResource("/interfaces/imagens/iconeOverlook.png")));
-		frmCadastroDasReservas.setTitle("CADASTRO DAS RESERVAS");
 		frmCadastroDasReservas.setBounds(100, 100, 807, 474);
+		frmCadastroDasReservas.setLocationRelativeTo(null);
 		frmCadastroDasReservas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{63, 118, 130, 35, 34, 7, 97, 89, 126, 0};

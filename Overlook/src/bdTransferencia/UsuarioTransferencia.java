@@ -6,6 +6,7 @@ public class UsuarioTransferencia {
 	private String nomeUsuario;
 	private String senhaUsuario;
 	
+	
 		
 	public int getIdUsuario() {
 		return idUsuario;
@@ -32,6 +33,8 @@ public class UsuarioTransferencia {
 	public void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
 	}
+
+	
 
 	
 	

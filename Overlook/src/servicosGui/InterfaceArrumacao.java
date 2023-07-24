@@ -33,6 +33,7 @@ import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class InterfaceArrumacao extends JFrame {
 
@@ -67,8 +68,10 @@ public class InterfaceArrumacao extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceArrumacao() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceArrumacao.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 622, 384);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
