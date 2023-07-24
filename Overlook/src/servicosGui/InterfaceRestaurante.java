@@ -29,7 +29,7 @@ import servicosCore.Arrumacao;
 import servicosCore.ControladorDeAcessos;
 import servicosCore.Restaurante;
 import servicosCore.RestaurantePedidos;
-import servicosCore.ServicosException;
+import servicosCore.CoreException;
 
 import javax.swing.event.ListSelectionEvent;
 import java.awt.GridBagLayout;
@@ -45,7 +45,6 @@ import servicosBD.BDException;
 import servicosBD.MySQLConector;
 public class InterfaceRestaurante extends JFrame {
 
-	DefaultListModel<String> historicoPedidos = new DefaultListModel<>();
 
 	private JPanel contentPane;
 	private ButtonGroup grupoBotoesRefeicao = new ButtonGroup();
@@ -328,7 +327,11 @@ public class InterfaceRestaurante extends JFrame {
 							controlador.registroRestaurante(id, refeicao, quantidade, data, time,
 									txtObservacoes.getText());
 
-						} catch (ServicosException mensagem) {
+							
+							
+							
+							
+						} catch (CoreException mensagem) {
 
 							lblError.setText(mensagem.getMessage());
 

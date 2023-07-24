@@ -1,19 +1,44 @@
 package reservaQuartos;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Reserva {
+	
+	private String CPF;
+	private int idReserva;
 	private int numeroQuarto;
-	private LocalDateTime dataEntrada;
-	private LocalDateTime dataSaida;
+	private LocalDate dataEntrada;
+	private LocalDate dataSaida;
 	private String observacaoReserva;
 	
-	public Reserva(int numeroQuarto, LocalDateTime dataEntrada, LocalDateTime dataSaida, String observacaoReserva) {
+	public Reserva(int numeroQuarto,String CPF ,LocalDate dataEntrada, LocalDate dataSaida, String observacaoReserva) {
 		super();
 		this.numeroQuarto = numeroQuarto;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
 		this.observacaoReserva = observacaoReserva;
+	}
+
+	public Reserva() {
+		
+	}
+
+	public String getCPF() {
+		return CPF;
+	}
+
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public int getIdReserva() {
+		return idReserva;
+	}
+
+	public void setIdReserva(int idReserva) {
+		this.idReserva = idReserva;
 	}
 
 	public int getNumeroQuarto() {
@@ -24,19 +49,24 @@ public class Reserva {
 		this.numeroQuarto = numeroQuarto;
 	}
 
-	public LocalDateTime getDataEntrada() {
-		return dataEntrada;
+	public Date getDataEntrada() {
+		
+		Date date = Date.valueOf(dataEntrada);
+		return date ;
 	}
 
-	public void setDataEntrada(LocalDateTime dataEntrada) {
+	public void setDataEntrada(LocalDate dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 
-	public LocalDateTime getDataSaida() {
-		return dataSaida;
+	public Date getDataSaida() {
+		
+		Date date = Date.valueOf(dataSaida);
+		
+		return date;
 	}
 
-	public void setDataSaida(LocalDateTime dataSaida) {
+	public void setDataSaida(LocalDate dataSaida) {
 		this.dataSaida = dataSaida;
 	}
 
@@ -47,5 +77,6 @@ public class Reserva {
 	public void setObservacaoReserva(String observacaoReserva) {
 		this.observacaoReserva = observacaoReserva;
 	}
+	
 	
 }

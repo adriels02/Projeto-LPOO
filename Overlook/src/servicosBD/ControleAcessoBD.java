@@ -1,5 +1,6 @@
 package servicosBD;
 
+import reservaQuartos.Reserva;
 import servicosCore.Arrumacao;
 import servicosCore.HistoricoTranslado;
 import servicosCore.RestaurantePedidos;
@@ -18,5 +19,7 @@ public interface ControleAcessoBD {
 	public void alterarArrumacao(Arrumacao arrumacao) throws BDException;
 	
 	public void registroRestaurante(RestaurantePedidos pedidos) throws BDException;
+	
+	public void registroReserva(Reserva reserva) throws BDException;
 
 }

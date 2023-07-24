@@ -29,17 +29,20 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 public class InterfaceServicoDeQuarto extends JFrame {
 
 	private JPanel contentPane;
 
 	DefaultListModel<String> historicoServicos = new DefaultListModel<>();
-	JList list = new JList(historicoServicos);
 
 	
 	private ButtonGroup grupoBotoesRefeicao = new ButtonGroup();
 	private JTextField txtObservacoes;
 	private JTextField txtIDQuarto;
+	private JTable table;
+	private JTextField textField;
 
 	
 	
@@ -75,16 +78,16 @@ public class InterfaceServicoDeQuarto extends JFrame {
 	public InterfaceServicoDeQuarto() {
 		setTitle("Serviço de quarto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 653, 453);
+		setBounds(100, 100, 826, 551);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{109, 121, 250, 0};
+		gbl_contentPane.columnWidths = new int[]{70, 70, 300, 0};
 		gbl_contentPane.rowHeights = new int[]{17, 30, 14, 26, 23, 23, 14, 20, 3, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 				
 				JLabel lblNewLabel = new JLabel("<<< Voltar");
@@ -134,7 +137,7 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						gbc_lblError.weighty = 1.0;
 						gbc_lblError.weightx = 1.0;
 						gbc_lblError.gridwidth = 3;
-						gbc_lblError.insets = new Insets(0, 0, 5, 5);
+						gbc_lblError.insets = new Insets(0, 0, 5, 0);
 						gbc_lblError.gridx = 0;
 						gbc_lblError.gridy = 1;
 						contentPane.add(lblError, gbc_lblError);
@@ -145,7 +148,7 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						gbc_lblNewLabel_2.weightx = 1.0;
 						gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 						gbc_lblNewLabel_2.gridx = 1;
-						gbc_lblNewLabel_2.gridy = 2;
+						gbc_lblNewLabel_2.gridy = 4;
 						contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 				
 						JLabel lblNewLabel_3 = new JLabel("Histórico de Serviços:");
@@ -169,44 +172,29 @@ public class InterfaceServicoDeQuarto extends JFrame {
 		
 				txtObservacoes = new JTextField();
 				GridBagConstraints gbc_txtObservacoes = new GridBagConstraints();
+				gbc_txtObservacoes.fill = GridBagConstraints.HORIZONTAL;
 				gbc_txtObservacoes.weighty = 1.0;
 				gbc_txtObservacoes.weightx = 1.0;
 				gbc_txtObservacoes.insets = new Insets(0, 0, 5, 5);
 				gbc_txtObservacoes.gridx = 1;
-				gbc_txtObservacoes.gridy = 3;
+				gbc_txtObservacoes.gridy = 5;
 				contentPane.add(txtObservacoes, gbc_txtObservacoes);
 				txtObservacoes.setColumns(10);
 				
 				JButton btnRemoverHistorico = new JButton("Remover");
-				btnRemoverHistorico.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-						if (!list.isSelectionEmpty()) {
-							String elementoSelecionado = (String) list.getSelectedValue();
-							historicoServicos.removeElement(elementoSelecionado);
-							list.revalidate();
-							list.repaint();
-						}
-						btnRemoverHistorico.setEnabled(false);
-
-					}
-				});
 				
-						list.addListSelectionListener(new ListSelectionListener() {
-							public void valueChanged(ListSelectionEvent e) {
-
-								btnRemoverHistorico.setEnabled(true);
-							}
-						});
-						GridBagConstraints gbc_list = new GridBagConstraints();
-						gbc_list.weighty = 1.0;
-						gbc_list.weightx = 1.0;
-						gbc_list.fill = GridBagConstraints.BOTH;
-						gbc_list.insets = new Insets(0, 0, 5, 0);
-						gbc_list.gridheight = 6;
-						gbc_list.gridx = 2;
-						gbc_list.gridy = 3;
-						contentPane.add(list, gbc_list);
+								
+								JScrollPane scrollPane = new JScrollPane();
+								GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+								gbc_scrollPane.gridheight = 6;
+								gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+								gbc_scrollPane.fill = GridBagConstraints.BOTH;
+								gbc_scrollPane.gridx = 2;
+								gbc_scrollPane.gridy = 3;
+								contentPane.add(scrollPane, gbc_scrollPane);
+								
+								table = new JTable();
+								scrollPane.setViewportView(table);
 						
 								JRadioButton rdbtnAlmoco = new JRadioButton("Almoço");
 								grupoBotoesRefeicao.add(rdbtnAlmoco);
@@ -227,8 +215,15 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						gbc_rdbtnJantar.gridx = 0;
 						gbc_rdbtnJantar.gridy = 5;
 						contentPane.add(rdbtnJantar, gbc_rdbtnJantar);
+						
+						JLabel lblNewLabel_5 = new JLabel("Id Reserva:");
+						GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+						gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
+						gbc_lblNewLabel_5.gridx = 1;
+						gbc_lblNewLabel_5.gridy = 6;
+						contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 				
-						JLabel lblNewLabel_4 = new JLabel("ID do quarto:");
+						JLabel lblNewLabel_4 = new JLabel("Número do quarto:");
 						GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 						gbc_lblNewLabel_4.weighty = 1.0;
 						gbc_lblNewLabel_4.weightx = 1.0;
@@ -249,6 +244,8 @@ public class InterfaceServicoDeQuarto extends JFrame {
 					}
 				});
 				GridBagConstraints gbc_txtIDQuarto = new GridBagConstraints();
+				gbc_txtIDQuarto.ipady = 1;
+				gbc_txtIDQuarto.ipadx = 50;
 				gbc_txtIDQuarto.weighty = 1.0;
 				gbc_txtIDQuarto.weightx = 1.0;
 				gbc_txtIDQuarto.insets = new Insets(0, 0, 5, 5);
@@ -259,38 +256,18 @@ public class InterfaceServicoDeQuarto extends JFrame {
 		
 				
 						JButton btnAdicionar = new JButton("Adicionar");
-						btnAdicionar.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-
-								String refeicao = null;
-
-								if (rdbtnAlmoco.isSelected()) {
-
-									refeicao = "Almoço";
-								}
-
-								if (rdbtnJantar.isSelected()) {
-
-									refeicao = "Jantar";
-								}
-
-								if (rdbtnCafeDaManha.isSelected()) {
-
-									refeicao = "Café da manhã";
-								}
-
-								int id = Integer.parseInt(txtIDQuarto.getText());
-
-								Restaurante restaurante = new Restaurante();
-								historicoServicos.addElement(restaurante.historicoRestaurante(refeicao, id, txtObservacoes.getText()));
-
-								txtObservacoes.setText("");
-								grupoBotoesRefeicao.clearSelection();
-								txtIDQuarto.setText("");
-
-							}
-						});
+						
+						
+						textField = new JTextField();
+						GridBagConstraints gbc_textField = new GridBagConstraints();
+						gbc_textField.insets = new Insets(0, 0, 5, 5);
+						gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+						gbc_textField.gridx = 1;
+						gbc_textField.gridy = 7;
+						contentPane.add(textField, gbc_textField);
+						textField.setColumns(10);
 						GridBagConstraints gbc_btnAdicionar = new GridBagConstraints();
+						gbc_btnAdicionar.gridwidth = 2;
 						gbc_btnAdicionar.weighty = 1.0;
 						gbc_btnAdicionar.weightx = 1.0;
 						gbc_btnAdicionar.insets = new Insets(0, 0, 5, 5);

@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import servicosCore.ServicosException;
+import servicosCore.CoreException;
 
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -154,7 +154,7 @@ public class InterfaceEstacionamento extends JFrame {
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
 					controlador.registroServiçoTranslado(id, vagas);
 					
-				}	catch (ServicosException exception) {
+				}	catch (CoreException exception) {
 					
 					lblErro.setText(exception.getMessage());
 					

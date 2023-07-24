@@ -36,7 +36,7 @@ import servicosBD.BDException;
 import servicosBD.MySQLConector;
 import servicosCore.ControladorDeAcessos;
 import servicosCore.HistoricoTranslado;
-import servicosCore.ServicosException;
+import servicosCore.CoreException;
 import servicosCore.Translado;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -271,7 +271,7 @@ public class InterfaceTranslado extends JFrame {
 				ControladorDeAcessos registroServico = new ControladorDeAcessos();
 					 registroServico.registroServiçoTranslado(numeroidReserva, numeroPassageiros);
 					 
-				} catch (ServicosException exception) {
+				} catch (CoreException exception) {
 
 					lblError.setText(exception.getMessage());
 				}

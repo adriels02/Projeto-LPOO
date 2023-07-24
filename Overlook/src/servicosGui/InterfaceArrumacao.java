@@ -68,7 +68,7 @@ public class InterfaceArrumacao extends JFrame {
 	 */
 	public InterfaceArrumacao() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 622, 384);
+		setBounds(100, 100, 667, 417);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -134,7 +134,7 @@ public class InterfaceArrumacao extends JFrame {
 				gbc_lblErro.gridy = 1;
 				contentPane.add(lblErro, gbc_lblErro);
 				
-				JLabel lblNewLabel = new JLabel("ID do Quarto:");
+				JLabel lblNewLabel = new JLabel("Número do Quarto:");
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 				gbc_lblNewLabel.weighty = 1.0;
@@ -242,7 +242,7 @@ public class InterfaceArrumacao extends JFrame {
 									
 							}													
 							
-						} catch (ServicosException mensagem) {
+						} catch (CoreException mensagem) {
 							
 							lblErro.setText(mensagem.getMessage());					
 						}
@@ -319,7 +319,6 @@ public class InterfaceArrumacao extends JFrame {
 				gbc_btnAtualizar.gridwidth = 4;
 				gbc_btnAtualizar.weighty = 1.0;
 				gbc_btnAtualizar.weightx = 1.0;
-				gbc_btnAtualizar.insets = new Insets(0, 0, 0, 5);
 				gbc_btnAtualizar.gridx = 3;
 				gbc_btnAtualizar.gridy = 5;
 				contentPane.add(btnAtualizar, gbc_btnAtualizar);

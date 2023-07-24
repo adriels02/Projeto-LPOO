@@ -9,6 +9,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import reservaQuartos.Reserva;
 import servicosCore.Arrumacao;
 import servicosCore.HistoricoTranslado;
 import servicosCore.RestaurantePedidos;
@@ -16,6 +17,10 @@ import servicosCore.Servico;
 import servicosCore.Translado;
 
 public class MySQLConector implements ControleAcessoBD {
+	
+	private static final String url = "jdbc:mysql://db4free.net:3306/overlook_db";
+	private static final String usuario = "overlook_user";
+	private static final String senha = "#BDhotel123";
 
 	public MySQLConector() throws BDException {
 		try {
@@ -31,9 +36,9 @@ public class MySQLConector implements ControleAcessoBD {
 		PreparedStatement stmt = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
+			conn = DriverManager.getConnection(url, usuario, senha);
 			stmt = conn.prepareStatement(
-					"INSERT INTO historicotranslado(enderecoColeta , enderecoDestino , quantidadePassageiros, dia , hora, idReserva ) VALUES(?,?,?,?,?,?)");
+					"INSERT INTO Historico_Translado(enderecoColeta , enderecoDestino , quantidadePassageiros, dia , hora, idReserva ) VALUES(?,?,?,?,?,?)");
 			stmt.setString(1, translado.getEnderecoColeta());
 			stmt.setString(2, translado.getEnderecoDestino());
 			stmt.setInt(3, translado.getNumeroPassageiros());
@@ -69,8 +74,8 @@ public class MySQLConector implements ControleAcessoBD {
 
 		try {
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
-			stmt = conn.prepareStatement("INSERT INTO servico(idReserva ,nomeServico , descricaoServico, precoServico) VALUES(?,?,?,?)");
+			conn = DriverManager.getConnection(url, usuario, senha);
+			stmt = conn.prepareStatement("INSERT INTO Servico(idReserva ,nomeServico , descricaoServico, precoServico) VALUES(?,?,?,?)");
 			stmt.setInt(1, servico.getIdReserva());
 			stmt.setString(2, servico.getNome());
 			stmt.setString(3, servico.getDescricao());
@@ -107,8 +112,8 @@ public class MySQLConector implements ControleAcessoBD {
 			List<HistoricoTranslado> historicos = new ArrayList<>();
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
-			stmt = conn.prepareStatement("SELECT * FROM historicotranslado");
+			conn = DriverManager.getConnection(url, usuario, senha);
+			stmt = conn.prepareStatement("SELECT * FROM Historico_Translado");
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -161,7 +166,7 @@ public class MySQLConector implements ControleAcessoBD {
 
 			try {
 				
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
+				conn = DriverManager.getConnection(url, usuario, senha);
 				stmt = conn.prepareStatement("UPDATE arrumacao SET estado = ? WHERE numeroQuarto = ?");
 				stmt.setString(1, arrumacao.getEstado());
 				stmt.setInt(2, arrumacao.getNumeroQuarto());
@@ -204,7 +209,7 @@ public class MySQLConector implements ControleAcessoBD {
 				List<Arrumacao> limpeza = new ArrayList<>();
 			
 			try {
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
+				conn = DriverManager.getConnection(url, usuario, senha);
 				stmt = conn.prepareStatement("SELECT * FROM arrumacao");
 				rs = stmt.executeQuery();
 				
@@ -247,8 +252,8 @@ public class MySQLConector implements ControleAcessoBD {
 
 			try {
 				
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
-				stmt = conn.prepareStatement("INSERT INTO restaurantepedidos(idReserva, refeicao, quantidade, dia, hora, observacao) VALUES(?,?,?,?,?,?)");
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("INSERT INTO Restaurante_Pedidos(idReserva, refeicao, quantidade, dia, hora, observacao) VALUES(?,?,?,?,?,?)");
 				stmt.setInt(1,pedidos.getIdReserva());
 				stmt.setString(2, pedidos.getRefeicao());
 				stmt.setInt(3, pedidos.getQuantidade());
@@ -285,30 +290,30 @@ public class MySQLConector implements ControleAcessoBD {
 			Connection conn = null;
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
-			
-				List<RestaurantePedidos> comanda = new ArrayList<>();
-			
+
+			List<RestaurantePedidos> comanda = new ArrayList<>();
+
 			try {
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/overlook", "root", "7135937");
-				stmt = conn.prepareStatement("SELECT * FROM restaurantepedidos");
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT * FROM Restaurante_Pedidos");
 				rs = stmt.executeQuery();
-				
-				while(rs.next()) {
-					
-					 RestaurantePedidos tabela = new RestaurantePedidos();
+
+				while (rs.next()) {
+
+					RestaurantePedidos tabela = new RestaurantePedidos();
 					tabela.setIdpedido(rs.getInt("idPedido"));
 					tabela.setIdReserva(rs.getInt("idReserva"));
 					tabela.setRefeicao(rs.getString("refeicao"));
 					tabela.setQuantidade(rs.getInt("quantidade"));
-					Date data =	rs.getDate("dia");				
+					Date data = rs.getDate("dia");
 					tabela.setData(data.toLocalDate());
-					
+
 					Time time = rs.getTime("hora");
 					tabela.setTime(time.toLocalTime());
-					
+
 					tabela.setObservacao(rs.getString("observacao"));
 					comanda.add(tabela);
-				}				
+				}
 			} catch (Exception e) {
 				throw new BDException("Ocorreu um erro: " + e.getMessage());
 			} finally {
@@ -327,17 +332,106 @@ public class MySQLConector implements ControleAcessoBD {
 					throw new BDException("Ocorreu um erro: " + e.getMessage());
 				}
 			}
-			
+
 			return comanda;
 
 		}
-	
-			
-			
-			
-			
-			
+
+		public List<Reserva> leituraReservas() throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+
+			List<Reserva> reserva = new ArrayList<>();
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT * FROM Reserva");
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+
+					Reserva tabela = new Reserva();
+					tabela.setIdReserva(rs.getInt(1));
+					tabela.setCPF(rs.getString(2));
+
+					Date dataEntrada = rs.getDate(3);
+					tabela.setDataEntrada(dataEntrada.toLocalDate());
+
+					Date dataSaida = rs.getDate(4);
+					tabela.setDataSaida(dataSaida.toLocalDate());
+
+					tabela.setObservacaoReserva(rs.getString(5));
+
+					tabela.setNumeroQuarto(rs.getInt(6));
+
+					reserva.add(tabela);
+				}
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro: " + e.getMessage());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+			}
+
+			return reserva;
+
 		}
+
+		@Override
+		public void registroReserva(Reserva reserva) throws BDException {
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("INSERT INTO Reserva(cpf ,dataEntrada , dataSaida, observacaoReserva, numeroQuarto) VALUES(?,?,?,?,?)");
+				stmt.setString(1, reserva.getCPF());
+				stmt.setDate(2, reserva.getDataEntrada());
+				stmt.setDate(3, reserva.getDataSaida());
+				stmt.setString(4, reserva.getObservacaoReserva());
+				stmt.setInt(5, reserva.getNumeroQuarto());
+				stmt.execute();
+
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro: " + e.getMessage());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+			}
+
+		}
+		}
+
+		
+		
 		
 		
 		
