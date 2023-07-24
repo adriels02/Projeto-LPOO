@@ -7,7 +7,7 @@ import reservaQuartos.*;
 import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
-import br.edu.ifpe.paulista.pagamento.gui.TelaApresentaçaoPagamento;
+import br.edu.ifpe.paulista.pagamento.gui.TelaApresentacaoPagamento;
 import br.edu.ifpe.paulista.relatorio.gui.TelaRelatorio;
 import cadastroGUI.CadastroInterface;
 import cadastroGUI.InterfaceCadastroDependentes;
@@ -189,7 +189,7 @@ public class MenuPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Pagamento");
 		mntmNewMenuItem_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaApresentaçaoPagamento telaApresentacaoPagamento = new TelaApresentaçaoPagamento();
+				TelaApresentacaoPagamento telaApresentacaoPagamento = new TelaApresentacaoPagamento();
 				telaApresentacaoPagamento.setVisible(true);
 				dispose();
 			}
@@ -312,7 +312,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntCheckOut = new JButton("Pagamento");
 		bntCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaApresentaçaoPagamento telaApresentacao = new TelaApresentaçaoPagamento();
+				TelaApresentacaoPagamento telaApresentacao = new TelaApresentacaoPagamento();
 				telaApresentacao.setVisible(true);
 				dispose();
 			}

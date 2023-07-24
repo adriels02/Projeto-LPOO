@@ -27,7 +27,7 @@ import java.awt.Toolkit;
 
 import com.itextpdf.text.DocumentException;
 
-public class TelaApresentaçaoPagamento extends JFrame {
+public class TelaApresentacaoPagamento extends JFrame {
 
 	/**
 	 * 
@@ -44,7 +44,7 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaApresentaçaoPagamento frame = new TelaApresentaçaoPagamento();
+					TelaApresentacaoPagamento frame = new TelaApresentacaoPagamento();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,8 +56,8 @@ public class TelaApresentaçaoPagamento extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaApresentaçaoPagamento() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaApresentaçaoPagamento.class.getResource("/interfaces/imagens/iconeOverlook.png")));
+	public TelaApresentacaoPagamento() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 894, 480);
@@ -75,7 +75,7 @@ public class TelaApresentaçaoPagamento extends JFrame {
 		JLabel lbllogo = new JLabel("");
 		GridBagConstraints gbc_lbllogo = new GridBagConstraints();
 		gbc_lbllogo.gridwidth = 2;
-		lbllogo.setIcon(new ImageIcon(TelaApresentaçaoPagamento.class.getResource("/interfaces/imagens/logoOverlook-horizontal.png")));
+		lbllogo.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/logoOverlook-horizontal.png")));
 		gbc_lbllogo.insets = new Insets(0, 0, 5, 5);
 		gbc_lbllogo.gridx = 1;
 		gbc_lbllogo.gridy = 1;
