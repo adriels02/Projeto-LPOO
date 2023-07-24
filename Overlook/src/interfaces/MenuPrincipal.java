@@ -3,7 +3,7 @@ package interfaces;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import reservaQuartos.*;
 import javax.swing.*; 
 import javax.swing.border.EmptyBorder;
 
@@ -50,11 +50,11 @@ public class MenuPrincipal extends JFrame {
 	 */
 	public MenuPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/interfaces/imagens/iconeOverlook.png")));
-		setTitle("Menu inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 420);
 		//abrir no meio da tela
 		setLocationRelativeTo(null);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -281,6 +281,17 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(bntServico, gbc_bntServico);
 		
 		JButton bntReserva = new JButton("Reserva");
+		bntReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					InterfaceReservas window = new InterfaceReservas();
+					window.frmCadastroDasReservas.setVisible(true);
+					dispose();
+				
+				
+				
+			}
+		});
 		bntReserva.setBackground(new Color(223, 223, 255));
 		GridBagConstraints gbc_bntReserva = new GridBagConstraints();
 		gbc_bntReserva.fill = GridBagConstraints.BOTH;

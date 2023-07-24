@@ -22,6 +22,7 @@ import javax.swing.JRadioButton;
 import java.awt.SystemColor;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 public class TelaApresentaçaoPagamento extends JFrame {
 
@@ -53,9 +54,11 @@ public class TelaApresentaçaoPagamento extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaApresentaçaoPagamento() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaApresentaçaoPagamento.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 894, 480);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 
 		setContentPane(contentPane);

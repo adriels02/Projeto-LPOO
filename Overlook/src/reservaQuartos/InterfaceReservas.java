@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import interfaces.MenuPrincipal;
 import servicosBD.BDException;
 import servicosBD.MySQLConector;
 import servicosCore.ControladorDeAcessos;
@@ -36,10 +37,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JToolBar;
 
 public class InterfaceReservas {
 
-	private JFrame frmCadastroDasReservas;
+	public JFrame frmCadastroDasReservas;
 	private JTextField ftxtNumero;
 	private JTable table;
 	private JTextField txtObservacoes;
@@ -83,15 +85,32 @@ public class InterfaceReservas {
 	private void initialize() {
 		frmCadastroDasReservas = new JFrame();
 		frmCadastroDasReservas.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceReservas.class.getResource("/interfaces/imagens/iconeOverlook.png")));
-		frmCadastroDasReservas.setTitle("CADASTRO DAS RESERVAS");
 		frmCadastroDasReservas.setBounds(100, 100, 807, 474);
+		frmCadastroDasReservas.setLocationRelativeTo(null);
 		frmCadastroDasReservas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{63, 118, 130, 35, 34, 7, 97, 89, 63, 0};
-		gridBagLayout.rowHeights = new int[]{17, 23, 20, 38, 20, 14, 20, 48, 14, 20, 48, 23, 0};
+		gridBagLayout.rowHeights = new int[]{0, 17, 23, 20, 38, 20, 14, 20, 48, 14, 20, 48, 23, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmCadastroDasReservas.getContentPane().setLayout(gridBagLayout);
+		
+		JButton btnNewButton_3 = new JButton("Voltar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
+				frmCadastroDasReservas.dispose();
+				
+				
+				
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_3.gridx = 1;
+		gbc_btnNewButton_3.gridy = 0;
+		frmCadastroDasReservas.getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
 		
 		JLabel lblNewLabel = new JLabel("RESERVAS");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -102,7 +121,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridwidth = 9;
 		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
+		gbc_lblNewLabel.gridy = 1;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_4 = new JLabel(" Número do Quarto:");
@@ -113,7 +132,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 1;
-		gbc_lblNewLabel_4.gridy = 1;
+		gbc_lblNewLabel_4.gridy = 2;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JLabel lblNewLabel_2 = new JLabel("CPF:");
@@ -124,7 +143,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 6;
-		gbc_lblNewLabel_2.gridy = 1;
+		gbc_lblNewLabel_2.gridy = 2;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		ftxtNumero = new JTextField();
@@ -145,7 +164,7 @@ public class InterfaceReservas {
 		gbc_ftxtNumero.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtNumero.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtNumero.gridx = 1;
-		gbc_ftxtNumero.gridy = 2;
+		gbc_ftxtNumero.gridy = 3;
 		frmCadastroDasReservas.getContentPane().add(ftxtNumero, gbc_ftxtNumero);
 		ftxtNumero.setColumns(10);
 		
@@ -154,7 +173,7 @@ public class InterfaceReservas {
 		gbc_ftxtCpf.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtCpf.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtCpf.gridx = 6;
-		gbc_ftxtCpf.gridy = 2;
+		gbc_ftxtCpf.gridy = 3;
 		frmCadastroDasReservas.getContentPane().add(ftxtCpf, gbc_ftxtCpf);
 		
 		JLabel lblNewLabel_8 = new JLabel(" Data de Entrada:");
@@ -165,7 +184,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel_8.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_8.gridx = 1;
-		gbc_lblNewLabel_8.gridy = 3;
+		gbc_lblNewLabel_8.gridy = 4;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("Data de Saída:");
@@ -176,7 +195,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel_9.weightx = 1.0;
 		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_9.gridx = 2;
-		gbc_lblNewLabel_9.gridy = 3;
+		gbc_lblNewLabel_9.gridy = 4;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel_9, gbc_lblNewLabel_9);
 		
 		JLabel lblNewLabel_1 = new JLabel("Observação:");
@@ -185,7 +204,7 @@ public class InterfaceReservas {
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 6;
-		gbc_lblNewLabel_1.gridy = 3;
+		gbc_lblNewLabel_1.gridy = 4;
 		frmCadastroDasReservas.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JFormattedTextField ftxtEntrada = new JFormattedTextField(setMascara("##-##-####"));
@@ -193,7 +212,7 @@ public class InterfaceReservas {
 		gbc_ftxtEntrada.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtEntrada.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtEntrada.gridx = 1;
-		gbc_ftxtEntrada.gridy = 4;
+		gbc_ftxtEntrada.gridy = 5;
 		frmCadastroDasReservas.getContentPane().add(ftxtEntrada, gbc_ftxtEntrada);
 		
 		JFormattedTextField ftxtSaida = new JFormattedTextField(setMascara("##-##-####"));
@@ -201,7 +220,7 @@ public class InterfaceReservas {
 		gbc_ftxtSaida.insets = new Insets(0, 0, 5, 5);
 		gbc_ftxtSaida.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ftxtSaida.gridx = 2;
-		gbc_ftxtSaida.gridy = 4;
+		gbc_ftxtSaida.gridy = 5;
 		frmCadastroDasReservas.getContentPane().add(ftxtSaida, gbc_ftxtSaida);
 		
 		txtObservacoes = new JTextField();
@@ -211,7 +230,7 @@ public class InterfaceReservas {
 		gbc_txtObservacoes.insets = new Insets(0, 0, 5, 5);
 		gbc_txtObservacoes.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtObservacoes.gridx = 6;
-		gbc_txtObservacoes.gridy = 4;
+		gbc_txtObservacoes.gridy = 5;
 		frmCadastroDasReservas.getContentPane().add(txtObservacoes, gbc_txtObservacoes);
 		txtObservacoes.setColumns(10);
 		
@@ -222,7 +241,7 @@ public class InterfaceReservas {
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 5;
+		gbc_scrollPane.gridy = 6;
 		frmCadastroDasReservas.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		table = new JTable();
@@ -266,7 +285,7 @@ public class InterfaceReservas {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 10;
+		gbc_btnNewButton.gridy = 11;
 		frmCadastroDasReservas.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Realizar ");
@@ -300,20 +319,26 @@ public class InterfaceReservas {
 					
 				}
 							
+				txtObservacoes.setText("");
+				ftxtCpf.setText("");
+				ftxtEntrada.setText("");
+				ftxtSaida.setText("");
+				ftxtNumero.setText("");
 				
+								
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_2.gridx = 4;
-		gbc_btnNewButton_2.gridy = 10;
+		gbc_btnNewButton_2.gridy = 11;
 		frmCadastroDasReservas.getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);		
 		
 		JButton btnNewButton_1 = new JButton("Consultar");
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 7;
-		gbc_btnNewButton_1.gridy = 10;
+		gbc_btnNewButton_1.gridy = 11;
 		frmCadastroDasReservas.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
 
 		

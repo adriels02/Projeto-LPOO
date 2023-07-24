@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.awt.Toolkit;
 
 public class InterfaceCadastroDependentes extends JFrame {
 
@@ -50,8 +51,10 @@ public class InterfaceCadastroDependentes extends JFrame {
      * Create the frame.
      */
     public InterfaceCadastroDependentes() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/iconeOverlook.png")));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 637, 423);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);

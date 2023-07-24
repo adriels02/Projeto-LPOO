@@ -33,6 +33,7 @@ import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class InterfaceArrumacao extends JFrame {
 
@@ -67,8 +68,14 @@ public class InterfaceArrumacao extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceArrumacao() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 667, 417);
+
+		setBounds(100, 100, 622, 384);
+		setLocationRelativeTo(null);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -76,8 +83,8 @@ public class InterfaceArrumacao extends JFrame {
 				GridBagLayout gbl_contentPane = new GridBagLayout();
 				gbl_contentPane.columnWidths = new int[] {88, 88, 88, 88, 88, 88, 60, 0};
 				gbl_contentPane.rowHeights = new int[]{50, 30, 50, 50, 50, 0, 0};
-				gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-				gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, };
+				gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, };
 				contentPane.setLayout(gbl_contentPane);
 						
 								JLabel lblVoltar = new JLabel("<<< Voltar");

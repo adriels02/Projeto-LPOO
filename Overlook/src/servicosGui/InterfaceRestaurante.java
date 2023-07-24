@@ -80,9 +80,10 @@ public class InterfaceRestaurante extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceRestaurante() {
-		setTitle("Restaurante");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceRestaurante.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 766, 407);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -90,8 +91,8 @@ public class InterfaceRestaurante extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] {96, 30, 40, 60, 380, 0};
 		gbl_contentPane.rowHeights = new int[]{17, 30, 14, 26, 23, 23, 14, 20, 3, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 						
 								JLabel lblNewLabel = new JLabel("<<< Voltar");

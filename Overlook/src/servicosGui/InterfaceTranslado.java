@@ -40,6 +40,7 @@ import servicosCore.CoreException;
 import servicosCore.Translado;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Toolkit;
 
 public class InterfaceTranslado extends JFrame {
 
@@ -88,9 +89,10 @@ public class InterfaceTranslado extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceTranslado() {
-		setTitle("Translado");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceTranslado.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 777, 504);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

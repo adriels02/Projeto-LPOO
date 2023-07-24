@@ -29,8 +29,12 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import java.awt.Toolkit;
+
 public class InterfaceServicoDeQuarto extends JFrame {
 
 	private JPanel contentPane;
@@ -76,9 +80,14 @@ public class InterfaceServicoDeQuarto extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceServicoDeQuarto() {
-		setTitle("Serviço de quarto");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceServicoDeQuarto.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 826, 551);
+
+		setBounds(100, 100, 653, 453);
+		setLocationRelativeTo(null);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -86,8 +95,8 @@ public class InterfaceServicoDeQuarto extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{70, 70, 300, 0};
 		gbl_contentPane.rowHeights = new int[]{17, 30, 14, 26, 23, 23, 14, 20, 3, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, };
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
 				
 				JLabel lblNewLabel = new JLabel("<<< Voltar");

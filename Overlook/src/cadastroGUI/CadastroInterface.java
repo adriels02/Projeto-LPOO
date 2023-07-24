@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import cadastroCORE.CadastroController;
 import interfaces.MenuPrincipal;
 import javax.swing.JMenuItem;
+import java.awt.Toolkit;
 
 public class CadastroInterface extends JFrame {
 
@@ -65,10 +66,9 @@ public class CadastroInterface extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastroInterface() {
-		setTitle("Cadastro Cliente");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastroInterface.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 411);
-		//abrir no meio da tela
 		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();

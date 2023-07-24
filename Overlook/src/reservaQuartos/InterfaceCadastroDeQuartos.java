@@ -54,6 +54,7 @@ public class InterfaceCadastroDeQuartos {
 	 */
 	public InterfaceCadastroDeQuartos() {
 		initialize();
+		
 	}
 
 	/**
@@ -61,10 +62,13 @@ public class InterfaceCadastroDeQuartos {
 	 */
 	private void initialize() {
 		frmCadastroDeQuartos = new JFrame();
+		frmCadastroDeQuartos.setResizable(false);
 		frmCadastroDeQuartos.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
-		frmCadastroDeQuartos.setTitle("CADASTRO DE QUARTOS");
 		frmCadastroDeQuartos.setBounds(100, 100, 807, 474);
+		frmCadastroDeQuartos.setLocationRelativeTo(null);
 		frmCadastroDeQuartos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{1, 35, 18, 39, 45, 41, 25, 21, 85, 47, 56, 29, 35, 4, 67, 67, 67, 0};
 		gridBagLayout.rowHeights = new int[]{15, 23, 88, 20, 14, 20, 20, 79, 23, 0};
