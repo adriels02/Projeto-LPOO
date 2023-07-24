@@ -156,17 +156,17 @@ public class PagamentoController {
 		}
 
 	}
-	public void selectsComIdReserva(int idReserva) throws PagamentoExcecoesRegraNegocio {
+
+
+	public int PegaridFatura(PagamentoEntidade pgmt) throws PagamentoExcecoesRegraNegocio {
 		try {
 
-			repository.selectsBdUsandoIdreserva(idReserva);
+			repository.PegaridFatura(pgmt);
+
 		} catch (PagamentoDataException e) {
-
 			throw new PagamentoExcecoesRegraNegocio("Erro na Busca ao Banco", e);
-
 		}
-
-
+		return pgmt.getIdFatura();
 	}
 
 	public void construirEntidadeController(String c, String tipoPagamento) throws PagamentoExcecoesRegraNegocio, IOException, DocumentException {
@@ -192,14 +192,15 @@ public class PagamentoController {
 
 			PagamentoEntidade pgmt = repository.selectsBdUsandoCpf(c);
 			ArrayList<Integer> reservasNaoFaturadas = pgmt.getReservasNaoFaturadas();
-		
+
 
 			for(int r : reservasNaoFaturadas) {
 
 
 				PagamentoController pgc = new PagamentoController();
-				pgc.selectsComIdReserva(r);
+				repository.selectsBdUsandoIdreserva(r, pgmt);
 				pgmt.setTipoPagamento(tipoPagamento);
+				pgmt.setIdReserva(r);
 				String senhaUser = "honduras";
 				String senhaMaster = "senegal";
 				String enderecoDocumentos = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
@@ -207,7 +208,9 @@ public class PagamentoController {
 				ArrayList<Double> precoServico = pgmt.getPrecoServico();
 				HashMap<String, String> mapNomePreco = new HashMap<String, String>();
 				pgc.inserirDadosController(pgmt);
-				pgc.buscarDadosController(pgmt.getIdFatura());
+				pgc.PegaridFatura(pgmt);
+		
+
 
 				FileOutputStream fos = new FileOutputStream(enderecoDocumentos + "\\" + pgmt.getIdFatura() + ".pdf");
 
@@ -227,7 +230,7 @@ public class PagamentoController {
 				doc.add(new Paragraph("                                       "));
 				doc.add(new Paragraph("                                       "));
 				doc.add(new Paragraph("Nome:       " + pgmt.getNomecliente()));
-				doc.add(new Paragraph("Cpf:        " + pgmt.getCpfOuCnpj() + ""));
+				doc.add(new Paragraph("Cpf:        " + c + ""));
 				doc.add(new Paragraph("Tipo de Pagamento:  " + pgmt.getTipoPagamento() + ""));
 
 
@@ -241,7 +244,7 @@ public class PagamentoController {
 				for (String i : mapNomePreco.keySet()) {
 					doc.add(new Paragraph("Serviço: " + i + " Preço: R$" + mapNomePreco.get(i)));
 				}
-				doc.add(new Paragraph("Total:         R$" + pgmt.getPrecoQuarto() + ""));
+				doc.add(new Paragraph("Total:         R$" + pgmt.getPrecoFinal() + ""));
 
 
 

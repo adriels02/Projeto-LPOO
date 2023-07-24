@@ -24,8 +24,6 @@ public class PagamentoGenericDAO {
         }
 
         pstmt.execute();
-        pstmt.close();
-        connection.close();
     }
 
     protected void update(String updateSql, Object id, Object... parametros) throws SQLException {//Metodo com parametros  update, comando do Mysql , id especificando onde ocorre update e com varargs do tipo Object permitindo receber atributos para tabela fatura.

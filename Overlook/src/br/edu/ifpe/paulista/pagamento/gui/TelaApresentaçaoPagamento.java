@@ -17,12 +17,15 @@ import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import java.awt.SystemColor;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
+
+import com.itextpdf.text.DocumentException;
 
 public class TelaApresentaçaoPagamento extends JFrame {
 
@@ -174,12 +177,21 @@ public class TelaApresentaçaoPagamento extends JFrame {
 					else {
 						tipopgmt="Cartão de débito";
 					}
-					pcontrol.construirEntidadeController(textField.getText(), tipopgmt);
+					try {
+						pcontrol.construirEntidadeController(textField.getText(), tipopgmt);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (DocumentException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					textField.setText("");
 					errorLabel.setText("Fatura salva com sucesso na pasta de documentos");
+					errorLabel.setVisible(true);
 				} catch (PagamentoExcecoesRegraNegocio e1) {
 					errorLabel.setText(e1.getMessage());
-					errorLabel.setVisible(true);
+				
 				}
 
 			}

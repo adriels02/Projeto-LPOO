@@ -16,24 +16,35 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			throw new PagamentoDataException("Conexão com o banco de daodos não estabelecida", e);
 		}
 	}
+	public PagamentoEntidade PegaridFatura(PagamentoEntidade pgmt) throws PagamentoDataException{
 
-	public void inserirDadosBDFaturaReceberId(PagamentoEntidade pgmt) throws PagamentoDataException { //Insere na tabela fatura do MYSQL usando metodo de PagamentoGenericDAO.
 		try {
-
-			String ins = "INSERT INTO Fatura(idReserva,  tipoPagamento, precoFinal) VALUES(?,?,?)";
-			insert(ins, pgmt.getIdReserva(), pgmt.getTipoPagamento(), pgmt.getPrecoFinal());
-			
-			String selectIdFatura = "SELECT idFatura FROM fatura WHERE idReserva = ?";
+			String selectIdFatura = "SELECT idFatura FROM Fatura WHERE idReserva = ?";
 			PreparedStatement stmt = getConnection().prepareStatement(selectIdFatura);
-			stmt.setInt(1, pgmt.getIdReserva() );
+			stmt.setInt(1, pgmt.getIdReserva());
 			ResultSet rs = stmt.executeQuery();
 
 
 			while (rs.next()) {
 
-				pgmt.setNomecliente(rs.getString("nomeCliente"));
-
+				pgmt.setIdFatura(rs.getInt("idFatura"));
 			}
+			rs.close();
+			stmt.close();
+			getConnection().close();
+
+			return pgmt;
+			} catch (SQLException e) {
+				throw new PagamentoDataException("Acesso negado", e);
+		}
+
+	}
+	public void inserirDadosBDFaturaReceberId(PagamentoEntidade pgmt) throws PagamentoDataException { //Insere na tabela fatura do MYSQL usando metodo de PagamentoGenericDAO.
+		try {
+
+			String ins = "INSERT INTO Fatura(idReserva,  tipoPagamento, precoFinal) VALUES(?,?,?)";
+			insert(ins, pgmt.getIdReserva(), pgmt.getTipoPagamento(), pgmt.getPrecoFinal());
+
 
 		} catch (Exception e) {
 
@@ -69,15 +80,13 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 
 		}
 	}
-	public PagamentoEntidade selectsBdUsandoIdreserva(int r) throws PagamentoDataException {
+	public PagamentoEntidade selectsBdUsandoIdreserva(int r, PagamentoEntidade pgmt) throws PagamentoDataException {
 		try {
 
-			PagamentoEntidade pgmt = new PagamentoEntidade();
+
 			PreparedStatement stmt;
 			ResultSet rs;
-			
-			String selectServicos = "SELECT nomeServico FROM Servicos WHERE idReserva = ?";
-
+			String selectServicos = "SELECT nomeServico FROM Servico WHERE idReserva = ?";
 			stmt = getConnection().prepareStatement(selectServicos);
 			stmt.setInt(1, r);
 			rs = stmt.executeQuery();
@@ -91,10 +100,10 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 
 			pgmt.setNomeServico(nomeServico);
 
-			String selectPrecosServicos = "SELECT precoServico FROM Servicos WHERE idReserva = ?";
+			String selectPrecosServicos = "SELECT precoServico FROM Servico WHERE idReserva = ?";
 
 			stmt = getConnection().prepareStatement(selectPrecosServicos);
-			stmt.setInt(1, r);
+			stmt.setInt(1, r );
 			rs = stmt.executeQuery();
 
 			ArrayList<Double> precoServico = new ArrayList<Double>();
@@ -107,7 +116,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			pgmt.setPrecoServico(precoServico);
 
 
-			String selectPrecoQuarto = "SELECT precoQuarto FROM quarto WHERE idReserva = ?";
+			String selectPrecoQuarto = "SELECT precoQuarto FROM Quarto WHERE idReserva = ?";
 
 			stmt = getConnection().prepareStatement(selectPrecoQuarto);
 			stmt.setInt(1, r);
@@ -134,18 +143,14 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			while (rs.next()) {
 				pgmt.setPrecoFinal(rs.getDouble("totalServico") + pgmt.getPrecoFinal());
 			}
-
-			rs.close();
-			stmt.close();
-			getConnection().close();
 			return pgmt;
 
-			}
+		}
 		catch (SQLException e) {
 			throw new PagamentoDataException("Falha nos querys das informações do banco de dados.", e) ;
 
 		}
-		
+
 	}
 
 	public PagamentoEntidade selectsBdUsandoCpf(String c) throws PagamentoDataException { // Verifica se foi informado um cpf ou cnpj. Constroi a entidade EntidadePagamento por meio de consultas ao banco de dados, em diversas tabelas e da return com a entidade. 
@@ -154,11 +159,13 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 		try {
 
 			PagamentoEntidade pgmt = new PagamentoEntidade();
+			ResultSet rs;
+			PreparedStatement stmt;
 
 			String selectNomeCliente = "SELECT nomeCliente FROM Cliente WHERE cpf = ?";
-			PreparedStatement stmt = getConnection().prepareStatement(selectNomeCliente);
+			stmt = getConnection().prepareStatement(selectNomeCliente);
 			stmt.setString(1, c );
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 
 			while (rs.next()) {
@@ -173,94 +180,42 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			stmt = getConnection().prepareStatement(selectidReservas);
 			stmt.setString(1, c );
 			rs = stmt.executeQuery();
-			
+
 
 			while (rs.next()) {
+				int x =rs.getInt("idReserva");
+				reservas.add(x);
 
-				reservas.add(rs.getInt("idReserva"));
+			}
+			String selectDataSaida = "SELECT dataSaida FROM Reserva WHERE cpf = ?";
+			stmt = getConnection().prepareStatement(selectDataSaida);
+			stmt.setString(1, c );
+			rs = stmt.executeQuery();
+
+
+			while (rs.next()) {
+				pgmt.setData(rs.getDate("dataSaida"));
 
 			}
 
 			ArrayList<Integer> reservasNaoFaturadas = new ArrayList<Integer>();
 
-			String selectidReservasJaFaturadas = "SELECT idFatura FROM Fatura WHERE idReserva = ?";
+			String selectidReservasJaFaturadas = "SELECT * FROM Fatura WHERE idReserva = ?";
 			stmt = getConnection().prepareStatement(selectidReservasJaFaturadas);
-			for(int r:reservas) {
-				stmt.setInt(1,r);
-				rs = stmt.executeQuery();
-				
 
-				while (rs.next()) {
-					int x = 0;
-					x = rs.getInt("idFatura");
-					if(x == 0) reservasNaoFaturadas.add(r);
+			lbl:
+				for(int r:reservas) {
 
+					stmt.setInt(1,r);
+					rs = stmt.executeQuery();
+					while(rs.next()) {
+						break lbl;
+					}
+					reservasNaoFaturadas.add(r);
+					pgmt.setReservasFaturadas(reservasNaoFaturadas);
 				}
-			}
-
-			String selectServicos = "SELECT nomeServico FROM Servicos WHERE idReserva = ?";
-
-			stmt = getConnection().prepareStatement(selectServicos);
-			stmt.setInt(1, pgmt.getIdReserva());
-			rs = stmt.executeQuery();
-
-			ArrayList<String> nomeServico = new ArrayList<String>();
-
-			while (rs.next()) {
-
-				nomeServico.add(rs.getString("nomeServico"));
-			}
-
-			pgmt.setNomeServico(nomeServico);
-
-			String selectPrecosServicos = "SELECT precoServico FROM Servicos WHERE idReserva = ?";
-
-			stmt = getConnection().prepareStatement(selectPrecosServicos);
-			stmt.setInt(1, pgmt.getIdReserva());
-			rs = stmt.executeQuery();
-
-			ArrayList<Double> precoServico = new ArrayList<Double>();
-
-			while (rs.next()) {
-
-				precoServico.add(rs.getDouble("precoServico"));
-			}	
-
-			pgmt.setPrecoServico(precoServico);
-
-
-			String selectPrecoQuarto = "SELECT precoQuarto FROM quarto WHERE idReserva = ?";
-
-			stmt = getConnection().prepareStatement(selectPrecoQuarto);
-			stmt.setInt(1, pgmt.getIdReserva());
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				pgmt.setPrecoQuarto(rs.getDouble("precoQuarto"));
-			}
-			String totalPrecoQuarto = "SELECT SUM(precoQuarto) AS totalQuarto FROM Quarto WHERE idReserva = ?";
-
-			stmt = getConnection().prepareStatement(totalPrecoQuarto);
-			stmt.setInt(1, pgmt.getIdReserva());
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				pgmt.setPrecoFinal(rs.getDouble("totalQuarto"));
-			}
-			String totalPrecoServico = "SELECT SUM(precoServico) AS totalServico FROM Servico WHERE idReserva = ?";
-
-			stmt = getConnection().prepareStatement(totalPrecoServico);
-			stmt.setInt(1, pgmt.getIdReserva());
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				pgmt.setPrecoFinal(rs.getDouble("totalServico") + pgmt.getPrecoFinal());
-			}
-
-			rs.close();
-			stmt.close();
-			getConnection().close();
 			return pgmt;
+
 
 			/*			} else {
 
