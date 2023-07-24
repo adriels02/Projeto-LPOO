@@ -3,25 +3,31 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class PagamentoMYSQLConnection {
-	private static final String url = "jdbc:mysql://db4free.net:3306/";
-	
+	 
 	private static final String driver = "com.mysql.cj.jdbc.Driver";
 		
-	private static final String nome = "";
+	private static final String url = "jdbc:mysql://db4free.net:3306/overlook_db";
 	
-	private static final String senha = "";
+	private static final String nome = "overlook_user";
+	
+	private static final String senha = "#BDhotel123";
 
-	public static Connection getConnection() { // Quando chamado estabelece uma conexao ao SQL usado os atributos da Classe.
+	public static Connection getConnection() throws PagamentoDataException { // Quando chamado estabelece uma conexao ao SQL usado os atributos da Classe.
 		try {
 			Class.forName(driver);
+			
 			return DriverManager.getConnection(url, nome, senha);
+			
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
+			throw new PagamentoDataException("Class not found.");
+			
 		} catch (SQLException e) {
+			
 			throw new RuntimeException(e);
 		}
-		return null;
 	}
 }
 

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class PagamentoGenericDAO {
     private Connection connection;
 
-    protected PagamentoGenericDAO() { //Construtor da classe 
+    protected PagamentoGenericDAO() throws PagamentoDataException { //Construtor da classe 
         this.connection = PagamentoMYSQLConnection.getConnection();
     }
 

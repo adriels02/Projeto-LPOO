@@ -172,6 +172,8 @@ public class TelaApresentaçaoPagamento extends JFrame {
 						tipopgmt="Cartão de débito";
 					}
 					pcontrol.construirEntidadeController(textField.getText(), tipopgmt);
+					textField.setText("");
+					errorLabel.setText("Fatura salva com sucesso na pasta de documentos");
 				} catch (PagamentoExcecoesRegraNegocio e1) {
 					errorLabel.setText(e1.getMessage());
 					errorLabel.setVisible(true);
