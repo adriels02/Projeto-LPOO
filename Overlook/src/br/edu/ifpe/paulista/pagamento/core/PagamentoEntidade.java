@@ -7,6 +7,8 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	private int idFatura;
 	private int idCliente;
 	private int idReserva;
+	private ArrayList<Integer> reservas = new ArrayList<Integer>();
+	private ArrayList<Integer> reservasNaoFaturadas = new ArrayList<Integer>();
 	private String tipoPagamento;
 	private double precoFinal;
 	private String cpfOuCnpj;
@@ -16,6 +18,18 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	private ArrayList<Double> precoServico = new ArrayList<Double>();
 	private double precoQuarto;
 	
+	public ArrayList<Integer> getReservas() {
+		return reservas;
+	}
+	public void setReservas(ArrayList<Integer> reservas) {
+		this.reservas = reservas;
+	}
+	public ArrayList<Integer> getReservasNaoFaturadas() {
+		return reservasNaoFaturadas;
+	}
+	public void setReservasFaturadas(ArrayList<Integer> reservasFaturadas) {
+		this.reservasNaoFaturadas = reservasFaturadas;
+	}
 	public String getCpfOuCnpj() {
 		return cpfOuCnpj;
 	}
