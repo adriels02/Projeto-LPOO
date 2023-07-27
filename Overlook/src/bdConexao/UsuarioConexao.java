@@ -30,7 +30,8 @@ public class UsuarioConexao {
 			
 			
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro em UsuarioConexao " + e);
+			//JOptionPane.showMessageDialog(null, "Erro em UsuarioConexao " + e);
+			JOptionPane.showMessageDialog( null, "Erro ao tentar conectar o usuário", "Mensagem",JOptionPane.ERROR_MESSAGE);
 			return null;
 		
 		}
@@ -54,36 +55,15 @@ public class UsuarioConexao {
 			
 				
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro em AlterarNovoUsuario " + e);
+			//JOptionPane.showMessageDialog(null, "Erro em AlterarNovoUsuario " + e);
+			JOptionPane.showMessageDialog( null, "Erro ao inserir um novo usuário", "Mensagem",JOptionPane.ERROR_MESSAGE);
+		    
+			
 			
 		}
 		
 	
 	}
-	
-	
-	/*public void excluirUsuario(UsuarioTransferencia objUsuarioTransferencia) {
-		String sql = "delete from Usuario where nomeUsuario = ?)";
-		conexao = new AcessoBancodeDados().conexaoBD();
-		
-		
-		try {
-			informacoesUsuario = conexao.prepareStatement(sql);
-			informacoesUsuario.setString(1, objUsuarioTransferencia.getNomeUsuario());
-			//conexao = new AcessoBancodeDados().conexaoBD();
-			
-			
-			informacoesUsuario.execute();
-			informacoesUsuario.close();
-			
-				
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro em ExcluirUsuario " + e);
-			
-		}
-		
-	
-	}*/
 	
 
 	

@@ -22,11 +22,12 @@ public class AcessoBancodeDados{
 			conexao = DriverManager.getConnection(url,usuario,senha);
 			
 		} catch (ClassNotFoundException e){
-		    System.out.println("Banco de dados n�o localizado");
+		    System.out.println("Banco de dados não localizado");
 		
 			
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cessar o Banco de Dados " + e.getMessage());
+			//JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cessar o Banco de Dados " + e.getMessage());
+			JOptionPane.showMessageDialog( null, "Ocorreu um erro ao cessar o Banco de Dados ", "Mensagem",JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return conexao;

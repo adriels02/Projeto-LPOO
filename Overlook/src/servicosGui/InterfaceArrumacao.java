@@ -68,6 +68,7 @@ public class InterfaceArrumacao extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceArrumacao() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceArrumacao.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

@@ -1,28 +1,26 @@
 package interfaces;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-
-
-import bdTransferencia.UsuarioTransferencia;
-import bdConexao.*;
-
 import java.awt.Toolkit;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.event.ActionListener;
 //import java.sql.ResultSet;
 //import java.sql.SQLException;
 //import java.sql.SQLException;
 //import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import bdConexao.UsuarioConexao;
+import bdConexao.Validador;
+import bdTransferencia.UsuarioTransferencia;
 //import javax.swing.JFormattedTextField;
 
 public class TelaNovoUsuarioSistema extends JFrame {
@@ -84,17 +82,19 @@ public class TelaNovoUsuarioSistema extends JFrame {
 				dispose();	
 			}
 		});
-		btnVoltarTelaInicial.setBounds(757, 389, 144, 23);
+		btnVoltarTelaInicial.setBounds(771, 389, 130, 23);
 		contentPane.add(btnVoltarTelaInicial);
 		
 		txtNovoUsuario = new JTextField();
 		txtNovoUsuario.setBounds(619, 183, 275, 20);
 		contentPane.add(txtNovoUsuario);
 		txtNovoUsuario.setColumns(10);
+		//limitador de caracteres
+		txtNovoUsuario.setDocument(new Validador (10));
 		
 		
 		
-		btnNovoUsuario = new JButton("Novo Usuário");
+		btnNovoUsuario = new JButton("Cadrastrar Usuário");
 		btnNovoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,19 +103,19 @@ public class TelaNovoUsuarioSistema extends JFrame {
 				
 			}
 		});
-		btnNovoUsuario.setBounds(618, 389, 130, 23);
+		btnNovoUsuario.setBounds(618, 389, 143, 23);
 		contentPane.add(btnNovoUsuario);
 		
-		lblNomeNvUsuario = new JLabel("Usuário");
-		lblNomeNvUsuario.setBounds(622, 160, 144, 14);
+		lblNomeNvUsuario = new JLabel("Criar Usuário");
+		lblNomeNvUsuario.setBounds(622, 167, 144, 14);
 		contentPane.add(lblNomeNvUsuario);
 		
-		lblSenhaNvUsuario = new JLabel("Senha");
-		lblSenhaNvUsuario.setBounds(622, 221, 144, 14);
+		lblSenhaNvUsuario = new JLabel("Criar Senha");
+		lblSenhaNvUsuario.setBounds(622, 225, 144, 14);
 		contentPane.add(lblSenhaNvUsuario);
 		
-		lblSenhaDeLiberao = new JLabel("Senha de Liberação");
-		lblSenhaDeLiberao.setBounds(619, 325, 144, 14);
+		lblSenhaDeLiberao = new JLabel("Chave de Liberação");
+		lblSenhaDeLiberao.setBounds(619, 330, 144, 14);
 		contentPane.add(lblSenhaDeLiberao);
 		
 		txtSenhaLiberacao = new JPasswordField();
@@ -125,14 +125,16 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		txtSenhaNovoUsuario = new JPasswordField();
 		txtSenhaNovoUsuario.setBounds(620, 240, 283, 20);
 		contentPane.add(txtSenhaNovoUsuario);
+		txtSenhaNovoUsuario.setDocument(new Validador (8));
 		
 		lblConfirmarSenha = new JLabel("Confirmar Senha");
-		lblConfirmarSenha.setBounds(620, 271, 144, 14);
+		lblConfirmarSenha.setBounds(620, 280, 144, 14);
 		contentPane.add(lblConfirmarSenha);
 		
 		txtConfirmarSenha = new JPasswordField();
 		txtConfirmarSenha.setBounds(618, 296, 283, 20);
 		contentPane.add(txtConfirmarSenha);
+		txtConfirmarSenha.setDocument(new Validador (8));
 		
 	}
 	
@@ -180,41 +182,7 @@ public class TelaNovoUsuarioSistema extends JFrame {
 	}
 	
 
-	
-	/*@SuppressWarnings("deprecation")
-	private void ExcluirUsuario() {
-		
-		String nomeNovoUsuario;
-		@SuppressWarnings("unused")
-		String senhaLiberacao;
-		
-		nomeNovoUsuario=txtNovoUsuario.getText();
-		senhaLiberacao = txtSenhaLiberacao.getText();
-		
-		UsuarioTransferencia objUsuarioTransferencia = new UsuarioTransferencia();
-		objUsuarioTransferencia.setNomeUsuario(nomeNovoUsuario);
-		
-		UsuarioConexao objUsuarioConexao = new UsuarioConexao ();
-		objUsuarioConexao.excluirUsuario(objUsuarioTransferencia);
-		
-		
-	}
-	
-	
-	
-	private void ExcluirUsuario() {
-			
-		int idUsuario;
-		idUsuario = Integer.parseInt(txtCodigo.getText());
-		UsuarioTransferencia objUsuarioTransferencia = new UsuarioTransferencia();
-		objUsuarioTransferencia.setIdUsuario(idUsuario);
-		
-		UsuarioConexao objUsuarioConexao = new UsuarioConexao ();
-		objUsuarioConexao.excluirUsuario(objUsuarioTransferencia);
-		
-		
-	}*/
-	
+
 	
 		
 }
