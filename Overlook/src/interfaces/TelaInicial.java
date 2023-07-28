@@ -1,17 +1,27 @@
 package interfaces;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import bdConexao.UsuarioConexao;
 import bdTransferencia.UsuarioTransferencia;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 
@@ -61,6 +71,8 @@ public class TelaInicial extends JFrame {
 		contentPane.setLayout(null);
 		//abrir no meio da tela
 		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
 		
 		JLabel lblNewLabel_3 = new JLabel("Usuário");
 		lblNewLabel_3.setForeground(new Color(255, 128, 64));
@@ -96,11 +108,11 @@ public class TelaInicial extends JFrame {
 		});
 		btnCadastroNovoUsuario.setForeground(new Color(38, 9, 55));
 		btnCadastroNovoUsuario.setBackground(new Color(225, 225, 225));
-		btnCadastroNovoUsuario.setBounds(772, 245, 143, 15);
+		btnCadastroNovoUsuario.setBounds(766, 245, 143, 15);
 		contentPane.add(btnCadastroNovoUsuario);
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEntrar.addActionListener(new ActionListener() {
 			
 		public void actionPerformed(ActionEvent e) {
@@ -115,12 +127,28 @@ public class TelaInicial extends JFrame {
 		lblMensagemNvUsuarioLinha1.setForeground(new Color(38, 9, 55));
 		lblMensagemNvUsuarioLinha1.setBounds(580, 245, 238, 15);
 		contentPane.add(lblMensagemNvUsuarioLinha1);
-		
-					
+
 		btnEntrar.setForeground(new Color(38, 9, 55));
 		btnEntrar.setBackground(new Color(225, 225, 225));
 		btnEntrar.setBounds(689, 521, 124, 23);
 		contentPane.add(btnEntrar);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.setIcon(new ImageIcon(TelaInicial.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setForeground(new Color(255, 255, 255));
+		btnFecharTela.setBackground(new Color(255, 255, 255));
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		
+		
+		btnFecharTela.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnFecharTela.setBounds(935, 11, 30, 30);
+		contentPane.add(btnFecharTela);
+		
 				
 		JLabel lblBemVindo = new JLabel("Bem Vindo!");
 		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,6 +169,8 @@ public class TelaInicial extends JFrame {
 		lblImageTelaInicial.setBounds(0, 0, 984, 681);
 		contentPane.add(lblImageTelaInicial);
 		
+
+
 						   	
 	}
 	
@@ -180,5 +210,4 @@ public class TelaInicial extends JFrame {
 			}
 		
 	}
-
 }

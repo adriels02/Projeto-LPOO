@@ -2,10 +2,7 @@ package interfaces;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.sql.SQLException;
-//import java.sql.ResultSet;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,12 +13,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import bdConexao.UsuarioConexao;
 import bdConexao.Validador;
 import bdTransferencia.UsuarioTransferencia;
-//import javax.swing.JFormattedTextField;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+
 
 public class TelaNovoUsuarioSistema extends JFrame {
 
@@ -39,6 +40,9 @@ public class TelaNovoUsuarioSistema extends JFrame {
 	private JPasswordField txtSenhaNovoUsuario;
 	private JLabel lblConfirmarSenha;
 	private JPasswordField txtConfirmarSenha;
+	private JLabel lblIconeUsuario;
+	private JTextField lblFraseTelaInicial;
+	private JButton lblFecharTela;
 
 	/**
 	 * Launch the application.
@@ -66,6 +70,8 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		setResizable(false);
 		setSize(1000,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,6 +80,9 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnVoltarTelaInicial = new JButton("Tela Inicial");
+		btnVoltarTelaInicial.setForeground(new Color(38, 9, 55));
+		btnVoltarTelaInicial.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVoltarTelaInicial.setBackground(new Color(225, 225, 225));
 		btnVoltarTelaInicial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -82,11 +91,11 @@ public class TelaNovoUsuarioSistema extends JFrame {
 				dispose();	
 			}
 		});
-		btnVoltarTelaInicial.setBounds(771, 389, 130, 23);
+		btnVoltarTelaInicial.setBounds(770, 531, 130, 23);
 		contentPane.add(btnVoltarTelaInicial);
 		
 		txtNovoUsuario = new JTextField();
-		txtNovoUsuario.setBounds(619, 183, 275, 20);
+		txtNovoUsuario.setBounds(618, 325, 282, 20);
 		contentPane.add(txtNovoUsuario);
 		txtNovoUsuario.setColumns(10);
 		//limitador de caracteres
@@ -95,6 +104,9 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		
 		
 		btnNovoUsuario = new JButton("Cadrastrar Usuário");
+		btnNovoUsuario.setForeground(new Color(38, 9, 55));
+		btnNovoUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNovoUsuario.setBackground(new Color(225, 225, 225));
 		btnNovoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -103,39 +115,84 @@ public class TelaNovoUsuarioSistema extends JFrame {
 				
 			}
 		});
-		btnNovoUsuario.setBounds(618, 389, 143, 23);
+		btnNovoUsuario.setBounds(617, 531, 143, 23);
 		contentPane.add(btnNovoUsuario);
 		
-		lblNomeNvUsuario = new JLabel("Criar Usuário");
-		lblNomeNvUsuario.setBounds(622, 167, 144, 14);
+		lblNomeNvUsuario = new JLabel("Criar usuário até 10 dígitos");
+		lblNomeNvUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNomeNvUsuario.setForeground(new Color(38, 9, 55));
+		lblNomeNvUsuario.setBounds(621, 309, 272, 14);
 		contentPane.add(lblNomeNvUsuario);
 		
-		lblSenhaNvUsuario = new JLabel("Criar Senha");
-		lblSenhaNvUsuario.setBounds(622, 225, 144, 14);
+		lblSenhaNvUsuario = new JLabel("Criar senha até 8 dígitos");
+		lblSenhaNvUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSenhaNvUsuario.setForeground(new Color(38, 9, 55));
+		lblSenhaNvUsuario.setBounds(621, 367, 279, 14);
 		contentPane.add(lblSenhaNvUsuario);
 		
 		lblSenhaDeLiberao = new JLabel("Chave de Liberação");
-		lblSenhaDeLiberao.setBounds(619, 330, 144, 14);
+		lblSenhaDeLiberao.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSenhaDeLiberao.setForeground(new Color(38, 9, 55));
+		lblSenhaDeLiberao.setBounds(618, 480, 144, 14);
 		contentPane.add(lblSenhaDeLiberao);
 		
 		txtSenhaLiberacao = new JPasswordField();
-		txtSenhaLiberacao.setBounds(618, 346, 283, 20);
+		txtSenhaLiberacao.setBounds(617, 495, 283, 20);
 		contentPane.add(txtSenhaLiberacao);
 		
 		txtSenhaNovoUsuario = new JPasswordField();
-		txtSenhaNovoUsuario.setBounds(620, 240, 283, 20);
+		txtSenhaNovoUsuario.setBounds(619, 382, 283, 20);
 		contentPane.add(txtSenhaNovoUsuario);
 		txtSenhaNovoUsuario.setDocument(new Validador (8));
 		
 		lblConfirmarSenha = new JLabel("Confirmar Senha");
-		lblConfirmarSenha.setBounds(620, 280, 144, 14);
+		lblConfirmarSenha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblConfirmarSenha.setForeground(new Color(38, 9, 55));
+		lblConfirmarSenha.setBounds(619, 422, 144, 14);
 		contentPane.add(lblConfirmarSenha);
 		
 		txtConfirmarSenha = new JPasswordField();
-		txtConfirmarSenha.setBounds(618, 296, 283, 20);
+		txtConfirmarSenha.setBounds(617, 438, 283, 20);
 		contentPane.add(txtConfirmarSenha);
 		txtConfirmarSenha.setDocument(new Validador (8));
 		
+
+		
+		lblIconeUsuario = new JLabel("");
+		lblIconeUsuario.setIcon(new ImageIcon(TelaNovoUsuarioSistema.class.getResource("/interfaces/imagens/IconeUsuario 182x151.png")));
+		lblIconeUsuario.setBounds(668, 85, 182, 151);
+		contentPane.add(lblIconeUsuario);
+		
+		
+
+		JLabel lblFraseTelaInicial = new JLabel("Gerenciamento de clientes em hotelaria");
+		lblFraseTelaInicial.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFraseTelaInicial.setForeground(new Color(246, 169, 50));
+		lblFraseTelaInicial.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblFraseTelaInicial.setBounds(126, 420, 326, 14);
+		contentPane.add(lblFraseTelaInicial);	
+		
+		
+		lblFecharTela = new JButton("");
+		lblFecharTela.setIcon(new ImageIcon(TelaNovoUsuarioSistema.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		lblFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		lblFecharTela.setBounds(935, 11, 30, 30);
+		contentPane.add(lblFecharTela);
+		
+		
+		JLabel lblImageTelaUsuario = new JLabel("");
+		lblImageTelaUsuario.setIcon(new ImageIcon(TelaNovoUsuarioSistema.class.getResource("/interfaces/imagens/imagemTelaUsuario 984x681.png")));
+		lblImageTelaUsuario.setBounds(0, 0, 984, 681);
+		contentPane.add(lblImageTelaUsuario);
+		
+
+		
+				
 	}
 	
 	private void limparCampos() {
@@ -180,10 +237,5 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		
 
 	}
-	
-
-
-	
-		
 }
 
