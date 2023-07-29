@@ -34,6 +34,7 @@ import reservaQuartos.InterfaceCadastroDeQuartos;
 import reservaQuartos.InterfaceReservas;
 import servicosGui.InterfaceArrumacao;
 import servicosGui.InterfaceEstacionamento;
+import servicosGui.InterfacePrecos;
 import servicosGui.InterfaceRestaurante;
 import servicosGui.InterfaceServicoDeQuarto;
 import servicosGui.InterfaceServicos;
@@ -76,156 +77,6 @@ public class MenuPrincipal extends JFrame {
 		setSize(1280,720); 
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Cadastro");
-		mnNewMenu.setForeground(new Color(38, 9, 55));
-		mnNewMenu.setFont(new Font("Tahoma", Font.BOLD, 12));
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CadastroInterface interfaceCadastroCliente = new CadastroInterface();
-				interfaceCadastroCliente.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Dependentes");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceCadastroDependentes ict = new InterfaceCadastroDependentes();
-				ict.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_1);
-		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Usuário");
-		mntmNewMenuItem_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaInicial tl = new TelaInicial();
-				tl.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_8);
-		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Consulta");
-		mntmNewMenuItem_12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceConsultaHospedes ict = new InterfaceConsultaHospedes();
-				ict.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem_12);
-		
-		JMenu mnNewMenu_1 = new JMenu("Serviços");
-		mnNewMenu_1.setForeground(new Color(38, 9, 55));
-		mnNewMenu_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Restaurante");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceRestaurante interfaceRestaurante = new InterfaceRestaurante();
-				interfaceRestaurante.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Translado");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceTranslado interfaceTranslado = new InterfaceTranslado();
-				interfaceTranslado.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("wifi");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceWiFi interfaceWifi =  new InterfaceWiFi();
-				interfaceWifi.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_4);
-		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Estacionamento");
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceEstacionamento it = new InterfaceEstacionamento();
-				it.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_5);
-		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Arrumação");
-		mntmNewMenuItem_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceArrumacao ia = new InterfaceArrumacao();
-				ia.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_6);
-		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Serviço de quarto");
-		mntmNewMenuItem_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceServicoDeQuarto isq = new InterfaceServicoDeQuarto();
-				isq.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_1.add(mntmNewMenuItem_7);
-		
-		JMenu mnNewMenu_2 = new JMenu("Reservas");
-		mnNewMenu_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		mnNewMenu_2.setForeground(new Color(38, 9, 55));
-		menuBar.add(mnNewMenu_2);
-		
-		JMenu mnNewMenu_3 = new JMenu("CheckIn-CheckOut");
-		mnNewMenu_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		mnNewMenu_3.setForeground(new Color(38, 9, 55));
-		menuBar.add(mnNewMenu_3);
-		
-		JMenu mnNewMenu_4 = new JMenu("Pagamento");
-		mnNewMenu_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		mnNewMenu_4.setForeground(new Color(38, 9, 55));
-		menuBar.add(mnNewMenu_4);
-		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Relatório Geral");
-		mntmNewMenuItem_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				TelaRelatorio telaRelatorio = new TelaRelatorio();
-				telaRelatorio.setVisible(true);
-				dispose();
-				
-			}
-		});
-		mnNewMenu_4.add(mntmNewMenuItem_9);
-		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Pagamento");
-		mntmNewMenuItem_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaApresentacaoPagamento telaApresentacaoPagamento = new TelaApresentacaoPagamento();
-				telaApresentacaoPagamento.setVisible(true);
-				dispose();
-			}
-		});
-		mnNewMenu_4.add(mntmNewMenuItem_10);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -235,7 +86,7 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Menu Principal");
 		lblNewLabel.setForeground(new Color(246, 169, 50));
-		lblNewLabel.setBounds(225, 90, 235, 64);
+		lblNewLabel.setBounds(224, 51, 235, 64);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(lblNewLabel);
 					
@@ -243,7 +94,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntNovoCadastro = new JButton("Cadastro Cliente");
 		bntNovoCadastro.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntNovoCadastro.setForeground(new Color(38, 9, 55));
-		bntNovoCadastro.setBounds(176, 195, 160, 90);
+		bntNovoCadastro.setBounds(175, 156, 160, 80);
 		bntNovoCadastro.setBackground(new Color(225, 225, 225));
 		bntNovoCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -260,7 +111,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntServico = new JButton("Serviços");
 		bntServico.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntServico.setForeground(new Color(38, 9, 55));
-		bntServico.setBounds(356, 195, 160, 90);
+		bntServico.setBounds(356, 156, 160, 80);
 		bntServico.setBackground(new Color(225, 225, 225));
 		bntServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -274,7 +125,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntReserva = new JButton("Reserva");
 		bntReserva.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntReserva.setForeground(new Color(38, 9, 55));
-		bntReserva.setBounds(176, 303, 160, 90);
+		bntReserva.setBounds(175, 256, 160, 80);
 		bntReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -296,14 +147,14 @@ public class MenuPrincipal extends JFrame {
 		});
 		bntCheckIn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		bntCheckIn.setForeground(new Color(38, 9, 55));
-		bntCheckIn.setBounds(356, 303, 160, 90);
+		bntCheckIn.setBounds(356, 256, 160, 80);
 		bntCheckIn.setBackground(new Color(225, 225, 225));
 		contentPane.add(bntCheckIn);
 		
 		JButton bntCheckOut = new JButton("Pagamento");
 		bntCheckOut.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntCheckOut.setForeground(new Color(38, 9, 55));
-		bntCheckOut.setBounds(176, 413, 160, 90);
+		bntCheckOut.setBounds(175, 357, 160, 80);
 		bntCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaApresentacaoPagamento telaApresentacao = new TelaApresentacaoPagamento();
@@ -314,10 +165,10 @@ public class MenuPrincipal extends JFrame {
 		bntCheckOut.setBackground(new Color(225, 225, 225));
 		contentPane.add(bntCheckOut);
 		
-		JButton bntConsulta = new JButton("Consulta");
+		JButton bntConsulta = new JButton("Hóspedes");
 		bntConsulta.setForeground(new Color(38, 9, 55));
 		bntConsulta.setFont(new Font("Tahoma", Font.BOLD, 14));
-		bntConsulta.setBounds(356, 413, 160, 90);
+		bntConsulta.setBounds(356, 357, 160, 80);
 		bntConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceConsultaHospedes ic = new InterfaceConsultaHospedes();
@@ -335,7 +186,7 @@ public class MenuPrincipal extends JFrame {
 			}
 		});
 		btnFecharTela.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
-		btnFecharTela.setBounds(1220, 11, 30, 30);
+		btnFecharTela.setBounds(1250, 0, 30, 30);
 		contentPane.add(btnFecharTela);
 		
 		JButton btnSignOut = new JButton("");
@@ -348,7 +199,7 @@ public class MenuPrincipal extends JFrame {
 			}
 		});
 		btnSignOut.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
-		btnSignOut.setBounds(1183, 11, 30, 30);
+		btnSignOut.setBounds(1213, 0, 30, 30);
 		contentPane.add(btnSignOut);
 				
 		
@@ -372,7 +223,7 @@ public class MenuPrincipal extends JFrame {
 		btnQuartos.setBackground(new Color(225, 225, 225));
 		btnQuartos.setForeground(new Color(38, 9, 55));
 		btnQuartos.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnQuartos.setBounds(176, 524, 160, 90);
+		btnQuartos.setBounds(175, 456, 160, 80);
 		contentPane.add(btnQuartos);
 		
 		JButton btnRelatorios = new JButton("Relatórios");
@@ -388,9 +239,27 @@ public class MenuPrincipal extends JFrame {
 		btnRelatorios.setBackground(new Color(225, 225, 225));
 		btnRelatorios.setForeground(new Color(38, 9, 55));
 		btnRelatorios.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRelatorios.setBounds(356, 524, 160, 90);
+		btnRelatorios.setBounds(356, 456, 160, 80);
 		contentPane.add(btnRelatorios);
 		
+		
+		JButton btnPrecos = new JButton("Preços");
+		btnPrecos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InterfacePrecos objInterfacePrecos = new InterfacePrecos();
+				objInterfacePrecos.setVisible(true);
+				dispose();
+				
+				
+			}
+		});
+		btnPrecos.setForeground(new Color(38, 9, 55));
+		btnPrecos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnPrecos.setBackground(new Color(225, 225, 225));
+		btnPrecos.setBounds(266, 559, 160, 80);
+		contentPane.add(btnPrecos);
+			
 		
 		
 		JLabel lblLogoTransparente = new JLabel("");
@@ -401,9 +270,10 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel lblImagemTela = new JLabel("");
 		lblImagemTela.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/fundo azul 1280x720.png")));
-		lblImagemTela.setBounds(0, 0, 1280, 699);
+		lblImagemTela.setBounds(0, 0, 1280, 720);
 		contentPane.add(lblImagemTela);
 		
+
 
 
 		

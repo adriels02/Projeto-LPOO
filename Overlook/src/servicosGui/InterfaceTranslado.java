@@ -33,6 +33,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 
+import interfaces.TelaInicial;
 import servicosBD.BDException;
 import servicosBD.MySQLConector;
 import servicosCore.ControladorDeAcessos;
@@ -44,6 +45,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class InterfaceTranslado extends JFrame {
 
@@ -137,40 +140,31 @@ public class InterfaceTranslado extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceTranslado.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 777, 504);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 162, 211, 272, 0 };
-		gbl_contentPane.rowHeights = new int[] { 17, 14, 35, 0, 0, 14, 20, 15, 20, 14, 20, 14, 20, 14, 40, 23, 0 };
-		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-				0.0, Double.MIN_VALUE };
-		contentPane.setLayout(gbl_contentPane);
+		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_9 = new JLabel("Id Reserva:");
-		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
-		gbc_lblNewLabel_9.weighty = 1.0;
-		gbc_lblNewLabel_9.weightx = 1.0;
-		gbc_lblNewLabel_9.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_9.gridx = 0;
-		gbc_lblNewLabel_9.gridy = 3;
-		contentPane.add(lblNewLabel_9, gbc_lblNewLabel_9);
+		JLabel lblNewLabel_9 = new JLabel("Id Reserva");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_9.setForeground(new Color(38, 9, 55));
+		lblNewLabel_9.setBounds(33, 202, 206, 14);
+		contentPane.add(lblNewLabel_9);
 		
-				JLabel lblNewLabel_8 = new JLabel("Histórico de viagens:");
-				GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
-				gbc_lblNewLabel_8.weighty = 1.0;
-				gbc_lblNewLabel_8.weightx = 1.0;
-				gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 0);
-				gbc_lblNewLabel_8.gridwidth = 3;
-				gbc_lblNewLabel_8.gridx = 1;
-				gbc_lblNewLabel_8.gridy = 3;
-				contentPane.add(lblNewLabel_8, gbc_lblNewLabel_8);
+				JLabel lblNewLabel_8 = new JLabel("Histórico de viagens");
+				lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+				lblNewLabel_8.setForeground(new Color(38, 9, 55));
+				lblNewLabel_8.setBounds(1088, 115, 151, 14);
+				contentPane.add(lblNewLabel_8);
 		
 		txtIdReserva = new JTextField();
+		txtIdReserva.setBounds(33, 218, 297, 23);
 		txtIdReserva.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -180,17 +174,14 @@ public class InterfaceTranslado extends JFrame {
 				}
 			}
 		});
-		GridBagConstraints gbc_txtIdReserva = new GridBagConstraints();
-		gbc_txtIdReserva.weighty = 1.0;
-		gbc_txtIdReserva.weightx = 1.0;
-		gbc_txtIdReserva.insets = new Insets(0, 0, 5, 5);
-		gbc_txtIdReserva.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtIdReserva.gridx = 0;
-		gbc_txtIdReserva.gridy = 4;
-		contentPane.add(txtIdReserva, gbc_txtIdReserva);
+		contentPane.add(txtIdReserva);
 		txtIdReserva.setColumns(10);
 		table = new JTable();
+		table.setBounds(1, 26, 872, 0);
 		JButton btnRemoverHistorico = new JButton("Remover");
+		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
+		btnRemoverHistorico.setBounds(1134, 686, 105, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -233,40 +224,20 @@ public class InterfaceTranslado extends JFrame {
 				}
 
 			table.setModel(tableModel);
-			
-
-		
-		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.weighty = 1.0;
-		gbc_table.weightx = 1.0;
-		gbc_table.gridheight = 2;
-		gbc_table.insets = new Insets(0, 0, 5, 5);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 1;
-		gbc_table.gridy = 4;
-		contentPane.add(table, gbc_table);
+		contentPane.add(table);
 
 		JFormattedTextField ftxtfData = new JFormattedTextField(setMascara("##/##/####"));
-		GridBagConstraints gbc_ftxtfData = new GridBagConstraints();
-		gbc_ftxtfData.fill = GridBagConstraints.HORIZONTAL;
-		gbc_ftxtfData.weighty = 1.0;
-		gbc_ftxtfData.weightx = 1.0;
-		gbc_ftxtfData.insets = new Insets(0, 0, 5, 5);
-		gbc_ftxtfData.gridx = 0;
-		gbc_ftxtfData.gridy = 12;
-		contentPane.add(ftxtfData, gbc_ftxtfData);
+		ftxtfData.setBounds(33, 551, 126, 23);
+		contentPane.add(ftxtfData);
 
 		JFormattedTextField ftxtHora = new JFormattedTextField(setMascara("##:##"));
-		GridBagConstraints gbc_ftxtHora = new GridBagConstraints();
-		gbc_ftxtHora.weighty = 1.0;
-		gbc_ftxtHora.weightx = 1.0;
-		gbc_ftxtHora.insets = new Insets(0, 0, 5, 5);
-		gbc_ftxtHora.fill = GridBagConstraints.HORIZONTAL;
-		gbc_ftxtHora.gridx = 0;
-		gbc_ftxtHora.gridy = 14;
-		contentPane.add(ftxtHora, gbc_ftxtHora);
+		ftxtHora.setBounds(173, 551, 157, 23);
+		contentPane.add(ftxtHora);
 
 		JButton btnAdicionarhistorico = new JButton("Adicionar");
+		btnAdicionarhistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAdicionarhistorico.setForeground(new Color(38, 9, 55));
+		btnAdicionarhistorico.setBounds(179, 620, 151, 23);
 		btnAdicionarhistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -326,110 +297,49 @@ public class InterfaceTranslado extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("<<< Voltar");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				InterfaceServicos interfaceServiços = new InterfaceServicos();
-				interfaceServiços.setVisible(true);
-				dispose();
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblNewLabel.setForeground(Color.red);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblNewLabel.setForeground(Color.black);
-			}
-		});
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-
 		JLabel lblNewLabel_1 = new JLabel("Translado");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 4;
-		gbc_lblNewLabel_1.weighty = 1.0;
-		gbc_lblNewLabel_1.weightx = 1.0;
-		gbc_lblNewLabel_1.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 0;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(33, 62, 165, 42);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Serviço de transporte");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.weighty = 1.0;
-		gbc_lblNewLabel_2.weightx = 1.0;
-		gbc_lblNewLabel_2.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_2.gridwidth = 4;
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 1;
-		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		lblNewLabel_2.setForeground(new Color(38, 9, 55));
+		lblNewLabel_2.setBounds(31, 101, 197, 27);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		contentPane.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_3 = new JLabel("Endereço coleta:");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.weighty = 1.0;
-		gbc_lblNewLabel_3.weightx = 1.0;
-		gbc_lblNewLabel_3.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 5;
-		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel("Endereço coleta");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setForeground(new Color(38, 9, 55));
+		lblNewLabel_3.setBounds(33, 287, 205, 14);
+		contentPane.add(lblNewLabel_3);
 
 		txtEnderecoColeta = new JTextField();
+		txtEnderecoColeta.setBounds(33, 302, 297, 23);
 		txtEnderecoColeta.setColumns(10);
-		GridBagConstraints gbc_txtEnderecoColeta = new GridBagConstraints();
-		gbc_txtEnderecoColeta.weighty = 1.0;
-		gbc_txtEnderecoColeta.weightx = 1.0;
-		gbc_txtEnderecoColeta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtEnderecoColeta.insets = new Insets(0, 0, 5, 5);
-		gbc_txtEnderecoColeta.gridx = 0;
-		gbc_txtEnderecoColeta.gridy = 6;
-		contentPane.add(txtEnderecoColeta, gbc_txtEnderecoColeta);
+		contentPane.add(txtEnderecoColeta);
 
-		JLabel lblNewLabel_4 = new JLabel("Endereço Destino:");
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.weighty = 1.0;
-		gbc_lblNewLabel_4.weightx = 1.0;
-		gbc_lblNewLabel_4.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridx = 0;
-		gbc_lblNewLabel_4.gridy = 7;
-		contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		JLabel lblNewLabel_4 = new JLabel("Endereço Destino");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setForeground(new Color(38, 9, 55));
+		lblNewLabel_4.setBounds(33, 366, 208, 14);
+		contentPane.add(lblNewLabel_4);
 
 		
 		txtEnderecoDestino = new JTextField();
+		txtEnderecoDestino.setBounds(33, 381, 297, 23);
 		txtEnderecoDestino.setColumns(10);
-		GridBagConstraints gbc_txtEnderecoDestino = new GridBagConstraints();
-		gbc_txtEnderecoDestino.weighty = 1.0;
-		gbc_txtEnderecoDestino.weightx = 1.0;
-		gbc_txtEnderecoDestino.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtEnderecoDestino.insets = new Insets(0, 0, 5, 5);
-		gbc_txtEnderecoDestino.gridx = 0;
-		gbc_txtEnderecoDestino.gridy = 8;
-		contentPane.add(txtEnderecoDestino, gbc_txtEnderecoDestino);
+		contentPane.add(txtEnderecoDestino);
 
-		JLabel lblNewLabel_5 = new JLabel("Quantidade de Passageiros:");
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.weighty = 1.0;
-		gbc_lblNewLabel_5.weightx = 1.0;
-		gbc_lblNewLabel_5.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 9;
-		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
+		JLabel lblNewLabel_5 = new JLabel("Quantidade de Passageiros");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5.setForeground(new Color(38, 9, 55));
+		lblNewLabel_5.setBounds(33, 454, 207, 14);
+		contentPane.add(lblNewLabel_5);
 
 		txtQuantidadePassageiros = new JTextField();
+		txtQuantidadePassageiros.setBounds(33, 469, 297, 23);
 		txtQuantidadePassageiros.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -440,63 +350,71 @@ public class InterfaceTranslado extends JFrame {
 			}
 		});
 		txtQuantidadePassageiros.setColumns(10);
-		GridBagConstraints gbc_txtQuantidadePassageiros = new GridBagConstraints();
-		gbc_txtQuantidadePassageiros.weighty = 1.0;
-		gbc_txtQuantidadePassageiros.weightx = 1.0;
-		gbc_txtQuantidadePassageiros.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtQuantidadePassageiros.insets = new Insets(0, 0, 5, 5);
-		gbc_txtQuantidadePassageiros.gridx = 0;
-		gbc_txtQuantidadePassageiros.gridy = 10;
-		contentPane.add(txtQuantidadePassageiros, gbc_txtQuantidadePassageiros);
+		contentPane.add(txtQuantidadePassageiros);
 
-		JLabel lblNewLabel_6 = new JLabel("Data:");
-		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-		gbc_lblNewLabel_6.weighty = 1.0;
-		gbc_lblNewLabel_6.weightx = 1.0;
-		gbc_lblNewLabel_6.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_6.gridx = 0;
-		gbc_lblNewLabel_6.gridy = 11;
-		contentPane.add(lblNewLabel_6, gbc_lblNewLabel_6);
+		JLabel lblNewLabel_6 = new JLabel("Data");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setForeground(new Color(38, 9, 55));
+		lblNewLabel_6.setBounds(33, 535, 90, 14);
+		contentPane.add(lblNewLabel_6);
 
-		JLabel lblNewLabel_7 = new JLabel("Hora:");
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.weighty = 1.0;
-		gbc_lblNewLabel_7.weightx = 1.0;
-		gbc_lblNewLabel_7.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 0;
-		gbc_lblNewLabel_7.gridy = 13;
-		contentPane.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		JLabel lblNewLabel_7 = new JLabel("Hora");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_7.setForeground(new Color(38, 9, 55));
+		lblNewLabel_7.setBounds(175, 535, 70, 14);
+		contentPane.add(lblNewLabel_7);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 11;
-		gbc_scrollPane.gridwidth = 2;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 4;
-		contentPane.add(scrollPane, gbc_scrollPane);
-
-		GridBagConstraints gbc_btnAdicionarhistorico = new GridBagConstraints();
-		gbc_btnAdicionarhistorico.weighty = 1.0;
-		gbc_btnAdicionarhistorico.weightx = 1.0;
-		gbc_btnAdicionarhistorico.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnAdicionarhistorico.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAdicionarhistorico.gridx = 0;
-		gbc_btnAdicionarhistorico.gridy = 15;
-		contentPane.add(btnAdicionarhistorico, gbc_btnAdicionarhistorico);
+		scrollPane.setBounds(365, 139, 874, 537);
+		contentPane.add(scrollPane);
+		contentPane.add(btnAdicionarhistorico);
 
 		btnRemoverHistorico.setEnabled(false);
-		GridBagConstraints gbc_btnRemoverHistorico = new GridBagConstraints();
-		gbc_btnRemoverHistorico.gridwidth = 2;
-		gbc_btnRemoverHistorico.insets = new Insets(0, 0, 0, 5);
-		gbc_btnRemoverHistorico.weighty = 1.0;
-		gbc_btnRemoverHistorico.weightx = 1.0;
-		gbc_btnRemoverHistorico.gridx = 1;
-		gbc_btnRemoverHistorico.gridy = 15;
-		contentPane.add(btnRemoverHistorico, gbc_btnRemoverHistorico);
+		contentPane.add(btnRemoverHistorico);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				InterfaceServicos interfaceServicos = new InterfaceServicos();
+				interfaceServicos.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+		btnNewButton.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnNewButton_1.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(100, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
 
 		
 			

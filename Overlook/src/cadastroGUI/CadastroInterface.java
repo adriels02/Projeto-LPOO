@@ -73,35 +73,6 @@ public class CadastroInterface extends JFrame {
 		setSize(1280,720); 
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-		
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JButton btnNenuPrincipal = new JButton("Menu");
-		btnNenuPrincipal.setBackground(new Color(255, 128, 64));
-		btnNenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNenuPrincipal.setForeground(new Color(255, 255, 255));
-		btnNenuPrincipal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MenuPrincipal menu = new MenuPrincipal();
-				menu.setVisible(true);
-				dispose();
-			}
-		});
-		menuBar.add(btnNenuPrincipal);
-		
-		JMenuItem mntmConsultarHospedes = new JMenuItem("Consultar Hóspedes");
-		mntmConsultarHospedes.setForeground(new Color(38, 9, 55));
-		mntmConsultarHospedes.setFont(new Font("Tahoma", Font.BOLD, 12));
-		mntmConsultarHospedes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InterfaceConsultaHospedes ich = new InterfaceConsultaHospedes();
-				ich.setVisible(true);
-				dispose();
-			}
-		});
-		menuBar.add(mntmConsultarHospedes);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -338,7 +309,21 @@ public class CadastroInterface extends JFrame {
 		btnCadastrarDependentes.setBounds(377, 272, 179, 23);
 		contentPane.add(btnCadastrarDependentes);
 		
-				
+		JButton btnNenuPrincipal = new JButton("Menu");
+		btnNenuPrincipal.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNenuPrincipal);
+		btnNenuPrincipal.setBackground(new Color(255, 128, 64));
+		btnNenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNenuPrincipal.setForeground(new Color(255, 255, 255));
+		btnNenuPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
+				dispose();
+			}
+		});
+		
+						
 		JLabel lblLogoTransparente = new JLabel("");
 		lblLogoTransparente.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
@@ -351,7 +336,7 @@ public class CadastroInterface extends JFrame {
 			}
 		});
 		btnFecharTela.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
-		btnFecharTela.setBounds(1232, 11, 30, 30);
+		btnFecharTela.setBounds(1250, 0, 30, 30);
 		contentPane.add(btnFecharTela);
 		
 		JButton btnSigOut = new JButton("");
@@ -365,13 +350,15 @@ public class CadastroInterface extends JFrame {
 			}
 		});
 		btnSigOut.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
-		btnSigOut.setBounds(1195, 11, 30, 30);
+		btnSigOut.setBounds(1213, 0, 30, 30);
 		contentPane.add(btnSigOut);
 		
 		JLabel lblLogoTelas = new JLabel("");
 		lblLogoTelas.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
 		lblLogoTelas.setBounds(712, 208, 480, 320);
 		contentPane.add(lblLogoTelas);
+		
+
 		
 	
 		

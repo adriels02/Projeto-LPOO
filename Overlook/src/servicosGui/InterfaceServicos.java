@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import interfaces.MenuPrincipal;
+import interfaces.TelaInicial;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
@@ -25,10 +26,12 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class InterfaceServicos extends JFrame {
 
 	private JPanel contentPane;
+	private final JButton btnNewButton = new JButton("");
 
 	/**
 	 * Launch the application.
@@ -61,19 +64,23 @@ public class InterfaceServicos extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceServicos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
+		
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 208, 208, 0 };
-		gbl_contentPane.rowHeights = new int[] { 56, 56, 56, 56, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, };
-		contentPane.setLayout(gbl_contentPane);
 
 		JButton btnTranslado = new JButton("Translado");
+		btnTranslado.setBackground(new Color(225, 225, 225));
+		btnTranslado.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnTranslado.setForeground(new Color(38, 9, 55));
+		btnTranslado.setBounds(176, 270, 160, 80);
 		btnTranslado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceTranslado interfaceTranslado = new InterfaceTranslado();
@@ -81,56 +88,21 @@ public class InterfaceServicos extends JFrame {
 				dispose();
 			}
 		});
-		
-		JLabel lblVoltar = new JLabel("<<< Voltar");
-		lblVoltar.addMouseListener(new MouseAdapter() {
-		
-			public void mouseEntered(MouseEvent e) {
-				
-				lblVoltar.setForeground(Color.RED);		
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblVoltar.setForeground(Color.BLACK);
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				MenuPrincipal menuPrincipal = new MenuPrincipal();
-				menuPrincipal.setVisible(true);
-				dispose();
-			}
-		});
-		GridBagConstraints gbc_lblVoltar = new GridBagConstraints();
-		gbc_lblVoltar.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblVoltar.insets = new Insets(0, 0, 5, 5);
-		gbc_lblVoltar.gridx = 0;
-		gbc_lblVoltar.gridy = 0;
-		contentPane.add(lblVoltar, gbc_lblVoltar);
+		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Serviços:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 2;
-		gbc_lblNewLabel.weighty = 1.0;
-		gbc_lblNewLabel.weightx = 1.0;
-		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		GridBagConstraints gbc_btnTranslado = new GridBagConstraints();
-		gbc_btnTranslado.weighty = 1.0;
-		gbc_btnTranslado.weightx = 1.0;
-		gbc_btnTranslado.fill = GridBagConstraints.BOTH;
-		gbc_btnTranslado.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTranslado.gridx = 0;
-		gbc_btnTranslado.gridy = 1;
-		contentPane.add(btnTranslado, gbc_btnTranslado);
+		JLabel lblNewLabel = new JLabel("Serviços");
+		lblNewLabel.setForeground(new Color(246, 169, 50));
+		lblNewLabel.setBounds(276, 174, 139, 42);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		contentPane.add(lblNewLabel);
+		contentPane.add(btnTranslado);
 
 		JButton btnRestaurante = new JButton("Restaurante");
+		btnRestaurante.setForeground(new Color(38, 9, 55));
+		btnRestaurante.setBackground(new Color(225, 225, 225));
+		btnRestaurante.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRestaurante.setBounds(357, 372, 160, 80);
 		btnRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceRestaurante interfaceRestaurante = new InterfaceRestaurante();
@@ -140,6 +112,10 @@ public class InterfaceServicos extends JFrame {
 		});
 
 		JButton btnWiFi = new JButton("Wi-Fi");
+		btnWiFi.setForeground(new Color(38, 9, 55));
+		btnWiFi.setBackground(new Color(225, 225, 225));
+		btnWiFi.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnWiFi.setBounds(176, 372, 160, 80);
 		btnWiFi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceWiFi interfaceWiFi = new InterfaceWiFi();
@@ -149,6 +125,10 @@ public class InterfaceServicos extends JFrame {
 		});
 
 		JButton btnArrumacao = new JButton("Arrumação");
+		btnArrumacao.setForeground(new Color(38, 9, 55));
+		btnArrumacao.setBackground(new Color(225, 225, 225));
+		btnArrumacao.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnArrumacao.setBounds(357, 270, 160, 80);
 		btnArrumacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -158,32 +138,15 @@ public class InterfaceServicos extends JFrame {
 
 			}
 		});
-		GridBagConstraints gbc_btnArrumacao = new GridBagConstraints();
-		gbc_btnArrumacao.weighty = 1.0;
-		gbc_btnArrumacao.weightx = 1.0;
-		gbc_btnArrumacao.fill = GridBagConstraints.BOTH;
-		gbc_btnArrumacao.insets = new Insets(0, 0, 5, 0);
-		gbc_btnArrumacao.gridx = 1;
-		gbc_btnArrumacao.gridy = 1;
-		contentPane.add(btnArrumacao, gbc_btnArrumacao);
-		GridBagConstraints gbc_btnWiFi = new GridBagConstraints();
-		gbc_btnWiFi.weighty = 1.0;
-		gbc_btnWiFi.weightx = 1.0;
-		gbc_btnWiFi.fill = GridBagConstraints.BOTH;
-		gbc_btnWiFi.insets = new Insets(0, 0, 5, 5);
-		gbc_btnWiFi.gridx = 0;
-		gbc_btnWiFi.gridy = 2;
-		contentPane.add(btnWiFi, gbc_btnWiFi);
-		GridBagConstraints gbc_btnRestaurante = new GridBagConstraints();
-		gbc_btnRestaurante.weighty = 1.0;
-		gbc_btnRestaurante.weightx = 1.0;
-		gbc_btnRestaurante.fill = GridBagConstraints.BOTH;
-		gbc_btnRestaurante.insets = new Insets(0, 0, 5, 0);
-		gbc_btnRestaurante.gridx = 1;
-		gbc_btnRestaurante.gridy = 2;
-		contentPane.add(btnRestaurante, gbc_btnRestaurante);
+		contentPane.add(btnArrumacao);
+		contentPane.add(btnWiFi);
+		contentPane.add(btnRestaurante);
 
-		JButton btnServicoDeQuarto = new JButton("Serviço de quarto");
+		JButton btnServicoDeQuarto = new JButton("Serviço de Quarto");
+		btnServicoDeQuarto.setForeground(new Color(38, 9, 55));
+		btnServicoDeQuarto.setBackground(new Color(225, 225, 225));
+		btnServicoDeQuarto.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnServicoDeQuarto.setBounds(357, 475, 160, 80);
 		btnServicoDeQuarto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceServicoDeQuarto interfaceServicoDeQuarto = new InterfaceServicoDeQuarto();
@@ -194,6 +157,10 @@ public class InterfaceServicos extends JFrame {
 		});
 
 		JButton btnEstacionamento = new JButton("Estacionamento");
+		btnEstacionamento.setForeground(new Color(38, 9, 55));
+		btnEstacionamento.setBackground(new Color(225, 225, 225));
+		btnEstacionamento.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEstacionamento.setBounds(176, 475, 160, 80);
 		btnEstacionamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceEstacionamento interfaceEstacionamento = new InterfaceEstacionamento();
@@ -202,20 +169,65 @@ public class InterfaceServicos extends JFrame {
 
 			}
 		});
-		GridBagConstraints gbc_btnEstacionamento = new GridBagConstraints();
-		gbc_btnEstacionamento.weighty = 1.0;
-		gbc_btnEstacionamento.weightx = 1.0;
-		gbc_btnEstacionamento.fill = GridBagConstraints.BOTH;
-		gbc_btnEstacionamento.insets = new Insets(0, 0, 0, 5);
-		gbc_btnEstacionamento.gridx = 0;
-		gbc_btnEstacionamento.gridy = 3;
-		contentPane.add(btnEstacionamento, gbc_btnEstacionamento);
-		GridBagConstraints gbc_btnServicoDeQuarto = new GridBagConstraints();
-		gbc_btnServicoDeQuarto.weighty = 1.0;
-		gbc_btnServicoDeQuarto.weightx = 1.0;
-		gbc_btnServicoDeQuarto.fill = GridBagConstraints.BOTH;
-		gbc_btnServicoDeQuarto.gridx = 1;
-		gbc_btnServicoDeQuarto.gridy = 3;
-		contentPane.add(btnServicoDeQuarto, gbc_btnServicoDeQuarto);
+		contentPane.add(btnEstacionamento);
+		contentPane.add(btnServicoDeQuarto);
+		btnNewButton.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/Botao Menu 65x23.png")));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
+				dispose();
+				
+				
+			}
+		});
+		btnNewButton.setBackground(new Color(255, 128, 64));
+		btnNewButton.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+		
+		JButton btnSignOut = new JButton("");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnSignOut.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnSignOut.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnSignOut);
+		
+		
+		JLabel lblLogoTelas = new JLabel("");
+		lblLogoTelas.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
+		lblLogoTelas.setBounds(656, 189, 480, 320);
+		contentPane.add(lblLogoTelas);
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/fundo azul 1280x720.png")));
+		lblNewLabel_1.setBounds(0, 0, 1280, 720);
+		contentPane.add(lblNewLabel_1);
+		
+
 	}
 }
