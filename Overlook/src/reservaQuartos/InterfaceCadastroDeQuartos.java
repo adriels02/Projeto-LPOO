@@ -19,10 +19,15 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import interfaces.MenuPrincipal;
+import interfaces.TelaInicial;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class InterfaceCadastroDeQuartos {
 
@@ -62,21 +67,18 @@ public class InterfaceCadastroDeQuartos {
 	 */
 	private void initialize() {
 		frmCadastroDeQuartos = new JFrame();
+		frmCadastroDeQuartos.getContentPane().setBackground(new Color(255, 255, 255));
 		frmCadastroDeQuartos.setResizable(false);
 		frmCadastroDeQuartos.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		frmCadastroDeQuartos.setBounds(100, 100, 807, 474);
-		frmCadastroDeQuartos.setLocationRelativeTo(null);
 		frmCadastroDeQuartos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{1, 35, 18, 39, 45, 41, 25, 21, 85, 47, 56, 29, 35, 4, 67, 67, 67, 0};
-		gridBagLayout.rowHeights = new int[]{15, 23, 88, 20, 14, 20, 20, 79, 23, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		frmCadastroDeQuartos.getContentPane().setLayout(gridBagLayout);
+		frmCadastroDeQuartos.setSize(1280,720); 
+		frmCadastroDeQuartos.setLocationRelativeTo(null);
+		frmCadastroDeQuartos.setUndecorated(true);
 		
 		table_1 = new JTable();
+		table_1.setBackground(new Color(240, 240, 240));
+		table_1.setBounds(522, 210, 723, 312);
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -91,342 +93,239 @@ public class InterfaceCadastroDeQuartos {
 		));
 		table_1.getColumnModel().getColumn(0).setPreferredWidth(294);
 		table_1.getColumnModel().getColumn(1).setPreferredWidth(318);
+		frmCadastroDeQuartos.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(" Cadastro do Quarto");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.weighty = 1.0;
-		gbc_lblNewLabel.weightx = 1.0;
-		gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridwidth = 4;
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		lblNewLabel.setBounds(29, 50, 350, 42);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel);
 		
 		JList list = new JList();
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.anchor = GridBagConstraints.NORTHWEST;
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.gridx = 0;
-		gbc_list.gridy = 0;
-		frmCadastroDeQuartos.getContentPane().add(list, gbc_list);
+		list.setBounds(0, 0, 0, 0);
+		frmCadastroDeQuartos.getContentPane().add(list);
 		
 		JLabel lblListaDeQuartos = new JLabel("Lista de Quartos");
-		lblListaDeQuartos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblListaDeQuartos = new GridBagConstraints();
-		gbc_lblListaDeQuartos.weighty = 1.0;
-		gbc_lblListaDeQuartos.weightx = 1.0;
-		gbc_lblListaDeQuartos.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblListaDeQuartos.insets = new Insets(0, 0, 5, 5);
-		gbc_lblListaDeQuartos.gridwidth = 2;
-		gbc_lblListaDeQuartos.gridx = 10;
-		gbc_lblListaDeQuartos.gridy = 0;
-		frmCadastroDeQuartos.getContentPane().add(lblListaDeQuartos, gbc_lblListaDeQuartos);
+		lblListaDeQuartos.setBounds(522, 50, 279, 42);
+		lblListaDeQuartos.setFont(new Font("Tahoma", Font.BOLD, 30));
+		frmCadastroDeQuartos.getContentPane().add(lblListaDeQuartos);
 		
-		JLabel lblNmero = new JLabel(" Número: ");
-		lblNmero.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNmero = new GridBagConstraints();
-		gbc_lblNmero.weighty = 1.0;
-		gbc_lblNmero.weightx = 1.0;
-		gbc_lblNmero.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNmero.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNmero.gridwidth = 2;
-		gbc_lblNmero.gridx = 0;
-		gbc_lblNmero.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(lblNmero, gbc_lblNmero);
+		JLabel lblNmero = new JLabel(" Número");
+		lblNmero.setForeground(new Color(38, 9, 55));
+		lblNmero.setBounds(29, 158, 69, 15);
+		lblNmero.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNmero);
 		
 		textfNumQuarto = new JTextField();
+		textfNumQuarto.setBounds(98, 154, 123, 23);
 		textfNumQuarto.setForeground(new Color(0, 0, 0));
-		GridBagConstraints gbc_textfNumQuarto = new GridBagConstraints();
-		gbc_textfNumQuarto.weighty = 1.0;
-		gbc_textfNumQuarto.weightx = 1.0;
-		gbc_textfNumQuarto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textfNumQuarto.insets = new Insets(0, 0, 5, 5);
-		gbc_textfNumQuarto.gridwidth = 3;
-		gbc_textfNumQuarto.gridx = 2;
-		gbc_textfNumQuarto.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(textfNumQuarto, gbc_textfNumQuarto);
+		frmCadastroDeQuartos.getContentPane().add(textfNumQuarto);
 		textfNumQuarto.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Andar: ");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.weighty = 1.0;
-		gbc_lblNewLabel_1.weightx = 1.0;
-		gbc_lblNewLabel_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridwidth = 2;
-		gbc_lblNewLabel_1.gridx = 6;
-		gbc_lblNewLabel_1.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblNewLabel_1 = new JLabel("Andar");
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(308, 158, 44, 15);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton_3 = new JButton("Buscar");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_3.setBackground(new Color(225, 225, 225));
+		btnNewButton_3.setForeground(new Color(38, 9, 55));
+		btnNewButton_3.setBounds(856, 154, 120, 23);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
 		JSpinner spinner = new JSpinner();
-		GridBagConstraints gbc_spinner = new GridBagConstraints();
-		gbc_spinner.weighty = 1.0;
-		gbc_spinner.weightx = 1.0;
-		gbc_spinner.fill = GridBagConstraints.HORIZONTAL;
-		gbc_spinner.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner.gridx = 8;
-		gbc_spinner.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(spinner, gbc_spinner);
+		spinner.setBounds(356, 154, 114, 23);
+		frmCadastroDeQuartos.getContentPane().add(spinner);
 		
 		JLabel lblNewLabel_6 = new JLabel("Pesquisar");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-		gbc_lblNewLabel_6.weighty = 1.0;
-		gbc_lblNewLabel_6.weightx = 1.0;
-		gbc_lblNewLabel_6.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_6.gridx = 10;
-		gbc_lblNewLabel_6.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_6, gbc_lblNewLabel_6);
+		lblNewLabel_6.setForeground(new Color(38, 9, 55));
+		lblNewLabel_6.setBounds(522, 158, 139, 15);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_6);
 		
 		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.weighty = 1.0;
-		gbc_textField.weightx = 1.0;
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridwidth = 3;
-		gbc_textField.gridx = 11;
-		gbc_textField.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(textField, gbc_textField);
+		textField.setBounds(586, 154, 251, 23);
+		frmCadastroDeQuartos.getContentPane().add(textField);
 		textField.setColumns(10);
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.weighty = 1.0;
-		gbc_btnNewButton_3.weightx = 1.0;
-		gbc_btnNewButton_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_3.gridx = 14;
-		gbc_btnNewButton_3.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
+		frmCadastroDeQuartos.getContentPane().add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Apagar");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_4.setBackground(new Color(225, 225, 225));
+		btnNewButton_4.setForeground(new Color(38, 9, 55));
+		btnNewButton_4.setBounds(990, 154, 120, 23);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_4.weighty = 1.0;
-		gbc_btnNewButton_4.weightx = 1.0;
-		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_4.gridx = 15;
-		gbc_btnNewButton_4.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_4, gbc_btnNewButton_4);
+		frmCadastroDeQuartos.getContentPane().add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Sair");
+		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_5.setBackground(new Color(225, 225, 225));
+		btnNewButton_5.setForeground(new Color(38, 9, 55));
+		btnNewButton_5.setBounds(1125, 154, 120, 23);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.weighty = 1.0;
-		gbc_btnNewButton_5.weightx = 1.0;
-		gbc_btnNewButton_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_5.gridx = 16;
-		gbc_btnNewButton_5.gridy = 1;
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_5, gbc_btnNewButton_5);
+		frmCadastroDeQuartos.getContentPane().add(btnNewButton_5);
 		
-		JLabel lblNewLabel_2 = new JLabel(" Descrição: ");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.weighty = 1.0;
-		gbc_lblNewLabel_2.weightx = 1.0;
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridwidth = 2;
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 2;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JLabel lblNewLabel_2 = new JLabel(" Descrição ");
+		lblNewLabel_2.setForeground(new Color(38, 9, 55));
+		lblNewLabel_2.setBounds(29, 210, 69, 15);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_2);
 		
 		JTextArea textaDescricao = new JTextArea();
-		GridBagConstraints gbc_textaDescricao = new GridBagConstraints();
-		gbc_textaDescricao.weighty = 1.0;
-		gbc_textaDescricao.weightx = 1.0;
-		gbc_textaDescricao.fill = GridBagConstraints.BOTH;
-		gbc_textaDescricao.insets = new Insets(0, 0, 5, 5);
-		gbc_textaDescricao.gridwidth = 7;
-		gbc_textaDescricao.gridx = 2;
-		gbc_textaDescricao.gridy = 2;
-		frmCadastroDeQuartos.getContentPane().add(textaDescricao, gbc_textaDescricao);
-		GridBagConstraints gbc_table_1 = new GridBagConstraints();
-		gbc_table_1.weighty = 1.0;
-		gbc_table_1.weightx = 1.0;
-		gbc_table_1.fill = GridBagConstraints.BOTH;
-		gbc_table_1.insets = new Insets(0, 0, 5, 0);
-		gbc_table_1.gridheight = 4;
-		gbc_table_1.gridwidth = 7;
-		gbc_table_1.gridx = 10;
-		gbc_table_1.gridy = 2;
-		frmCadastroDeQuartos.getContentPane().add(table_1, gbc_table_1);
+		textaDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textaDescricao.setBackground(new Color(240, 240, 240));
+		textaDescricao.setBounds(98, 210, 372, 138);
+		frmCadastroDeQuartos.getContentPane().add(textaDescricao);
+		frmCadastroDeQuartos.getContentPane().add(table_1);
 		
 		JButton btnNovo = new JButton("Novo");
+		btnNovo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNovo.setForeground(new Color(38, 9, 55));
+		btnNovo.setBackground(new Color(225, 225, 225));
+		btnNovo.setBounds(29, 660, 156, 23);
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JLabel lblNewLabel_3 = new JLabel(" Valor Diária: ");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.weighty = 1.0;
-		gbc_lblNewLabel_3.weightx = 1.0;
-		gbc_lblNewLabel_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridwidth = 3;
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 3;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
+		JLabel lblNewLabel_3 = new JLabel(" Valor Diária");
+		lblNewLabel_3.setForeground(new Color(38, 9, 55));
+		lblNewLabel_3.setBounds(29, 398, 76, 15);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_3);
 		
 		textfValorDiaria = new JTextField();
-		GridBagConstraints gbc_textfValorDiaria = new GridBagConstraints();
-		gbc_textfValorDiaria.weighty = 1.0;
-		gbc_textfValorDiaria.weightx = 1.0;
-		gbc_textfValorDiaria.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textfValorDiaria.insets = new Insets(0, 0, 5, 5);
-		gbc_textfValorDiaria.gridwidth = 3;
-		gbc_textfValorDiaria.gridx = 3;
-		gbc_textfValorDiaria.gridy = 3;
-		frmCadastroDeQuartos.getContentPane().add(textfValorDiaria, gbc_textfValorDiaria);
+		textfValorDiaria.setBounds(128, 394, 136, 23);
+		frmCadastroDeQuartos.getContentPane().add(textfValorDiaria);
 		textfValorDiaria.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Estado:");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.weighty = 1.0;
-		gbc_lblNewLabel_4.weightx = 1.0;
-		gbc_lblNewLabel_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridwidth = 2;
-		gbc_lblNewLabel_4.gridx = 6;
-		gbc_lblNewLabel_4.gridy = 3;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
+		JLabel lblNewLabel_4 = new JLabel("Estado");
+		lblNewLabel_4.setForeground(new Color(38, 9, 55));
+		lblNewLabel_4.setBounds(308, 398, 44, 15);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_4);
 		
 		JComboBox cbxEstado = new JComboBox();
+		cbxEstado.setForeground(new Color(38, 9, 55));
+		cbxEstado.setBounds(356, 394, 85, 23);
 		cbxEstado.setModel(new DefaultComboBoxModel(new String[] {"Disponível", "Ocupado", "Manutenção"}));
-		GridBagConstraints gbc_cbxEstado = new GridBagConstraints();
-		gbc_cbxEstado.weighty = 1.0;
-		gbc_cbxEstado.weightx = 1.0;
-		gbc_cbxEstado.anchor = GridBagConstraints.WEST;
-		gbc_cbxEstado.insets = new Insets(0, 0, 5, 5);
-		gbc_cbxEstado.gridx = 8;
-		gbc_cbxEstado.gridy = 3;
-		frmCadastroDeQuartos.getContentPane().add(cbxEstado, gbc_cbxEstado);
+		frmCadastroDeQuartos.getContentPane().add(cbxEstado);
 		
 		JLabel lblTotalRegistros = new JLabel("");
-		GridBagConstraints gbc_lblTotalRegistros = new GridBagConstraints();
-		gbc_lblTotalRegistros.fill = GridBagConstraints.VERTICAL;
-		gbc_lblTotalRegistros.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTotalRegistros.gridwidth = 2;
-		gbc_lblTotalRegistros.gridx = 14;
-		gbc_lblTotalRegistros.gridy = 4;
-		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistros, gbc_lblTotalRegistros);
+		lblTotalRegistros.setBounds(0, 0, 0, 0);
+		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistros);
 		
-		JLabel lblNewLabel_5 = new JLabel(" Tipo de Quarto:");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.weighty = 1.0;
-		gbc_lblNewLabel_5.weightx = 1.0;
-		gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridwidth = 3;
-		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 5;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
+		JLabel lblNewLabel_5 = new JLabel(" Tipo de Quarto");
+		lblNewLabel_5.setForeground(new Color(38, 9, 55));
+		lblNewLabel_5.setBounds(29, 477, 92, 15);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_5);
 		
 		JComboBox cbxTipoDeQuarto = new JComboBox();
+		cbxTipoDeQuarto.setForeground(new Color(38, 9, 55));
+		cbxTipoDeQuarto.setBounds(128, 474, 165, 23);
 		cbxTipoDeQuarto.setModel(new DefaultComboBoxModel(new String[] {"Individual", "Casal"}));
-		GridBagConstraints gbc_cbxTipoDeQuarto = new GridBagConstraints();
-		gbc_cbxTipoDeQuarto.weighty = 1.0;
-		gbc_cbxTipoDeQuarto.weightx = 1.0;
-		gbc_cbxTipoDeQuarto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_cbxTipoDeQuarto.insets = new Insets(0, 0, 5, 5);
-		gbc_cbxTipoDeQuarto.gridwidth = 4;
-		gbc_cbxTipoDeQuarto.gridx = 3;
-		gbc_cbxTipoDeQuarto.gridy = 5;
-		frmCadastroDeQuartos.getContentPane().add(cbxTipoDeQuarto, gbc_cbxTipoDeQuarto);
+		frmCadastroDeQuartos.getContentPane().add(cbxTipoDeQuarto);
 		
-		JLabel lblNewLabel_8 = new JLabel(" Capacidade:");
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
-		gbc_lblNewLabel_8.weighty = 1.0;
-		gbc_lblNewLabel_8.weightx = 1.0;
-		gbc_lblNewLabel_8.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_8.gridwidth = 4;
-		gbc_lblNewLabel_8.gridx = 0;
-		gbc_lblNewLabel_8.gridy = 6;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_8, gbc_lblNewLabel_8);
+		JLabel lblNewLabel_8 = new JLabel(" Capacidade");
+		lblNewLabel_8.setForeground(new Color(38, 9, 55));
+		lblNewLabel_8.setBounds(29, 557, 76, 15);
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_8);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setForeground(new Color(38, 9, 55));
+		comboBox.setBounds(128, 554, 164, 23);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8"}));
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.weighty = 1.0;
-		gbc_comboBox.weightx = 1.0;
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridwidth = 4;
-		gbc_comboBox.gridx = 3;
-		gbc_comboBox.gridy = 6;
-		frmCadastroDeQuartos.getContentPane().add(comboBox, gbc_comboBox);
-		GridBagConstraints gbc_btnNovo = new GridBagConstraints();
-		gbc_btnNovo.weighty = 1.0;
-		gbc_btnNovo.weightx = 1.0;
-		gbc_btnNovo.anchor = GridBagConstraints.NORTH;
-		gbc_btnNovo.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNovo.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNovo.gridwidth = 3;
-		gbc_btnNovo.gridx = 1;
-		gbc_btnNovo.gridy = 8;
-		frmCadastroDeQuartos.getContentPane().add(btnNovo, gbc_btnNovo);
+		frmCadastroDeQuartos.getContentPane().add(comboBox);
+		frmCadastroDeQuartos.getContentPane().add(btnNovo);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSalvar.setForeground(new Color(38, 9, 55));
+		btnSalvar.setBackground(new Color(225, 225, 225));
+		btnSalvar.setBounds(190, 660, 125, 23);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		GridBagConstraints gbc_btnSalvar = new GridBagConstraints();
-		gbc_btnSalvar.weighty = 1.0;
-		gbc_btnSalvar.weightx = 1.0;
-		gbc_btnSalvar.anchor = GridBagConstraints.NORTH;
-		gbc_btnSalvar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnSalvar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSalvar.gridwidth = 3;
-		gbc_btnSalvar.gridx = 4;
-		gbc_btnSalvar.gridy = 8;
-		frmCadastroDeQuartos.getContentPane().add(btnSalvar, gbc_btnSalvar);
+		frmCadastroDeQuartos.getContentPane().add(btnSalvar);
 		
 		JButton btnLimpar = new JButton("Limpar");
-		GridBagConstraints gbc_btnLimpar = new GridBagConstraints();
-		gbc_btnLimpar.weighty = 1.0;
-		gbc_btnLimpar.weightx = 1.0;
-		gbc_btnLimpar.anchor = GridBagConstraints.NORTH;
-		gbc_btnLimpar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnLimpar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnLimpar.gridwidth = 2;
-		gbc_btnLimpar.gridx = 7;
-		gbc_btnLimpar.gridy = 8;
-		frmCadastroDeQuartos.getContentPane().add(btnLimpar, gbc_btnLimpar);
+		btnLimpar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLimpar.setForeground(new Color(38, 9, 55));
+		btnLimpar.setBackground(new Color(225, 225, 225));
+		btnLimpar.setBounds(320, 660, 173, 23);
+		frmCadastroDeQuartos.getContentPane().add(btnLimpar);
 		
-		JLabel lblNewLabel_7 = new JLabel("Total Registros:");
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.weighty = 1.0;
-		gbc_lblNewLabel_7.weightx = 1.0;
-		gbc_lblNewLabel_7.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_7.gridwidth = 3;
-		gbc_lblNewLabel_7.gridx = 12;
-		gbc_lblNewLabel_7.gridy = 8;
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_7, gbc_lblNewLabel_7);
+		JLabel lblNewLabel_7 = new JLabel("Total Registros");
+		lblNewLabel_7.setForeground(new Color(38, 9, 55));
+		lblNewLabel_7.setBounds(523, 540, 128, 15);
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
+		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_7);
+		
+
+		JLabel lblLogoPequena = new JLabel("");
+		lblLogoPequena.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/logo 220 x150.png")));
+		lblLogoPequena.setBounds(897, 549, 220, 150);
+		frmCadastroDeQuartos.getContentPane().add(lblLogoPequena);
+		
+		JButton btnMenuPrincipal = new JButton("Menu");
+		btnMenuPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
+				frmCadastroDeQuartos.dispose();
+			}
+		});
+		btnMenuPrincipal.setBackground(new Color(255, 128, 64));
+		btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
+		btnMenuPrincipal.setBounds(0, 0, 65, 23);
+		frmCadastroDeQuartos.getContentPane().add(btnMenuPrincipal);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frmCadastroDeQuartos.dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		frmCadastroDeQuartos.getContentPane().add(btnFecharTela);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				frmCadastroDeQuartos.dispose();
+				
+				
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnNewButton.setBounds(1211, 0, 30, 30);
+		frmCadastroDeQuartos.getContentPane().add(btnNewButton);
+		
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		frmCadastroDeQuartos.getContentPane().add(lblLogoTransparente);
+		
 	}
 }

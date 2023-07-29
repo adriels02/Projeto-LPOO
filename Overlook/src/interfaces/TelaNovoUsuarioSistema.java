@@ -43,6 +43,7 @@ public class TelaNovoUsuarioSistema extends JFrame {
 	private JLabel lblIconeUsuario;
 	private JTextField lblFraseTelaInicial;
 	private JButton lblFecharTela;
+	private JLabel lblTelaUsuario;
 
 	/**
 	 * Launch the application.
@@ -169,7 +170,7 @@ public class TelaNovoUsuarioSistema extends JFrame {
 		lblFraseTelaInicial.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFraseTelaInicial.setForeground(new Color(246, 169, 50));
 		lblFraseTelaInicial.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblFraseTelaInicial.setBounds(126, 420, 326, 14);
+		lblFraseTelaInicial.setBounds(128, 413, 326, 14);
 		contentPane.add(lblFraseTelaInicial);	
 		
 		
@@ -181,14 +182,13 @@ public class TelaNovoUsuarioSistema extends JFrame {
 				dispose();
 			}
 		});
-		lblFecharTela.setBounds(935, 11, 30, 30);
+		lblFecharTela.setBounds(950, 11, 30, 30);
 		contentPane.add(lblFecharTela);
 		
-		
-		JLabel lblImageTelaUsuario = new JLabel("");
-		lblImageTelaUsuario.setIcon(new ImageIcon(TelaNovoUsuarioSistema.class.getResource("/interfaces/imagens/imagemTelaUsuario 984x681.png")));
-		lblImageTelaUsuario.setBounds(0, 0, 984, 681);
-		contentPane.add(lblImageTelaUsuario);
+		lblTelaUsuario = new JLabel("");
+		lblTelaUsuario.setIcon(new ImageIcon(TelaNovoUsuarioSistema.class.getResource("/interfaces/imagens/Tela usuario 1000x720.png")));
+		lblTelaUsuario.setBounds(0, 0, 1000, 720);
+		contentPane.add(lblTelaUsuario);
 		
 
 		

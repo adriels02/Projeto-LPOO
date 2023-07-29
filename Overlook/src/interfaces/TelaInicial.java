@@ -77,22 +77,22 @@ public class TelaInicial extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("Usuário");
 		lblNewLabel_3.setForeground(new Color(255, 128, 64));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(583, 324, 72, 14);
+		lblNewLabel_3.setBounds(597, 336, 72, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(579, 341, 345, 30);
+		txtUsuario.setBounds(593, 353, 345, 30);
 		contentPane.add(txtUsuario);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Senha");
 		lblNewLabel_3_1.setForeground(new Color(255, 128, 64));
 		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_3_1.setBounds(583, 429, 59, 14);
+		lblNewLabel_3_1.setBounds(597, 441, 59, 14);
 		contentPane.add(lblNewLabel_3_1);
 		
 		txtSenha = new JPasswordField();
-		txtSenha.setBounds(579, 446, 345, 30);
+		txtSenha.setBounds(593, 458, 345, 30);
 		contentPane.add(txtSenha);
 		
 		JButton btnCadastroNovoUsuario = new JButton("CADASTRE");
@@ -108,7 +108,7 @@ public class TelaInicial extends JFrame {
 		});
 		btnCadastroNovoUsuario.setForeground(new Color(38, 9, 55));
 		btnCadastroNovoUsuario.setBackground(new Color(225, 225, 225));
-		btnCadastroNovoUsuario.setBounds(766, 245, 143, 15);
+		btnCadastroNovoUsuario.setBounds(790, 252, 143, 15);
 		contentPane.add(btnCadastroNovoUsuario);
 		
 		JButton btnEntrar = new JButton("Entrar");
@@ -125,12 +125,12 @@ public class TelaInicial extends JFrame {
 	    
 		JLabel lblMensagemNvUsuarioLinha1 = new JLabel("Para criar um novo usuário click");
 		lblMensagemNvUsuarioLinha1.setForeground(new Color(38, 9, 55));
-		lblMensagemNvUsuarioLinha1.setBounds(580, 245, 238, 15);
+		lblMensagemNvUsuarioLinha1.setBounds(601, 252, 238, 15);
 		contentPane.add(lblMensagemNvUsuarioLinha1);
 
 		btnEntrar.setForeground(new Color(38, 9, 55));
 		btnEntrar.setBackground(new Color(225, 225, 225));
-		btnEntrar.setBounds(689, 521, 124, 23);
+		btnEntrar.setBounds(703, 522, 124, 23);
 		contentPane.add(btnEntrar);
 		
 		JButton btnFecharTela = new JButton("");
@@ -146,7 +146,7 @@ public class TelaInicial extends JFrame {
 		
 		
 		btnFecharTela.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnFecharTela.setBounds(935, 11, 30, 30);
+		btnFecharTela.setBounds(950, 11, 30, 30);
 		contentPane.add(btnFecharTela);
 		
 				
@@ -154,20 +154,20 @@ public class TelaInicial extends JFrame {
 		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBemVindo.setForeground(new Color(15, 19, 51));
 		lblBemVindo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblBemVindo.setBounds(653, 150, 196, 30);
+		lblBemVindo.setBounds(667, 151, 196, 30);
 		contentPane.add(lblBemVindo);
 		
 		JLabel lblFraseTelaInicial = new JLabel("Gerenciamento de clientes em hotelaria");
 		lblFraseTelaInicial.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFraseTelaInicial.setForeground(new Color(246, 169, 50));
 		lblFraseTelaInicial.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblFraseTelaInicial.setBounds(126, 420, 326, 14);
+		lblFraseTelaInicial.setBounds(128, 413, 326, 14);
 		contentPane.add(lblFraseTelaInicial);
 		
-		JLabel lblImageTelaInicial = new JLabel("");
-		lblImageTelaInicial.setIcon(new ImageIcon(TelaInicial.class.getResource("/interfaces/imagens/imageTelaInicial.jpg")));
-		lblImageTelaInicial.setBounds(0, 0, 984, 681);
-		contentPane.add(lblImageTelaInicial);
+		JLabel lblTelaLogin = new JLabel("");
+		lblTelaLogin.setIcon(new ImageIcon(TelaInicial.class.getResource("/interfaces/imagens/Tela Login1 1000x720.png")));
+		lblTelaLogin.setBounds(0, 0, 1000, 720);
+		contentPane.add(lblTelaLogin);
 		
 
 
