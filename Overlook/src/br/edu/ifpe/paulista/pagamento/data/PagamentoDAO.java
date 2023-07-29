@@ -147,7 +147,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 
 		}
 		catch (SQLException e) {
-			throw new PagamentoDataException("Falha nos querys das informações do banco de dados.", e) ;
+			throw new PagamentoDataException("Falha nos querys usando a id da reserva.", e) ;
 
 		}
 
@@ -194,7 +194,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 
 
 			while (rs.next()) {
-				pgmt.setData(rs.getDate("dataSaida"));
+				pgmt.setData(rs.getDate("dataSaida").toString());
 
 			}
 
@@ -203,16 +203,16 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			String selectidReservasJaFaturadas = "SELECT * FROM Fatura WHERE idReserva = ?";
 			stmt = getConnection().prepareStatement(selectidReservasJaFaturadas);
 
-			lbl:
-				for(int r:reservas) {
+			
+			lbl: for(int r:reservas) {
 
 					stmt.setInt(1,r);
 					rs = stmt.executeQuery();
 					while(rs.next()) {
-						break lbl;
+						continue lbl;
 					}
 					reservasNaoFaturadas.add(r);
-					pgmt.setReservasFaturadas(reservasNaoFaturadas);
+					pgmt.setReservasNaoFaturadas(reservasNaoFaturadas);
 				}
 			return pgmt;
 

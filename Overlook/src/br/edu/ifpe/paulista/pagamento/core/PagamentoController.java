@@ -37,6 +37,7 @@ public class PagamentoController {
 		char[] ch = c.toCharArray();
 		boolean invalido = false;
 		for (int i = 0; i < ch.length;) {
+			if(invalido==true) return invalido;
 			switch (ch[i]) {
 			case '0':
 				i++;
@@ -76,8 +77,8 @@ public class PagamentoController {
 	}
 
 	public void criarPdf(PagamentoEntidade pgmt) throws PagamentoExcecoesRegraNegocio {
-		String senhaUser = "honduras";
-		String senhaMaster = "senegal";
+		String senhaUser = "12";
+		String senhaMaster = "12";
 		String enderecoDocumentos = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 		ArrayList<String> nomeServico = pgmt.getNomeServico();
 		ArrayList<Double> precoServico = pgmt.getPrecoServico();
@@ -89,7 +90,7 @@ public class PagamentoController {
 
 			for(int r : reservasNaoFaturadas) {
 
-				FileOutputStream fos = new FileOutputStream(enderecoDocumentos + "\\" + pgmt.getIdFatura() + ".pdf");
+				FileOutputStream fos = new FileOutputStream(enderecoDocumentos + "\\Id da fatura" + pgmt.getIdFatura() + " " + pgmt.getData() + ".pdf");
 
 				Document doc = new Document();
 
@@ -185,17 +186,18 @@ public class PagamentoController {
 
 			if (acharCHInvalido(c) == true) {
 
-				throw new PagamentoExcecoesRegraNegocio(
-						"Símbolo inválido inserido. Por favor tente novamente com somente números.");
+				throw new PagamentoExcecoesRegraNegocio("Símbolo inválido inserido. Por favor tente novamente com somente números.");
 
 			}
 
 			PagamentoEntidade pgmt = repository.selectsBdUsandoCpf(c);
 			ArrayList<Integer> reservasNaoFaturadas = pgmt.getReservasNaoFaturadas();
 
+			if (pgmt.getReservasNaoFaturadas().size() < 1){
 
+				throw new PagamentoExcecoesRegraNegocio("Esse Cpf Não Possui Reservas Sem Faturas.");
+			}
 			for(int r : reservasNaoFaturadas) {
-
 
 				PagamentoController pgc = new PagamentoController();
 				repository.selectsBdUsandoIdreserva(r, pgmt);
@@ -209,7 +211,7 @@ public class PagamentoController {
 				HashMap<String, String> mapNomePreco = new HashMap<String, String>();
 				pgc.inserirDadosController(pgmt);
 				pgc.PegaridFatura(pgmt);
-		
+
 
 
 				FileOutputStream fos = new FileOutputStream(enderecoDocumentos + "\\" + pgmt.getIdFatura() + ".pdf");
