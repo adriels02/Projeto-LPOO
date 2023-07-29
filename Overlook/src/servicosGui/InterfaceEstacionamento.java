@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import interfaces.TelaInicial;
 import servicosCore.CoreException;
 
 import javax.swing.SpringLayout;
@@ -29,6 +30,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class InterfaceEstacionamento extends JFrame {
 
@@ -66,42 +68,24 @@ public class InterfaceEstacionamento extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceEstacionamento.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 342);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
+
+		
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
-				JLabel lblNewLabel = new JLabel("<<< Voltar");
-				lblNewLabel.setBounds(6, 6, 65, 16);
-				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-				lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-				lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-				lblNewLabel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						InterfaceServicos interfaceServicos = new InterfaceServicos();
-						interfaceServicos.setVisible(true);
-						dispose();
-
-					}
-
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						lblNewLabel.setForeground(Color.red);
-
-					}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						lblNewLabel.setForeground(Color.black);
-					}
-				});
 				contentPane.setLayout(null);
-				contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Estacionamento");
-		lblNewLabel_1.setBounds(180, 6, 124, 60);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(115, 126, 234, 42);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblErro = new JLabel("");
@@ -109,16 +93,20 @@ public class InterfaceEstacionamento extends JFrame {
 		lblErro.setForeground(new Color(255, 0, 0));
 		contentPane.add(lblErro);
 		
-		JLabel lblNewLabel_2 = new JLabel("Quantidade de veículos:");
-		lblNewLabel_2.setBounds(110, 86, 116, 55);
+		JLabel lblNewLabel_2 = new JLabel("Quantidade de veículos");
+		lblNewLabel_2.setForeground(new Color(38, 9, 55));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(82, 365, 143, 23);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("ID Reserva:");
-		lblNewLabel_3.setBounds(305, 86, 73, 55);
+		JLabel lblNewLabel_3 = new JLabel("ID Reserva");
+		lblNewLabel_3.setForeground(new Color(38, 9, 55));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setBounds(140, 298, 73, 23);
 		contentPane.add(lblNewLabel_3);
 		
 		txtQuantidadeVeiculos = new JTextField();
-		txtQuantidadeVeiculos.setBounds(140, 153, 54, 20);
+		txtQuantidadeVeiculos.setBounds(219, 366, 130, 20);
 		txtQuantidadeVeiculos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -132,7 +120,10 @@ public class InterfaceEstacionamento extends JFrame {
 		txtQuantidadeVeiculos.setColumns(10);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(164, 241, 173, 23);
+		btnAdicionar.setBackground(new Color(225, 225, 225));
+		btnAdicionar.setForeground(new Color(38, 9, 55));
+		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAdicionar.setBounds(219, 474, 130, 23);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -167,7 +158,7 @@ public class InterfaceEstacionamento extends JFrame {
 		});
 		
 		txtIdReserva = new JTextField();
-		txtIdReserva.setBounds(305, 153, 54, 20);
+		txtIdReserva.setBounds(219, 299, 130, 20);
 		txtIdReserva.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -180,5 +171,62 @@ public class InterfaceEstacionamento extends JFrame {
 		contentPane.add(txtIdReserva);
 		txtIdReserva.setColumns(10);
 		contentPane.add(btnAdicionar);
+		
+		JLabel lblLogoTelas = new JLabel("");
+		lblLogoTelas.setIcon(new ImageIcon(InterfaceEstacionamento.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
+		lblLogoTelas.setBounds(664, 210, 480, 320);
+		contentPane.add(lblLogoTelas);
+		
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InterfaceServicos interfaceServicos = new InterfaceServicos();
+				interfaceServicos.setVisible(true);
+				dispose();	
+	
+				
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(InterfaceEstacionamento.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(255, 128, 64));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(InterfaceEstacionamento.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfaceEstacionamento.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+		
+		JButton btnSignOut = new JButton("");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnSignOut.setIcon(new ImageIcon(InterfaceEstacionamento.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnSignOut.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnSignOut);
+		
+
+		
+
 	}
 }

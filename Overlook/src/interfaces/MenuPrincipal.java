@@ -233,9 +233,9 @@ public class MenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Menu Rápido");
+		JLabel lblNewLabel = new JLabel("Menu Principal");
 		lblNewLabel.setForeground(new Color(246, 169, 50));
-		lblNewLabel.setBounds(245, 90, 199, 64);
+		lblNewLabel.setBounds(225, 90, 235, 64);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(lblNewLabel);
 					

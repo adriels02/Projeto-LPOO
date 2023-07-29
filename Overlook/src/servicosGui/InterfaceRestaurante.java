@@ -41,8 +41,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import interfaces.TelaInicial;
 import servicosBD.BDException;
 import servicosBD.MySQLConector;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 public class InterfaceRestaurante extends JFrame {
 
 
@@ -83,115 +86,63 @@ public class InterfaceRestaurante extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceRestaurante.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 766, 407);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] {96, 30, 40, 60, 380, 0};
-		gbl_contentPane.rowHeights = new int[]{17, 30, 14, 26, 23, 23, 14, 20, 3, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 1.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		contentPane.setLayout(gbl_contentPane);
-						
-								JLabel lblNewLabel = new JLabel("<<< Voltar");
-								lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-								lblNewLabel.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent e) {
-										InterfaceServicos interfaceServiços = new InterfaceServicos();
-										interfaceServiços.setVisible(true);
-										dispose();
-									}
-
-									@Override
-									public void mouseEntered(MouseEvent e) {
-										lblNewLabel.setForeground(Color.red);
-									}
-
-									@Override
-									public void mouseExited(MouseEvent e) {
-										lblNewLabel.setForeground(Color.black);
-									}
-								});
-								GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-								gbc_lblNewLabel.weighty = 1.0;
-								gbc_lblNewLabel.weightx = 1.0;
-								gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-								gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-								gbc_lblNewLabel.gridx = 0;
-								gbc_lblNewLabel.gridy = 0;
-								contentPane.add(lblNewLabel, gbc_lblNewLabel);
+								contentPane.setLayout(null);
 				
-						JLabel lblNewLabel_1 = new JLabel("Restaurante");
-						lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-						GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-						gbc_lblNewLabel_1.weighty = 1.0;
-						gbc_lblNewLabel_1.weightx = 1.0;
-						gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-						gbc_lblNewLabel_1.gridwidth = 5;
-						gbc_lblNewLabel_1.gridx = 0;
-						gbc_lblNewLabel_1.gridy = 0;
-						contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+						JLabel lblTituloRestaurante = new JLabel("Restaurante");
+						lblTituloRestaurante.setForeground(new Color(38, 9, 55));
+						lblTituloRestaurante.setBounds(68, 98, 251, 42);
+						lblTituloRestaurante.setFont(new Font("Tahoma", Font.PLAIN, 30));
+						contentPane.add(lblTituloRestaurante);
 				
 				JLabel lblError = new JLabel("");
+				lblError.setBounds(0, 0, 0, 0);
 				lblError.setForeground(new Color(255, 0, 0));
-				GridBagConstraints gbc_lblError = new GridBagConstraints();
-				gbc_lblError.weighty = 1.0;
-				gbc_lblError.weightx = 1.0;
-				gbc_lblError.gridwidth = 5;
-				gbc_lblError.insets = new Insets(0, 0, 5, 0);
-				gbc_lblError.gridx = 0;
-				gbc_lblError.gridy = 1;
-				contentPane.add(lblError, gbc_lblError);
+				contentPane.add(lblError);
 						
-								JLabel lblNewLabel_3 = new JLabel("Histórico de pedidos:");
-								GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-								gbc_lblNewLabel_3.gridwidth = 2;
-								gbc_lblNewLabel_3.weighty = 1.0;
-								gbc_lblNewLabel_3.weightx = 1.0;
-								gbc_lblNewLabel_3.anchor = GridBagConstraints.NORTH;
-								gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
-								gbc_lblNewLabel_3.gridx = 3;
-								gbc_lblNewLabel_3.gridy = 2;
-								contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
+								JLabel lblNewLabel_3 = new JLabel("Histórico de Pedidos");
+								lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
+								lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+								lblNewLabel_3.setForeground(new Color(38, 9, 55));
+								lblNewLabel_3.setBounds(1047, 104, 184, 14);
+								contentPane.add(lblNewLabel_3);
 				
 						JRadioButton rdbtnCafeDaManha = new JRadioButton("Café da manhã");
+						rdbtnCafeDaManha.setBackground(new Color(255, 255, 255));
+						rdbtnCafeDaManha.setFont(new Font("Tahoma", Font.BOLD, 11));
+						rdbtnCafeDaManha.setForeground(new Color(38, 9, 55));
+						rdbtnCafeDaManha.setBounds(68, 313, 115, 23);
 						grupoBotoesRefeicao.add(rdbtnCafeDaManha);
-						GridBagConstraints gbc_rdbtnCafeDaManha = new GridBagConstraints();
-						gbc_rdbtnCafeDaManha.weighty = 1.0;
-						gbc_rdbtnCafeDaManha.weightx = 1.0;
-						gbc_rdbtnCafeDaManha.insets = new Insets(0, 0, 5, 5);
-						gbc_rdbtnCafeDaManha.gridx = 0;
-						gbc_rdbtnCafeDaManha.gridy = 3;
-						contentPane.add(rdbtnCafeDaManha, gbc_rdbtnCafeDaManha);
+						contentPane.add(rdbtnCafeDaManha);
 						
 						JButton btnRemoverHistorico = new JButton("Remover");
+						btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
+						btnRemoverHistorico.setForeground(new Color(38, 9, 55));
+						btnRemoverHistorico.setBounds(1140, 651, 91, 23);
 						btnRemoverHistorico.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 
 							}
 						});
 				
-						JLabel lblNewLabel_2 = new JLabel("Observação:");
-						GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-						gbc_lblNewLabel_2.weighty = 1.0;
-						gbc_lblNewLabel_2.weightx = 1.0;
-						gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-						gbc_lblNewLabel_2.gridx = 2;
-						gbc_lblNewLabel_2.gridy = 3;
-						contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+						JLabel lblNewLabel_2 = new JLabel("Observação");
+						lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+						lblNewLabel_2.setForeground(new Color(38, 9, 55));
+						lblNewLabel_2.setBounds(233, 426, 136, 14);
+						contentPane.add(lblNewLabel_2);
 				
 				JScrollPane scrollPane = new JScrollPane();
-				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-				gbc_scrollPane.gridwidth = 2;
-				gbc_scrollPane.gridheight = 6;
-				gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-				gbc_scrollPane.fill = GridBagConstraints.BOTH;
-				gbc_scrollPane.gridx = 3;
-				gbc_scrollPane.gridy = 3;
-				contentPane.add(scrollPane, gbc_scrollPane);
+				scrollPane.setBounds(513, 128, 718, 511);
+				contentPane.add(scrollPane);
 				
 				table = new JTable();
 				table.setModel(new DefaultTableModel(
@@ -204,48 +155,34 @@ public class InterfaceRestaurante extends JFrame {
 				scrollPane.setViewportView(table);
 		
 				JRadioButton rdbtnAlmoco = new JRadioButton("Almoço");
+				rdbtnAlmoco.setBackground(new Color(255, 255, 255));
+				rdbtnAlmoco.setFont(new Font("Tahoma", Font.BOLD, 11));
+				rdbtnAlmoco.setForeground(new Color(38, 9, 55));
+				rdbtnAlmoco.setBounds(68, 360, 106, 23);
 				grupoBotoesRefeicao.add(rdbtnAlmoco);
-				GridBagConstraints gbc_rdbtnAlmoco = new GridBagConstraints();
-				gbc_rdbtnAlmoco.weighty = 1.0;
-				gbc_rdbtnAlmoco.weightx = 1.0;
-				gbc_rdbtnAlmoco.insets = new Insets(0, 0, 5, 5);
-				gbc_rdbtnAlmoco.gridx = 0;
-				gbc_rdbtnAlmoco.gridy = 4;
-				contentPane.add(rdbtnAlmoco, gbc_rdbtnAlmoco);
+				contentPane.add(rdbtnAlmoco);
 								
 										txtObservacoes = new JTextField();
-										GridBagConstraints gbc_txtObservacoes = new GridBagConstraints();
-										gbc_txtObservacoes.fill = GridBagConstraints.HORIZONTAL;
-										gbc_txtObservacoes.anchor = GridBagConstraints.WEST;
-										gbc_txtObservacoes.weighty = 1.0;
-										gbc_txtObservacoes.weightx = 1.0;
-										gbc_txtObservacoes.insets = new Insets(0, 0, 5, 5);
-										gbc_txtObservacoes.gridx = 2;
-										gbc_txtObservacoes.gridy = 4;
-										contentPane.add(txtObservacoes, gbc_txtObservacoes);
+										txtObservacoes.setBounds(233, 451, 251, 23);
+										contentPane.add(txtObservacoes);
 										txtObservacoes.setColumns(10);
 						
 								JRadioButton rdbtnJantar = new JRadioButton("Jantar");
+								rdbtnJantar.setBackground(new Color(255, 255, 255));
+								rdbtnJantar.setFont(new Font("Tahoma", Font.BOLD, 11));
+								rdbtnJantar.setForeground(new Color(38, 9, 55));
+								rdbtnJantar.setBounds(68, 412, 106, 23);
 								grupoBotoesRefeicao.add(rdbtnJantar);
-								GridBagConstraints gbc_rdbtnJantar = new GridBagConstraints();
-								gbc_rdbtnJantar.weighty = 1.0;
-								gbc_rdbtnJantar.weightx = 1.0;
-								gbc_rdbtnJantar.insets = new Insets(0, 0, 5, 5);
-								gbc_rdbtnJantar.gridx = 0;
-								gbc_rdbtnJantar.gridy = 5;
-								contentPane.add(rdbtnJantar, gbc_rdbtnJantar);
+								contentPane.add(rdbtnJantar);
 				
-						JLabel lblNewLabel_4 = new JLabel("ID Reserva:");
-						GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-						gbc_lblNewLabel_4.weighty = 1.0;
-						gbc_lblNewLabel_4.weightx = 1.0;
-						gbc_lblNewLabel_4.anchor = GridBagConstraints.NORTH;
-						gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-						gbc_lblNewLabel_4.gridx = 0;
-						gbc_lblNewLabel_4.gridy = 6;
-						contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
+						JLabel lblNewLabel_4 = new JLabel("ID Reserva");
+						lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+						lblNewLabel_4.setForeground(new Color(38, 9, 55));
+						lblNewLabel_4.setBounds(233, 252, 136, 14);
+						contentPane.add(lblNewLabel_4);
 		
 				txtIdReserva = new JTextField();
+				txtIdReserva.setBounds(233, 277, 251, 23);
 				txtIdReserva.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
@@ -256,25 +193,18 @@ public class InterfaceRestaurante extends JFrame {
 					}
 				});
 				
-				JLabel lblNewLabel_5 = new JLabel("Quantidade de refeições:");
-				GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-				gbc_lblNewLabel_5.weighty = 1.0;
-				gbc_lblNewLabel_5.weightx = 1.0;
-				gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-				gbc_lblNewLabel_5.gridx = 2;
-				gbc_lblNewLabel_5.gridy = 6;
-				contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
-				GridBagConstraints gbc_txtIdReserva = new GridBagConstraints();
-				gbc_txtIdReserva.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtIdReserva.weighty = 1.0;
-				gbc_txtIdReserva.weightx = 1.0;
-				gbc_txtIdReserva.insets = new Insets(0, 0, 5, 5);
-				gbc_txtIdReserva.gridx = 0;
-				gbc_txtIdReserva.gridy = 7;
-				contentPane.add(txtIdReserva, gbc_txtIdReserva);
+				JLabel lblNewLabel_5 = new JLabel("Quantidade de Refeições");
+				lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblNewLabel_5.setForeground(new Color(38, 9, 55));
+				lblNewLabel_5.setBounds(233, 335, 155, 14);
+				contentPane.add(lblNewLabel_5);
+				contentPane.add(txtIdReserva);
 				txtIdReserva.setColumns(10);
 		
 				JButton btnAdicionar = new JButton("Adicionar");
+				btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
+				btnAdicionar.setForeground(new Color(38, 9, 55));
+				btnAdicionar.setBounds(384, 545, 100, 23);
 				btnAdicionar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
@@ -347,6 +277,7 @@ public class InterfaceRestaurante extends JFrame {
 				});
 				
 				txtQuantidadeRefeicao = new JTextField();
+				txtQuantidadeRefeicao.setBounds(233, 360, 251, 23);
 				txtQuantidadeRefeicao.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
@@ -356,22 +287,9 @@ public class InterfaceRestaurante extends JFrame {
 						}
 					}
 				});
-				GridBagConstraints gbc_txtQuantidadeRefeicao = new GridBagConstraints();
-				gbc_txtQuantidadeRefeicao.weighty = 1.0;
-				gbc_txtQuantidadeRefeicao.weightx = 1.0;
-				gbc_txtQuantidadeRefeicao.insets = new Insets(0, 0, 5, 5);
-				gbc_txtQuantidadeRefeicao.fill = GridBagConstraints.HORIZONTAL;
-				gbc_txtQuantidadeRefeicao.gridx = 2;
-				gbc_txtQuantidadeRefeicao.gridy = 7;
-				contentPane.add(txtQuantidadeRefeicao, gbc_txtQuantidadeRefeicao);
+				contentPane.add(txtQuantidadeRefeicao);
 				txtQuantidadeRefeicao.setColumns(10);
-				GridBagConstraints gbc_btnAdicionar = new GridBagConstraints();
-				gbc_btnAdicionar.weighty = 1.0;
-				gbc_btnAdicionar.weightx = 1.0;
-				gbc_btnAdicionar.insets = new Insets(0, 0, 5, 5);
-				gbc_btnAdicionar.gridx = 0;
-				gbc_btnAdicionar.gridy = 8;
-				contentPane.add(btnAdicionar, gbc_btnAdicionar);
+				contentPane.add(btnAdicionar);
 			
 				
 				DefaultTableModel tableModel = new DefaultTableModel(
@@ -397,6 +315,9 @@ public class InterfaceRestaurante extends JFrame {
 				
 			
 				JButton btnNewButton = new JButton("Atualizar");
+				btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+				btnNewButton.setForeground(new Color(38, 9, 55));
+				btnNewButton.setBounds(1019, 651, 100, 23);
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -427,23 +348,59 @@ public class InterfaceRestaurante extends JFrame {
 						table.setModel(tableModel);
 					}
 				});
-				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-				gbc_btnNewButton.weighty = 1.0;
-				gbc_btnNewButton.weightx = 1.0;
-				gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-				gbc_btnNewButton.gridx = 3;
-				gbc_btnNewButton.gridy = 9;
-				contentPane.add(btnNewButton, gbc_btnNewButton);
+				contentPane.add(btnNewButton);
 		
 				
 				btnRemoverHistorico.setEnabled(false);
-				GridBagConstraints gbc_btnRemoverHistorico = new GridBagConstraints();
-				gbc_btnRemoverHistorico.anchor = GridBagConstraints.EAST;
-				gbc_btnRemoverHistorico.gridwidth = 2;
-				gbc_btnRemoverHistorico.weighty = 1.0;
-				gbc_btnRemoverHistorico.weightx = 1.0;
-				gbc_btnRemoverHistorico.gridx = 3;
-				gbc_btnRemoverHistorico.gridy = 9;
-				contentPane.add(btnRemoverHistorico, gbc_btnRemoverHistorico);
+				contentPane.add(btnRemoverHistorico);
+				
+				JButton btnServicos = new JButton("");
+				btnServicos.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						InterfaceServicos interfaceServicos = new InterfaceServicos();
+						interfaceServicos.setVisible(true);
+						dispose();	
+			
+					}
+				});
+				btnServicos.setIcon(new ImageIcon(InterfaceRestaurante.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+				btnServicos.setBounds(0, 0, 65, 23);
+				contentPane.add(btnServicos);
+				
+				JButton btnNewButton_1 = new JButton("");
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						dispose();
+					}
+				});
+				btnNewButton_1.setIcon(new ImageIcon(InterfaceRestaurante.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+				btnNewButton_1.setBounds(1250, 0, 30, 30);
+				contentPane.add(btnNewButton_1);
+				
+				JButton btnNewButton_2 = new JButton("");
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						
+						TelaInicial objTelaInicial = new TelaInicial();
+						objTelaInicial.setVisible(true);
+						dispose();
+					}
+				});
+				btnNewButton_2.setIcon(new ImageIcon(InterfaceRestaurante.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+				btnNewButton_2.setBounds(1213, 0, 30, 30);
+				contentPane.add(btnNewButton_2);
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(InterfaceRestaurante.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+				lblNewLabel.setBounds(200, 0, 758, 758);
+				contentPane.add(lblNewLabel);
+				
+				JLabel lblLogoPequena = new JLabel("");
+				lblLogoPequena.setIcon(new ImageIcon(InterfaceRestaurante.class.getResource("/interfaces/imagens/logo 220 x150.png")));
+				lblLogoPequena.setBounds(63, 554, 220, 150);
+				contentPane.add(lblLogoPequena);
 	}
 }
