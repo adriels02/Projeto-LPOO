@@ -110,24 +110,6 @@ public class InterfacePrecos extends JFrame {
 		setSize(1280,720); 
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-	
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JButton btnNewButton = new JButton("Menu");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBackground(new Color(255, 128, 64));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MenuPrincipal menuPrincipal = new MenuPrincipal();
-				menuPrincipal.setVisible(true);
-				dispose();
-			}
-		});
-		menuBar.add(btnNewButton);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -478,5 +460,20 @@ public class InterfacePrecos extends JFrame {
 		lblLogoPequena.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/logo 220 x150.png")));
 		lblLogoPequena.setBounds(865, 63, 220, 150);
 		contentPane.add(lblLogoPequena);
+		
+		JButton btnNewButton = new JButton("Menu");
+		btnNewButton.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNewButton);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(255, 128, 64));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				menuPrincipal.setVisible(true);
+				dispose();
+			}
+		});
 	}
 }

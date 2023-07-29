@@ -204,7 +204,7 @@ public class InterfaceRestaurante extends JFrame {
 				JButton btnAdicionar = new JButton("Adicionar");
 				btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
 				btnAdicionar.setForeground(new Color(38, 9, 55));
-				btnAdicionar.setBounds(384, 545, 100, 23);
+				btnAdicionar.setBounds(387, 505, 100, 23);
 				btnAdicionar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
