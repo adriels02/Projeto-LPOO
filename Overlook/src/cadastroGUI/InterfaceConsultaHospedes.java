@@ -84,17 +84,17 @@ public class InterfaceConsultaHospedes extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Consultar Hóspede");
-        lblNewLabel.setForeground(new Color(38, 9, 55));
-        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-        lblNewLabel.setBounds(26, 164, 314, 42);
-        contentPane.add(lblNewLabel);
+        JLabel lblTituloHospedes = new JLabel("Consultar Hóspede");
+        lblTituloHospedes.setForeground(new Color(38, 9, 55));
+        lblTituloHospedes.setFont(new Font("Tahoma", Font.BOLD, 30));
+        lblTituloHospedes.setBounds(26, 164, 314, 42);
+        contentPane.add(lblTituloHospedes);
 
-        JLabel lblNewLabel_2 = new JLabel("Informe o CPF do hóspede que deseja consultar");
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-        lblNewLabel_2.setForeground(new Color(38, 9, 55));
-        lblNewLabel_2.setBounds(26, 255, 282, 14);
-        contentPane.add(lblNewLabel_2);
+        JLabel lblInforme = new JLabel("Informe o CPF do hóspede que deseja consultar");
+        lblInforme.setFont(new Font("Tahoma", Font.BOLD, 11));
+        lblInforme.setForeground(new Color(38, 9, 55));
+        lblInforme.setBounds(26, 255, 282, 14);
+        contentPane.add(lblInforme);
 
         textfConsultaCpf = new JTextField();
         textfConsultaCpf.setFont(new Font("Tahoma", Font.PLAIN, 12));

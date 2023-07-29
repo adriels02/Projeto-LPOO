@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import br.edu.ifpe.paulista.pagamento.core.PagamentoController;
 import br.edu.ifpe.paulista.pagamento.core.PagamentoExcecoesRegraNegocio;
 import interfaces.MenuPrincipal;
+import interfaces.TelaInicial;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -61,48 +63,42 @@ public class TelaApresentacaoPagamento extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 894, 480);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 88, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-
-		JLabel lbllogo = new JLabel("");
-		GridBagConstraints gbc_lbllogo = new GridBagConstraints();
-		gbc_lbllogo.gridwidth = 2;
-		lbllogo.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/logoOverlook-horizontal.png")));
-		gbc_lbllogo.insets = new Insets(0, 0, 5, 5);
-		gbc_lbllogo.gridx = 1;
-		gbc_lbllogo.gridy = 1;
-		contentPane.add(lbllogo, gbc_lbllogo);
-
-		JTextArea txtrBemvindoATela = new JTextArea();
-		txtrBemvindoATela.setBackground(SystemColor.control);
-		GridBagConstraints gbc_txtrBemvindoATela = new GridBagConstraints();
-		gbc_txtrBemvindoATela.gridwidth = 2;
-		gbc_txtrBemvindoATela.insets = new Insets(11, 11, 5, 9);
-		gbc_txtrBemvindoATela.gridx = 2;
-		gbc_txtrBemvindoATela.gridy = 3;
-		contentPane.add(txtrBemvindoATela, gbc_txtrBemvindoATela);
-		txtrBemvindoATela.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtrBemvindoATela.setEditable(false);
-		txtrBemvindoATela.setText("Bem-vindo a tela de pagamento. Insira somente os números\r\nde um cpf ou cnpj e selecione o um tipo de pagamento,\r\npara gerar um comprovante. ");
+		contentPane.setLayout(null);
+		
+		
+		JLabel lblTextoInformativo = new JLabel("Insira o CPF e selecione a forma de");
+		lblTextoInformativo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTextoInformativo.setForeground(new Color(38, 9, 55));
+		lblTextoInformativo.setBounds(108, 480, 294, 16);
+		contentPane.add(lblTextoInformativo);
+		
+		JLabel lblTextoInformativo_1 = new JLabel("pagamento para gerar o comprovante");
+		lblTextoInformativo_1.setForeground(new Color(38, 9, 55));
+		lblTextoInformativo_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTextoInformativo_1.setBounds(108, 493, 250, 16);
+		contentPane.add(lblTextoInformativo_1);
+	
+		
 
 		JRadioButton rdbtnCartaoCredito = new JRadioButton("Cartão de crédito");
+		rdbtnCartaoCredito.setBackground(new Color(38, 9, 55));
+		rdbtnCartaoCredito.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnCartaoCredito.setForeground(new Color(255, 255, 255));
+		rdbtnCartaoCredito.setBounds(124, 259, 158, 23);
 		buttonGroup.add(rdbtnCartaoCredito);
-		GridBagConstraints gbc_rdbtnCartaoCredito = new GridBagConstraints();
-		gbc_rdbtnCartaoCredito.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnCartaoCredito.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnCartaoCredito.gridx = 4;
-		gbc_rdbtnCartaoCredito.gridy = 4;
-		contentPane.add(rdbtnCartaoCredito, gbc_rdbtnCartaoCredito);
+		contentPane.add(rdbtnCartaoCredito);
 
-		JButton btnMenuPrincipal = new JButton("Menu Principal");
+		JButton btnMenuPrincipal = new JButton("Menu");
+		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
+		btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnMenuPrincipal.setBounds(0, 0, 65, 23);
 		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuPrincipal frame = new MenuPrincipal();
@@ -112,51 +108,47 @@ public class TelaApresentacaoPagamento extends JFrame {
 		});
 		
 		JRadioButton rdbtnBoleto = new JRadioButton("Boleto");
+		rdbtnBoleto.setBackground(new Color(38, 9, 55));
+		rdbtnBoleto.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnBoleto.setForeground(new Color(255, 255, 255));
+		rdbtnBoleto.setBounds(124, 287, 109, 23);
 		buttonGroup.add(rdbtnBoleto);
-		GridBagConstraints gbc_rdbtnBoleto = new GridBagConstraints();
-		gbc_rdbtnBoleto.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnBoleto.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnBoleto.gridx = 4;
-		gbc_rdbtnBoleto.gridy = 5;
-		contentPane.add(rdbtnBoleto, gbc_rdbtnBoleto);
-
-		GridBagConstraints gbc_btntelaprincipal = new GridBagConstraints();
-		gbc_btntelaprincipal.insets = new Insets(0, 0, 5, 5);
-		btnMenuPrincipal.setBackground(new Color(223, 223, 255));
-		gbc_btntelaprincipal.gridx = 1;
-		gbc_btntelaprincipal.gridy = 6;
-		contentPane.add(btnMenuPrincipal, gbc_btntelaprincipal);
+		contentPane.add(rdbtnBoleto);
+		btnMenuPrincipal.setBackground(new Color(255, 128, 64));
+		contentPane.add(btnMenuPrincipal);
 
 		JRadioButton rdbtnPix = new JRadioButton("Pix");
+		rdbtnPix.setBackground(new Color(38, 9, 55));
+		rdbtnPix.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnPix.setForeground(new Color(255, 255, 255));
+		rdbtnPix.setBounds(124, 315, 109, 23);
 		buttonGroup.add(rdbtnPix);
-		GridBagConstraints gbc_rdbtnPix = new GridBagConstraints();
-		gbc_rdbtnPix.insets = new Insets(0, 0, 5, 220);
-		gbc_rdbtnPix.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnPix.gridx = 4;
-		gbc_rdbtnPix.gridy = 6;
-		contentPane.add(rdbtnPix, gbc_rdbtnPix);
+		contentPane.add(rdbtnPix);
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Cartão de débito");
+		rdbtnNewRadioButton.setBackground(new Color(38, 9, 55));
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
+		rdbtnNewRadioButton.setBounds(124, 343, 158, 23);
 		buttonGroup.add(rdbtnNewRadioButton);
-		GridBagConstraints gbc_rdbtnNewRadioButton = new GridBagConstraints();
-		gbc_rdbtnNewRadioButton.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNewRadioButton.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnNewRadioButton.gridx = 4;
-		gbc_rdbtnNewRadioButton.gridy = 7;
-		contentPane.add(rdbtnNewRadioButton, gbc_rdbtnNewRadioButton);
+		contentPane.add(rdbtnNewRadioButton);
 
 		JRadioButton rdbtnTED = new JRadioButton("TED");
+		rdbtnTED.setBackground(new Color(38, 9, 55));
+		rdbtnTED.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnTED.setForeground(new Color(255, 255, 255));
+		rdbtnTED.setBounds(124, 371, 109, 23);
 		buttonGroup.add(rdbtnTED);
-		GridBagConstraints gbc_rdbtnTED = new GridBagConstraints();
-		gbc_rdbtnTED.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnTED.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnTED.gridx = 4;
-		gbc_rdbtnTED.gridy = 8;
-		contentPane.add(rdbtnTED, gbc_rdbtnTED);
+		contentPane.add(rdbtnTED);
 		
 		JLabel errorLabel = new JLabel(" ");
+		errorLabel.setBounds(980, 635, 6, 22);
 
-		JButton btnGerarpdf = new JButton("New button");
+		JButton btnGerarpdf = new JButton("Gerar Comprovante");
+		btnGerarpdf.setBackground(new Color(225, 225, 225));
+		btnGerarpdf.setForeground(new Color(38, 9, 55));
+		btnGerarpdf.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnGerarpdf.setBounds(108, 555, 167, 23);
 		btnGerarpdf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -198,33 +190,78 @@ public class TelaApresentacaoPagamento extends JFrame {
 		});
 
 		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 10;
-		contentPane.add(textField, gbc_textField);
+		textField.setBounds(108, 512, 222, 23);
+		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		
 			errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			errorLabel.setForeground(new Color(255, 0, 0));
 			errorLabel.setVisible(false);
-			GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-			gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel_5.gridwidth = 2;
-			gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_5.gridx = 2;
-			gbc_lblNewLabel_5.gridy = 11;
-			contentPane.add(errorLabel, gbc_lblNewLabel_5);
-		GridBagConstraints gbc_btnGerarpdf = new GridBagConstraints();
-		gbc_btnGerarpdf.insets = new Insets(0, 0, 5, 5);
-		gbc_btnGerarpdf.gridx = 4;
-		gbc_btnGerarpdf.gridy = 12;
-		contentPane.add(btnGerarpdf, gbc_btnGerarpdf);
+			contentPane.add(errorLabel);
+		contentPane.add(btnGerarpdf);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+		
+		JButton btnSignOut = new JButton("");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnSignOut.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnSignOut.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnSignOut);
+
+		
+		JLabel lblNewLabel = new JLabel("Pagamento");
+		lblNewLabel.setForeground(new Color(38, 9, 55));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setBounds(108, 141, 173, 42);
+		contentPane.add(lblNewLabel);
+		
+				
+		JLabel lblLogoTelas = new JLabel("");
+		lblLogoTelas.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
+		lblLogoTelas.setBounds(700, 210, 480, 320);
+		contentPane.add(lblLogoTelas);
+
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/bloco azul 222 x 170.png")));
+		lblNewLabel_1.setBackground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(108, 242, 222, 170);
+		contentPane.add(lblNewLabel_1);
+				
+		
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
+		
+
+		
+
+
+		
+
+		
 
 
 
 	}
-
 }
