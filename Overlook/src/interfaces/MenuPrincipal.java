@@ -363,9 +363,9 @@ public class MenuPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//InterfaceCadastroDeQuartos objInterfaceCadastroDeQuartos  = new InterfaceCadastroDeQuartos();
-				//objInterfaceCadastroDeQuartos.setVisible(true);
-				//dispose();		
+				InterfaceCadastroDeQuartos objInterfaceCadastroDeQuartos  = new InterfaceCadastroDeQuartos();
+				objInterfaceCadastroDeQuartos.frmCadastroDeQuartos.setVisible(true);
+								dispose();		
 				
 			}
 		});

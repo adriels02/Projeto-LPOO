@@ -278,7 +278,7 @@ public class InterfacePrecos extends JFrame {
 									 controlador.mudarPreco(txtQuartoCasal.getText(), id);
 									 table.setModel(modeloTabelaPrecos());
 									 txtQuartoCasal.setText("");
-					
+									 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 				} catch (Exception exception) {
 					
 					JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
@@ -293,22 +293,117 @@ public class InterfacePrecos extends JFrame {
 		contentPane.add(btnQuartoCasal);
 		
 		JButton btnRefeicaoRestaurante = new JButton("Alterar");
+		btnRefeicaoRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					int id = 4;
+						
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 table.setModel(modeloTabelaPrecos());
+										 txtQuartoCasal.setText("");
+										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
+					} catch (Exception exception) {
+						
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
+						
+					}
+			}
+		});
 		btnRefeicaoRestaurante.setBounds(170, 195, 89, 23);
 		contentPane.add(btnRefeicaoRestaurante);
 		
 		JButton btnServicoDeQuarto = new JButton("Alterar");
+		btnServicoDeQuarto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					int id = 5;
+						
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 table.setModel(modeloTabelaPrecos());
+										 txtQuartoCasal.setText("");
+										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
+					} catch (Exception exception) {
+						
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
+						
+					}
+			}
+		});
 		btnServicoDeQuarto.setBounds(173, 313, 89, 23);
 		contentPane.add(btnServicoDeQuarto);
 		
 		JButton btnQuartoSolteiro = new JButton("Alterar");
+		btnQuartoSolteiro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					int id = 1;
+						
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 table.setModel(modeloTabelaPrecos());
+										 txtQuartoCasal.setText("");
+										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
+					} catch (Exception exception) {
+						
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
+						
+					}
+			}
+		});
 		btnQuartoSolteiro.setBounds(1086, 89, 89, 23);
 		contentPane.add(btnQuartoSolteiro);
 		
 		JButton btnViagemTranslado = new JButton("Alterar");
+		btnViagemTranslado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					int id = 7;
+						
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 table.setModel(modeloTabelaPrecos());
+										 txtQuartoCasal.setText("");
+										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
+					} catch (Exception exception) {
+						
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
+						
+					}
+			}
+		});
 		btnViagemTranslado.setBounds(1086, 194, 89, 23);
 		contentPane.add(btnViagemTranslado);
 		
 		JButton btnVagaEstacionamento = new JButton("Alterar");
+		btnVagaEstacionamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					int id = 6;
+						
+					ControladorDeAcessos controlador = new ControladorDeAcessos();
+										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 table.setModel(modeloTabelaPrecos());
+										 txtQuartoCasal.setText("");
+										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
+					} catch (Exception exception) {
+						
+						JOptionPane.showMessageDialog(null,"Ocorreu um erro: " + exception.getMessage() );	
+						
+					}
+			}
+		});
 		btnVagaEstacionamento.setBounds(1086, 313, 89, 23);
 		contentPane.add(btnVagaEstacionamento);
 	}

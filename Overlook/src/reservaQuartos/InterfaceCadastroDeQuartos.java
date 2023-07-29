@@ -31,7 +31,7 @@ import javax.swing.ImageIcon;
 
 public class InterfaceCadastroDeQuartos {
 
-	private JFrame frmCadastroDeQuartos;
+	public JFrame frmCadastroDeQuartos;
 	private JTextField textfNumQuarto;
 	private JTextField textfValorDiaria;
 	private JTextField textField;
