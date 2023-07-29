@@ -12,6 +12,7 @@ import java.util.List;
 import reservaQuartos.Reserva;
 import servicosCore.Arrumacao;
 import servicosCore.HistoricoTranslado;
+import servicosCore.Precos;
 import servicosCore.RestaurantePedidos;
 import servicosCore.Servico;
 import servicosCore.Translado;
@@ -428,7 +429,90 @@ public class MySQLConector implements ControleAcessoBD {
 			}
 
 		}
+		
+		public List<Precos> leituraPrecos() throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+
+			List<Precos> precos = new ArrayList<>();
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT * FROM preco");
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+
+					Precos tabela = new Precos();
+					tabela.setId(rs.getInt(1));
+					tabela.setNome(rs.getString(2));				
+					tabela.setPreco(rs.getDouble(3));
+
+					
+
+					precos.add(tabela);
+				}
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro: " + e.getMessage());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+			}
+
+			return precos;
+
 		}
+		
+		
+		
+		public void registroPrecos(Precos preco) throws BDException {
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("UPDATE preco SET preco = ? WHERE id = ?");
+				stmt.setDouble(1, preco.getPreco());
+				stmt.setInt(2, preco.getId());
+				stmt.execute();
+
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro: " + e.getMessage());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro: " + e.getMessage());
+				}
+			}
+
+		}			
+	}
 
 		
 		

@@ -23,6 +23,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -40,6 +41,8 @@ import servicosCore.CoreException;
 import servicosCore.Translado;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import java.awt.Toolkit;
 
 public class InterfaceTranslado extends JFrame {
@@ -64,6 +67,44 @@ public class InterfaceTranslado extends JFrame {
 		}
 		return mask;
 	}
+	
+	private TableModel modeloTabelaTranslado() {
+		
+				
+		DefaultTableModel tableModel = new DefaultTableModel(
+			    new Object[][] {},
+			    new String[] {
+			        "idViagem", "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva"
+			    }
+			) {
+			    Class[] columnTypes = new Class[] {
+			        Object.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
+			    };			  
+			};
+			
+			tableModel.setNumRows(0);
+			
+			try {
+		    MySQLConector leitor = new MySQLConector();
+
+		    for (HistoricoTranslado p : leitor.leituraTabela()) {
+		        tableModel.addRow(new Object[] {
+		            p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(), p.getNumeroPassageiros(),
+	            p.getData(), p.getHora(), p.getIdReserva()
+	        });
+		    }
+			} catch (Exception exception) {
+				JOptionPane.showMessageDialog(null,"Ocorreu um erro ao atualizar a tabela");
+				
+			}
+		
+		
+		return tableModel;
+		
+		
+	}
+	
+	
 
 	public static void main(String[] args) {
 
@@ -84,6 +125,10 @@ public class InterfaceTranslado extends JFrame {
 			}
 		});
 	}
+	
+	
+	
+	
 
 	/**
 	 * Create the frame.
@@ -104,15 +149,6 @@ public class InterfaceTranslado extends JFrame {
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
 				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-
-		JLabel lblError = new JLabel("");
-		lblError.setForeground(new Color(255, 0, 0));
-		GridBagConstraints gbc_lblError = new GridBagConstraints();
-		gbc_lblError.gridwidth = 4;
-		gbc_lblError.insets = new Insets(0, 0, 5, 0);
-		gbc_lblError.gridx = 0;
-		gbc_lblError.gridy = 2;
-		contentPane.add(lblError, gbc_lblError);
 		
 		JLabel lblNewLabel_9 = new JLabel("Id Reserva:");
 		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
@@ -193,7 +229,7 @@ public class InterfaceTranslado extends JFrame {
 		        });
 			    }
 			} catch (BDException exception) {
-				lblError.setText(exception.getMessage());			
+				JOptionPane.showMessageDialog(null,"Erro: " + exception.getMessage());	
 				}
 
 			table.setModel(tableModel);
@@ -234,7 +270,7 @@ public class InterfaceTranslado extends JFrame {
 		btnAdicionarhistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				lblError.setText("");
+				
 				
 				String QuantidadeDePassageiros = txtQuantidadePassageiros.getText();
 				if (QuantidadeDePassageiros.equals("")) {
@@ -260,8 +296,7 @@ public class InterfaceTranslado extends JFrame {
 					horaFormatada = hora;
 
 				} catch (Exception exception) {
-					lblError.setText(exception.getMessage());
-					lblError.setVisible(true);
+					JOptionPane.showMessageDialog(null,"Data digitada é inválida");	
 				}
 
 				try {
@@ -273,17 +308,21 @@ public class InterfaceTranslado extends JFrame {
 				ControladorDeAcessos registroServico = new ControladorDeAcessos();
 					 registroServico.registroServiçoTranslado(numeroidReserva, numeroPassageiros);
 					 
+					 JOptionPane.showMessageDialog(null,"Registro efetuado com sucesso");
+					 
+						ftxtfData.setText("");
+						txtEnderecoColeta.setText("");
+						txtEnderecoDestino.setText("");
+						ftxtHora.setText("");
+						txtQuantidadePassageiros.setText("");
+						txtIdReserva.setText("");
+						
 				} catch (CoreException exception) {
 
-					lblError.setText(exception.getMessage());
+					JOptionPane.showMessageDialog(null,"Erro: " + exception.getMessage());
 				}
 
-				ftxtfData.setText("");
-				txtEnderecoColeta.setText("");
-				txtEnderecoDestino.setText("");
-				ftxtHora.setText("");
-				txtQuantidadePassageiros.setText("");
-				txtIdReserva.setText("");
+
 			}
 		});
 
@@ -448,45 +487,14 @@ public class InterfaceTranslado extends JFrame {
 		gbc_btnAdicionarhistorico.gridx = 0;
 		gbc_btnAdicionarhistorico.gridy = 15;
 		contentPane.add(btnAdicionarhistorico, gbc_btnAdicionarhistorico);
-		
-		JButton btnAtualizar = new JButton("Atualizar ");
-		btnAtualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				lblError.setText("Tabela atualizada");
-				 
-				tableModel.setNumRows(0);				
-				try {
-				    MySQLConector leitor = new MySQLConector();
-
-				    for (HistoricoTranslado p : leitor.leituraTabela()) {
-				        tableModel.addRow(new Object[] {
-				            p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(), p.getNumeroPassageiros(),
-			            p.getData(), p.getHora(), p.getIdReserva()
-			        });
-				    }
-				} catch (BDException exception) {
-					lblError.setText(exception.getMessage());			
-					}
-
-				table.setModel(tableModel);
-
-			}
-		});
-		GridBagConstraints gbc_btnAtualizar = new GridBagConstraints();
-		gbc_btnAtualizar.weighty = 1.0;
-		gbc_btnAtualizar.weightx = 1.0;
-		gbc_btnAtualizar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAtualizar.gridx = 1;
-		gbc_btnAtualizar.gridy = 15;
-		contentPane.add(btnAtualizar, gbc_btnAtualizar);
 
 		btnRemoverHistorico.setEnabled(false);
 		GridBagConstraints gbc_btnRemoverHistorico = new GridBagConstraints();
+		gbc_btnRemoverHistorico.gridwidth = 2;
 		gbc_btnRemoverHistorico.insets = new Insets(0, 0, 0, 5);
 		gbc_btnRemoverHistorico.weighty = 1.0;
 		gbc_btnRemoverHistorico.weightx = 1.0;
-		gbc_btnRemoverHistorico.gridx = 2;
+		gbc_btnRemoverHistorico.gridx = 1;
 		gbc_btnRemoverHistorico.gridy = 15;
 		contentPane.add(btnRemoverHistorico, gbc_btnRemoverHistorico);
 

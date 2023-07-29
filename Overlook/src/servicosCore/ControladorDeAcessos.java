@@ -182,7 +182,45 @@ public class ControladorDeAcessos {
 		
 	}
 	
-	
+	public void mudarPreco(String stringPreco, int id) throws CoreException {
+		
+		if (stringPreco.equals("") || stringPreco.equals("0") || stringPreco.isEmpty()) {
+			throw new CoreException("O valor colocado no campo preço é inválido");
+				
+		}
+		
+		char filtro = '.';
+		int contador = 0;
+		
+		 for (int i = 0; i < stringPreco.length(); i++) {
+	            char currentChar = stringPreco.charAt(i);
+	            if (currentChar == filtro) {
+	                contador++;
+	            }
+	        }
+		 
+		 if (contador > 1) {
+			 throw new CoreException("A quantidade de pontos no preço é inválida");
+		 }
+		
+		
+		double valor = Double.parseDouble(stringPreco);
+		
+		Precos preco = new Precos(valor, id);
+		
+		try {
+			
+			repositorio.registroPrecos(preco);
+			
+		} catch (BDException exception ) {
+			throw new CoreException(exception.getMessage());
+			
+		}
+		
+		
+		
+		
+	}
 	
 	
 	
