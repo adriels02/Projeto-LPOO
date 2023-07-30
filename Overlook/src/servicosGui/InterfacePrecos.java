@@ -255,6 +255,7 @@ public class InterfacePrecos extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -308,9 +309,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 4;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtRefeicaoRestaurante.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtRefeicaoRestaurante.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -334,9 +335,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 5;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtServicoQuarto.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtServicoQuarto.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -360,9 +361,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 1;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtQuartoSolteiro.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtQuartoSolteiro.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -386,9 +387,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 7;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtViagemTranslado.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtViagemTranslado.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -412,9 +413,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 6;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtVagaEstacionamento.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtVagaEstacionamento.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						

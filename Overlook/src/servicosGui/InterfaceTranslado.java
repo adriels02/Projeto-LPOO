@@ -33,6 +33,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
 
+import bdConexao.Validador;
 import interfaces.TelaInicial;
 import servicosBD.BDException;
 import servicosBD.MySQLConector;
@@ -47,6 +48,7 @@ import javax.swing.table.TableModel;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.ListSelectionModel;
 
 public class InterfaceTranslado extends JFrame {
 
@@ -71,43 +73,43 @@ public class InterfaceTranslado extends JFrame {
 		return mask;
 	}
 	
-	private TableModel modeloTabelaTranslado() {
-		
-				
-		DefaultTableModel tableModel = new DefaultTableModel(
-			    new Object[][] {},
-			    new String[] {
-			        "idViagem", "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva"
-			    }
-			) {
-			    Class[] columnTypes = new Class[] {
-			        Object.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
-			    };			  
-			};
-			
-			tableModel.setNumRows(0);
-			
-			try {
-		    MySQLConector leitor = new MySQLConector();
+	DefaultTableModel model = new DefaultTableModel() {
+	    
+	    public boolean isCellEditable(int row, int column) {
+	       
+	        return false;
+	    }
+	};
 
-		    for (HistoricoTranslado p : leitor.leituraTabela()) {
-		        tableModel.addRow(new Object[] {
-		            p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(), p.getNumeroPassageiros(),
-	            p.getData(), p.getHora(), p.getIdReserva()
-	        });
-		    }
-			} catch (Exception exception) {
-				JOptionPane.showMessageDialog(null,"Ocorreu um erro ao atualizar a tabela");
-				
-			}
-		
-		
-		return tableModel;
-		
-		
+	private TableModel modeloTabelaTranslado() {
+	    DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "idViagem",
+	            "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva" }) {
+	        Class[] columnTypes = new Class[] { Object.class, Object.class, Object.class, Object.class, Object.class,
+	                Object.class, Object.class };	       
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+	    };
+
+	    tableModel.setNumRows(0);
+
+	    try {
+	        MySQLConector leitor = new MySQLConector();
+
+	        for (HistoricoTranslado p : leitor.leituraTabela()) {
+	            tableModel.addRow(new Object[] { p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(),
+	                    p.getNumeroPassageiros(), p.getData(), p.getHora(), p.getIdReserva() });
+	        }
+
+	    } catch (Exception exception) {
+	        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar a tabela");
+	    }
+
+	    return tableModel;
 	}
-	
-	
+
+
 
 	public static void main(String[] args) {
 
@@ -177,11 +179,13 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.add(txtIdReserva);
 		txtIdReserva.setColumns(10);
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBounds(1, 26, 872, 0);
+		txtIdReserva.setDocument(new Validador(50));
 		JButton btnRemoverHistorico = new JButton("Remover");
 		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
-		btnRemoverHistorico.setBounds(1134, 686, 105, 23);
+		btnRemoverHistorico.setBounds(769, 686, 157, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -207,23 +211,7 @@ public class InterfaceTranslado extends JFrame {
 			    };			  
 			};
 
-		
-
-
-			try {
-			    MySQLConector leitor = new MySQLConector();
-
-			    for (HistoricoTranslado p : leitor.leituraTabela()) {
-			        tableModel.addRow(new Object[] {
-			            p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(), p.getNumeroPassageiros(),
-		            p.getData(), p.getHora(), p.getIdReserva()
-		        });
-			    }
-			} catch (BDException exception) {
-				JOptionPane.showMessageDialog(null,"Erro: " + exception.getMessage());	
-				}
-
-			table.setModel(tableModel);
+		table.setModel(modeloTabelaTranslado());
 		contentPane.add(table);
 
 		JFormattedTextField ftxtfData = new JFormattedTextField(setMascara("##/##/####"));
@@ -237,7 +225,7 @@ public class InterfaceTranslado extends JFrame {
 		JButton btnAdicionarhistorico = new JButton("Adicionar");
 		btnAdicionarhistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAdicionarhistorico.setForeground(new Color(38, 9, 55));
-		btnAdicionarhistorico.setBounds(179, 620, 151, 23);
+		btnAdicionarhistorico.setBounds(100, 621, 151, 23);
 		btnAdicionarhistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -277,7 +265,7 @@ public class InterfaceTranslado extends JFrame {
 							txtEnderecoDestino.getText(), numeroPassageiros, dataFormatada, horaFormatada);
 	
 				ControladorDeAcessos registroServico = new ControladorDeAcessos();
-					 registroServico.registroServiçoTranslado(numeroidReserva, numeroPassageiros);
+					 registroServico.registroServicoTranslado(numeroidReserva, numeroPassageiros);
 					 
 					 JOptionPane.showMessageDialog(null,"Registro efetuado com sucesso");
 					 
@@ -287,6 +275,7 @@ public class InterfaceTranslado extends JFrame {
 						ftxtHora.setText("");
 						txtQuantidadePassageiros.setText("");
 						txtIdReserva.setText("");
+						table.setModel(modeloTabelaTranslado());
 						
 				} catch (CoreException exception) {
 
@@ -319,6 +308,7 @@ public class InterfaceTranslado extends JFrame {
 		txtEnderecoColeta.setBounds(33, 302, 297, 23);
 		txtEnderecoColeta.setColumns(10);
 		contentPane.add(txtEnderecoColeta);
+		txtEnderecoColeta.setDocument(new Validador(200));
 
 		JLabel lblNewLabel_4 = new JLabel("Endereço Destino");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -331,6 +321,7 @@ public class InterfaceTranslado extends JFrame {
 		txtEnderecoDestino.setBounds(33, 381, 297, 23);
 		txtEnderecoDestino.setColumns(10);
 		contentPane.add(txtEnderecoDestino);
+		txtEnderecoDestino.setDocument(new Validador(200));
 
 		JLabel lblNewLabel_5 = new JLabel("Quantidade de Passageiros");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -351,7 +342,8 @@ public class InterfaceTranslado extends JFrame {
 		});
 		txtQuantidadePassageiros.setColumns(10);
 		contentPane.add(txtQuantidadePassageiros);
-
+		txtQuantidadePassageiros.setDocument(new Validador(2));
+		
 		JLabel lblNewLabel_6 = new JLabel("Data");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setForeground(new Color(38, 9, 55));

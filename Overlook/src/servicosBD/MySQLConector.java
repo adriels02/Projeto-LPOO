@@ -48,21 +48,21 @@ public class MySQLConector implements ControleAcessoBD {
 			stmt.setInt(6, translado.getIdReserva());
 			stmt.execute();
 		} catch (Exception e) {
-			throw new BDException("Ocorreu um erro: " + e.getMessage());
+			throw new BDException("Ocorreu um erro de conexão");
 		} finally {
 			try {
 				if (stmt != null) {
 					stmt.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			}
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um errode conexão");
 			}
 		}
 
@@ -84,21 +84,21 @@ public class MySQLConector implements ControleAcessoBD {
 			stmt.execute();
 
 		} catch (Exception e) {
-			throw new BDException("Ocorreu um erro: " + e.getMessage());
+			throw new BDException("Ocorreu um erro de conexão");
 		} finally {
 			try {
 				if (stmt != null) {
 					stmt.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			}
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			}
 		}
 
@@ -138,21 +138,21 @@ public class MySQLConector implements ControleAcessoBD {
 			
 			
 		} catch (Exception e) {
-			throw new BDException("Ocorreu um erro: " + e.getMessage());
+			throw new BDException("Ocorreu um erro de conexão");
 		} finally {
 			try {
 				if (stmt != null) {
 					stmt.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			}
 			try {
 				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um errode conexão");
 			}
 		}
 		
@@ -180,7 +180,7 @@ public class MySQLConector implements ControleAcessoBD {
 				}
 								
 			} catch (Exception mensagem) {
-				throw new BDException("Ocorreu um erro: " + mensagem.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 
 			} finally {
 				try {
@@ -188,14 +188,14 @@ public class MySQLConector implements ControleAcessoBD {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um errode conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 
 			}
@@ -223,21 +223,21 @@ public class MySQLConector implements ControleAcessoBD {
 					limpeza.add(tabela);
 				}				
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 			}
 			
@@ -265,7 +265,7 @@ public class MySQLConector implements ControleAcessoBD {
 
 								
 			} catch (Exception mensagem) {
-				throw new BDException("Ocorreu um erro: " + mensagem.getMessage());
+				throw new BDException("Ocorreu um errodeconexão" );
 
 			} finally {
 				try {
@@ -273,14 +273,14 @@ public class MySQLConector implements ControleAcessoBD {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 
 			}
@@ -316,21 +316,21 @@ public class MySQLConector implements ControleAcessoBD {
 					comanda.add(tabela);
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 			}
 
@@ -370,21 +370,21 @@ public class MySQLConector implements ControleAcessoBD {
 					reserva.add(tabela);
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 			}
 
@@ -410,21 +410,21 @@ public class MySQLConector implements ControleAcessoBD {
 				stmt.execute();
 
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 			}
 
@@ -455,21 +455,21 @@ public class MySQLConector implements ControleAcessoBD {
 					precos.add(tabela);
 				}
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um erro de conexão");
 				}
 			}
 
@@ -493,25 +493,67 @@ public class MySQLConector implements ControleAcessoBD {
 				stmt.execute();
 
 			} catch (Exception e) {
-				throw new BDException("Ocorreu um erro: " + e.getMessage());
+				throw new BDException("Ocorreu um erro de conexão");
 			} finally {
 				try {
 					if (stmt != null) {
 						stmt.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um errode conexão");
 				}
 				try {
 					if (conn != null) {
 						conn.close();
 					}
 				} catch (Exception e) {
-					throw new BDException("Ocorreu um erro: " + e.getMessage());
+					throw new BDException("Ocorreu um errode conexão");
 				}
 			}
 
-		}			
+		}
+		
+		
+		public double consultarPreco(int id) throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			double valor = 0;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT preco FROM preco WHERE id = ?");
+				stmt.setInt(1, id);
+				rs = stmt.executeQuery();
+				if (rs.next()) {
+					valor = rs.getDouble("preco");
+				}
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+			}
+
+			return valor;
+
+		}
+		
+		
+		
 	}
 
 		

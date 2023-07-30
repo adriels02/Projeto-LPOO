@@ -12,9 +12,12 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
+import bdConexao.Validador;
 import interfaces.TelaInicial;
 import servicosBD.BDException;
 import servicosBD.MySQLConector;
@@ -37,6 +40,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
 
 public class InterfaceArrumacao extends JFrame {
 
@@ -70,6 +74,33 @@ public class InterfaceArrumacao extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	private TableModel modeloArrumacao() {
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {},
+				new String[] { "Número do Quarto", "Estado" }) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		tableModel.setNumRows(0);
+
+		try {
+			MySQLConector leitor = new MySQLConector();
+
+			for (Arrumacao p : leitor.leituraArrumacao()) {
+				tableModel.addRow(new Object[] { p.getNumeroQuarto(), p.getEstado() });
+			}
+		} catch (BDException exception) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar a tabela");
+		}
+
+		return tableModel;
+	}
+	
+	
 	public InterfaceArrumacao() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceArrumacao.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		
@@ -106,6 +137,7 @@ public class InterfaceArrumacao extends JFrame {
 				
 				txtQuarto = new JTextField();
 				txtQuarto.setBounds(317, 551, 259, 23);
+				txtQuarto.setDocument(new Validador(5));
 				txtQuarto.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
@@ -123,6 +155,7 @@ public class InterfaceArrumacao extends JFrame {
 				contentPane.add(scrollPane);
 				
 				table = new JTable();
+				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				table.setModel(new DefaultTableModel(
 					new Object[][] {
 					},
@@ -171,12 +204,10 @@ public class InterfaceArrumacao extends JFrame {
 				JButton btnAlterarStatusArrumacao = new JButton("Alterar");
 				btnAlterarStatusArrumacao.setFont(new Font("Tahoma", Font.BOLD, 11));
 				btnAlterarStatusArrumacao.setForeground(new Color(38, 9, 55));
-				btnAlterarStatusArrumacao.setBounds(476, 649, 100, 23);
+				btnAlterarStatusArrumacao.setBounds(400, 643, 100, 23);
 				btnAlterarStatusArrumacao.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-									
-						lblErro.setText("");
-												
+																				
 						String quarto = txtQuarto.getText();
 						if (quarto.equals("")) {
 							quarto = "0";
@@ -192,6 +223,7 @@ public class InterfaceArrumacao extends JFrame {
 								ControladorDeAcessos controlador = new ControladorDeAcessos();
 								controlador.alterarArrumacao(numeroQuarto, "Arrumado");
 								
+								
 							}
 								
 							
@@ -199,76 +231,23 @@ public class InterfaceArrumacao extends JFrame {
 								
 								ControladorDeAcessos controlador = new ControladorDeAcessos();
 													controlador.alterarArrumacao(numeroQuarto, "Desarrumado");
-									
+													JOptionPane.showMessageDialog(null, "Mudança de status realizada com sucesso");
+													txtQuarto.setText("");
+													table.setModel(modeloArrumacao());
 							}													
 							
 						} catch (CoreException mensagem) {
 							
-							lblErro.setText(mensagem.getMessage());					
+							JOptionPane.showMessageDialog(null, mensagem.getMessage());			
 						}
 		
 				    }
 				});
 				
 				
-				DefaultTableModel tableModel = new DefaultTableModel(
-					    new Object[][] {},
-					    new String[] {
-					        "Número do Quarto", "estado"
-					    }
-					);
-					
-				try {
-				    MySQLConector leitor = new MySQLConector();
-
-				    for (Arrumacao p : leitor.leituraArrumacao()) {
-				        tableModel.addRow(new Object[] {
-				            p.getNumeroQuarto(), p.getEstado()
-			        });
-				    }
-				} catch (BDException exception) {
-					lblErro.setText(exception.getMessage());			
-					}
 				
-				table.setModel(tableModel);
+				table.setModel(modeloArrumacao());
 				contentPane.add(btnAlterarStatusArrumacao);
-				
-				JButton btnAtualizar = new JButton("Atualizar");
-				btnAtualizar.setFont(new Font("Tahoma", Font.BOLD, 11));
-				btnAtualizar.setForeground(new Color(38, 9, 55));
-				btnAtualizar.setBounds(1145, 649, 100, 23);
-				btnAtualizar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						lblErro.setText("Tabela atualizada");
-						
-						tableModel.setNumRows(0);
-						
-						DefaultTableModel tableModel = new DefaultTableModel(
-							    new Object[][] {},
-							    new String[] {
-							        "Número do Quarto", "estado"
-							    }
-							);
-							
-						try {
-						    MySQLConector leitor = new MySQLConector();
-
-						    for (Arrumacao p : leitor.leituraArrumacao()) {
-						        tableModel.addRow(new Object[] {
-						            p.getNumeroQuarto(), p.getEstado()
-					        });
-						    }
-						} catch (BDException exception) {
-							lblErro.setText(exception.getMessage());			
-							}
-						
-						table.setModel(tableModel);
-						
-						
-					}
-				});
-				contentPane.add(btnAtualizar);
 				
 				JButton btnFecharTela = new JButton("");
 				btnFecharTela.addActionListener(new ActionListener() {

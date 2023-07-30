@@ -115,11 +115,11 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						lblNewLabel_2.setBounds(298, 370, 113, 14);
 						contentPane.add(lblNewLabel_2);
 				
-						JLabel lblTituloHistorico = new JLabel("Histórico de Serviços");
+						JLabel lblTituloHistorico = new JLabel("Histórico de Serviços de Quarto");
 						lblTituloHistorico.setForeground(new Color(38, 9, 55));
 						lblTituloHistorico.setHorizontalAlignment(SwingConstants.RIGHT);
 						lblTituloHistorico.setFont(new Font("Tahoma", Font.BOLD, 14));
-						lblTituloHistorico.setBounds(1065, 113, 179, 14);
+						lblTituloHistorico.setBounds(1003, 113, 241, 14);
 						contentPane.add(lblTituloHistorico);
 				
 				JRadioButton rdbtnCafeDaManha = new JRadioButton("Café da manhã");

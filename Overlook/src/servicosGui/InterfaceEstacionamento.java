@@ -8,11 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bdConexao.Validador;
 import interfaces.TelaInicial;
 import servicosCore.CoreException;
 
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
@@ -107,6 +110,7 @@ public class InterfaceEstacionamento extends JFrame {
 		
 		txtQuantidadeVeiculos = new JTextField();
 		txtQuantidadeVeiculos.setBounds(219, 366, 130, 20);
+		txtQuantidadeVeiculos.setDocument(new Validador(2));
 		txtQuantidadeVeiculos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -126,9 +130,7 @@ public class InterfaceEstacionamento extends JFrame {
 		btnAdicionar.setBounds(219, 474, 130, 23);
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
-				lblErro.setText("");
-				
+						
 				String numeroId = txtIdReserva.getText();
 				if (numeroId.equals("")) {
 					numeroId = "0";
@@ -145,11 +147,14 @@ public class InterfaceEstacionamento extends JFrame {
 				try {
 					
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-					controlador.registroServiçoTranslado(id, vagas);
+					controlador.registroServicoEstacionamento(id, vagas);
 					
+					JOptionPane.showMessageDialog(null, "Registro feito com sucesso.");
+					txtIdReserva.setText("");
+					txtQuantidadeVeiculos.setText("");
 				}	catch (CoreException exception) {
 					
-					lblErro.setText(exception.getMessage());
+					JOptionPane.showMessageDialog(null, exception.getMessage());
 					
 				}
 				
