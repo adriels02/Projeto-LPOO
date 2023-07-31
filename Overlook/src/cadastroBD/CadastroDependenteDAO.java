@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bdConexao.AcessoBancodeDados;
+import cadastroCORE.Cliente;
 import cadastroCORE.Dependentes;
 
 public class CadastroDependenteDAO {
@@ -28,21 +29,21 @@ public class CadastroDependenteDAO {
             preparedStatement.setString(5, dependente.getCpfTitular());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao cadastrar Dependente: " + e);
+            throw new ExceptionDAO("Erro ao cadastrar Dependente");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
@@ -69,21 +70,21 @@ public class CadastroDependenteDAO {
                 dependentes.add(dependente);
             }
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao consultar dependente: " + e);
+            throw new ExceptionDAO("Erro ao consultar dependente");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
@@ -103,21 +104,21 @@ public class CadastroDependenteDAO {
             preparedStatement.setString(5, dependente.getCpfTitular());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao atualizar dependente: " + e);
+            throw new ExceptionDAO("Erro ao atualizar dependente");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
@@ -134,23 +135,69 @@ public class CadastroDependenteDAO {
             preparedStatement.setString(2, dependente.getCpfTitular());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao apagar dependente: " + e);
+            throw new ExceptionDAO("Erro ao apagar dependente");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
     }
+   
+    public ArrayList<Dependentes> listarTodosDependentes() throws ExceptionDAO {
+        String sql = "SELECT * FROM Dependente";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<Dependentes> dependentes = new ArrayList<>();
+        
+
+        try {
+
+        	 connection = new AcessoBancodeDados().conexaoBD();
+            preparedStatement = connection.prepareStatement(sql);
+           
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Dependentes dependente = new Dependentes();
+                dependente.setNomeDependente(rs.getString("nome"));
+                dependente.setCpfDependente(rs.getString("cpf"));
+                dependente.setTelefoneDependente(rs.getString("telefone"));
+                dependente.setCpfTitular(rs.getString("cpf_cliente"));
+                dependente.setDataNascimentoDependente(rs.getDate("dataNascDependente"));
+                dependentes.add(dependente);
+            }
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao consultar dependente");
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar o statement");
+            } finally {
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
+                }
+            }
+        }
+        return dependentes;
+    }
+    
 }

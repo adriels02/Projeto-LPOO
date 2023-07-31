@@ -5,14 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
-import cadastroCORE.CadastroControllerDepedentes;
+import bdConexao.Validador;
+import cadastroCORE.CadastroControllerDependentes;
 import cadastroCORE.Dependentes;
 import interfaces.TelaInicial;
 
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,6 +28,8 @@ import java.util.ArrayList;
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class InterfaceCadastroDependentes extends JFrame {
 
@@ -60,22 +66,6 @@ public class InterfaceCadastroDependentes extends JFrame {
         setSize(1280,720); 
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
-
-        JButton btnMenuPrincipal = new JButton("Menu");
-        btnMenuPrincipal.setBackground(new Color(255, 128, 64));
-        btnMenuPrincipal.setForeground(new Color(255, 255, 255));
-        btnMenuPrincipal.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                CadastroInterface cd = new CadastroInterface();
-                cd.setVisible(true);
-                dispose();
-            }
-        });
-        btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
-        menuBar.add(btnMenuPrincipal);
         contentPane = new JPanel();
         contentPane.setBackground(new Color(255, 255, 255));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,6 +89,8 @@ public class InterfaceCadastroDependentes extends JFrame {
         txtfNomeDependente.setBounds(45, 292, 375, 23);
         contentPane.add(txtfNomeDependente);
         txtfNomeDependente.setColumns(10);
+        Validador validadorNome = new Validador(45);
+		txtfNomeDependente.setDocument(validadorNome);
 
         JLabel lblNewLabel_2 = new JLabel("CPF do Titular");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -107,9 +99,20 @@ public class InterfaceCadastroDependentes extends JFrame {
         contentPane.add(lblNewLabel_2);
 
         txtfCpfTitular = new JTextField();
+        txtfCpfTitular.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		String caracteres = "0987654321.";
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+        	}
+        });
         txtfCpfTitular.setBounds(430, 292, 216, 23);
         contentPane.add(txtfCpfTitular);
         txtfCpfTitular.setColumns(10);
+        Validador validadorCpf = new Validador(11);
+		txtfCpfTitular.setDocument(validadorCpf);
 
         JLabel lblNewLabel_3 = new JLabel("CPF do Dependente");
         lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -118,11 +121,22 @@ public class InterfaceCadastroDependentes extends JFrame {
         contentPane.add(lblNewLabel_3);
 
         txtfCpfDependente = new JTextField();
+        txtfCpfDependente.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		String caracteres = "0987654321.";
+				if (!caracteres.contains(e.getKeyChar() + "")) {
+					e.consume();
+				}
+        	}
+        });
         txtfCpfDependente.setBounds(45, 378, 178, 23);
         contentPane.add(txtfCpfDependente);
         txtfCpfDependente.setColumns(10);
+        Validador validadorCpfDependente = new Validador(11);
+		txtfCpfDependente.setDocument(validadorCpfDependente);
 
-        JButton btnNewButton_1 = new JButton("Concluir");
+        JButton btnNewButton_1 = new JButton("Voltar");
         btnNewButton_1.setBackground(new Color(225, 225, 225));
         btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
         btnNewButton_1.setForeground(new Color(38, 9, 55));
@@ -142,10 +156,17 @@ public class InterfaceCadastroDependentes extends JFrame {
         lblNewLabel_4.setBounds(233, 353, 132, 14);
         contentPane.add(lblNewLabel_4);
 
-        txtfDataNascimentoDependente = new JTextField();
-        txtfDataNascimentoDependente.setBounds(233, 378, 187, 23);
-        contentPane.add(txtfDataNascimentoDependente);
-        txtfDataNascimentoDependente.setColumns(10);
+        try {
+	        MaskFormatter dataFormato = new MaskFormatter("##/##/####");
+	        JFormattedTextField dataNascimentoField = new JFormattedTextField(dataFormato);
+	        dataNascimentoField.setBounds(233, 378, 187, 23);
+	        contentPane.add(dataNascimentoField);
+	        txtfDataNascimentoDependente = dataNascimentoField;
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    }
+        
+        
 
         JLabel lblNewLabel_5 = new JLabel("Telefone");
         lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -157,6 +178,8 @@ public class InterfaceCadastroDependentes extends JFrame {
         txtfTelefoneDependente.setBounds(430, 378, 216, 23);
         contentPane.add(txtfTelefoneDependente);
         txtfTelefoneDependente.setColumns(10);
+        Validador validadorTelefone = new Validador(20);
+		txtfTelefoneDependente.setDocument(validadorTelefone);
 
         JButton btnNewButton_2 = new JButton("Cadastrar");
         btnNewButton_2.setBackground(new Color(225, 225, 225));
@@ -170,7 +193,7 @@ public class InterfaceCadastroDependentes extends JFrame {
         btnNewButton_2.setBounds(540, 428, 106, 23);
         contentPane.add(btnNewButton_2);
 
-        JButton btnNewButton_3 = new JButton("Novo");
+        JButton btnNewButton_3 = new JButton("Limpar");
         btnNewButton_3.setBackground(new Color(225, 225, 225));
         btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
         btnNewButton_3.setForeground(new Color(38, 9, 55));
@@ -196,7 +219,7 @@ public class InterfaceCadastroDependentes extends JFrame {
         	}
         });
         btnFecharTela.setIcon(new ImageIcon(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
-        btnFecharTela.setBounds(1232, 11, 30, 30);
+        btnFecharTela.setBounds(1250, 0, 30, 30);
         contentPane.add(btnFecharTela);
         
         JButton btnSignOut = new JButton("");
@@ -209,35 +232,42 @@ public class InterfaceCadastroDependentes extends JFrame {
         	}
         });
         btnSignOut.setIcon(new ImageIcon(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
-        btnSignOut.setBounds(1195, 11, 30, 30);
+        btnSignOut.setBounds(1213, 0, 30, 30);
         contentPane.add(btnSignOut);
         
-        JLabel lblLogoTransparente = new JLabel("");
-        lblLogoTransparente.setIcon(new ImageIcon(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
-        lblLogoTransparente.setBounds(0, 0, 758, 758);
-        contentPane.add(lblLogoTransparente);
+
         
         JLabel lblLogoTelas = new JLabel("");
         lblLogoTelas.setIcon(new ImageIcon(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
         lblLogoTelas.setBounds(750, 170, 480, 320);
         contentPane.add(lblLogoTelas);
+        
+                JButton btnMenuPrincipal = new JButton("Menu");
+                btnMenuPrincipal.setBounds(0, 0, 65, 23);
+                contentPane.add(btnMenuPrincipal);
+                btnMenuPrincipal.setBackground(new Color(255, 128, 64));
+                btnMenuPrincipal.setForeground(new Color(255, 255, 255));
+                btnMenuPrincipal.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        CadastroInterface cd = new CadastroInterface();
+                        cd.setVisible(true);
+                        dispose();
+                    }
+                });
+                btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
+                
+                JLabel lblLogoTransparente = new JLabel("");
+                lblLogoTransparente.setIcon(new ImageIcon(InterfaceCadastroDependentes.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+                lblLogoTransparente.setBounds(0, 0, 758, 758);
+                contentPane.add(lblLogoTransparente);
+                
     }
 
     private void cadastrarDependente() {
         try {
-            String nomeDependente = txtfNomeDependente.getText();
-            String cpfTitular = txtfCpfTitular.getText();
-            String cpfDependente = txtfCpfDependente.getText();
-            String telefoneDependente = txtfTelefoneDependente.getText();
-            String dataNascimentoDependenteStr = txtfDataNascimentoDependente.getText();
-
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy");
-            java.util.Date parsedDate = dateFormat.parse(dataNascimentoDependenteStr);
-            java.sql.Date dataNascimentoDependente = new java.sql.Date(parsedDate.getTime());
-
-            CadastroControllerDepedentes controller = new CadastroControllerDepedentes();
-            boolean sucesso = controller.cadastrarDependente(nomeDependente, cpfTitular, cpfDependente, telefoneDependente, dataNascimentoDependente);
+         
+            CadastroControllerDependentes controller = new CadastroControllerDependentes();
+            boolean sucesso = controller.cadastrarDependente(txtfNomeDependente.getText(), txtfCpfTitular.getText(), txtfCpfDependente.getText(), txtfTelefoneDependente.getText(), txtfDataNascimentoDependente.getText());
 
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Cadastro concluído com sucesso");
@@ -250,8 +280,8 @@ public class InterfaceCadastroDependentes extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar o dependente");
             }
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o dependente: " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o dependente");
         }
     }
 }

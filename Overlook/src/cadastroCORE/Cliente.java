@@ -67,4 +67,7 @@ public void cadastrarCliente(Cliente cliente) throws ExceptionDAO {
  public void apagarCadastro(Cliente cliente) throws ExceptionDAO {
  new CadastroClienteDAO().apagarCadastro(cliente);
  }
+ public ArrayList<Cliente> listarTodosClientes() throws ExceptionDAO {
+	 return new CadastroClienteDAO().listarTodosClientes();
+	 }
 }
