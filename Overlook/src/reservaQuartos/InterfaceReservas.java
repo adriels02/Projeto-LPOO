@@ -84,12 +84,12 @@ public class InterfaceReservas {
 		frmCadastroDasReservas.setLocationRelativeTo(null);
 		frmCadastroDasReservas.setUndecorated(true);
 		
-		JButton btnNewButton_3 = new JButton("Menu");
-		btnNewButton_3.setBackground(new Color(255, 128, 64));
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_3.setBounds(0, 2, 65, 23);
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton btnMenuPrincipal = new JButton("Menu");
+		btnMenuPrincipal.setBackground(new Color(255, 128, 64));
+		btnMenuPrincipal.setForeground(new Color(255, 255, 255));
+		btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnMenuPrincipal.setBounds(0, 2, 65, 23);
+		btnMenuPrincipal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuPrincipal menu = new MenuPrincipal();
 				menu.setVisible(true);
@@ -100,7 +100,7 @@ public class InterfaceReservas {
 			}
 		});
 		frmCadastroDasReservas.getContentPane().setLayout(null);
-		frmCadastroDasReservas.getContentPane().add(btnNewButton_3);
+		frmCadastroDasReservas.getContentPane().add(btnMenuPrincipal);
 		
 		JLabel lblTituloReservas = new JLabel("Reservas");
 		lblTituloReservas.setForeground(new Color(38, 9, 55));

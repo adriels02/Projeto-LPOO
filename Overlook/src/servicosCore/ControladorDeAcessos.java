@@ -56,11 +56,11 @@ public class ControladorDeAcessos {
 		}
 	}
 	
-	public void registroServiçoTranslado(int id, int passageiros) throws CoreException {
+	public void registroServicoTranslado(int id, int passageiros) throws CoreException {
 
-		Translado translado = new Translado(id, passageiros);
 
 		try {
+			Translado translado = new Translado(id, passageiros);
 			repositorio.registroServico(translado);
 		} catch (BDException mensagem) {
 			throw new CoreException(mensagem.getMessage(), mensagem);
@@ -88,23 +88,23 @@ public class ControladorDeAcessos {
 			}
 	}
 	
-	public void registroServiçoEstacionamento(int id, int vagas) throws CoreException {
+	public void registroServicoEstacionamento(int id, int vagas) throws CoreException {
 		
 			if (id == 0) {
 				throw new CoreException("O número de id é inválido");			
 			}
 		
 			if (vagas == 0) {
-				throw new CoreException("O número de vagas é inválido");			
+				throw new CoreException("O número de veículos é inválido");			
 			}
 		
 			if (vagas > 3) {
-				throw new CoreException("O número digitado excedeu o limite de registros de vagas deuma só vez, que são 3 vagas");			
+				throw new CoreException("O número digitado excedeu o limite de registros de vagas de uma só vez, que são 3 vagas");			
 			}
 		
-		Estacionamento estacionamento = new Estacionamento(id, vagas);
 
 		try {
+			Estacionamento estacionamento = new Estacionamento(id, vagas);
 			repositorio.registroServico(estacionamento);
 		} catch (BDException mensagem) {
 			throw new CoreException(mensagem.getMessage(), mensagem);
@@ -124,6 +124,9 @@ public class ControladorDeAcessos {
 			if (quantidade == 0) {
 				throw new CoreException("Quantidade da refeição é inválida. por favor, digite um número válido");
 			}
+			if (quantidade > 10) {
+				throw new CoreException("Quantidade limite de refeições simultâneas em uma única reserva foi excedida (10)");
+			}
 		
 			RestaurantePedidos restaurante = new RestaurantePedidos(data, time, quantidade, idReserva, observacao, refeicao);
 			
@@ -140,9 +143,9 @@ public class ControladorDeAcessos {
 	public void registroServicoRestaurante(int id , String refeicao, int quantidade) throws CoreException {
 		
 		
-		Restaurante restaurante = new Restaurante( id, refeicao, quantidade);
 		
 		try {
+			Restaurante restaurante = new Restaurante( id, refeicao, quantidade);
 			repositorio.registroServico(restaurante);
 		}	catch (BDException mensagem ) {
 			
@@ -200,7 +203,7 @@ public class ControladorDeAcessos {
 	        }
 		 
 		 if (contador > 1) {
-			 throw new CoreException("A quantidade de pontos no preço é inválida");
+			 throw new CoreException("Ops, parece que ocorreu um erro na digitação das casas decimais do preço. Por favor, verifique novamente e certifique-se de usar apenas um ponto nas casas decimais.");
 		 }
 		
 		
@@ -216,11 +219,12 @@ public class ControladorDeAcessos {
 			throw new CoreException(exception.getMessage());
 			
 		}
-		
-		
-		
-		
 	}
+	
+	
+	
+	
+	
 	
 	
 	

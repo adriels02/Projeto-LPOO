@@ -9,6 +9,9 @@ import javax.mail.*;
 import javax.mail.internet.*;*/
 import javax.swing.JOptionPane;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.SimpleEmail;
+
 public class EnviarEmail {
 
 	public static void main(String[] args) {

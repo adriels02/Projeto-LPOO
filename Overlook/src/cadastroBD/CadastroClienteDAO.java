@@ -32,21 +32,21 @@ public class CadastroClienteDAO {
 
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao cadastrar cliente: " + e);
+            throw new ExceptionDAO("Erro ao cadastrar cliente");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
@@ -57,11 +57,11 @@ public class CadastroClienteDAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ArrayList<Cliente> clientes = new ArrayList<>();
-        AcessoBancodeDados acessoBanco = new AcessoBancodeDados();
+        
 
         try {
 
-            connection = acessoBanco.conexaoBD();
+        	 connection = new AcessoBancodeDados().conexaoBD();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, "%" + cpf + "%");
             ResultSet rs = preparedStatement.executeQuery();
@@ -76,14 +76,14 @@ public class CadastroClienteDAO {
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao consultar hóspede: " + e);
+            throw new ExceptionDAO("Erro ao consultar hóspede");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
@@ -101,7 +101,7 @@ public class CadastroClienteDAO {
         String sql = "UPDATE Cliente SET nomeCliente = ?, telefone = ?, email = ?, dataNascCliente = ? WHERE cpf = ?";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        AcessoBancodeDados acessoBanco = new AcessoBancodeDados();
+        
         try {
         	connection = new AcessoBancodeDados().conexaoBD();
             preparedStatement = connection.prepareStatement(sql);
@@ -113,21 +113,21 @@ public class CadastroClienteDAO {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao atualizar cadastro: " + e);
+            throw new ExceptionDAO("Erro ao atualizar cadastro");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
@@ -135,38 +135,81 @@ public class CadastroClienteDAO {
 
 
     public void apagarCadastro(Cliente cliente) throws ExceptionDAO {
-        String sql = "DELETE FROM Cliente WHERE NomeCliente = ? AND cpf = ? AND telefone = ? AND email = ? AND dataNascCliente = ?";
+        String sql = "DELETE FROM Cliente WHERE  cpf = ?";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        AcessoBancodeDados acessoBanco = new AcessoBancodeDados();
+        
 
         try {
         	connection = new AcessoBancodeDados().conexaoBD();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getCpf());
-            preparedStatement.setString(3, cliente.getTelefone());
-            preparedStatement.setString(4, cliente.getEmail());
-            preparedStatement.setDate(5, cliente.getDataNascimento());
+            preparedStatement.setString(1, cliente.getCpf());
+           
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new ExceptionDAO("Erro ao apagar o cadastro: " + e);
+            throw new ExceptionDAO("Erro ao apagar o cadastro");
         } finally {
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
-                throw new ExceptionDAO("Erro ao fechar o statement: " + e);
+                throw new ExceptionDAO("Erro ao fechar o statement");
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new ExceptionDAO("Erro ao fechar a conexão: " + e);
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
                 }
             }
         }
     }
+    
+    public ArrayList<Cliente> listarTodosClientes() throws ExceptionDAO {
+        String sql = "SELECT * FROM Cliente";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        
+
+        try {
+
+        	 connection = new AcessoBancodeDados().conexaoBD();
+            preparedStatement = connection.prepareStatement(sql);
+           
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(rs.getString("nomeCliente"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setDataNascimento(rs.getDate("dataNascCliente"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            throw new ExceptionDAO("Erro ao consultar hóspede");
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                throw new ExceptionDAO("Erro ao fechar o statement");
+            } finally {
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    throw new ExceptionDAO("Erro ao fechar a conexão");
+                }
+            }
+        }
+        return clientes;
+    }
+
 }

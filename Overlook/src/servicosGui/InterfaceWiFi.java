@@ -7,10 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bdConexao.Validador;
+import interfaces.TelaInicial;
 import servicosCore.CoreException;
 import servicosCore.Wifi;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
@@ -26,6 +30,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class InterfaceWiFi extends JFrame {
 
@@ -38,14 +43,15 @@ public class InterfaceWiFi extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
-		
+
 		try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-		
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -62,195 +68,173 @@ public class InterfaceWiFi extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceWiFi() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceWiFi.class.getResource("/interfaces/imagens/iconeOverlook.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(InterfaceWiFi.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 689, 441);
+		setSize(1280, 720);
 		setLocationRelativeTo(null);
+		setUndecorated(true);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{30, 59, 35, 55, 46, 30, 0};
-		gbl_contentPane.rowHeights = new int[]{14, 14, 14, 20, 20, 20, 30, 23, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
-		contentPane.setLayout(gbl_contentPane);
-		
-		JLabel lblNewLabel = new JLabel("<<< Voltar");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				InterfaceServicos interfaceServicos = new InterfaceServicos();
-				interfaceServicos.setVisible(true);
-				dispose();
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblNewLabel.setForeground(Color.red);
-			}
-			
-			
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblNewLabel.setForeground(Color.black);
-			}
-		});
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.weighty = 1.0;
-		gbc_lblNewLabel.weightx = 1.0;
-		gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		
+		contentPane.setLayout(null);
+
 		JLabel lblNewLabel_1 = new JLabel("Wi-Fi");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 6;
-		gbc_lblNewLabel_1.weighty = 1.0;
-		gbc_lblNewLabel_1.weightx = 1.0;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 0;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(147, 126, 103, 42);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		contentPane.add(lblNewLabel_1);
+
 		JLabel lblError = new JLabel("");
+		lblError.setBounds(0, 0, 0, 0);
 		lblError.setForeground(new Color(255, 0, 0));
-		GridBagConstraints gbc_lblError = new GridBagConstraints();
-		gbc_lblError.gridwidth = 6;
-		gbc_lblError.insets = new Insets(0, 0, 5, 0);
-		gbc_lblError.gridx = 0;
-		gbc_lblError.gridy = 1;
-		contentPane.add(lblError, gbc_lblError);
-		
+		contentPane.add(lblError);
+
 		txtNomeSetado = new JTextField();
+		txtNomeSetado.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNomeSetado.setBackground(new Color(225, 225, 225));
+		txtNomeSetado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtNomeSetado.setForeground(new Color(38, 9, 55));
+		txtNomeSetado.setBounds(145, 264, 161, 23);
 		txtNomeSetado.setEditable(false);
-		GridBagConstraints gbc_txtNomeSetado = new GridBagConstraints();
-		gbc_txtNomeSetado.weightx = 1.0;
-		gbc_txtNomeSetado.anchor = GridBagConstraints.EAST;
-		gbc_txtNomeSetado.weighty = 1.0;
-		gbc_txtNomeSetado.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNomeSetado.gridwidth = 3;
-		gbc_txtNomeSetado.gridx = 0;
-		gbc_txtNomeSetado.gridy = 4;
-		contentPane.add(txtNomeSetado, gbc_txtNomeSetado);
+		contentPane.add(txtNomeSetado);
 		txtNomeSetado.setColumns(10);
-		
-		JLabel lblNewLabel_9 = new JLabel("Nome:");
-		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
-		gbc_lblNewLabel_9.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_9.weighty = 1.0;
-		gbc_lblNewLabel_9.weightx = 1.0;
-		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_9.gridx = 4;
-		gbc_lblNewLabel_9.gridy = 4;
-		contentPane.add(lblNewLabel_9, gbc_lblNewLabel_9);
-		
+
+		JLabel lblNewLabel_9 = new JLabel("Nome");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_9.setForeground(new Color(38, 9, 55));
+		lblNewLabel_9.setBounds(95, 487, 44, 14);
+		contentPane.add(lblNewLabel_9);
+
 		txtNomeGet = new JTextField();
-		GridBagConstraints gbc_txtNomeGet = new GridBagConstraints();
-		gbc_txtNomeGet.anchor = GridBagConstraints.WEST;
-		gbc_txtNomeGet.weighty = 1.0;
-		gbc_txtNomeGet.weightx = 1.0;
-		gbc_txtNomeGet.insets = new Insets(0, 0, 5, 0);
-		gbc_txtNomeGet.gridx = 5;
-		gbc_txtNomeGet.gridy = 4;
-		contentPane.add(txtNomeGet, gbc_txtNomeGet);
+		txtNomeGet.setBounds(145, 483, 161, 23);
+		contentPane.add(txtNomeGet);
 		txtNomeGet.setColumns(10);
-		
-		JLabel lblNewLabel_5 = new JLabel("Nome:");
-		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_5.gridx = 0;
-		gbc_lblNewLabel_5.gridy = 4;
-		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
-		
+		txtNomeGet.setDocument(new Validador(20));
+
+		JLabel lblNewLabel_5 = new JLabel("Nome");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5.setForeground(new Color(38, 9, 55));
+		lblNewLabel_5.setBounds(95, 268, 43, 14);
+		contentPane.add(lblNewLabel_5);
+
 		txtSenhaSetada = new JTextField();
+		txtSenhaSetada.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSenhaSetada.setBackground(new Color(225, 225, 225));
+		txtSenhaSetada.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtSenhaSetada.setForeground(new Color(38, 9, 55));
+		txtSenhaSetada.setBounds(145, 315, 161, 23);
 		txtSenhaSetada.setEditable(false);
-		GridBagConstraints gbc_txtSenhaSetada = new GridBagConstraints();
-		gbc_txtSenhaSetada.weightx = 1.0;
-		gbc_txtSenhaSetada.anchor = GridBagConstraints.EAST;
-		gbc_txtSenhaSetada.weighty = 1.0;
-		gbc_txtSenhaSetada.insets = new Insets(0, 0, 5, 5);
-		gbc_txtSenhaSetada.gridwidth = 3;
-		gbc_txtSenhaSetada.gridx = 0;
-		gbc_txtSenhaSetada.gridy = 5;
-		contentPane.add(txtSenhaSetada, gbc_txtSenhaSetada);
+		contentPane.add(txtSenhaSetada);
 		txtSenhaSetada.setColumns(10);
-		
-		JLabel lblNewLabel_10 = new JLabel("Senha:");
-		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
-		gbc_lblNewLabel_10.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_10.weighty = 1.0;
-		gbc_lblNewLabel_10.weightx = 1.0;
-		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_10.gridx = 4;
-		gbc_lblNewLabel_10.gridy = 5;
-		contentPane.add(lblNewLabel_10, gbc_lblNewLabel_10);
-		
+
+		JLabel lblNewLabel_10 = new JLabel("Senha");
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_10.setForeground(new Color(38, 9, 55));
+		lblNewLabel_10.setBounds(95, 540, 47, 14);
+		contentPane.add(lblNewLabel_10);
+
 		txtSenhaGet = new JTextField();
-		GridBagConstraints gbc_txtSenhaGet = new GridBagConstraints();
-		gbc_txtSenhaGet.anchor = GridBagConstraints.WEST;
-		gbc_txtSenhaGet.insets = new Insets(0, 0, 5, 0);
-		gbc_txtSenhaGet.weightx = 1.0;
-		gbc_txtSenhaGet.weighty = 1.0;
-		gbc_txtSenhaGet.gridx = 5;
-		gbc_txtSenhaGet.gridy = 5;
-		contentPane.add(txtSenhaGet, gbc_txtSenhaGet);
+		txtSenhaGet.setBounds(145, 536, 161, 23);
+		contentPane.add(txtSenhaGet);
 		txtSenhaGet.setColumns(10);
-		
+		txtSenhaGet.setDocument(new Validador(20));
+
 		Wifi wifi = new Wifi();
 		txtNomeSetado.setText(wifi.getNome());
 		txtSenhaSetada.setText(wifi.getSenha());
-		
+
 		JButton btnNewButton = new JButton("Modificar");
+		btnNewButton.setBackground(new Color(225, 225, 225));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(new Color(38, 9, 55));
+		btnNewButton.setBounds(145, 594, 120, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					
+
 					Wifi wifii = new Wifi();
 					wifii.registrarInformacoes(txtNomeGet.getText(), txtSenhaGet.getText());
-					
+
 					txtNomeSetado.setText(wifii.getNome());
 					txtSenhaSetada.setText(wifii.getSenha());
 					
+					JOptionPane.showMessageDialog(null,"Mudança efetuada com sucesso!");	
 					txtNomeGet.setText("");
 					txtSenhaGet.setText("");
-					
+
 				} catch (CoreException mensagem) {
-					
-					lblError.setText(mensagem.getMessage());
-					
+
+					JOptionPane.showMessageDialog(null,"Ocorreu um erro: "  + mensagem.getMessage());	
+
 				}
-				
-				
-				
-				
-				
-				
-				
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 5;
-		gbc_btnNewButton.gridy = 6;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
-		
-		JLabel lblNewLabel_6 = new JLabel("Senha:");
-		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-		gbc_lblNewLabel_6.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_6.weighty = 1.0;
-		gbc_lblNewLabel_6.weightx = 1.0;
-		gbc_lblNewLabel_6.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_6.gridx = 0;
-		gbc_lblNewLabel_6.gridy = 5;
-		contentPane.add(lblNewLabel_6, gbc_lblNewLabel_6);
+		contentPane.add(btnNewButton);
+
+		JLabel lblNewLabel_6 = new JLabel("Senha");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setForeground(new Color(38, 9, 55));
+		lblNewLabel_6.setBounds(95, 319, 46, 14);
+		contentPane.add(lblNewLabel_6);
+
+		JButton btnServicos = new JButton("");
+		btnServicos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				InterfaceServicos interfaceServicos = new InterfaceServicos();
+				interfaceServicos.setVisible(true);
+				dispose();
+
+			}
+		});
+		btnServicos.setIcon(
+				new ImageIcon(InterfaceWiFi.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+		btnServicos.setBackground(new Color(255, 128, 64));
+		btnServicos.setBounds(0, 0, 65, 23);
+		contentPane.add(btnServicos);
+
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(
+				new ImageIcon(InterfaceWiFi.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+
+		JButton btnSignOut = new JButton("");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+
+			}
+		});
+		btnSignOut.setIcon(
+				new ImageIcon(InterfaceWiFi.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnSignOut.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnSignOut);
+
+		JLabel lblLogoTelas = new JLabel("");
+		lblLogoTelas
+				.setIcon(new ImageIcon(InterfaceWiFi.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
+		lblLogoTelas.setBounds(750, 219, 480, 320);
+		contentPane.add(lblLogoTelas);
+
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(
+				InterfaceWiFi.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
 	}
 }

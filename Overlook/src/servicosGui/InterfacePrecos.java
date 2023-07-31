@@ -22,10 +22,14 @@ import javax.swing.table.TableModel;
 
 import bdConexao.Validador;
 import interfaces.MenuPrincipal;
+import interfaces.TelaInicial;
 import servicosBD.MySQLConector;
 import servicosCore.ControladorDeAcessos;
 import servicosCore.HistoricoTranslado;
 import servicosCore.Precos;
+import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class InterfacePrecos extends JFrame {
 
@@ -100,63 +104,60 @@ public class InterfacePrecos extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfacePrecos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfacePrecos.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
+		setSize(1280,720); 
 		setLocationRelativeTo(null);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JButton btnNewButton = new JButton("Menu Principal");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				MenuPrincipal menuPrincipal = new MenuPrincipal();
-				menuPrincipal.setVisible(true);
-				dispose();
-			}
-		});
-		menuBar.add(btnNewButton);
+		setUndecorated(true);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 	
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Preços");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(565, 11, 56, 46);
-		contentPane.add(lblNewLabel);
+		JLabel lblTituloPrecos = new JLabel("Preços");
+		lblTituloPrecos.setForeground(new Color(38, 9, 55));
+		lblTituloPrecos.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblTituloPrecos.setBounds(43, 85, 224, 42);
+		contentPane.add(lblTituloPrecos);
 		
-		JLabel lblNewLabel_1 = new JLabel("Quarto Casal:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(88, 64, 86, 14);
+		JLabel lblNewLabel_1 = new JLabel("Quarto Casal");
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(43, 247, 86, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Quarto Solteiro:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(979, 64, 97, 14);
+		JLabel lblNewLabel_2 = new JLabel("Quarto Solteiro");
+		lblNewLabel_2.setForeground(new Color(38, 9, 55));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setBounds(191, 247, 97, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Refeição Restaurante:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(38, 165, 136, 14);
+		JLabel lblNewLabel_3 = new JLabel(" Restaurante");
+		lblNewLabel_3.setForeground(new Color(38, 9, 55));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setBounds(192, 510, 88, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Taxa serviço de Quarto:");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_4.setBounds(27, 287, 136, 14);
+		JLabel lblNewLabel_4 = new JLabel("Serviço de Quarto");
+		lblNewLabel_4.setForeground(new Color(38, 9, 55));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4.setBounds(44, 510, 106, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Viagem Translado:");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_5.setBounds(966, 165, 116, 14);
+		JLabel lblNewLabel_5 = new JLabel("Taxa Translado");
+		lblNewLabel_5.setForeground(new Color(38, 9, 55));
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5.setBounds(191, 385, 89, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Vaga Estacionamento:");
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_6.setBounds(946, 287, 136, 14);
+		JLabel lblNewLabel_6 = new JLabel("Estacionamento");
+		lblNewLabel_6.setForeground(new Color(38, 9, 55));
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setBounds(43, 385, 97, 14);
 		contentPane.add(lblNewLabel_6);
 		
 		txtQuartoCasal = new JTextField();
@@ -169,7 +170,7 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtQuartoCasal.setBounds(173, 62, 86, 20);
+		txtQuartoCasal.setBounds(43, 268, 89, 23);
 		contentPane.add(txtQuartoCasal);
 		txtQuartoCasal.setColumns(10);
 		txtQuartoCasal.setDocument(new Validador (7));
@@ -184,7 +185,7 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtRefeicaoRestaurante.setBounds(173, 163, 86, 20);
+		txtRefeicaoRestaurante.setBounds(192, 531, 89, 23);
 		contentPane.add(txtRefeicaoRestaurante);
 		txtRefeicaoRestaurante.setColumns(10);
 		txtRefeicaoRestaurante.setDocument(new Validador (7));
@@ -199,7 +200,7 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtQuartoSolteiro.setBounds(1086, 62, 86, 20);
+		txtQuartoSolteiro.setBounds(191, 267, 89, 23);
 		contentPane.add(txtQuartoSolteiro);
 		txtQuartoSolteiro.setColumns(10);
 		txtQuartoSolteiro.setDocument(new Validador(7));
@@ -214,7 +215,7 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtServicoQuarto.setBounds(173, 285, 86, 20);
+		txtServicoQuarto.setBounds(44, 531, 89, 23);
 		contentPane.add(txtServicoQuarto);
 		txtServicoQuarto.setColumns(10);
 		txtServicoQuarto.setDocument(new Validador(7));
@@ -229,7 +230,7 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtViagemTranslado.setBounds(1086, 163, 86, 20);
+		txtViagemTranslado.setBounds(191, 405, 89, 23);
 		contentPane.add(txtViagemTranslado);
 		txtViagemTranslado.setColumns(10);
 		txtViagemTranslado.setDocument(new Validador(7));
@@ -244,16 +245,17 @@ public class InterfacePrecos extends JFrame {
 				}
 			}
 		});
-		txtVagaEstacionamento.setBounds(1086, 285, 86, 20);
+		txtVagaEstacionamento.setBounds(43, 404, 89, 23);
 		contentPane.add(txtVagaEstacionamento);
 		txtVagaEstacionamento.setColumns(10);
 		txtVagaEstacionamento.setDocument(new Validador(7));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(186, 375, 877, 242);
+		scrollPane.setBounds(371, 247, 877, 338);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -266,6 +268,9 @@ public class InterfacePrecos extends JFrame {
 		table.setModel(modeloTabelaPrecos());
 		
 		JButton btnQuartoCasal = new JButton("Alterar");
+		btnQuartoCasal.setBackground(new Color(225, 225, 225));
+		btnQuartoCasal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnQuartoCasal.setForeground(new Color(38, 9, 55));
 		btnQuartoCasal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -289,10 +294,13 @@ public class InterfacePrecos extends JFrame {
 			}
 		});
 		
-		btnQuartoCasal.setBounds(170, 89, 89, 23);
+		btnQuartoCasal.setBounds(43, 299, 89, 23);
 		contentPane.add(btnQuartoCasal);
 		
 		JButton btnRefeicaoRestaurante = new JButton("Alterar");
+		btnRefeicaoRestaurante.setBackground(new Color(225, 225, 225));
+		btnRefeicaoRestaurante.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRefeicaoRestaurante.setForeground(new Color(38, 9, 55));
 		btnRefeicaoRestaurante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -301,9 +309,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 4;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtRefeicaoRestaurante.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtRefeicaoRestaurante.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -312,10 +320,13 @@ public class InterfacePrecos extends JFrame {
 					}
 			}
 		});
-		btnRefeicaoRestaurante.setBounds(170, 195, 89, 23);
+		btnRefeicaoRestaurante.setBounds(192, 562, 89, 23);
 		contentPane.add(btnRefeicaoRestaurante);
 		
 		JButton btnServicoDeQuarto = new JButton("Alterar");
+		btnServicoDeQuarto.setBackground(new Color(225, 225, 225));
+		btnServicoDeQuarto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnServicoDeQuarto.setForeground(new Color(38, 9, 55));
 		btnServicoDeQuarto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -324,9 +335,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 5;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtServicoQuarto.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtServicoQuarto.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -335,10 +346,13 @@ public class InterfacePrecos extends JFrame {
 					}
 			}
 		});
-		btnServicoDeQuarto.setBounds(173, 313, 89, 23);
+		btnServicoDeQuarto.setBounds(44, 562, 89, 23);
 		contentPane.add(btnServicoDeQuarto);
 		
 		JButton btnQuartoSolteiro = new JButton("Alterar");
+		btnQuartoSolteiro.setBackground(new Color(225, 225, 225));
+		btnQuartoSolteiro.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnQuartoSolteiro.setForeground(new Color(38, 9, 55));
 		btnQuartoSolteiro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -347,9 +361,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 1;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtQuartoSolteiro.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtQuartoSolteiro.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -358,10 +372,13 @@ public class InterfacePrecos extends JFrame {
 					}
 			}
 		});
-		btnQuartoSolteiro.setBounds(1086, 89, 89, 23);
+		btnQuartoSolteiro.setBounds(191, 299, 89, 23);
 		contentPane.add(btnQuartoSolteiro);
 		
 		JButton btnViagemTranslado = new JButton("Alterar");
+		btnViagemTranslado.setBackground(new Color(225, 225, 225));
+		btnViagemTranslado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnViagemTranslado.setForeground(new Color(38, 9, 55));
 		btnViagemTranslado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -370,9 +387,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 7;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtViagemTranslado.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtViagemTranslado.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -381,10 +398,13 @@ public class InterfacePrecos extends JFrame {
 					}
 			}
 		});
-		btnViagemTranslado.setBounds(1086, 194, 89, 23);
+		btnViagemTranslado.setBounds(191, 436, 89, 23);
 		contentPane.add(btnViagemTranslado);
 		
 		JButton btnVagaEstacionamento = new JButton("Alterar");
+		btnVagaEstacionamento.setBackground(new Color(225, 225, 225));
+		btnVagaEstacionamento.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVagaEstacionamento.setForeground(new Color(38, 9, 55));
 		btnVagaEstacionamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -393,9 +413,9 @@ public class InterfacePrecos extends JFrame {
 					int id = 6;
 						
 					ControladorDeAcessos controlador = new ControladorDeAcessos();
-										 controlador.mudarPreco(txtQuartoCasal.getText(), id);
+										 controlador.mudarPreco(txtVagaEstacionamento.getText(), id);
 										 table.setModel(modeloTabelaPrecos());
-										 txtQuartoCasal.setText("");
+										 txtVagaEstacionamento.setText("");
 										 JOptionPane.showMessageDialog(null,"Registrado com sucesso");
 					} catch (Exception exception) {
 						
@@ -404,7 +424,57 @@ public class InterfacePrecos extends JFrame {
 					}
 			}
 		});
-		btnVagaEstacionamento.setBounds(1086, 313, 89, 23);
+		btnVagaEstacionamento.setBounds(43, 436, 89, 23);
 		contentPane.add(btnVagaEstacionamento);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(1250, 0, 30, 30);
+		contentPane.add(btnFecharTela);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				TelaInicial objTelaInicial = new TelaInicial();
+				objTelaInicial.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnNewButton_1.setBounds(1213, 0, 30, 30);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(60, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
+		
+		JLabel lblLogoPequena = new JLabel("");
+		lblLogoPequena.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/logo 220 x150.png")));
+		lblLogoPequena.setBounds(865, 63, 220, 150);
+		contentPane.add(lblLogoPequena);
+		
+		JButton btnNewButton = new JButton("Menu");
+		btnNewButton.setBounds(0, 0, 65, 23);
+		contentPane.add(btnNewButton);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(255, 128, 64));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				menuPrincipal.setVisible(true);
+				dispose();
+			}
+		});
 	}
 }
