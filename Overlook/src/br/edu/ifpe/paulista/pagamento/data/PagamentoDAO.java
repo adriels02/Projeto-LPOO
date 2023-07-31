@@ -123,7 +123,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				pgmt.setPrecoQuarto(rs.getDouble("precoQuarto"));
+				pgmt.setTotalPrecoQuarto(rs.getDouble("precoQuarto"));
 			}
 			String totalPrecoQuarto = "SELECT SUM(precoQuarto) AS totalQuarto FROM Quarto WHERE idReserva = ?";
 
@@ -132,7 +132,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				pgmt.setPrecoFinal(rs.getDouble("totalQuarto"));
+				pgmt.setTotalPrecoQuarto(rs.getDouble("totalQuarto"));
 			}
 			String totalPrecoServico = "SELECT SUM(precoServico) AS totalServico FROM Servico WHERE idReserva = ?";
 
@@ -141,7 +141,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				pgmt.setPrecoFinal(rs.getDouble("totalServico") + pgmt.getPrecoFinal());
+				pgmt.setPrecoFinal(rs.getDouble("totalServico") + pgmt.getTotalPrecoQuarto());
 			}
 			return pgmt;
 
@@ -173,6 +173,15 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				pgmt.setNomecliente(rs.getString("nomeCliente"));
 
 			}
+			String selectdataNasc = "SELECT dataNascCliente FROM Cliente WHERE cpf = ?";
+
+			stmt = getConnection().prepareStatement(selectdataNasc);
+			stmt.setString(1, c);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				pgmt.setDataNasc(rs.getString("dataNascCliente"));
+			}
 
 			ArrayList<Integer> reservas = new ArrayList<Integer>();		
 
@@ -187,16 +196,7 @@ public class PagamentoDAO extends PagamentoGenericDAO implements PagamentoReposi
 				reservas.add(x);
 
 			}
-			String selectDataSaida = "SELECT dataSaida FROM Reserva WHERE cpf = ?";
-			stmt = getConnection().prepareStatement(selectDataSaida);
-			stmt.setString(1, c );
-			rs = stmt.executeQuery();
 
-
-			while (rs.next()) {
-				pgmt.setData(rs.getDate("dataSaida").toString());
-
-			}
 
 			ArrayList<Integer> reservasNaoFaturadas = new ArrayList<Integer>();
 

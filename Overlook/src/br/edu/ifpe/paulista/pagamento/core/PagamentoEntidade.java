@@ -1,6 +1,7 @@
 package br.edu.ifpe.paulista.pagamento.core;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PagamentoEntidade {//Entidade e seus getter e setters.
@@ -12,12 +13,12 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	private String tipoPagamento;
 	private double precoFinal;
 	private String cpfOuCnpj;
-	private Date data;
+	private String data;
+	private String dataNasc;
 	private String nomecliente;
 	private ArrayList<String> nomeServico = new ArrayList<String>();
 	private ArrayList<Double> precoServico = new ArrayList<Double>();
-	private double precoQuarto;
-	
+	private double precoTotalQuarto;
 	public ArrayList<Integer> getReservas() {
 		return reservas;
 	}
@@ -27,7 +28,7 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	public ArrayList<Integer> getReservasNaoFaturadas() {
 		return reservasNaoFaturadas;
 	}
-	public void setReservasFaturadas(ArrayList<Integer> reservasFaturadas) {
+	public void setReservasNaoFaturadas(ArrayList<Integer> reservasFaturadas) {
 		this.reservasNaoFaturadas = reservasFaturadas;
 	}
 	public String getCpfOuCnpj() {
@@ -41,6 +42,15 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	}
 	public void setNomecliente(String nomecliente) {
 		this.nomecliente = nomecliente;
+	}
+	public String getDataNasc() {
+		return dataNasc;
+	}
+	public void setDataNasc(String dataNasc) {
+	String x = dataNasc.substring(0, 4);
+	String y = dataNasc.substring(5, 7);
+	String z = dataNasc.substring(8);
+		this.dataNasc = z+"/"+y+"/"+x;
 	}
 	public int getIdFatura() {
 		return idFatura;
@@ -72,12 +82,6 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
 	public ArrayList<String> getNomeServico() {
 		return nomeServico;
 	}
@@ -90,11 +94,12 @@ public class PagamentoEntidade {//Entidade e seus getter e setters.
 	public void setPrecoServico(ArrayList<Double> precoServico) {
 		this.precoServico = precoServico;
 	}
-	public double getPrecoQuarto() {
-		return precoQuarto;
+	public double getTotalPrecoQuarto() {
+		return precoTotalQuarto;
 	}
-	public void setPrecoQuarto(double precoQuarto) {
-		this.precoQuarto = precoQuarto;
+	public void setTotalPrecoQuarto(double precoQuarto) {
+		this.precoTotalQuarto = precoQuarto;
 	}
-	
+
+
 }

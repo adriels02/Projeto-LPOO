@@ -9,25 +9,18 @@ import br.edu.ifpe.paulista.pagamento.core.PagamentoController;
 import br.edu.ifpe.paulista.pagamento.core.PagamentoExcecoesRegraNegocio;
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
-
-import java.awt.GridBagLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
 import java.awt.Font;
-import java.awt.Insets;
-import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
-import java.awt.SystemColor;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
 
-import com.itextpdf.text.DocumentException;
 
 public class TelaApresentacaoPagamento extends JFrame {
 
@@ -38,7 +31,7 @@ public class TelaApresentacaoPagamento extends JFrame {
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField textField;
-
+	private JLabel errorLabel;
 	/**
 	 * Launch the application.
 	 */
@@ -71,21 +64,21 @@ public class TelaApresentacaoPagamento extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+
+
 		JLabel lblTextoInformativo = new JLabel("Insira o CPF e selecione a forma de");
 		lblTextoInformativo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTextoInformativo.setForeground(new Color(38, 9, 55));
 		lblTextoInformativo.setBounds(108, 480, 294, 16);
 		contentPane.add(lblTextoInformativo);
-		
+
 		JLabel lblTextoInformativo_1 = new JLabel("pagamento para gerar o comprovante");
 		lblTextoInformativo_1.setForeground(new Color(38, 9, 55));
 		lblTextoInformativo_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTextoInformativo_1.setBounds(108, 493, 250, 16);
 		contentPane.add(lblTextoInformativo_1);
-	
-		
+
+
 
 		JRadioButton rdbtnCartaoCredito = new JRadioButton("Cartão de crédito");
 		rdbtnCartaoCredito.setBackground(new Color(38, 9, 55));
@@ -106,7 +99,7 @@ public class TelaApresentacaoPagamento extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		JRadioButton rdbtnBoleto = new JRadioButton("Boleto");
 		rdbtnBoleto.setBackground(new Color(38, 9, 55));
 		rdbtnBoleto.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -125,13 +118,13 @@ public class TelaApresentacaoPagamento extends JFrame {
 		buttonGroup.add(rdbtnPix);
 		contentPane.add(rdbtnPix);
 
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Cartão de débito");
-		rdbtnNewRadioButton.setBackground(new Color(38, 9, 55));
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255));
-		rdbtnNewRadioButton.setBounds(124, 343, 158, 23);
-		buttonGroup.add(rdbtnNewRadioButton);
-		contentPane.add(rdbtnNewRadioButton);
+		JRadioButton rdbtnCartaoDebito = new JRadioButton("Cartão de débito");
+		rdbtnCartaoDebito.setBackground(new Color(38, 9, 55));
+		rdbtnCartaoDebito.setFont(new Font("Tahoma", Font.BOLD, 12));
+		rdbtnCartaoDebito.setForeground(new Color(255, 255, 255));
+		rdbtnCartaoDebito.setBounds(124, 343, 158, 23);
+		buttonGroup.add(rdbtnCartaoDebito);
+		contentPane.add(rdbtnCartaoDebito);
 
 		JRadioButton rdbtnTED = new JRadioButton("TED");
 		rdbtnTED.setBackground(new Color(38, 9, 55));
@@ -140,9 +133,9 @@ public class TelaApresentacaoPagamento extends JFrame {
 		rdbtnTED.setBounds(124, 371, 109, 23);
 		buttonGroup.add(rdbtnTED);
 		contentPane.add(rdbtnTED);
-		
-		JLabel errorLabel = new JLabel(" ");
-		errorLabel.setBounds(980, 635, 6, 22);
+
+		errorLabel = new JLabel("error");
+		errorLabel.setBounds(108, 635, 1072, 22);
 
 		JButton btnGerarpdf = new JButton("Gerar Comprovante");
 		btnGerarpdf.setBackground(new Color(225, 225, 225));
@@ -166,52 +159,54 @@ public class TelaApresentacaoPagamento extends JFrame {
 					else if(rdbtnBoleto.isSelected()){
 						tipopgmt = "Boleto";
 					}
+					else if(rdbtnCartaoDebito.isSelected()){
+						tipopgmt="Cartão de débito";					}
 					else {
-						tipopgmt="Cartão de débito";
+						throw new PagamentoExcecoesRegraNegocio("Selecione um Tipo De Pagamento");
 					}
 					try {
 						pcontrol.construirEntidadeController(textField.getText(), tipopgmt);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (DocumentException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						throw new PagamentoExcecoesRegraNegocio("Erro nas operações I/O");
 					}
 					textField.setText("");
 					errorLabel.setText("Fatura salva com sucesso na pasta de documentos");
+					errorLabel.setForeground(new Color(0, 250, 0));
 					errorLabel.setVisible(true);
 				} catch (PagamentoExcecoesRegraNegocio e1) {
 					errorLabel.setText(e1.getMessage());
-				
+					errorLabel.setVisible(true);
+
+
 				}
 
 			}
 		});
-
+		contentPane.add(btnGerarpdf);
+		
 		textField = new JTextField();
 		textField.setBounds(108, 512, 222, 23);
 		contentPane.add(textField);
 		textField.setColumns(10);
+
+
+		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		errorLabel.setForeground(new Color(255, 0, 0));
+		errorLabel.setVisible(false);
+		contentPane.add(errorLabel);
 		
-		
-			errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			errorLabel.setForeground(new Color(255, 0, 0));
-			errorLabel.setVisible(false);
-			contentPane.add(errorLabel);
-		contentPane.add(btnGerarpdf);
-		
+
 		JButton btnFecharTela = new JButton("");
 		btnFecharTela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				dispose();
 			}
 		});
 		btnFecharTela.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
 		btnFecharTela.setBounds(1250, 0, 30, 30);
 		contentPane.add(btnFecharTela);
-		
+
 		JButton btnSignOut = new JButton("");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,47 +214,47 @@ public class TelaApresentacaoPagamento extends JFrame {
 				TelaInicial objTelaInicial = new TelaInicial();
 				objTelaInicial.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		btnSignOut.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
 		btnSignOut.setBounds(1213, 0, 30, 30);
 		contentPane.add(btnSignOut);
 
-		
+
 		JLabel lblNewLabel = new JLabel("Pagamento");
 		lblNewLabel.setForeground(new Color(38, 9, 55));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblNewLabel.setBounds(108, 141, 173, 42);
 		contentPane.add(lblNewLabel);
-		
-				
+
+
 		JLabel lblLogoTelas = new JLabel("");
 		lblLogoTelas.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
 		lblLogoTelas.setBounds(700, 210, 480, 320);
 		contentPane.add(lblLogoTelas);
 
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/bloco azul 222 x 170.png")));
 		lblNewLabel_1.setBackground(new Color(38, 9, 55));
 		lblNewLabel_1.setBounds(108, 242, 222, 170);
 		contentPane.add(lblNewLabel_1);
-				
-		
-		
+
+
+
 		JLabel lblLogoTransparente = new JLabel("");
 		lblLogoTransparente.setIcon(new ImageIcon(TelaApresentacaoPagamento.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
 		contentPane.add(lblLogoTransparente);
-		
-
-		
 
 
-		
 
-		
+
+
+
+
+
 
 
 
