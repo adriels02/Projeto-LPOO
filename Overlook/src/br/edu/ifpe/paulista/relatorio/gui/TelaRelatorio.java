@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class TelaRelatorio extends JFrame {
 
@@ -79,6 +80,7 @@ public class TelaRelatorio extends JFrame {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(225, 225, 225));
 		panel.setBounds(142, 275, 307, 163);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -94,11 +96,15 @@ public class TelaRelatorio extends JFrame {
 		panel.add(jdc1_1);
 
 		JLabel lblNewLabel = new JLabel("Data inicial");
-		lblNewLabel.setBounds(38, 33, 85, 43);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setForeground(new Color(38, 9, 55));
+		lblNewLabel.setBounds(38, 45, 85, 23);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Data Final");
-		lblNewLabel_1.setBounds(38, 101, 62, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setForeground(new Color(38, 9, 55));
+		lblNewLabel_1.setBounds(38, 100, 85, 23);
 		panel.add(lblNewLabel_1);
 
 		JButton gerarRelatorio = new JButton("Restaurante");
@@ -261,17 +267,19 @@ public class TelaRelatorio extends JFrame {
 		lblTituloRelatorio.setBounds(32, 141, 352, 42);
 		contentPane.add(lblTituloRelatorio);
 
+		JLabel lblInstrucoes = new JLabel("Seleciona as datas de início e fim");
+		lblInstrucoes.setHorizontalAlignment(SwingConstants.LEFT);
+		lblInstrucoes.setForeground(new Color(38, 9, 55));
+		lblInstrucoes.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblInstrucoes.setBounds(142, 240, 317, 32);
+		contentPane.add(lblInstrucoes);
+
 
 		JLabel lblLogoTransparente = new JLabel("");
 		lblLogoTransparente.setIcon(new ImageIcon(TelaRelatorio.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
 		contentPane.add(lblLogoTransparente);
 		
-		JLabel lblInstrucoes = new JLabel("Seleciona as datas de início e fim,");
-		lblInstrucoes.setForeground(new Color(38, 9, 55));
-		lblInstrucoes.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblInstrucoes.setBounds(142, 222, 352, 42);
-		contentPane.add(lblInstrucoes);
 
 
 	}

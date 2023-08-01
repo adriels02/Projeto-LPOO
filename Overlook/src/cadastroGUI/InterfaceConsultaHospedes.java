@@ -87,6 +87,8 @@ public class InterfaceConsultaHospedes extends JFrame {
         contentPane.add(btnNewButton_3);
 
         JButton btnNewButton_4 = new JButton("Limpar");
+        btnNewButton_4.setForeground(new Color(38, 9, 55));
+        btnNewButton_4.setBackground(new Color(225, 225, 225));
         btnNewButton_4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 textfConsultaCpf.setText("");
@@ -111,6 +113,8 @@ public class InterfaceConsultaHospedes extends JFrame {
         contentPane.add(btnNewButton_2);
 
         JButton btnNewButton = new JButton("Atualizar");
+        btnNewButton.setForeground(new Color(38, 9, 55));
+        btnNewButton.setBackground(new Color(225, 225, 225));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 consultarTodosHospedes();
@@ -134,6 +138,8 @@ public class InterfaceConsultaHospedes extends JFrame {
         contentPane.add(btnNewButton_2_1);
 
         JButton btnNewButton_4_1 = new JButton("Limpar");
+        btnNewButton_4_1.setBackground(new Color(225, 225, 225));
+        btnNewButton_4_1.setForeground(new Color(38, 9, 55));
         btnNewButton_4_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		txtfConsultaDependentes.setText("");
@@ -163,6 +169,8 @@ public class InterfaceConsultaHospedes extends JFrame {
         contentPane.add(bttConsultarDependentes);
 
         JButton btnNewButton_5 = new JButton("Atualizar");
+        btnNewButton_5.setBackground(new Color(225, 225, 225));
+        btnNewButton_5.setForeground(new Color(38, 9, 55));
         btnNewButton_5.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		consultarTodosDependentes();
@@ -278,6 +286,7 @@ public class InterfaceConsultaHospedes extends JFrame {
         btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));
 
         JLabel lblConsultarDependentes = new JLabel("Consultar Dependentes");
+        lblConsultarDependentes.setForeground(new Color(38, 9, 55));
         lblConsultarDependentes.setFont(new Font("Tahoma", Font.BOLD, 30));
         lblConsultarDependentes.setBounds(37, 397, 439, 42);
         contentPane.add(lblConsultarDependentes);

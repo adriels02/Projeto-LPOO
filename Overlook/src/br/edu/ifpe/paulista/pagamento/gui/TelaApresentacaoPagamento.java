@@ -2,24 +2,26 @@ package br.edu.ifpe.paulista.pagamento.gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import bdConexao.ValidarCaracteres;
 import br.edu.ifpe.paulista.pagamento.core.PagamentoController;
 import br.edu.ifpe.paulista.pagamento.core.PagamentoExcecoesRegraNegocio;
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
-import java.awt.Toolkit;
 
 
 public class TelaApresentacaoPagamento extends JFrame {
@@ -188,6 +190,7 @@ public class TelaApresentacaoPagamento extends JFrame {
 		textField.setBounds(108, 512, 222, 23);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new ValidarCaracteres(11, ValidarCaracteres.TipoEntrada.NUMEROINTERIRO));
 
 
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));

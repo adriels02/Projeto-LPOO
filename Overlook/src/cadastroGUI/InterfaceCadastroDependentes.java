@@ -10,6 +10,7 @@ import javax.swing.text.MaskFormatter;
 import bdConexao.Validador;
 import cadastroCORE.CadastroControllerDependentes;
 import cadastroCORE.Dependentes;
+import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
 
 import javax.swing.JMenuBar;
@@ -136,19 +137,19 @@ public class InterfaceCadastroDependentes extends JFrame {
         Validador validadorCpfDependente = new Validador(11);
 		txtfCpfDependente.setDocument(validadorCpfDependente);
 
-        JButton btnNewButton_1 = new JButton("Voltar");
-        btnNewButton_1.setBackground(new Color(225, 225, 225));
-        btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-        btnNewButton_1.setForeground(new Color(38, 9, 55));
-        btnNewButton_1.addActionListener(new ActionListener() {
+        JButton btnVoltarCliente = new JButton("Voltar");
+        btnVoltarCliente.setBackground(new Color(225, 225, 225));
+        btnVoltarCliente.setFont(new Font("Tahoma", Font.BOLD, 11));
+        btnVoltarCliente.setForeground(new Color(38, 9, 55));
+        btnVoltarCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CadastroInterface ci = new CadastroInterface();
                 ci.setVisible(true);
                 dispose();
             }
         });
-        btnNewButton_1.setBounds(540, 470, 106, 23);
-        contentPane.add(btnNewButton_1);
+        btnVoltarCliente.setBounds(540, 470, 106, 23);
+        contentPane.add(btnVoltarCliente);
 
         JLabel lblNewLabel_4 = new JLabel("Data Nascimento");
         lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -249,9 +250,9 @@ public class InterfaceCadastroDependentes extends JFrame {
                 btnMenuPrincipal.setForeground(new Color(255, 255, 255));
                 btnMenuPrincipal.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        CadastroInterface cd = new CadastroInterface();
-                        cd.setVisible(true);
-                        dispose();
+                    	MenuPrincipal menu = new MenuPrincipal();
+        				menu.setVisible(true);
+        				dispose();
                     }
                 });
                 btnMenuPrincipal.setFont(new Font("Tahoma", Font.BOLD, 11));

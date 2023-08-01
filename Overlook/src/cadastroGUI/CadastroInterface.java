@@ -78,6 +78,8 @@ public class CadastroInterface extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Limpar");
+		btnNewButton.setBackground(new Color(225, 225, 225));
+		btnNewButton.setForeground(new Color(38, 9, 55));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -237,7 +239,7 @@ public class CadastroInterface extends JFrame {
 				dispose();
 			}
 		});
-		btnCadastrarDependentes.setBounds(384, 459, 179, 23);
+		btnCadastrarDependentes.setBounds(71, 505, 179, 23);
 		contentPane.add(btnCadastrarDependentes);
 		
 		JButton btnNenuPrincipal = new JButton("Menu");
@@ -255,11 +257,7 @@ public class CadastroInterface extends JFrame {
 		});
 		
 						
-		JLabel lblLogoTransparente = new JLabel("");
-		lblLogoTransparente.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
-		lblLogoTransparente.setBounds(0, 0, 758, 758);
-		contentPane.add(lblLogoTransparente);
-		
+	
 		JButton btnFecharTela = new JButton("");
 		btnFecharTela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -290,19 +288,28 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(lblLogoTelas);
 		
 		JLabel lblNewLabel_2 = new JLabel("Dados do Cliente");
+		lblNewLabel_2.setForeground(new Color(38, 9, 55));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(72, 160, 133, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_7 = new JLabel("Adicionar Dependentes");
+		lblNewLabel_7.setForeground(new Color(38, 9, 55));
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_7.setBounds(71, 461, 179, 14);
 		contentPane.add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("* Finalize o cadastro antes de adicionar um dependente");
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_8.setBounds(211, 434, 351, 14);
+		JLabel lblNewLabel_8 = new JLabel("Finalize o cadastro antes de adicionar um dependente");
+		lblNewLabel_8.setForeground(new Color(38, 9, 55));
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_8.setBounds(71, 480, 351, 14);
 		contentPane.add(lblNewLabel_8);
+		
+		
+		JLabel lblLogoTransparente = new JLabel("");
+		lblLogoTransparente.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setBounds(0, 0, 758, 758);
+		contentPane.add(lblLogoTransparente);
 		
 
 		
