@@ -1,6 +1,7 @@
 package servicosCore;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import servicosBD.BDException;
 import servicosBD.ControleAcessoBD;
@@ -221,13 +222,70 @@ public class ControladorDeAcessos {
 		}
 	}
 	
+	public void registroPedidoDeQuarto(String idReserva, String numeroQuarto,String quantidadeRefeicao ,String refeicao, String observacoes) throws CoreException{
+		
+		
+			if (quantidadeRefeicao.isBlank()) {
+				throw new CoreException("O campo quantidade de refeições está vazio.");
+			}
+		
+			if (idReserva.isBlank()) {
+				throw new CoreException("O campo Id Reserva está vazio.");
+				
+			}
+			
+			if (numeroQuarto.isBlank()) {
+				throw new CoreException("O campo Número do Quarto está vazio.");
+
+			}
+			
+			if (refeicao.isBlank()) {
+				throw new CoreException("A opção de refeição não foi selecionada.");
+			}
+			
+		int numeroDoQuarto = Integer.parseInt(numeroQuarto);
+		int numeroReserva = Integer.parseInt(idReserva);
+		LocalDateTime datahora = LocalDateTime.now();
+		int numeroDeRefeicao = Integer.parseInt(quantidadeRefeicao);
+		
+		if (numeroDeRefeicao == 0) {
+			throw new CoreException("Quantidade da refeição é inválida. por favor, digite um número válido");
+		}
+		
+		if (numeroDeRefeicao > 10) {
+			throw new CoreException("Quantidade limite de refeições simultâneas em uma única reserva foi excedida (10)");
+		}
+		
+		try {
+			
+			RegistroServicoDeQuarto registro = new RegistroServicoDeQuarto(numeroDoQuarto, numeroReserva,numeroDeRefeicao ,refeicao, datahora, observacoes);
+			repositorio.registroServicoDeQuarto(registro);
+		
+		} catch (BDException exception) {
+			throw new CoreException(exception.getMessage());
+			
+		}
+		
+	}
 	
 	
+	public void registroServicoDeQuarto(String id , String refeicao, String quantidade) throws CoreException {
+		
+			int numeroId = Integer.parseInt(id);
+			int numeroQuantidade = Integer.parseInt(quantidade);
+			
+		try {
+			ServicoDeQuarto servicoQuarto = new ServicoDeQuarto(numeroId, numeroQuantidade, refeicao);
+			repositorio.registroServico(servicoQuarto);
+		}	catch (BDException mensagem ) {
+			
+			throw new CoreException(mensagem.getMessage());
+			
+		}
 	
-	
-	
-	
-	
-	
-	
+	}
 }
+	
+	
+	
+	

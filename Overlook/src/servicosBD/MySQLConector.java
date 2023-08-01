@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +15,10 @@ import reservaQuartos.Reserva;
 import servicosCore.Arrumacao;
 import servicosCore.HistoricoTranslado;
 import servicosCore.Precos;
+import servicosCore.RegistroServicoDeQuarto;
 import servicosCore.RestaurantePedidos;
 import servicosCore.Servico;
+import servicosCore.ServicoDeQuarto;
 import servicosCore.Translado;
 
 public class MySQLConector implements ControleAcessoBD {
@@ -82,6 +86,7 @@ public class MySQLConector implements ControleAcessoBD {
 			stmt.setString(3, servico.getDescricao());
 			stmt.setDouble(4, servico.getPreco());
 			stmt.execute();
+			System.out.println("teste");
 
 		} catch (Exception e) {
 			throw new BDException("Ocorreu um erro de conexão");
@@ -551,8 +556,98 @@ public class MySQLConector implements ControleAcessoBD {
 			return valor;
 
 		}
+
+		public void registroServicoDeQuarto(RegistroServicoDeQuarto servicoDeQuarto) throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement(
+						"INSERT INTO servico_de_quarto(numeroQuarto , idReserva , refeicao, quantidade , dia, observacoes ) VALUES(?,?,?,?,?,?)");
+				stmt.setInt(1, servicoDeQuarto.getNumeroDoQuarto());
+				stmt.setInt(2, servicoDeQuarto.getNumeroReserva());
+				stmt.setString(3, servicoDeQuarto.getRefeicao());
+				stmt.setInt(4, servicoDeQuarto.getQuantidadeRefeicao());
+				
+				Timestamp dia = null;
+				dia = dia.valueOf(servicoDeQuarto.getDatahora());
+				
+				stmt.setTimestamp(5, dia);
+				stmt.setString(6, servicoDeQuarto.getObservacoes());
+				stmt.execute();
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um errode conexão");
+				}
+			}			
+		}
 		
-		
+		public List<RegistroServicoDeQuarto> leituraServicosDeQuarto() throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+
+			List<RegistroServicoDeQuarto> registros = new ArrayList<>();
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT * FROM servico_de_quarto");
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+
+					RegistroServicoDeQuarto tabela = new RegistroServicoDeQuarto();
+					tabela.setIdRegistro(rs.getInt(1));
+					tabela.setNumeroDoQuarto(rs.getInt(2));				
+					tabela.setNumeroReserva(rs.getInt(3));
+					tabela.setRefeicao(rs.getString(4));
+					tabela.setQuantidadeRefeicao(rs.getInt(5));
+					
+					Timestamp time = rs.getTimestamp(6);
+					LocalDateTime tempo = time.toLocalDateTime();
+					tabela.setDatahora(tempo);
+					tabela.setObservacoes(rs.getString(7));
+					
+					registros.add(tabela);
+				}
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+			}
+
+			return registros;
+
+		}
 		
 	}
 

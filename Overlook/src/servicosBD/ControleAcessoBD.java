@@ -4,6 +4,7 @@ import reservaQuartos.Reserva;
 import servicosCore.Arrumacao;
 import servicosCore.HistoricoTranslado;
 import servicosCore.Precos;
+import servicosCore.RegistroServicoDeQuarto;
 import servicosCore.RestaurantePedidos;
 import servicosCore.Servico;
 import servicosCore.Translado;
@@ -24,5 +25,7 @@ public interface ControleAcessoBD {
 	public void registroReserva(Reserva reserva) throws BDException;
 	
 	public void registroPrecos(Precos precos) throws BDException;
+	
+	public void registroServicoDeQuarto(RegistroServicoDeQuarto registro) throws BDException;
 
 }

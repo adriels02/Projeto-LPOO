@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -20,8 +21,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import bdConexao.Validador;
 import interfaces.TelaInicial;
+import servicosBD.BDException;
+import servicosBD.MySQLConector;
+import servicosCore.ControladorDeAcessos;
+import servicosCore.RegistroServicoDeQuarto;
 import servicosCore.Restaurante;
+import servicosCore.RestaurantePedidos;
 import servicosCore.ServicoDeQuarto;
 
 import java.awt.Font;
@@ -37,22 +44,52 @@ import javax.swing.JTable;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class InterfaceServicoDeQuarto extends JFrame {
 
-	private JPanel contentPane;
-
-	DefaultListModel<String> historicoServicos = new DefaultListModel<>();
-
-	
+	private JPanel contentPane;	
 	private ButtonGroup grupoBotoesRefeicao = new ButtonGroup();
 	private JTextField txtObservacoes;
-	private JTextField txtIDQuarto;
+	private JTextField txtNumeroQuarto;
 	private JTable table;
-	private JTextField textField;
+	private JTextField txtIdReserva;
+	private JTextField txtQuantidadeRefeicao;
 
 	
-	
+	private TableModel modeloServicoDeQuarto() {
+	    DefaultTableModel tableModel = new DefaultTableModel(
+	        new Object[][] {},
+	        new String[] {
+	        		"ID", "N\u00BA Quarto", "ID Reserva", "Tipo", "N\u00BA Refei\u00E7\u00F5es", "Dia e hora", "Observa\u00E7\u00F5es"        }
+	    ) {
+	       
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+	    };
+
+	    tableModel.setNumRows(0);
+
+	    try {
+	        MySQLConector leitor = new MySQLConector();
+
+	        for (RegistroServicoDeQuarto p : leitor.leituraServicosDeQuarto()) {
+	            tableModel.addRow(new Object[] {
+	                p.getIdRegistro(), p.getNumeroDoQuarto(), p.getNumeroReserva(), p.getRefeicao(), p.getQuantidadeRefeicao(), p.getDatahora(), p.getObservacoes()
+	            });
+	            
+	        }
+	    } catch (BDException exception) {
+	        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao Atualizar a tabela.");
+	    }
+	 
+
+	    return tableModel;
+	}
+
 	
 	
 	/**
@@ -103,11 +140,6 @@ public class InterfaceServicoDeQuarto extends JFrame {
 				lblTituloServicoQuarto.setBounds(51, 78, 291, 42);
 				lblTituloServicoQuarto.setFont(new Font("Tahoma", Font.BOLD, 30));
 				contentPane.add(lblTituloServicoQuarto);
-						
-						JLabel lblError = new JLabel("");
-						lblError.setBounds(0, 0, 0, 0);
-						lblError.setForeground(new Color(255, 0, 0));
-						contentPane.add(lblError);
 				
 						JLabel lblNewLabel_2 = new JLabel("Observação");
 						lblNewLabel_2.setForeground(new Color(38, 9, 55));
@@ -146,8 +178,18 @@ public class InterfaceServicoDeQuarto extends JFrame {
 								contentPane.add(scrollPane);
 								
 								table = new JTable();
+								table.setModel(new DefaultTableModel(
+									new Object[][] {
+									},
+									new String[] {
+										"ID", "N\u00BA Quarto", "ID Reserva", "Tipo", "N\u00BA Refei\u00E7\u00F5es", "Dia e hora", "Observa\u00E7\u00F5es"
+									}
+								));
+								table.getColumnModel().getColumn(5).setPreferredWidth(89);
+								table.getColumnModel().getColumn(5).setMinWidth(123);
 								scrollPane.setViewportView(table);
-						
+								table.setModel(modeloServicoDeQuarto());
+								table.getColumnModel().getColumn(5).setPreferredWidth(110);
 								JRadioButton rdbtnAlmoco = new JRadioButton("Almoço");
 								rdbtnAlmoco.setBackground(new Color(255, 255, 255));
 								rdbtnAlmoco.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -176,9 +218,10 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						lblNewLabel_4.setBounds(298, 272, 91, 14);
 						contentPane.add(lblNewLabel_4);
 		
-				txtIDQuarto = new JTextField();
-				txtIDQuarto.setBounds(298, 294, 136, 21);
-				txtIDQuarto.addKeyListener(new KeyAdapter() {
+				txtNumeroQuarto = new JTextField();
+				txtNumeroQuarto.setBounds(298, 294, 136, 21);
+				txtNumeroQuarto.setDocument(new Validador(5));
+				txtNumeroQuarto.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
 						
@@ -188,21 +231,78 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						}
 					}
 				});
-				contentPane.add(txtIDQuarto);
-				txtIDQuarto.setColumns(10);
+				contentPane.add(txtNumeroQuarto);
+				txtNumeroQuarto.setColumns(10);
 		
 				
 						JButton btnAdicionar = new JButton("Adicionar");
+						btnAdicionar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								
+								String refeicao = null;
+
+								if (rdbtnAlmoco.isSelected()) {
+
+									refeicao = "Almoço";
+								}
+
+								else if (rdbtnJantar.isSelected()) {
+
+									refeicao = "Jantar";
+								}
+
+								else if (rdbtnCafeDaManha.isSelected()) {
+
+									refeicao = "Café da manhã";
+								}
+
+								else {
+
+									refeicao = "";
+								}
+								
+								
+								try {
+									ControladorDeAcessos controlador = new ControladorDeAcessos();
+									controlador.registroPedidoDeQuarto(txtIdReserva.getText(), txtNumeroQuarto.getText(),txtQuantidadeRefeicao.getText(), refeicao, txtObservacoes.getText());
+									controlador.registroServicoDeQuarto(txtIdReserva.getText(), refeicao ,txtQuantidadeRefeicao.getText());
+									
+									JOptionPane.showMessageDialog(null,"Serviço de quarto registrado com sucesso");	
+									txtIdReserva.setText("");
+									txtNumeroQuarto.setText("");
+									txtObservacoes.setText("");
+									txtQuantidadeRefeicao.setText("");
+									txtQuantidadeRefeicao.setText("");
+									grupoBotoesRefeicao.clearSelection();
+									table.setModel(modeloServicoDeQuarto());
+									table.getColumnModel().getColumn(5).setPreferredWidth(110);
+
+								} catch (Exception exception) {
+									
+									JOptionPane.showMessageDialog(null, exception.getMessage());				
+								}							
+							}
+						});
 						btnAdicionar.setForeground(new Color(38, 9, 55));
 						btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
-						btnAdicionar.setBounds(478, 434, 91, 23);
+						btnAdicionar.setBounds(478, 424, 91, 23);
 						
 						
-						textField = new JTextField();
-						textField.setBounds(298, 208, 271, 20);
-						contentPane.add(textField);
-						textField.setColumns(10);
+						txtIdReserva = new JTextField();
+						txtIdReserva.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyTyped(KeyEvent e) {
+								String caracteres="0987654321";
+								if(!caracteres.contains(e.getKeyChar()+"")){
+								e.consume();
+								}
+							}
+						});
+						txtIdReserva.setBounds(298, 208, 271, 20);
+						contentPane.add(txtIdReserva);
+						txtIdReserva.setColumns(10);
 						contentPane.add(btnAdicionar);
+						txtIdReserva.setDocument(new Validador(50));
 				btnRemoverHistorico.setEnabled(false);
 				contentPane.add(btnRemoverHistorico);
 				
@@ -260,6 +360,27 @@ public class InterfaceServicoDeQuarto extends JFrame {
 				lblLogoTransparente.setBounds(160, 0, 758, 758);
 				contentPane.add(lblLogoTransparente);
 				
+				JLabel lblQuantidadeRefeicao = new JLabel("Quantidade da Refeição");
+				lblQuantidadeRefeicao.setForeground(new Color(38, 9, 55));
+				lblQuantidadeRefeicao.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblQuantidadeRefeicao.setBounds(51, 370, 154, 14);
+				contentPane.add(lblQuantidadeRefeicao);
+				
+				txtQuantidadeRefeicao = new JTextField();
+				txtQuantidadeRefeicao.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {		
+						String caracteres = "0987654321";
+						if (!caracteres.contains(e.getKeyChar() + "")) {
+							e.consume();
+						}
+					}
+				});
+				txtQuantidadeRefeicao.setColumns(10);
+				txtQuantidadeRefeicao.setBounds(51, 393, 136, 21);
+				contentPane.add(txtQuantidadeRefeicao);
+				txtQuantidadeRefeicao.setDocument(new Validador(2));
+				
 
 		
 		
@@ -267,5 +388,4 @@ public class InterfaceServicoDeQuarto extends JFrame {
 		
 		
 	}
-
 }

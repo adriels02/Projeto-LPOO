@@ -199,17 +199,6 @@ public class InterfaceTranslado extends JFrame {
 
 			}
 		});
-		
-		DefaultTableModel tableModel = new DefaultTableModel(
-			    new Object[][] {},
-			    new String[] {
-			        "idViagem", "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva"
-			    }
-			) {
-			    Class[] columnTypes = new Class[] {
-			        Object.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
-			    };			  
-			};
 
 		table.setModel(modeloTabelaTranslado());
 		contentPane.add(table);

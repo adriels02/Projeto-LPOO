@@ -73,7 +73,7 @@ public class InterfaceRestaurante extends JFrame {
 	            "ID pedido", "ID Reserva", "Refeição", "Quantidade", "Data", "Hora", "Observação"
 	        }
 	    ) {
-	        // Configura o modelo para não permitir edições
+	       
 	        @Override
 	        public boolean isCellEditable(int row, int column) {
 	            return false;
