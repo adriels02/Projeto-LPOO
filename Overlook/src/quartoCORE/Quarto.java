@@ -1,19 +1,19 @@
 package quartoCORE;
 
 public class Quarto {
-	private String numeroQuarto;
+	private int numeroQuarto;
 	private int andar;
 	private String tipoQuarto;
 	private boolean disponibilidade;
 	private double precoQuarto;
-	private String capacidade;
+	private int capacidade;
 	private String descricaoQuarto;
 	
 	public Quarto() {
 		super();
 	}
-	public Quarto(String numeroQuarto, int andar, String tipoQuarto, boolean disponibilidade, double precoQuarto,
-			String capacidade, String descricaoQuarto) {
+	public Quarto(int numeroQuarto, int andar, String tipoQuarto, boolean disponibilidade, double precoQuarto,
+			int capacidade, String descricaoQuarto) {
 		super();
 		this.numeroQuarto = numeroQuarto;
 		this.andar = andar;
@@ -23,10 +23,10 @@ public class Quarto {
 		this.capacidade = capacidade;
 		this.descricaoQuarto = descricaoQuarto;
 	}
-	public String getNumeroQuarto() {
+	public int getNumeroQuarto() {
 		return numeroQuarto;
 	}
-	public void setNumeroQuarto(String numeroQuarto) {
+	public void setNumeroQuarto(int numeroQuarto) {
 		this.numeroQuarto = numeroQuarto;
 	}
 	public int getAndar() {
@@ -53,10 +53,10 @@ public class Quarto {
 	public void setPrecoQuarto(double precoQuarto) {
 		this.precoQuarto = precoQuarto;
 	}
-	public String getCapacidade() {
+	public int getCapacidade() {
 		return capacidade;
 	}
-	public void setCapacidade(String capacidade) {
+	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
 	}
 	public String getDescricaoQuarto() {

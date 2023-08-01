@@ -7,39 +7,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
-
+import quartoGUI.InterfaceCadastroDeQuartos;
 import bdConexao.AcessoBancodeDados;
-import cadastroBD.ExceptionDAO;
-import cadastroCORE.Cliente;
 import servicosBD.BDException;
 import quartoCORE.Quarto;
 
 public class QuartoDAO {
-	public int totalRegistro;
 	
-	public void conectar () throws BDException {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (Exception Mensagem) {
-			throw new BDException("Ocorreu o seguinte erro: " + Mensagem);
-		}
-	}
+	static Connection conn;
 
 	public static void cadastrarQuarto(Quarto quarto) throws BDException {
-		Connection conn = null;
+		String sql = "INSERT INTO Quarto(numeroQuarto,andar, tipoQuarto, disponibilidade, precoQuarto,\r\n"
+				+ "	capacidade,descricaoQuarto) VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
-			stmt = conn.prepareStatement(
-					"INSERT INTO Quarto(numeroQuarto,andar, tipoQuarto, disponibilidade, precoQuarto,\r\n"
-					+ "	capacidade,descricaoQuarto) VALUES(?,?,?,?,?,?,?)");
-			stmt.setString(1, quarto.getNumeroQuarto());
+			conn = new AcessoBancodeDados().conexaoBD();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, quarto.getNumeroQuarto());
 			stmt.setInt(2, quarto.getAndar());
 			stmt.setString(3, quarto.getTipoQuarto());
 			stmt.setBoolean(4, quarto.isDisponibilidade());
 			stmt.setDouble(5, quarto.getPrecoQuarto());
-			stmt.setString(6, quarto.getCapacidade());
+			stmt.setInt(6, quarto.getCapacidade());
 			stmt.setString(7, quarto.getDescricaoQuarto());
 			stmt.executeUpdate() ;
 			
@@ -65,37 +55,31 @@ public class QuartoDAO {
 	}
 	
 	
-	public DefaultTableModel mostrarQuarto (String buscar) throws BDException {
-		DefaultTableModel modelo; //Dados carregados na tabela, definido como modelo.
-		String[]titulos = {"Numero","Andar","TipoQuarto","Estado", "Preco","Capacidade", "Descricao" };
-		String[]registro = new String[7];
-		totalRegistro = 0;
+	public ArrayList<Quarto> listarQuartos(int numeroQuarto) throws BDException {
+		ArrayList<Quarto> quartos = new ArrayList<>();
+		String sql = "SELECT * FROM Quarto WHERE andar LIKE ? ORDER BY numeroQuarto";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		modelo = new DefaultTableModel (null, titulos);
-		String sql = "SELECT * FROM Quarto WHERE anadar LIKE '%" + buscar + "%' ORDER BY numeroQuarto";
-		
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
 			stmt = (PreparedStatement) conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-               registro [0] = rs.getString("numeroQuarto");
-               registro [1] = rs.getString("andar");
-               registro [2] = rs.getString("TipoQuarto");
-               registro [3] = rs.getString("Disponibilidade");
-               registro [4] = rs.getString("precoQuarto");
-               registro [5] = rs.getString("Capacidade");
-               registro [6] = rs.getString("Descricao");
+               Quarto quarto = new Quarto(); 
+               quarto.setNumeroQuarto(rs.getInt("numeroQuarto"));
+               quarto.setAndar(rs.getInt("andar"));
+               quarto.setTipoQuarto(rs.getString("tipoQuarto"));
+               quarto.setDisponibilidade(rs.getBoolean("disponibilidade"));
+               quarto.setPrecoQuarto(rs.getDouble("precoQuarto"));
+               quarto.setCapacidade(rs.getInt("capacidade"));
+               quarto.setDescricaoQuarto(rs.getString("descricao"));
                
-               totalRegistro++;
-               modelo.addRow(registro);
+               quartos.add(quarto);
             }
-            return modelo;
         } catch (SQLException e) {
-            throw new BDException("Erro ao exibir quarto: " + e);
+            throw new BDException("Erro ao listar quartos: " + e);
         } finally {
         	try {
 				if (stmt != null) {
@@ -113,9 +97,10 @@ public class QuartoDAO {
                 }
             }
         }
+		return quartos;
 	}
 	
-	public void editarQuarto (Quarto quarto)throws BDException {
+	public void editar (Quarto quarto)throws BDException {
 		String sql = "UPDATE Quarto SET numeroQuarto = ?, andar = ?, tipoQuarto = ?, disponibilidade = ?, \\r\\n"
 				+ ", precoQuarto = ?, capacidade = ?, descricao = ? WHERE numeroQuarto = ?";
 		Connection conn = null;
@@ -124,12 +109,12 @@ public class QuartoDAO {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, quarto.getNumeroQuarto());
+			stmt.setInt(1, quarto.getNumeroQuarto());
 			stmt.setInt(2, quarto.getAndar());
 			stmt.setString(3, quarto.getTipoQuarto());
 			stmt.setBoolean(4, quarto.isDisponibilidade());
 			stmt.setDouble(5, quarto.getPrecoQuarto());
-			stmt.setString(6, quarto.getCapacidade());
+			stmt.setInt(6, quarto.getCapacidade());
 			stmt.setString(7, quarto.getDescricaoQuarto());
 			stmt.execute();
 			
@@ -154,7 +139,7 @@ public class QuartoDAO {
         }
 	}
 	
-	public void deletarQuarto (Quarto quarto) throws BDException{
+	public void deletar (Quarto quarto) throws BDException{
 		String sql= "DELETE FROM Quarto WHERE numeroQuarto = ?";
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -162,7 +147,8 @@ public class QuartoDAO {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, quarto.getNumeroQuarto());
+			stmt.setInt(1, quarto.getNumeroQuarto());
+			stmt.execute();
 			
 		}catch (SQLException e) {
 			throw new BDException("Erro ao apagar quarto: " + e);
@@ -185,8 +171,63 @@ public class QuartoDAO {
 	}
 		
 	 }
-
 	
+	   public DefaultTableModel carregarTabela() throws BDException {
+	    	DefaultTableModel modelo = new DefaultTableModel();
+	    	modelo.setNumRows(0);
+
+	        modelo.addColumn("N° Quarto");
+	        modelo.addColumn("Andar");
+	        modelo.addColumn("Tipo de Quarto");
+	        modelo.addColumn("Disponibilidade");
+	        modelo.addColumn("Valor Diaria");
+	        modelo.addColumn("Capacidade");
+	        modelo.addColumn("Descricao");
+
+	        PreparedStatement stmt = null;
+	        Connection conn = null;
+
+	        try {
+	            conn = new AcessoBancodeDados().conexaoBD();
+	            ResultSet rs;
+
+	            stmt = conn.prepareStatement("SELECT * FROM Quarto");
+	            rs = stmt.executeQuery();
+
+	            while (rs.next()) {
+	                modelo.addRow(new Object[]{
+	                        rs.getInt(1),
+	                        rs.getInt(2),
+	                        rs.getString(3),
+	                        rs.getBoolean(4),
+	                        rs.getDouble(5),
+	                        rs.getInt(6),
+	                        rs.getString(7)
+	                });
+	            }
+	        } catch (SQLException e) {
+				throw new BDException("Erro ao apagar quarto: " + e);
+			}finally {
+	        	try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (SQLException e) {
+	                throw new BDException("Erro ao fechar a conexão: " + e);
+				} finally {
+	                try {
+	                    if (conn != null) {
+	                        conn.close();
+	                    }
+	                } catch (SQLException e) {
+	                    throw new BDException("Erro ao fechar a conexão: " + e);
+	                }
+	            }
+		}
+			return modelo;
+			
+		 }
+	       
 }
 
 

@@ -6,14 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
 import java.awt.Color;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Window;
-import java.awt.Component;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -34,6 +30,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 public class InterfaceCadastroDeQuartos {
 
@@ -43,6 +40,7 @@ public class InterfaceCadastroDeQuartos {
 	private JTextField textfPesquisar;
 	private JTable table;
 	private JTable tbLista;
+	private JTextField textfTipoDeQuarto;
 
 	/**
 	 * Launch the application.
@@ -62,71 +60,22 @@ public class InterfaceCadastroDeQuartos {
 
 	/**
 	 * Create the application.
+	 * @throws BDException 
 	 */
-	public InterfaceCadastroDeQuartos() {
+	public InterfaceCadastroDeQuartos()  {
 		initialize();
 		
+		 DefaultTableModel modelo =(DefaultTableModel) tbLista.getModel();;
+		 QuartoDAO quartoDAO = new QuartoDAO();
+			try {
+				modelo = quartoDAO.carregarTabela();
+				 tbLista.setModel(modelo);
+			} catch (BDException e1) {
+				 JOptionPane.showMessageDialog(null, "Erro ao carregar!");
+			}
+	
 	}
 
-	public void desativar() {
-		textfNumQuarto.setVisible(false);
-		Window cbxTipoDeQuarto = null;
-		cbxTipoDeQuarto.setVisible(false);
-		Window cbxEstado = null;
-		cbxEstado.setVisible(false);
-		textfValorDiaria.setVisible(false);
-		Window textaDescricao = null;
-	    textaDescricao.setVisible(false);
-	    Window spnAndar = null;
-		spnAndar.setVisible(false);
-		Window cbxCapacidade = null;
-		cbxCapacidade.setVisible(false);
-		
-		Component btnSalvar = null;
-		btnSalvar.setEnabled(false);
-		Component btnNovo = null;
-		btnNovo.setEnabled(false);
-		Component btnCancelar = null;
-		btnCancelar.setEnabled(false);	
-	}
-	
-	public void ativar() {
-		textfNumQuarto.setVisible(true);
-		Window cbxTipoDeQuarto = null;
-		cbxTipoDeQuarto.setVisible(true);
-		Window cbxEstado = null;
-		cbxEstado.setVisible(true);
-		textfValorDiaria.setVisible(true);
-		Window textaDescricao = null;
-	    textaDescricao.setVisible(true);
-	    Window spnAndar = null;
-		spnAndar.setVisible(true);
-		Window cbxCapacidade = null;
-		cbxCapacidade.setVisible(true);
-		
-		Component btnSalvar = null;
-		btnSalvar.setEnabled(true);
-		Component btnNovo = null;
-		btnNovo.setEnabled(true);
-		Component btnCancelar = null;
-		btnCancelar.setEnabled(true);	
-	}
-	
-	public void mostrar (String buscar) {
-		
-		try {
-			DefaultTableModel modelo;
-			QuartoDAO dao = new QuartoDAO();
-			modelo = dao.mostrarQuarto(buscar);
-			tbLista.setModel(modelo);
-			
-			JLabel lblTotalRegistros = new JLabel();
-			lblTotalRegistros.setText("Total Registro" + Integer.toBinaryString((int) dao.totalRegistro));
-			
-		}catch (Exception e) {
-			
-		}
-	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -140,24 +89,6 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.setSize(1280,720); 
 		frmCadastroDeQuartos.setLocationRelativeTo(null);
 		frmCadastroDeQuartos.setUndecorated(true);
-		
-		tbLista = new JTable();
-		tbLista.setBackground(new Color(240, 240, 240));
-		tbLista.setBounds(522, 210, 723, 312);
-		tbLista.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		));
-		tbLista.getColumnModel().getColumn(0).setPreferredWidth(294);
-		tbLista.getColumnModel().getColumn(1).setPreferredWidth(318);
 		frmCadastroDeQuartos.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(" Cadastro do Quarto");
@@ -185,12 +116,31 @@ public class InterfaceCadastroDeQuartos {
 		textfNumQuarto.setForeground(new Color(0, 0, 0));
 		frmCadastroDeQuartos.getContentPane().add(textfNumQuarto);
 		textfNumQuarto.setColumns(10);
+		textfNumQuarto.transferFocus();
 		
-		JLabel lblNewLabel_1 = new JLabel("Andar");
-		lblNewLabel_1.setForeground(new Color(38, 9, 55));
-		lblNewLabel_1.setBounds(308, 158, 44, 15);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_1);
+		JLabel lblAndar = new JLabel("Andar");
+		lblAndar.setForeground(new Color(38, 9, 55));
+		lblAndar.setBounds(308, 158, 44, 15);
+		lblAndar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblAndar);
+		
+		JComboBox cbxAndar = new JComboBox();
+		cbxAndar.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}));
+		cbxAndar.setBounds(356, 154, 114, 22);
+		frmCadastroDeQuartos.getContentPane().add(cbxAndar);
+		cbxAndar.transferFocus();
+		
+		JLabel lblDescricao = new JLabel(" Descrição ");
+		lblDescricao.setForeground(new Color(38, 9, 55));
+		lblDescricao.setBounds(29, 210, 69, 15);
+		lblDescricao.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblDescricao);
+		
+		JTextArea textaDescricao = new JTextArea();
+		textaDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textaDescricao.setBackground(new Color(240, 240, 240));
+		textaDescricao.setBounds(98, 210, 372, 138);
+		frmCadastroDeQuartos.getContentPane().add(textaDescricao);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -199,6 +149,7 @@ public class InterfaceCadastroDeQuartos {
 		btnBuscar.setBounds(856, 154, 120, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 			}
 		});
 		
@@ -225,105 +176,97 @@ public class InterfaceCadastroDeQuartos {
 		});
 		frmCadastroDeQuartos.getContentPane().add(btnApagar);
 		
-		JButton btnSair = new JButton("Sair");
-		btnSair.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnSair.setBackground(new Color(225, 225, 225));
-		btnSair.setForeground(new Color(38, 9, 55));
-		btnSair.setBounds(1125, 154, 120, 23);
-		btnSair.addActionListener(new ActionListener() {
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEditar.setBackground(new Color(225, 225, 225));
+		btnEditar.setForeground(new Color(38, 9, 55));
+		btnEditar.setBounds(1125, 154, 120, 23);
+		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frmCadastroDeQuartos.getContentPane().add(btnSair);
+		frmCadastroDeQuartos.getContentPane().add(btnEditar);
 		
-		JLabel lblNewLabel_2 = new JLabel(" Descrição ");
-		lblNewLabel_2.setForeground(new Color(38, 9, 55));
-		lblNewLabel_2.setBounds(29, 210, 69, 15);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_2);
 		
-		JTextArea textaDescricao = new JTextArea();
-		textaDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textaDescricao.setBackground(new Color(240, 240, 240));
-		textaDescricao.setBounds(98, 210, 372, 138);
-		frmCadastroDeQuartos.getContentPane().add(textaDescricao);
-		frmCadastroDeQuartos.getContentPane().add(tbLista);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(522, 210, 723, 312);
+		frmCadastroDeQuartos.getContentPane().add(scrollPane);
 		
-		JButton btnNovo = new JButton("Novo");
-		btnNovo.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNovo.setForeground(new Color(38, 9, 55));
-		btnNovo.setBackground(new Color(225, 225, 225));
-		btnNovo.setBounds(29, 660, 156, 23);
-		btnNovo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ativar();
-				btnSalvar.setText("Salvar");
+		tbLista = new JTable();
+		scrollPane.setViewportView(tbLista);
+		tbLista.setBackground(new Color(240, 240, 240));
+		QuartoDAO quartoDAO = new QuartoDAO();
+	    DefaultTableModel modelo =(DefaultTableModel) tbLista.getModel();;
+		try {
+			modelo = quartoDAO.carregarTabela();
+			 tbLista.setModel(modelo);
+		} catch (BDException e1) {
+			 JOptionPane.showMessageDialog(null, "Erro ao carregar!");
+		}
+		tbLista.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"N\u00BA Quarto", "Andar", "Tipo de Quarto", "Estado", "Valor Di\u00E1ria", "Capacidade", "Descri\u00E7\u00E3o"
 			}
-		});
+		));
+			
+		tbLista.getColumnModel().getColumn(0).setPreferredWidth(60);
+		tbLista.getColumnModel().getColumn(1).setPreferredWidth(60);
+		tbLista.getColumnModel().getColumn(2).setPreferredWidth(130);
+		tbLista.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tbLista.getColumnModel().getColumn(4).setPreferredWidth(105);
+		tbLista.getColumnModel().getColumn(5).setPreferredWidth(80);
+		tbLista.getColumnModel().getColumn(6).setPreferredWidth(125);
 		
-		JLabel lblNewLabel_3 = new JLabel(" Valor Diária");
-		lblNewLabel_3.setForeground(new Color(38, 9, 55));
-		lblNewLabel_3.setBounds(29, 398, 76, 15);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_3);
+		JLabel lblValorDiaria = new JLabel(" Valor Diária");
+		lblValorDiaria.setForeground(new Color(38, 9, 55));
+		lblValorDiaria.setBounds(29, 398, 76, 15);
+		lblValorDiaria.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblValorDiaria);
 		
 		textfValorDiaria = new JTextField();
 		textfValorDiaria.setBounds(128, 394, 136, 23);
 		frmCadastroDeQuartos.getContentPane().add(textfValorDiaria);
 		textfValorDiaria.setColumns(10);
+		textfValorDiaria.transferFocus();
 		
-		JLabel lblNewLabel_4 = new JLabel("Estado");
-		lblNewLabel_4.setForeground(new Color(38, 9, 55));
-		lblNewLabel_4.setBounds(308, 398, 44, 15);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_4);
+		JLabel lbEstado = new JLabel("Estado");
+		lbEstado.setForeground(new Color(38, 9, 55));
+		lbEstado.setBounds(308, 398, 44, 15);
+		lbEstado.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lbEstado);
 		
 		JComboBox cbxEstado = new JComboBox();
 		cbxEstado.setForeground(new Color(38, 9, 55));
 		cbxEstado.setBounds(356, 394, 114, 23);
 		cbxEstado.setModel(new DefaultComboBoxModel(new String[] {"Disponivel", "Indisponivel"}));
 		frmCadastroDeQuartos.getContentPane().add(cbxEstado);
+		cbxEstado.transferFocus();
 		
-		JLabel lblTotalRegistros = new JLabel("");
-		lblTotalRegistros.setBounds(0, 0, 0, 0);
-		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistros);
+		JLabel lblTipoDeQuarto = new JLabel(" Tipo de Quarto");
+		lblTipoDeQuarto.setForeground(new Color(38, 9, 55));
+		lblTipoDeQuarto.setBounds(29, 477, 92, 15);
+		lblTipoDeQuarto.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblTipoDeQuarto);
 		
-		
-		JLabel lblNewLabel_5 = new JLabel(" Tipo de Quarto");
-		lblNewLabel_5.setForeground(new Color(38, 9, 55));
-		lblNewLabel_5.setBounds(29, 477, 92, 15);
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_5);
-		
-		JComboBox cbxTipoDeQuarto = new JComboBox();
-		cbxTipoDeQuarto.setForeground(new Color(38, 9, 55));
-		cbxTipoDeQuarto.setBounds(128, 474, 165, 23);
-		cbxTipoDeQuarto.setModel(new DefaultComboBoxModel(new String[] {"Individual", "Casal"}));
-		
-		JComboBox cbxAndar = new JComboBox();
-		cbxAndar.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}));
-		cbxAndar.setBounds(356, 154, 114, 22);
-		frmCadastroDeQuartos.getContentPane().add(cbxAndar);
-		frmCadastroDeQuartos.getContentPane().add(cbxTipoDeQuarto);
-		
-		JLabel lblNewLabel_8 = new JLabel(" Capacidade");
-		lblNewLabel_8.setForeground(new Color(38, 9, 55));
-		lblNewLabel_8.setBounds(29, 557, 76, 15);
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_8);
+		JLabel lblCapacidade = new JLabel(" Capacidade");
+		lblCapacidade.setForeground(new Color(38, 9, 55));
+		lblCapacidade.setBounds(29, 557, 76, 15);
+		lblCapacidade.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblCapacidade);
 		
 		JComboBox cbxCapacidade = new JComboBox();
 		cbxCapacidade.setForeground(new Color(38, 9, 55));
 		cbxCapacidade.setBounds(128, 554, 164, 23);
 		cbxCapacidade.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8"}));
 		frmCadastroDeQuartos.getContentPane().add(cbxCapacidade);
-		frmCadastroDeQuartos.getContentPane().add(btnNovo);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSalvar.setForeground(new Color(38, 9, 55));
 		btnSalvar.setBackground(new Color(225, 225, 225));
-		btnSalvar.setBounds(190, 660, 125, 23);
+		btnSalvar.setBounds(190, 660, 162, 23);
 		btnSalvar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -348,11 +291,12 @@ public class InterfaceCadastroDeQuartos {
 				 Quarto quarto = new Quarto();
 			     QuartoDAO dao = new QuartoDAO();
 
-			        quarto.setNumeroQuarto(textfNumQuarto.getText());
-			        quarto.setTipoQuarto((String) cbxTipoDeQuarto.getSelectedItem());
+			        quarto.setNumeroQuarto(Integer.parseInt(textfNumQuarto.getText()));
+			        quarto.setTipoQuarto(textfTipoDeQuarto.getText());
 			        quarto.setPrecoQuarto(Double.parseDouble(textfValorDiaria.getText()));
 			        quarto.setDescricaoQuarto(textaDescricao.getText());
 			        quarto.setAndar(Integer.parseInt((String) cbxAndar.getSelectedItem()));
+			        quarto.setCapacidade(Integer.parseInt((String) cbxCapacidade.getSelectedItem()));
 			        String opcaoSelecionada = cbxEstado.getSelectedItem().toString();
 			        if (opcaoSelecionada.equals("Disponivel")) {
 			            quarto.setDisponibilidade(true);
@@ -362,7 +306,13 @@ public class InterfaceCadastroDeQuartos {
 
 			        try {
 			            QuartoDAO.cadastrarQuarto(quarto);
+			
 			            JOptionPane.showMessageDialog(null, "Quarto cadastrado!");
+			            textfNumQuarto.setText("");
+			            textfTipoDeQuarto.setText("");
+			            textaDescricao.setText("");
+			            textfValorDiaria.setText("");
+			            
 			        } catch (BDException e1) {
 			            JOptionPane.showMessageDialog(null, "Erro ao cadastrar quarto");
 			            e1.printStackTrace();
@@ -371,23 +321,10 @@ public class InterfaceCadastroDeQuartos {
 		});
 		frmCadastroDeQuartos.getContentPane().add(btnSalvar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCancelar.setForeground(new Color(38, 9, 55));
-		btnCancelar.setBackground(new Color(225, 225, 225));
-		btnCancelar.setBounds(320, 660, 173, 23);
-		frmCadastroDeQuartos.getContentPane().add(btnCancelar);
-		
-		JLabel lblTotalRegistro = new JLabel("Total Registros");
-		lblTotalRegistro.setForeground(new Color(38, 9, 55));
-		lblTotalRegistro.setBounds(523, 540, 128, 15);
-		lblTotalRegistro.setFont(new Font("Tahoma", Font.BOLD, 12));
-		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistro);
-		
 
 		JLabel lblLogoPequena = new JLabel("");
 		lblLogoPequena.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/logo 220 x150.png")));
-		lblLogoPequena.setBounds(897, 549, 220, 150);
+		lblLogoPequena.setBounds(897, 557, 220, 142);
 		frmCadastroDeQuartos.getContentPane().add(lblLogoPequena);
 		
 		JButton btnMenuPrincipal = new JButton("Menu");
@@ -437,6 +374,12 @@ public class InterfaceCadastroDeQuartos {
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
 		frmCadastroDeQuartos.getContentPane().add(lblLogoTransparente);
 		
-		
+		textfTipoDeQuarto = new JTextField();
+		textfTipoDeQuarto.setBounds(128, 474, 136, 20);
+		frmCadastroDeQuartos.getContentPane().add(textfTipoDeQuarto);
+		textfTipoDeQuarto.setColumns(10);
 	}
+	
+	
+	
 }
