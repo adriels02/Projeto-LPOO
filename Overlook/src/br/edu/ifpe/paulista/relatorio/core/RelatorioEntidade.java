@@ -10,7 +10,28 @@ public class RelatorioEntidade {
 	private double valorMedioServicos;
 	private String QuartoMaisReservado;
 	private String QuartoMenosReservado;
-
+	private int almoco;
+	private int cafeManha;
+	private int jantar;
+	
+	public int getAlmoco() {
+		return almoco;
+	}
+	public void setAlmoco(int almoco) {
+		this.almoco = almoco;
+	}
+	public int getCafeManha() {
+		return cafeManha;
+	}
+	public void setCafeManha(int cafeManha) {
+		this.cafeManha = cafeManha;
+	}
+	public int getJantar() {
+		return jantar;
+	}
+	public void setJantar(int jantar) {
+		this.jantar = jantar;
+	}
 	public int getTotalReservas() {
 		return totalReservas;
 	}

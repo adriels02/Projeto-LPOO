@@ -263,9 +263,11 @@ public class PagamentoController {
 				doc.add(image.setMarginTop(33f)); 
 				doc.add(imageLogoFundoTransparente); 
 				tableNomeData.addCell(new Cell().add("Nome: "+ pgmt.getNomecliente()+""));  
+				
 				formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				hora = x.format(formatacao);
-				tableNomeData.addCell(new Cell().add("Data: "+ hora +""));
+				
+				tableNomeData.addCell(new Cell().add("Data: "+ hora));
 
 				doc.add(tableNomeData);                  
 
