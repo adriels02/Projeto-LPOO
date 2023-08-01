@@ -103,16 +103,6 @@
 		<artifactId>bcprov-jdk15on</artifactId>
 		<version>1.70</version>
 	</dependency>
-	<dependency>
-		<groupId>com.toedter</groupId>
-		<artifactId>jcalendar</artifactId>
-		<version>1.4</version>
-	</dependency>
-	<dependency>
-		<groupId>br.edu.paulista.ifpe</groupId>
-		<artifactId>app</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
    	<dependency>
     <groupId>org.jfree</groupId>
     <artifactId>jfreechart</artifactId>
