@@ -56,7 +56,7 @@ public class InterfaceServicoDeQuarto extends JFrame {
 	private JTable table;
 	private JTextField txtIdReserva;
 	private JTextField txtQuantidadeRefeicao;
-
+	private int idReferenciaExclusao = 0;
 	
 	private TableModel modeloServicoDeQuarto() {
 	    DefaultTableModel tableModel = new DefaultTableModel(
@@ -168,6 +168,25 @@ public class InterfaceServicoDeQuarto extends JFrame {
 				txtObservacoes.setColumns(10);
 				
 				JButton btnRemoverHistorico = new JButton("Remover");
+				btnRemoverHistorico.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						
+						try {
+
+							ControladorDeAcessos idExclusao = new ControladorDeAcessos();
+							idExclusao.exclusaoServicoQuarto(idReferenciaExclusao);
+
+							JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
+							table.setModel(modeloServicoDeQuarto());
+
+						} catch (Exception exception) {
+							JOptionPane.showMessageDialog(null, exception.getMessage());
+
+						}
+					
+					}
+				});
 				btnRemoverHistorico.setForeground(new Color(38, 9, 55));
 				btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 				btnRemoverHistorico.setBounds(1153, 650, 91, 23);
@@ -178,6 +197,20 @@ public class InterfaceServicoDeQuarto extends JFrame {
 								contentPane.add(scrollPane);
 								
 								table = new JTable();
+								table.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseClicked(MouseEvent e) {
+										
+										int linhaSelecionada = table.getSelectedRow();
+
+										if (linhaSelecionada >= 0) {
+											Object valorCelula = table.getValueAt(linhaSelecionada, 0);
+											idReferenciaExclusao = (int) valorCelula;
+
+										}	
+													
+									}
+								});
 								table.setModel(new DefaultTableModel(
 									new Object[][] {
 									},
@@ -218,27 +251,26 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						lblNewLabel_4.setBounds(298, 272, 91, 14);
 						contentPane.add(lblNewLabel_4);
 		
-				txtNumeroQuarto = new JTextField();
-				txtNumeroQuarto.setBounds(298, 294, 136, 21);
-				txtNumeroQuarto.setDocument(new Validador(5));
-				txtNumeroQuarto.addKeyListener(new KeyAdapter() {
-					@Override
-					public void keyTyped(KeyEvent e) {
-						
-						String caracteres="0987654321";
-						if(!caracteres.contains(e.getKeyChar()+"")){
-						e.consume();
-						}
-					}
-				});
-				contentPane.add(txtNumeroQuarto);
-				txtNumeroQuarto.setColumns(10);
-		
-				
+						txtNumeroQuarto = new JTextField();
+						txtNumeroQuarto.setBounds(298, 294, 136, 21);
+						txtNumeroQuarto.setDocument(new Validador(5));
+						txtNumeroQuarto.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyTyped(KeyEvent e) {
+
+								String caracteres = "0987654321";
+								if (!caracteres.contains(e.getKeyChar() + "")) {
+									e.consume();
+								}
+							}
+						});
+						contentPane.add(txtNumeroQuarto);
+						txtNumeroQuarto.setColumns(10);
+
 						JButton btnAdicionar = new JButton("Adicionar");
 						btnAdicionar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								
+
 								String refeicao = null;
 
 								if (rdbtnAlmoco.isSelected()) {
@@ -260,14 +292,16 @@ public class InterfaceServicoDeQuarto extends JFrame {
 
 									refeicao = "";
 								}
-								
-								
-								try {
+
+							try {
 									ControladorDeAcessos controlador = new ControladorDeAcessos();
-									controlador.registroPedidoDeQuarto(txtIdReserva.getText(), txtNumeroQuarto.getText(),txtQuantidadeRefeicao.getText(), refeicao, txtObservacoes.getText());
-									controlador.registroServicoDeQuarto(txtIdReserva.getText(), refeicao ,txtQuantidadeRefeicao.getText());
-									
-									JOptionPane.showMessageDialog(null,"Serviço de quarto registrado com sucesso");	
+									controlador.registroPedidoDeQuarto(txtIdReserva.getText(),
+											txtNumeroQuarto.getText(), txtQuantidadeRefeicao.getText(), refeicao,
+											txtObservacoes.getText());
+									controlador.registroServicoDeQuarto(txtIdReserva.getText(), refeicao,
+											txtQuantidadeRefeicao.getText());
+
+									JOptionPane.showMessageDialog(null, "Serviço de quarto registrado com sucesso");
 									txtIdReserva.setText("");
 									txtNumeroQuarto.setText("");
 									txtObservacoes.setText("");
@@ -278,23 +312,22 @@ public class InterfaceServicoDeQuarto extends JFrame {
 									table.getColumnModel().getColumn(5).setPreferredWidth(110);
 
 								} catch (Exception exception) {
-									
-									JOptionPane.showMessageDialog(null, exception.getMessage());				
-								}							
+
+									JOptionPane.showMessageDialog(null, exception.getMessage());
+								}
 							}
 						});
 						btnAdicionar.setForeground(new Color(38, 9, 55));
 						btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
 						btnAdicionar.setBounds(478, 424, 91, 23);
-						
-						
+
 						txtIdReserva = new JTextField();
 						txtIdReserva.addKeyListener(new KeyAdapter() {
 							@Override
 							public void keyTyped(KeyEvent e) {
-								String caracteres="0987654321";
-								if(!caracteres.contains(e.getKeyChar()+"")){
-								e.consume();
+								String caracteres = "0987654321";
+								if (!caracteres.contains(e.getKeyChar() + "")) {
+									e.consume();
 								}
 							}
 						});
@@ -303,29 +336,28 @@ public class InterfaceServicoDeQuarto extends JFrame {
 						txtIdReserva.setColumns(10);
 						contentPane.add(btnAdicionar);
 						txtIdReserva.setDocument(new Validador(50));
-				btnRemoverHistorico.setEnabled(false);
-				contentPane.add(btnRemoverHistorico);
-				
-				JButton btnNewButton = new JButton("");
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						
-						InterfaceServicos interfaceServicos = new InterfaceServicos();
-						interfaceServicos.setVisible(true);
-						dispose();
-					}
-				});
-				btnNewButton.setIcon(new ImageIcon(InterfaceServicoDeQuarto.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
-				btnNewButton.setBounds(0, 0, 65, 23);
-				contentPane.add(btnNewButton);
-				
-				JButton btnFecharTela = new JButton("");
-				btnFecharTela.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						dispose();
-					}
+						contentPane.add(btnRemoverHistorico);
+
+						JButton btnNewButton = new JButton("");
+						btnNewButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								InterfaceServicos interfaceServicos = new InterfaceServicos();
+								interfaceServicos.setVisible(true);
+								dispose();
+							}
+						});
+						btnNewButton.setIcon(new ImageIcon(InterfaceServicoDeQuarto.class
+								.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+						btnNewButton.setBounds(0, 0, 65, 23);
+						contentPane.add(btnNewButton);
+
+						JButton btnFecharTela = new JButton("");
+						btnFecharTela.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+
+								dispose();
+							}
 				});
 				btnFecharTela.setIcon(new ImageIcon(InterfaceServicoDeQuarto.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
 				btnFecharTela.setBounds(1250, 0, 30, 30);

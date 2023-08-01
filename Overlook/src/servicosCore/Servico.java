@@ -2,6 +2,7 @@ package servicosCore;
 
 public class Servico {
 	
+	private int idServico;
 	private int idReserva;
 	private String nome;
 	private String descricao;
@@ -16,7 +17,7 @@ public class Servico {
 	}
 
 	public Servico() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public int getIdReserva() {
@@ -49,6 +50,14 @@ public class Servico {
 
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+
+	public int getIdServico() {
+		return idServico;
+	}
+
+	public void setIdServico(int idServico) {
+		this.idServico = idServico;
 	}
 	
 

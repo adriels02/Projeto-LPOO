@@ -284,8 +284,89 @@ public class ControladorDeAcessos {
 		}
 	
 	}
+	
+	public void exclusaoHistoricoTranslado(int id) throws CoreException {
+		
+		if (id == 0) {
+			throw new CoreException("Clique em uma linha na lista para depois clicar no botão Remover.");
+			
+		}
+		
+		
+		try {
+			
+			repositorio.exclusaoHistoricoTranslado(id);
+			
+		} catch (BDException exception) {
+			throw new CoreException(exception.getMessage());
+			
+		}
+	}
+		public void exclusaoServico(int id) throws CoreException {
+			
+			if (id == 0) {
+				throw new CoreException("Clique em uma linha na lista para depois clicar no botão Remover.");
+
+			}
+
+			try {
+			
+				repositorio.exclusaoServico(id);
+
+			} catch (BDException exception) {
+				throw new CoreException(exception.getMessage());
+
+			}
+		
+	}
+	
+		
+		public void exclusaoServicoQuarto(int id) throws CoreException {
+			
+			if (id == 0) {
+				throw new CoreException("Clique em uma linha na lista para depois clicar no botão Remover.");
+
+			}
+
+			try {
+				
+				repositorio.exclusaoServicoQuarto(id);
+
+			} catch (BDException exception) {
+				throw new CoreException(exception.getMessage());
+
+			}
+		
+	}
+		
+		
+		public void exclusaoRestaurante(int id) throws CoreException {
+			
+			if (id == 0) {
+				throw new CoreException("Clique em uma linha na lista para depois clicar no botão Remover.");
+
+			}
+
+			try {
+			
+				repositorio.exclusaoRestaurante(id);
+
+			} catch (BDException exception) {
+				throw new CoreException(exception.getMessage());
+
+			}
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
 }
 	
 	
-	
+
 	

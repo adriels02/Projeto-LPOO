@@ -27,5 +27,13 @@ public interface ControleAcessoBD {
 	public void registroPrecos(Precos precos) throws BDException;
 	
 	public void registroServicoDeQuarto(RegistroServicoDeQuarto registro) throws BDException;
+	
+	public void exclusaoHistoricoTranslado(int id) throws BDException;
+	
+	public void exclusaoServico(int id) throws BDException;
+
+	public void exclusaoServicoQuarto(int id) throws BDException;
+
+	public void exclusaoRestaurante(int id) throws BDException;
 
 }

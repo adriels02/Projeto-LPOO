@@ -9,8 +9,13 @@ import javax.swing.border.EmptyBorder;
 
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
+import servicosBD.MySQLConector;
+import servicosCore.ControladorDeAcessos;
+import servicosCore.HistoricoTranslado;
+import servicosCore.Servico;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -27,16 +32,56 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class InterfaceServicos extends JFrame {
 
 	private JPanel contentPane;
 	private final JButton btnNewButton = new JButton("");
-
+	private JTable table;
+	private int idReferenciaExclusao = 0;
 	/**
 	 * Launch the application.
 	 */
 
+	
+private TableModel modeloTabelaServicos() {
+		
+	    DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { 
+	    		"ID Registro", "ID Reserva", "Servi\u00E7o", "Descri\u00E7\u00E3o", "Pre\u00E7o"
+	    		}) {
+	        Class[] columnTypes = new Class[] { Object.class, Object.class, Object.class, Object.class, Object.class,
+	                };	       
+	        @Override
+	        public boolean isCellEditable(int row, int column) {
+	            return false;
+	        }
+	    };
+
+	    tableModel.setNumRows(0);
+
+	    try {
+	        MySQLConector leitor = new MySQLConector();
+
+	        for (Servico p : leitor.leituraServicos()) {
+	            tableModel.addRow(new Object[] { p.getIdServico(), p.getIdReserva(), p.getNome(),
+	                    p.getDescricao(), p.getPreco() });
+	        }
+
+	    } catch (Exception exception) {
+	        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar a tabela");
+	    }
+
+	    return tableModel;
+	}
+
+	
+	
+	
+	
 	public static void main(String[] args) {
 
 		try {
@@ -169,6 +214,67 @@ public class InterfaceServicos extends JFrame {
 
 			}
 		});
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		scrollPane.setBounds(640, 174, 589, 381);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int linhaSelecionada = table.getSelectedRow();
+
+				if (linhaSelecionada >= 0) {
+					Object valorCelula = table.getValueAt(linhaSelecionada, 0);
+					idReferenciaExclusao = (int) valorCelula;
+					
+				}
+				
+				
+				
+			}
+		});
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID Registro", "ID Reserva", "Servi\u00E7o", "Descri\u00E7\u00E3o", "Pre\u00E7o"
+			}
+		));
+		scrollPane.setViewportView(table);
+		table.setModel(modeloTabelaServicos());
+		
+		JButton btnNewButton_1 = new JButton("Remover");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+
+					ControladorDeAcessos idExclusao = new ControladorDeAcessos();
+					idExclusao.exclusaoServico(idReferenciaExclusao);
+
+					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
+					table.setModel(modeloTabelaServicos());
+
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+
+				}
+
+			}
+		});
+		btnNewButton_1.setBounds(887, 566, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
+		
+		
 		contentPane.add(btnEstacionamento);
 		contentPane.add(btnServicoDeQuarto);
 		btnNewButton.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/Botao Menu 65x23.png")));
@@ -208,6 +314,7 @@ public class InterfaceServicos extends JFrame {
 				
 			}
 		});
+		
 		btnSignOut.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
 		btnSignOut.setBounds(1213, 0, 30, 30);
 		contentPane.add(btnSignOut);
@@ -215,7 +322,7 @@ public class InterfaceServicos extends JFrame {
 		
 		JLabel lblLogoTelas = new JLabel("");
 		lblLogoTelas.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
-		lblLogoTelas.setBounds(656, 189, 480, 320);
+		lblLogoTelas.setBounds(630, 174, 480, 320);
 		contentPane.add(lblLogoTelas);
 		
 		JLabel lblLogoTransparente = new JLabel("");
@@ -227,6 +334,9 @@ public class InterfaceServicos extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(InterfaceServicos.class.getResource("/interfaces/imagens/fundo azul 1280x720.png")));
 		lblNewLabel_1.setBounds(0, 0, 1280, 720);
 		contentPane.add(lblNewLabel_1);
+		
+		
+		
 		
 
 	}

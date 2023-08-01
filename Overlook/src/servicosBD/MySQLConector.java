@@ -649,7 +649,189 @@ public class MySQLConector implements ControleAcessoBD {
 
 		}
 		
+		public List<Servico> leituraServicos() throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+
+			List<Servico> registros = new ArrayList<>();
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("SELECT * FROM Servico");
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+
+					Servico tabela = new Servico();
+					tabela.setIdServico(rs.getInt(1));
+					tabela.setIdReserva(rs.getInt(2));				
+					tabela.setNome(rs.getString(3));
+					tabela.setDescricao(rs.getString(4));
+					tabela.setPreco(rs.getDouble(5));					
+					registros.add(tabela);
+				}
+				
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+			}
+
+			return registros;
+
+		}
+		
+		public void exclusaoHistoricoTranslado(int id) throws BDException {
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("DELETE FROM Historico_Translado WHERE idViagem = ?");
+				stmt.setInt(1, id);
+				stmt.execute();
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um errode conexão");
+				}
+			}			
+			
+			
+		}
+
+		@Override
+		public void exclusaoServico(int id) throws BDException {
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("DELETE FROM Servico WHERE idServico = ?");
+				stmt.setInt(1, id);
+				stmt.execute();
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um errode conexão");
+				}
+			}
+
+		}
+
+		public void exclusaoServicoQuarto(int id) throws BDException {
+			
+
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("DELETE FROM servico_de_quarto WHERE id = ?");
+				stmt.setInt(1, id);
+				stmt.execute();
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um errode conexão");
+				}
+			}
+			
+		}
+
+		@Override
+		public void exclusaoRestaurante(int id) throws BDException {
+			
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			try {
+				conn = DriverManager.getConnection(url, usuario, senha);
+				stmt = conn.prepareStatement("DELETE FROM Restaurante_Pedidos WHERE idPedido = ?");
+				stmt.setInt(1, id);
+				stmt.execute();
+			} catch (Exception e) {
+				throw new BDException("Ocorreu um erro de conexão");
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um erro de conexão");
+				}
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e) {
+					throw new BDException("Ocorreu um errode conexão");
+				}
+			}
+			
+		}
+
 	}
+		
+		
+		
+		
+		
+		
+	
 
 		
 		

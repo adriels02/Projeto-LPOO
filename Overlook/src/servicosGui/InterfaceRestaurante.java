@@ -60,7 +60,7 @@ public class InterfaceRestaurante extends JFrame {
 	private JTextField txtIdReserva;
 	private JTable table;
 	private JTextField txtQuantidadeRefeicao;
-
+	private int idReferenciaExclusao = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -170,6 +170,21 @@ public class InterfaceRestaurante extends JFrame {
 		btnRemoverHistorico.setBounds(764, 650, 194, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+
+					ControladorDeAcessos idExclusao = new ControladorDeAcessos();
+					idExclusao.exclusaoRestaurante(idReferenciaExclusao);
+
+					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
+					table.setModel(modeloRestaurante());
+
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+
+				}
+				
+				
 
 			}
 		});
@@ -185,6 +200,21 @@ public class InterfaceRestaurante extends JFrame {
 		contentPane.add(scrollPane);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int linhaSelecionada = table.getSelectedRow();
+
+				if (linhaSelecionada >= 0) {
+					Object valorCelula = table.getValueAt(linhaSelecionada, 0);
+					idReferenciaExclusao = (int) valorCelula;
+
+				}	
+				
+				
+			}
+		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID pedido", "ID Reserva",
 				"Refei\u00E7\u00E3o", "Quantidade", "Data", "Hora", "Observa\u00E7\u00E3o" }));
@@ -327,8 +357,6 @@ public class InterfaceRestaurante extends JFrame {
 		contentPane.add(btnAdicionar);
 
 		table.setModel(modeloRestaurante());
-
-		btnRemoverHistorico.setEnabled(false);
 		contentPane.add(btnRemoverHistorico);
 
 		JButton btnServicos = new JButton("");

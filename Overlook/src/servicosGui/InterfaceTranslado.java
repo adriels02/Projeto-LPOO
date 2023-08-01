@@ -61,6 +61,7 @@ public class InterfaceTranslado extends JFrame {
 	private int numeroPassageiros;
 	private JTextField txtIdReserva;
 	private JTable table;
+	private int idReferenciaExclusao = 0;
 	/**
 	 * Launch the application.
 	 */	
@@ -73,15 +74,8 @@ public class InterfaceTranslado extends JFrame {
 		return mask;
 	}
 	
-	DefaultTableModel model = new DefaultTableModel() {
-	    
-	    public boolean isCellEditable(int row, int column) {
-	       
-	        return false;
-	    }
-	};
-
 	private TableModel modeloTabelaTranslado() {
+		
 	    DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "idViagem",
 	            "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva" }) {
 	        Class[] columnTypes = new Class[] { Object.class, Object.class, Object.class, Object.class, Object.class,
@@ -158,6 +152,33 @@ public class InterfaceTranslado extends JFrame {
 		lblNewLabel_9.setBounds(33, 202, 206, 14);
 		contentPane.add(lblNewLabel_9);
 		
+		
+		JButton btnRemoverHistorico = new JButton("Remover");
+		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
+		btnRemoverHistorico.setBounds(769, 686, 157, 23);
+		btnRemoverHistorico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				try {
+					
+				
+					ControladorDeAcessos idExclusao = new ControladorDeAcessos();
+					idExclusao.exclusaoHistoricoTranslado(idReferenciaExclusao);
+					
+					
+					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");	
+					table.setModel(modeloTabelaTranslado());
+					
+					
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, exception.getMessage());	
+					
+				}
+			}
+		});
+
+		
 				JLabel lblNewLabel_8 = new JLabel("Histórico de viagens");
 				lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -179,29 +200,31 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.add(txtIdReserva);
 		txtIdReserva.setColumns(10);
 		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setBounds(1, 26, 872, 0);
-		txtIdReserva.setDocument(new Validador(50));
-		JButton btnRemoverHistorico = new JButton("Remover");
-		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
-		btnRemoverHistorico.setBounds(769, 686, 157, 23);
-		btnRemoverHistorico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 
-//				if (!table.isSelectionEmpty()) {
-//					String elementoSelecionado = (String) table.getSelectedValue();
-//					historicoTranslado.removeElement(elementoSelecionado);
-//					table.revalidate();
-//					table.repaint();
-//				}
-				btnRemoverHistorico.setEnabled(false);
+				int linhaSelecionada = table.getSelectedRow();
+
+				if (linhaSelecionada >= 0) {
+					Object valorCelula = table.getValueAt(linhaSelecionada, 0);
+					idReferenciaExclusao = (int) valorCelula;
+
+				}
 
 			}
 		});
-
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setBounds(1, 26, 872, 0);
+		txtIdReserva.setDocument(new Validador(50));
+		
+		
+		
+		
+	
 		table.setModel(modeloTabelaTranslado());
 		contentPane.add(table);
+		
+		
 
 		JFormattedTextField ftxtfData = new JFormattedTextField(setMascara("##/##/####"));
 		ftxtfData.setBounds(33, 551, 126, 23);
@@ -346,11 +369,9 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.add(lblNewLabel_7);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(365, 139, 874, 537);
+		scrollPane.setBounds(406, 140, 874, 537);
 		contentPane.add(scrollPane);
 		contentPane.add(btnAdicionarhistorico);
-
-		btnRemoverHistorico.setEnabled(false);
 		contentPane.add(btnRemoverHistorico);
 		
 		JButton btnNewButton = new JButton("");
