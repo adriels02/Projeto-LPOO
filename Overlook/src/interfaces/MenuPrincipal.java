@@ -30,7 +30,7 @@ import br.edu.ifpe.paulista.relatorio.gui.TelaRelatorio;
 import cadastroGUI.CadastroInterface;
 import cadastroGUI.InterfaceCadastroDependentes;
 import cadastroGUI.InterfaceConsultaHospedes;
-import reservaQuartos.InterfaceCadastroDeQuartos;
+import quartoGUI.InterfaceCadastroDeQuartos;
 import reservaQuartos.InterfaceReservas;
 import servicosGui.InterfaceArrumacao;
 import servicosGui.InterfaceEstacionamento;

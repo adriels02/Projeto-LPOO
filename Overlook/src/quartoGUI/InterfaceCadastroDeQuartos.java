@@ -1,4 +1,4 @@
-package reservaQuartos;
+package quartoGUI;
 
 import java.awt.EventQueue;
 
@@ -12,8 +12,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window;
+import java.awt.Component;
 import javax.swing.JTextArea;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
@@ -22,6 +25,9 @@ import javax.swing.table.DefaultTableModel;
 
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
+import quartoBD.QuartoDAO;
+import quartoCORE.Quarto;
+import servicosBD.BDException;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -34,9 +40,9 @@ public class InterfaceCadastroDeQuartos {
 	public JFrame frmCadastroDeQuartos;
 	private JTextField textfNumQuarto;
 	private JTextField textfValorDiaria;
-	private JTextField textField;
+	private JTextField textfPesquisar;
 	private JTable table;
-	private JTable table_1;
+	private JTable tbLista;
 
 	/**
 	 * Launch the application.
@@ -62,6 +68,65 @@ public class InterfaceCadastroDeQuartos {
 		
 	}
 
+	public void desativar() {
+		textfNumQuarto.setVisible(false);
+		Window cbxTipoDeQuarto = null;
+		cbxTipoDeQuarto.setVisible(false);
+		Window cbxEstado = null;
+		cbxEstado.setVisible(false);
+		textfValorDiaria.setVisible(false);
+		Window textaDescricao = null;
+	    textaDescricao.setVisible(false);
+	    Window spnAndar = null;
+		spnAndar.setVisible(false);
+		Window cbxCapacidade = null;
+		cbxCapacidade.setVisible(false);
+		
+		Component btnSalvar = null;
+		btnSalvar.setEnabled(false);
+		Component btnNovo = null;
+		btnNovo.setEnabled(false);
+		Component btnCancelar = null;
+		btnCancelar.setEnabled(false);	
+	}
+	
+	public void ativar() {
+		textfNumQuarto.setVisible(true);
+		Window cbxTipoDeQuarto = null;
+		cbxTipoDeQuarto.setVisible(true);
+		Window cbxEstado = null;
+		cbxEstado.setVisible(true);
+		textfValorDiaria.setVisible(true);
+		Window textaDescricao = null;
+	    textaDescricao.setVisible(true);
+	    Window spnAndar = null;
+		spnAndar.setVisible(true);
+		Window cbxCapacidade = null;
+		cbxCapacidade.setVisible(true);
+		
+		Component btnSalvar = null;
+		btnSalvar.setEnabled(true);
+		Component btnNovo = null;
+		btnNovo.setEnabled(true);
+		Component btnCancelar = null;
+		btnCancelar.setEnabled(true);	
+	}
+	
+	public void mostrar (String buscar) {
+		
+		try {
+			DefaultTableModel modelo;
+			QuartoDAO dao = new QuartoDAO();
+			modelo = dao.mostrarQuarto(buscar);
+			tbLista.setModel(modelo);
+			
+			JLabel lblTotalRegistros = new JLabel();
+			lblTotalRegistros.setText("Total Registro" + Integer.toBinaryString((int) dao.totalRegistro));
+			
+		}catch (Exception e) {
+			
+		}
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -76,10 +141,10 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.setLocationRelativeTo(null);
 		frmCadastroDeQuartos.setUndecorated(true);
 		
-		table_1 = new JTable();
-		table_1.setBackground(new Color(240, 240, 240));
-		table_1.setBounds(522, 210, 723, 312);
-		table_1.setModel(new DefaultTableModel(
+		tbLista = new JTable();
+		tbLista.setBackground(new Color(240, 240, 240));
+		tbLista.setBounds(522, 210, 723, 312);
+		tbLista.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -91,8 +156,8 @@ public class InterfaceCadastroDeQuartos {
 				"New column", "New column"
 			}
 		));
-		table_1.getColumnModel().getColumn(0).setPreferredWidth(294);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(318);
+		tbLista.getColumnModel().getColumn(0).setPreferredWidth(294);
+		tbLista.getColumnModel().getColumn(1).setPreferredWidth(318);
 		frmCadastroDeQuartos.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(" Cadastro do Quarto");
@@ -127,53 +192,49 @@ public class InterfaceCadastroDeQuartos {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNewButton_3 = new JButton("Buscar");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_3.setBackground(new Color(225, 225, 225));
-		btnNewButton_3.setForeground(new Color(38, 9, 55));
-		btnNewButton_3.setBounds(856, 154, 120, 23);
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnBuscar.setBackground(new Color(225, 225, 225));
+		btnBuscar.setForeground(new Color(38, 9, 55));
+		btnBuscar.setBounds(856, 154, 120, 23);
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(356, 154, 114, 23);
-		frmCadastroDeQuartos.getContentPane().add(spinner);
+		JLabel lblPesquisar = new JLabel("Pesquisar");
+		lblPesquisar.setForeground(new Color(38, 9, 55));
+		lblPesquisar.setBounds(522, 158, 139, 15);
+		lblPesquisar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frmCadastroDeQuartos.getContentPane().add(lblPesquisar);
 		
-		JLabel lblNewLabel_6 = new JLabel("Pesquisar");
-		lblNewLabel_6.setForeground(new Color(38, 9, 55));
-		lblNewLabel_6.setBounds(522, 158, 139, 15);
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_6);
+		textfPesquisar = new JTextField();
+		textfPesquisar.setBounds(586, 154, 251, 23);
+		frmCadastroDeQuartos.getContentPane().add(textfPesquisar);
+		textfPesquisar.setColumns(10);
+		frmCadastroDeQuartos.getContentPane().add(btnBuscar);
 		
-		textField = new JTextField();
-		textField.setBounds(586, 154, 251, 23);
-		frmCadastroDeQuartos.getContentPane().add(textField);
-		textField.setColumns(10);
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("Apagar");
-		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_4.setBackground(new Color(225, 225, 225));
-		btnNewButton_4.setForeground(new Color(38, 9, 55));
-		btnNewButton_4.setBounds(990, 154, 120, 23);
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton btnApagar = new JButton("Apagar");
+		btnApagar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnApagar.setBackground(new Color(225, 225, 225));
+		btnApagar.setForeground(new Color(38, 9, 55));
+		btnApagar.setBounds(990, 154, 120, 23);
+		btnApagar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_4);
+		frmCadastroDeQuartos.getContentPane().add(btnApagar);
 		
-		JButton btnNewButton_5 = new JButton("Sair");
-		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_5.setBackground(new Color(225, 225, 225));
-		btnNewButton_5.setForeground(new Color(38, 9, 55));
-		btnNewButton_5.setBounds(1125, 154, 120, 23);
-		btnNewButton_5.addActionListener(new ActionListener() {
+		JButton btnSair = new JButton("Sair");
+		btnSair.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSair.setBackground(new Color(225, 225, 225));
+		btnSair.setForeground(new Color(38, 9, 55));
+		btnSair.setBounds(1125, 154, 120, 23);
+		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		frmCadastroDeQuartos.getContentPane().add(btnNewButton_5);
+		frmCadastroDeQuartos.getContentPane().add(btnSair);
 		
 		JLabel lblNewLabel_2 = new JLabel(" Descrição ");
 		lblNewLabel_2.setForeground(new Color(38, 9, 55));
@@ -186,7 +247,7 @@ public class InterfaceCadastroDeQuartos {
 		textaDescricao.setBackground(new Color(240, 240, 240));
 		textaDescricao.setBounds(98, 210, 372, 138);
 		frmCadastroDeQuartos.getContentPane().add(textaDescricao);
-		frmCadastroDeQuartos.getContentPane().add(table_1);
+		frmCadastroDeQuartos.getContentPane().add(tbLista);
 		
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -195,6 +256,8 @@ public class InterfaceCadastroDeQuartos {
 		btnNovo.setBounds(29, 660, 156, 23);
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ativar();
+				btnSalvar.setText("Salvar");
 			}
 		});
 		
@@ -217,13 +280,14 @@ public class InterfaceCadastroDeQuartos {
 		
 		JComboBox cbxEstado = new JComboBox();
 		cbxEstado.setForeground(new Color(38, 9, 55));
-		cbxEstado.setBounds(356, 394, 85, 23);
-		cbxEstado.setModel(new DefaultComboBoxModel(new String[] {"Disponível", "Ocupado", "Manutenção"}));
+		cbxEstado.setBounds(356, 394, 114, 23);
+		cbxEstado.setModel(new DefaultComboBoxModel(new String[] {"Disponivel", "Indisponivel"}));
 		frmCadastroDeQuartos.getContentPane().add(cbxEstado);
 		
 		JLabel lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setBounds(0, 0, 0, 0);
 		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistros);
+		
 		
 		JLabel lblNewLabel_5 = new JLabel(" Tipo de Quarto");
 		lblNewLabel_5.setForeground(new Color(38, 9, 55));
@@ -235,6 +299,11 @@ public class InterfaceCadastroDeQuartos {
 		cbxTipoDeQuarto.setForeground(new Color(38, 9, 55));
 		cbxTipoDeQuarto.setBounds(128, 474, 165, 23);
 		cbxTipoDeQuarto.setModel(new DefaultComboBoxModel(new String[] {"Individual", "Casal"}));
+		
+		JComboBox cbxAndar = new JComboBox();
+		cbxAndar.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"}));
+		cbxAndar.setBounds(356, 154, 114, 22);
+		frmCadastroDeQuartos.getContentPane().add(cbxAndar);
 		frmCadastroDeQuartos.getContentPane().add(cbxTipoDeQuarto);
 		
 		JLabel lblNewLabel_8 = new JLabel(" Capacidade");
@@ -243,11 +312,11 @@ public class InterfaceCadastroDeQuartos {
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_8);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setForeground(new Color(38, 9, 55));
-		comboBox.setBounds(128, 554, 164, 23);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8"}));
-		frmCadastroDeQuartos.getContentPane().add(comboBox);
+		JComboBox cbxCapacidade = new JComboBox();
+		cbxCapacidade.setForeground(new Color(38, 9, 55));
+		cbxCapacidade.setBounds(128, 554, 164, 23);
+		cbxCapacidade.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8"}));
+		frmCadastroDeQuartos.getContentPane().add(cbxCapacidade);
 		frmCadastroDeQuartos.getContentPane().add(btnNovo);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -256,23 +325,64 @@ public class InterfaceCadastroDeQuartos {
 		btnSalvar.setBackground(new Color(225, 225, 225));
 		btnSalvar.setBounds(190, 660, 125, 23);
 		btnSalvar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				if (textfNumQuarto.getText()== null || textfNumQuarto.getText().length()== 0) {
+					JOptionPane.showConfirmDialog(null, "Insira um número do quarto válido");
+					textfNumQuarto.requestFocus();
+				}
+				if (textaDescricao.getText()== null || textfNumQuarto.getText().length()== 0) {
+					JOptionPane.showConfirmDialog(null, "Insira um número do quarto válido");
+					textaDescricao.requestFocus();
+				}
+				 try {
+					 double precoQuarto = Double.parseDouble(textfValorDiaria.getText());
+					 if (textfValorDiaria.getText().length() <= 0) {
+			             throw new NumberFormatException();
+			         }
+			    } catch (NumberFormatException ex) {
+			        	  JOptionPane.showConfirmDialog(null, "Insira um preço válido");
+			        	  textfValorDiaria.requestFocus();
+			              return;
+			    }
+				 Quarto quarto = new Quarto();
+			     QuartoDAO dao = new QuartoDAO();
+
+			        quarto.setNumeroQuarto(textfNumQuarto.getText());
+			        quarto.setTipoQuarto((String) cbxTipoDeQuarto.getSelectedItem());
+			        quarto.setPrecoQuarto(Double.parseDouble(textfValorDiaria.getText()));
+			        quarto.setDescricaoQuarto(textaDescricao.getText());
+			        quarto.setAndar(Integer.parseInt((String) cbxAndar.getSelectedItem()));
+			        String opcaoSelecionada = cbxEstado.getSelectedItem().toString();
+			        if (opcaoSelecionada.equals("Disponivel")) {
+			            quarto.setDisponibilidade(true);
+			        } else {
+			        	quarto.setDisponibilidade(false);
+			        }
+
+			        try {
+			            QuartoDAO.cadastrarQuarto(quarto);
+			            JOptionPane.showMessageDialog(null, "Quarto cadastrado!");
+			        } catch (BDException e1) {
+			            JOptionPane.showMessageDialog(null, "Erro ao cadastrar quarto");
+			            e1.printStackTrace();
+			        }
 			}
 		});
 		frmCadastroDeQuartos.getContentPane().add(btnSalvar);
 		
-		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnLimpar.setForeground(new Color(38, 9, 55));
-		btnLimpar.setBackground(new Color(225, 225, 225));
-		btnLimpar.setBounds(320, 660, 173, 23);
-		frmCadastroDeQuartos.getContentPane().add(btnLimpar);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCancelar.setForeground(new Color(38, 9, 55));
+		btnCancelar.setBackground(new Color(225, 225, 225));
+		btnCancelar.setBounds(320, 660, 173, 23);
+		frmCadastroDeQuartos.getContentPane().add(btnCancelar);
 		
-		JLabel lblNewLabel_7 = new JLabel("Total Registros");
-		lblNewLabel_7.setForeground(new Color(38, 9, 55));
-		lblNewLabel_7.setBounds(523, 540, 128, 15);
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
-		frmCadastroDeQuartos.getContentPane().add(lblNewLabel_7);
+		JLabel lblTotalRegistro = new JLabel("Total Registros");
+		lblTotalRegistro.setForeground(new Color(38, 9, 55));
+		lblTotalRegistro.setBounds(523, 540, 128, 15);
+		lblTotalRegistro.setFont(new Font("Tahoma", Font.BOLD, 12));
+		frmCadastroDeQuartos.getContentPane().add(lblTotalRegistro);
 		
 
 		JLabel lblLogoPequena = new JLabel("");
@@ -326,6 +436,7 @@ public class InterfaceCadastroDeQuartos {
 		lblLogoTransparente.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
 		frmCadastroDeQuartos.getContentPane().add(lblLogoTransparente);
+		
 		
 	}
 }
