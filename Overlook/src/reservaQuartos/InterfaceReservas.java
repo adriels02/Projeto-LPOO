@@ -22,8 +22,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
+import bdConexao.Validador;
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
 import servicosBD.BDException;
@@ -50,6 +52,38 @@ public class InterfaceReservas {
 		}
 		return mask;
 	}
+	
+	private TableModel modeloReservas() {
+	
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Id Reserva", "CPF",
+				"Data Entrada", "Data sa\u00EDda", "Observa\u00E7\u00E3o", "N\u00FAmero Quarto"
+
+		}) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		}
+
+		;
+
+try {
+	    MySQLConector leitor = new MySQLConector();
+
+	    for (Reserva p : leitor.leituraReservas()) {
+	        tableModel.addRow(new Object[] {
+	            p.getIdReserva(), p.getCPF(), p.getDataEntrada(), p.getDataSaida(), p.getObservacaoReserva(), p.getNumeroQuarto()
+        });
+	    }
+	    
+} catch (BDException exception) {
+	
+		JOptionPane.showMessageDialog(null,"Ocorreu um erro ao atualizar a tabela. ");	
+		}
+	
+		return tableModel;
+	}
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -93,10 +127,7 @@ public class InterfaceReservas {
 			public void actionPerformed(ActionEvent e) {
 				MenuPrincipal menu = new MenuPrincipal();
 				menu.setVisible(true);
-				frmCadastroDasReservas.dispose();
-				
-				
-				
+				frmCadastroDasReservas.dispose();				
 			}
 		});
 		frmCadastroDasReservas.getContentPane().setLayout(null);
@@ -122,6 +153,7 @@ public class InterfaceReservas {
 		
 		ftxtNumero = new JTextField();
 		ftxtNumero.setBounds(63, 105, 320, 23);
+		ftxtNumero.setDocument(new Validador(4));
 		ftxtNumero.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -169,6 +201,7 @@ public class InterfaceReservas {
 		txtObservacoes.setBounds(445, 164, 284, 23);
 		frmCadastroDasReservas.getContentPane().add(txtObservacoes);
 		txtObservacoes.setColumns(10);
+		txtObservacoes.setDocument(new Validador(200));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(63, 199, 1148, 436);
@@ -184,40 +217,6 @@ public class InterfaceReservas {
 		));
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("Atualizar");
-		btnNewButton.setBackground(new Color(225, 225, 225));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setForeground(new Color(38, 9, 55));
-		btnNewButton.setBounds(905, 650, 90, 23);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				DefaultTableModel tableModel = new DefaultTableModel(
-					    new Object[][] {},
-					    new String[] {
-					    	"Id Reserva", "CPF", "Data Entrada", "Data sa\u00EDda", "Observa\u00E7\u00E3o", "N\u00FAmero Quarto"
-
-					    }
-					);
-					
-			try {
-				    MySQLConector leitor = new MySQLConector();
-
-				    for (Reserva p : leitor.leituraReservas()) {
-				        tableModel.addRow(new Object[] {
-				            p.getIdReserva(), p.getCPF(), p.getDataEntrada(), p.getDataSaida(), p.getObservacaoReserva(), p.getNumeroQuarto()
-			        });
-				    }
-			} catch (BDException exception) {
-					JOptionPane.showMessageDialog(null,"Erro: " + exception);	
-					}
-				
-				table.setModel(tableModel);
-
-			}
-		});
-		frmCadastroDasReservas.getContentPane().add(btnNewButton);
-		
 		JButton btnNewButton_2 = new JButton("Realizar ");
 		btnNewButton_2.setBackground(new Color(225, 225, 225));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -231,33 +230,38 @@ public class InterfaceReservas {
 					numeroQuarto = "0";					
 				}
 				
-				try { 
+				LocalDate dataEntrada = null;
+				LocalDate dataSaida = null;
+				try {
 					
-				int inteiroQuarto = Integer.parseInt(numeroQuarto);
-				
+			
 				DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				LocalDate dataEntrada = LocalDate.parse(ftxtEntrada.getText(), formatterDate);
-
-		
-				LocalDate dataSaida = LocalDate.parse(ftxtSaida.getText(), formatterDate);
+				 dataEntrada = LocalDate.parse(ftxtEntrada.getText(), formatterDate);
+				 dataSaida = LocalDate.parse(ftxtSaida.getText(), formatterDate);
+				} catch (Exception exception) {
+					JOptionPane.showMessageDialog(null, "A data informada é inválida");	
+				}
 				
-				
+				try { 		
+				int inteiroQuarto = Integer.parseInt(numeroQuarto);
 				ControladorDeAcessos controlador = new ControladorDeAcessos();
 									 controlador.registroReserva(inteiroQuarto, ftxtCpf.getText(),dataEntrada, dataSaida, txtObservacoes.getText());
-					
+									 
+									 table.setModel(modeloReservas());
+									 txtObservacoes.setText("");
+									 ftxtCpf.setText("");
+									 ftxtEntrada.setText("");
+									 ftxtSaida.setText("");
+									 ftxtNumero.setText("");
+									 JOptionPane.showMessageDialog(null, "Reserva efetuada com sucesso");
 					
 				} catch (CoreException mensagem) {
 					
-					JOptionPane.showMessageDialog(null,"Erro: " + mensagem);	
+					JOptionPane.showMessageDialog(null, mensagem.getMessage());	
 					
 					
 				}
 							
-				txtObservacoes.setText("");
-				ftxtCpf.setText("");
-				ftxtEntrada.setText("");
-				ftxtSaida.setText("");
-				ftxtNumero.setText("");
 				
 								
 			}
@@ -270,29 +274,7 @@ public class InterfaceReservas {
 		btnNewButton_1.setForeground(new Color(38, 9, 55));
 		btnNewButton_1.setBounds(1116, 650, 92, 23);
 		frmCadastroDasReservas.getContentPane().add(btnNewButton_1);
-
-		
-		DefaultTableModel tableModel = new DefaultTableModel(
-			    new Object[][] {},
-			    new String[] {
-			    	"Id Reserva", "CPF", "Data Entrada", "Data sa\u00EDda", "Observa\u00E7\u00E3o", "N\u00FAmero Quarto"
-
-			    }
-			);
-			
-	try {
-		    MySQLConector leitor = new MySQLConector();
-
-		    for (Reserva p : leitor.leituraReservas()) {
-		        tableModel.addRow(new Object[] {
-		            p.getIdReserva(), p.getCPF(), p.getDataEntrada(), p.getDataSaida(), p.getObservacaoReserva(), p.getNumeroQuarto()
-	        });
-		    }
-	} catch (BDException exception) {
-			JOptionPane.showMessageDialog(null,"Erro: " + exception);	
-			}
-		
-		table.setModel(tableModel);
+		table.setModel(modeloReservas());
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(InterfaceReservas.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));

@@ -109,10 +109,9 @@
 		<version>1.4</version>
 	</dependency>
 	<dependency>
-    <groupId>org.jfree</groupId>
-    <artifactId>jfreechart</artifactId>
-    <version>1.5.4</version>
-</dependency>
-
+		<groupId>br.edu.paulista.ifpe</groupId>
+		<artifactId>app</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 </dependencies>
 </project>

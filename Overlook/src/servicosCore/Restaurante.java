@@ -25,7 +25,7 @@ public class Restaurante extends Servico {
 			
 		} catch (Exception e) {
 		
-			throw new BDException("erro: " + e.getMessage());
+			throw new BDException( e.getMessage());
 		}
 		
 		return valor;
