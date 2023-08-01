@@ -10,11 +10,11 @@ public class Quarto {
 	private String descricaoQuarto;
 	
 	public Quarto() {
-		super();
+		
 	}
 	public Quarto(int numeroQuarto, int andar, String tipoQuarto, boolean disponibilidade, double precoQuarto,
 			int capacidade, String descricaoQuarto) {
-		super();
+		
 		this.numeroQuarto = numeroQuarto;
 		this.andar = andar;
 		this.tipoQuarto = tipoQuarto;

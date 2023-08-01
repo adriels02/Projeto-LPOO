@@ -305,7 +305,7 @@ public class InterfaceCadastroDeQuartos {
 			        }
 
 			        try {
-			            QuartoDAO.cadastrarQuarto(quarto);
+			            dao.cadastrarQuarto(quarto);
 			
 			            JOptionPane.showMessageDialog(null, "Quarto cadastrado!");
 			            textfNumQuarto.setText("");
