@@ -6,15 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import interfaces.MenuPrincipal;
 import interfaces.TelaInicial;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
 import java.awt.Color;
@@ -31,7 +28,6 @@ public class TelaRelatorio extends JFrame {
 	 */
 	private static final long serialVersionUID = 7826610023978124960L;
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -72,17 +68,34 @@ public class TelaRelatorio extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(0, 0, 307, 163);
-		panel.add(textField);
-		textField.setColumns(10);
+		JDateChooser jdc1 = new JDateChooser();
+		jdc1.setBounds(133, 46, 127, 20);
+		panel.add(jdc1);
 		
-		JButton btnNewButton_6 = new JButton("New button");
-		btnNewButton_6.setBackground(new Color(225, 225, 225));
-		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_6.setForeground(new Color(38, 9, 55));
-		btnNewButton_6.setBounds(343, 467, 106, 23);
-		contentPane.add(btnNewButton_6);
+
+		
+		JDateChooser jdc1_1 = new JDateChooser();
+		jdc1_1.setBounds(133, 101, 127, 20);
+		panel.add(jdc1_1);
+		
+		JLabel lblNewLabel = new JLabel("Data inicial");
+		lblNewLabel.setBounds(38, 33, 85, 43);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Data Final");
+		lblNewLabel_1.setBounds(38, 101, 62, 14);
+		panel.add(lblNewLabel_1);
+		
+		JButton gerarRelatorio = new JButton("Gerar Relatorio");
+		gerarRelatorio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		gerarRelatorio.setBackground(new Color(225, 225, 225));
+		gerarRelatorio.setFont(new Font("Tahoma", Font.BOLD, 11));
+		gerarRelatorio.setForeground(new Color(38, 9, 55));
+		gerarRelatorio.setBounds(343, 467, 106, 23);
+		contentPane.add(gerarRelatorio);
 		
 		JButton btnNewButton_7 = new JButton("Menu");
 		btnNewButton_7.addActionListener(new ActionListener() {
