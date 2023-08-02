@@ -90,6 +90,7 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(" Cadastro do Quarto");
+		lblNewLabel.setForeground(new Color(38, 9, 55));
 		lblNewLabel.setBounds(29, 50, 350, 42);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		frmCadastroDeQuartos.getContentPane().add(lblNewLabel);
@@ -99,6 +100,7 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.getContentPane().add(list);
 		
 		JLabel lblListaDeQuartos = new JLabel("Lista de Quartos");
+		lblListaDeQuartos.setForeground(new Color(38, 9, 55));
 		lblListaDeQuartos.setBounds(522, 50, 279, 42);
 		lblListaDeQuartos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		frmCadastroDeQuartos.getContentPane().add(lblListaDeQuartos);
@@ -110,7 +112,7 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.getContentPane().add(lblNmero);
 		
 		textfNumQuarto = new JTextField();
-		textfNumQuarto.setBounds(98, 154, 123, 23);
+		textfNumQuarto.setBounds(128, 154, 136, 23);
 		textfNumQuarto.setForeground(new Color(0, 0, 0));
 		frmCadastroDeQuartos.getContentPane().add(textfNumQuarto);
 		textfNumQuarto.setColumns(10);
@@ -153,7 +155,7 @@ public class InterfaceCadastroDeQuartos {
 		
 		JLabel lblPesquisar = new JLabel("Pesquisar");
 		lblPesquisar.setForeground(new Color(38, 9, 55));
-		lblPesquisar.setBounds(522, 158, 139, 15);
+		lblPesquisar.setBounds(522, 158, 69, 15);
 		lblPesquisar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		frmCadastroDeQuartos.getContentPane().add(lblPesquisar);
 		
@@ -250,13 +252,13 @@ public class InterfaceCadastroDeQuartos {
 		
 		JLabel lblCapacidade = new JLabel(" Capacidade");
 		lblCapacidade.setForeground(new Color(38, 9, 55));
-		lblCapacidade.setBounds(29, 557, 76, 15);
+		lblCapacidade.setBounds(29, 560, 76, 15);
 		lblCapacidade.setFont(new Font("Tahoma", Font.BOLD, 11));
 		frmCadastroDeQuartos.getContentPane().add(lblCapacidade);
 		
 		JComboBox cbxCapacidade = new JComboBox();
 		cbxCapacidade.setForeground(new Color(38, 9, 55));
-		cbxCapacidade.setBounds(128, 554, 164, 23);
+		cbxCapacidade.setBounds(128, 556, 136, 23);
 		cbxCapacidade.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8"}));
 		frmCadastroDeQuartos.getContentPane().add(cbxCapacidade);
 		
@@ -264,7 +266,7 @@ public class InterfaceCadastroDeQuartos {
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSalvar.setForeground(new Color(38, 9, 55));
 		btnSalvar.setBackground(new Color(225, 225, 225));
-		btnSalvar.setBounds(190, 660, 162, 23);
+		btnSalvar.setBounds(128, 660, 136, 23);
 		btnSalvar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -367,15 +369,18 @@ public class InterfaceCadastroDeQuartos {
 		frmCadastroDeQuartos.getContentPane().add(btnNewButton);
 		
 		
+		textfTipoDeQuarto = new JTextField();
+		textfTipoDeQuarto.setBounds(128, 474, 136, 23);
+		frmCadastroDeQuartos.getContentPane().add(textfTipoDeQuarto);
+		textfTipoDeQuarto.setColumns(10);
+		
+		
 		JLabel lblLogoTransparente = new JLabel("");
 		lblLogoTransparente.setIcon(new ImageIcon(InterfaceCadastroDeQuartos.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(0, 0, 758, 758);
 		frmCadastroDeQuartos.getContentPane().add(lblLogoTransparente);
 		
-		textfTipoDeQuarto = new JTextField();
-		textfTipoDeQuarto.setBounds(128, 474, 136, 20);
-		frmCadastroDeQuartos.getContentPane().add(textfTipoDeQuarto);
-		textfTipoDeQuarto.setColumns(10);
+		
 	}
 	
 	

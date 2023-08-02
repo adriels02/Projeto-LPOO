@@ -139,7 +139,7 @@ public class InterfaceRestaurante extends JFrame {
 		JLabel lblTituloRestaurante = new JLabel("Restaurante");
 		lblTituloRestaurante.setForeground(new Color(38, 9, 55));
 		lblTituloRestaurante.setBounds(68, 98, 251, 42);
-		lblTituloRestaurante.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblTituloRestaurante.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(lblTituloRestaurante);
 
 		JLabel lblError = new JLabel("");

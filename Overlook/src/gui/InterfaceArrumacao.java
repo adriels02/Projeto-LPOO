@@ -120,9 +120,10 @@ public class InterfaceArrumacao extends JFrame {
 								contentPane.setLayout(null);
 				
 						JLabel lblNewLabel_1 = new JLabel("Arrumação");
+						lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 						lblNewLabel_1.setForeground(new Color(38, 9, 55));
-						lblNewLabel_1.setBounds(60, 80, 150, 42);
-						lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+						lblNewLabel_1.setBounds(1006, 68, 239, 42);
+						lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
 						contentPane.add(lblNewLabel_1);
 				
 				JLabel lblErro = new JLabel("");
@@ -203,6 +204,7 @@ public class InterfaceArrumacao extends JFrame {
 				
 				
 				JButton btnAlterarStatusArrumacao = new JButton("Alterar");
+				btnAlterarStatusArrumacao.setBackground(new Color(225, 225, 225));
 				btnAlterarStatusArrumacao.setFont(new Font("Tahoma", Font.BOLD, 11));
 				btnAlterarStatusArrumacao.setForeground(new Color(38, 9, 55));
 				btnAlterarStatusArrumacao.setBounds(400, 643, 100, 23);
@@ -278,7 +280,7 @@ public class InterfaceArrumacao extends JFrame {
 				
 				JLabel lblLogoTelas = new JLabel("");
 				lblLogoTelas.setIcon(new ImageIcon(InterfaceArrumacao.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
-				lblLogoTelas.setBounds(50, 176, 480, 320);
+				lblLogoTelas.setBounds(50, 133, 480, 320);
 				contentPane.add(lblLogoTelas);
 				
 				

@@ -156,7 +156,7 @@ public class InterfaceTranslado extends JFrame {
 		JButton btnRemoverHistorico = new JButton("Remover");
 		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
-		btnRemoverHistorico.setBounds(769, 686, 157, 23);
+		btnRemoverHistorico.setBounds(742, 686, 157, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -183,7 +183,7 @@ public class InterfaceTranslado extends JFrame {
 				lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
 				lblNewLabel_8.setForeground(new Color(38, 9, 55));
-				lblNewLabel_8.setBounds(1088, 115, 151, 14);
+				lblNewLabel_8.setBounds(1102, 115, 151, 23);
 				contentPane.add(lblNewLabel_8);
 		
 		txtIdReserva = new JTextField();
@@ -369,7 +369,7 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.add(lblNewLabel_7);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(406, 140, 874, 537);
+		scrollPane.setBounds(379, 140, 874, 537);
 		contentPane.add(scrollPane);
 		contentPane.add(btnAdicionarhistorico);
 		contentPane.add(btnRemoverHistorico);

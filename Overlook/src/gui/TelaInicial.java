@@ -95,7 +95,7 @@ public class TelaInicial extends JFrame {
 		txtSenha.setBounds(593, 458, 345, 30);
 		contentPane.add(txtSenha);
 		
-		JButton btnCadastroNovoUsuario = new JButton("CADASTRE");
+		JButton btnCadastroNovoUsuario = new JButton("CADASTRAR");
 		btnCadastroNovoUsuario.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnCadastroNovoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

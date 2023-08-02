@@ -3,6 +3,7 @@
   <groupId>Projeto-LPOO</groupId>
   <artifactId>ProjetoHotelOverlook</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>Hotel Overlook</name>
   <description>Sistema para atendimento presencial em hotel</description>
   <build>

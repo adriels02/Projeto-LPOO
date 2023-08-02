@@ -119,7 +119,7 @@ public class InterfacePrecos extends JFrame {
 		
 		JLabel lblTituloPrecos = new JLabel("Preços");
 		lblTituloPrecos.setForeground(new Color(38, 9, 55));
-		lblTituloPrecos.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblTituloPrecos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblTituloPrecos.setBounds(43, 85, 224, 42);
 		contentPane.add(lblTituloPrecos);
 		

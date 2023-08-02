@@ -24,6 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;*/
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
 
 public class MenuPrincipal extends JFrame {
@@ -69,16 +70,17 @@ public class MenuPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Menu Principal");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(246, 169, 50));
-		lblNewLabel.setBounds(224, 51, 235, 64);
+		lblNewLabel.setBounds(98, 148, 524, 64);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(lblNewLabel);
 					
 			
-		JButton bntNovoCadastro = new JButton("Cadastro Cliente");
+		JButton bntNovoCadastro = new JButton("Cadastrar Cliente");
 		bntNovoCadastro.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntNovoCadastro.setForeground(new Color(38, 9, 55));
-		bntNovoCadastro.setBounds(175, 156, 160, 80);
+		bntNovoCadastro.setBounds(98, 254, 160, 80);
 		bntNovoCadastro.setBackground(new Color(225, 225, 225));
 		bntNovoCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +97,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntServico = new JButton("Serviços");
 		bntServico.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntServico.setForeground(new Color(38, 9, 55));
-		bntServico.setBounds(356, 156, 160, 80);
+		bntServico.setBounds(279, 254, 160, 80);
 		bntServico.setBackground(new Color(225, 225, 225));
 		bntServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,7 +111,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntReserva = new JButton("Reserva");
 		bntReserva.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntReserva.setForeground(new Color(38, 9, 55));
-		bntReserva.setBounds(175, 256, 160, 80);
+		bntReserva.setBounds(462, 256, 160, 80);
 		bntReserva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -131,14 +133,14 @@ public class MenuPrincipal extends JFrame {
 		});
 		bntCheckIn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		bntCheckIn.setForeground(new Color(38, 9, 55));
-		bntCheckIn.setBounds(356, 256, 160, 80);
+		bntCheckIn.setBounds(462, 354, 160, 80);
 		bntCheckIn.setBackground(new Color(225, 225, 225));
 		contentPane.add(bntCheckIn);
 		
 		JButton bntCheckOut = new JButton("Pagamento");
 		bntCheckOut.setFont(new Font("Tahoma", Font.BOLD, 14));
 		bntCheckOut.setForeground(new Color(38, 9, 55));
-		bntCheckOut.setBounds(175, 357, 160, 80);
+		bntCheckOut.setBounds(98, 455, 160, 80);
 		bntCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaApresentacaoPagamento telaApresentacao = new TelaApresentacaoPagamento();
@@ -152,7 +154,7 @@ public class MenuPrincipal extends JFrame {
 		JButton bntConsulta = new JButton("Hóspedes");
 		bntConsulta.setForeground(new Color(38, 9, 55));
 		bntConsulta.setFont(new Font("Tahoma", Font.BOLD, 14));
-		bntConsulta.setBounds(356, 357, 160, 80);
+		bntConsulta.setBounds(98, 354, 160, 80);
 		bntConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceConsultaHospedes ic = new InterfaceConsultaHospedes();
@@ -189,7 +191,7 @@ public class MenuPrincipal extends JFrame {
 		
 		JLabel lblLogoTelas = new JLabel("");
 		lblLogoTelas.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
-		lblLogoTelas.setBounds(656, 189, 480, 320);
+		lblLogoTelas.setBounds(716, 189, 480, 320);
 		contentPane.add(lblLogoTelas);
 				
 		
@@ -207,7 +209,7 @@ public class MenuPrincipal extends JFrame {
 		btnQuartos.setBackground(new Color(225, 225, 225));
 		btnQuartos.setForeground(new Color(38, 9, 55));
 		btnQuartos.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnQuartos.setBounds(175, 456, 160, 80);
+		btnQuartos.setBounds(279, 354, 160, 80);
 		contentPane.add(btnQuartos);
 		
 		JButton btnRelatorios = new JButton("Relatórios");
@@ -223,7 +225,7 @@ public class MenuPrincipal extends JFrame {
 		btnRelatorios.setBackground(new Color(225, 225, 225));
 		btnRelatorios.setForeground(new Color(38, 9, 55));
 		btnRelatorios.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnRelatorios.setBounds(356, 456, 160, 80);
+		btnRelatorios.setBounds(279, 455, 160, 80);
 		contentPane.add(btnRelatorios);
 		
 		
@@ -241,7 +243,7 @@ public class MenuPrincipal extends JFrame {
 		btnPrecos.setForeground(new Color(38, 9, 55));
 		btnPrecos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPrecos.setBackground(new Color(225, 225, 225));
-		btnPrecos.setBounds(266, 559, 160, 80);
+		btnPrecos.setBounds(462, 455, 160, 80);
 		contentPane.add(btnPrecos);
 			
 		

@@ -94,9 +94,9 @@ public class InterfaceWiFi extends JFrame {
 
 		txtNomeSetado = new JTextField();
 		txtNomeSetado.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNomeSetado.setBackground(new Color(225, 225, 225));
-		txtNomeSetado.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtNomeSetado.setForeground(new Color(38, 9, 55));
+		txtNomeSetado.setBackground(new Color(38, 9, 55));
+		txtNomeSetado.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtNomeSetado.setForeground(new Color(255, 255, 255));
 		txtNomeSetado.setBounds(145, 264, 161, 23);
 		txtNomeSetado.setEditable(false);
 		contentPane.add(txtNomeSetado);
@@ -122,9 +122,9 @@ public class InterfaceWiFi extends JFrame {
 
 		txtSenhaSetada = new JTextField();
 		txtSenhaSetada.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSenhaSetada.setBackground(new Color(225, 225, 225));
-		txtSenhaSetada.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtSenhaSetada.setForeground(new Color(38, 9, 55));
+		txtSenhaSetada.setBackground(new Color(38, 9, 55));
+		txtSenhaSetada.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtSenhaSetada.setForeground(new Color(255, 255, 255));
 		txtSenhaSetada.setBounds(145, 315, 161, 23);
 		txtSenhaSetada.setEditable(false);
 		contentPane.add(txtSenhaSetada);
@@ -150,7 +150,7 @@ public class InterfaceWiFi extends JFrame {
 		btnNewButton.setBackground(new Color(225, 225, 225));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(new Color(38, 9, 55));
-		btnNewButton.setBounds(145, 594, 120, 23);
+		btnNewButton.setBounds(145, 594, 161, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

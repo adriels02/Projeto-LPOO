@@ -86,8 +86,8 @@ public class InterfaceEstacionamento extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Estacionamento");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setForeground(new Color(38, 9, 55));
-		lblNewLabel_1.setBounds(115, 126, 234, 42);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel_1.setBounds(23, 126, 326, 42);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblErro = new JLabel("");

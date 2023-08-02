@@ -249,6 +249,8 @@ private TableModel modeloTabelaServicos() {
 		table.setModel(modeloTabelaServicos());
 		
 		JButton btnNewButton_1 = new JButton("Remover");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(38, 9, 55));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -267,7 +269,7 @@ private TableModel modeloTabelaServicos() {
 
 			}
 		});
-		btnNewButton_1.setBounds(887, 566, 89, 23);
+		btnNewButton_1.setBounds(866, 566, 136, 23);
 		contentPane.add(btnNewButton_1);
 		
 		
