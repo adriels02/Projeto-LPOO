@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Built-By: 100
+Build-Jdk: 20
+Class-Path: libs/mysql-connector-j-8.0.33.jar libs/protobuf-java-3.21.9.
+ jar libs/jcalendar-1.4.jar libs/kernel-7.0.2.jar libs/slf4j-api-1.7.13.
+ jar libs/io-7.0.2.jar libs/layout-7.0.2.jar libs/forms-7.0.2.jar libs/p
+ dfa-7.0.2.jar libs/sign-7.0.2.jar libs/barcodes-7.0.2.jar libs/font-asi
+ an-7.0.2.jar libs/hyph-7.0.2.jar libs/mail-1.4.7.jar libs/activation-1.
+ 1.jar libs/commons-email-1.5.jar libs/javax.mail-1.5.6.jar libs/bcprov-
+ jdk15on-1.70.jar libs/jfreechart-1.5.4.jar
+Main-Class: gui.TelaInicial
+Created-By: Maven Integration for Eclipse
+
