@@ -10,6 +10,7 @@ import javax.swing.text.MaskFormatter;
 import core.CadastroControllerDependentes;
 import core.Dependentes;
 import core.Validador;
+import core.ValidarCaracteres;
 
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -88,8 +89,11 @@ public class InterfaceCadastroDependentes extends JFrame {
         txtfNomeDependente.setBounds(45, 292, 375, 23);
         contentPane.add(txtfNomeDependente);
         txtfNomeDependente.setColumns(10);
-        Validador validadorNome = new Validador(45);
-		txtfNomeDependente.setDocument(validadorNome);
+        //Validador validadorNome = new Validador(45);
+		//txtfNomeDependente.setDocument(validadorNome);
+		txtfNomeDependente.setDocument(new ValidarCaracteres(45, ValidarCaracteres.TipoEntrada.NOME));
+		
+		
 
         JLabel lblNewLabel_2 = new JLabel("CPF do Titular");
         lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -177,8 +181,10 @@ public class InterfaceCadastroDependentes extends JFrame {
         txtfTelefoneDependente.setBounds(430, 378, 216, 23);
         contentPane.add(txtfTelefoneDependente);
         txtfTelefoneDependente.setColumns(10);
-        Validador validadorTelefone = new Validador(20);
-		txtfTelefoneDependente.setDocument(validadorTelefone);
+        //Validador validadorTelefone = new Validador(13);
+		//txtfTelefoneDependente.setDocument(validadorTelefone);
+		txtfTelefoneDependente.setDocument(new ValidarCaracteres(13, ValidarCaracteres.TipoEntrada.NUMEROINTERIRO));
+		
 
         JButton btnNewButton_2 = new JButton("Cadastrar");
         btnNewButton_2.setBackground(new Color(225, 225, 225));

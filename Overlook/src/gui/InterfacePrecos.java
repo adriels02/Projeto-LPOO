@@ -461,7 +461,8 @@ public class InterfacePrecos extends JFrame {
 		lblLogoPequena.setBounds(865, 63, 220, 150);
 		contentPane.add(lblLogoPequena);
 		
-		JButton btnNewButton = new JButton("Menu");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(InterfacePrecos.class.getResource("/interfaces/imagens/Botao Menu 65x23.png")));
 		btnNewButton.setBounds(0, 0, 65, 23);
 		contentPane.add(btnNewButton);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));

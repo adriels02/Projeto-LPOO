@@ -38,7 +38,7 @@ public class ValidarCaracteres extends PlainDocument  {
 			switch (tpEntrada){
 			case NUMEROINTERIRO: regras = "[^0-9]"; break;
 			case NUMERODECIMAL:  regras = "[^0-9,.]"; break;
-			case NOME:           regras = "[^A-Za-z ]"; break;
+			case NOME:           regras = "[^A-Za-zçÇ ]"; break;
 			case DATA:           regras = "[^0-9/]"; break;
 			
 			

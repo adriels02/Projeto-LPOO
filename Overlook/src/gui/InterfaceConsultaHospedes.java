@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -25,6 +24,7 @@ import core.CadastroController;
 import core.CadastroControllerDependentes;
 import core.Cliente;
 import core.Dependentes;
+import core.ValidarCaracteres;
 import data.CadastroClienteDAO;
 import data.CadastroDependenteDAO;
 import data.ExceptionDAO;
@@ -152,6 +152,7 @@ public class InterfaceConsultaHospedes extends JFrame {
         txtfConsultaDependentes.setFont(new Font("Tahoma", Font.PLAIN, 12));
         txtfConsultaDependentes.setColumns(10);
         txtfConsultaDependentes.setBounds(335, 450, 242, 23);
+        txtfConsultaDependentes.setDocument(new ValidarCaracteres(11, ValidarCaracteres.TipoEntrada.NUMEROINTERIRO));
         contentPane.add(txtfConsultaDependentes);
 
         JButton bttConsultarDependentes = new JButton("Consultar");
@@ -213,6 +214,8 @@ public class InterfaceConsultaHospedes extends JFrame {
         textfConsultaCpf.setBounds(332, 117, 242, 23);
         contentPane.add(textfConsultaCpf);
         textfConsultaCpf.setColumns(10);
+        textfConsultaCpf.setDocument(new ValidarCaracteres(11, ValidarCaracteres.TipoEntrada.NUMEROINTERIRO));
+        
 
         JButton btnNewButton_1 = new JButton("Consultar");
         btnNewButton_1.setBackground(new Color(225, 225, 225));

@@ -1,37 +1,29 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import core.CadastroController;
 import core.Validador;
-
-import javax.swing.JMenuItem;
-import java.awt.Toolkit;
-import java.awt.Dimension;
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import java.awt.ComponentOrientation;
-import javax.swing.SwingConstants;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import core.ValidarCaracteres;
 
 public class CadastroInterface extends JFrame {
 
@@ -113,8 +105,11 @@ public class CadastroInterface extends JFrame {
 		contentPane.add(txtfNome);
 		txtfNome.setColumns(10);
 		
-		Validador validadorNome = new Validador(45);
-        txtfNome.setDocument(validadorNome);
+		//Validador validadorNome = new Validador(45);
+       // txtfNome.setDocument(validadorNome);
+        
+        txtfNome.setDocument(new ValidarCaracteres(45, ValidarCaracteres.TipoEntrada.NOME));
+    
 		
 		JLabel lblNewLabel_3 = new JLabel("CPF");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -159,9 +154,11 @@ public class CadastroInterface extends JFrame {
 		txtfTelefone.setBounds(362, 277, 201, 23);
 		contentPane.add(txtfTelefone);
 		txtfTelefone.setColumns(10);
-		Validador validadorTelefone = new Validador(20);
-		txtfTelefone.setDocument(validadorTelefone);
+		//Validador validadorTelefone = new Validador(20);
+		//txtfTelefone.setDocument(validadorTelefone);
 		
+		txtfTelefone.setDocument(new ValidarCaracteres(13, ValidarCaracteres.TipoEntrada.NUMEROINTERIRO));
+			
 		JLabel lblNewLabel_6 = new JLabel("E-mail");
 		lblNewLabel_6.setForeground(new Color(38, 9, 55));
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -240,7 +237,8 @@ public class CadastroInterface extends JFrame {
 		btnCadastrarDependentes.setBounds(71, 505, 179, 23);
 		contentPane.add(btnCadastrarDependentes);
 		
-		JButton btnNenuPrincipal = new JButton("Menu");
+		JButton btnNenuPrincipal = new JButton("");
+		btnNenuPrincipal.setIcon(new ImageIcon(CadastroInterface.class.getResource("/interfaces/imagens/Botao Menu 65x23.png")));
 		btnNenuPrincipal.setBounds(0, 0, 65, 23);
 		contentPane.add(btnNenuPrincipal);
 		btnNenuPrincipal.setBackground(new Color(255, 128, 64));

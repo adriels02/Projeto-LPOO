@@ -154,6 +154,7 @@ public class InterfaceTranslado extends JFrame {
 		
 		
 		JButton btnRemoverHistorico = new JButton("Remover");
+		btnRemoverHistorico.setBackground(new Color(225, 225, 225));
 		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRemoverHistorico.setForeground(new Color(38, 9, 55));
 		btnRemoverHistorico.setBounds(742, 686, 157, 23);
@@ -235,6 +236,7 @@ public class InterfaceTranslado extends JFrame {
 		contentPane.add(ftxtHora);
 
 		JButton btnAdicionarhistorico = new JButton("Adicionar");
+		btnAdicionarhistorico.setBackground(new Color(225, 225, 225));
 		btnAdicionarhistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAdicionarhistorico.setForeground(new Color(38, 9, 55));
 		btnAdicionarhistorico.setBounds(100, 621, 151, 23);
