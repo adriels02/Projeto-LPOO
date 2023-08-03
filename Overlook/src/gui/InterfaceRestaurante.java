@@ -176,7 +176,7 @@ public class InterfaceRestaurante extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
 					table.setModel(modeloRestaurante());
-
+					idReferenciaExclusao = 0;
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, exception.getMessage());
 

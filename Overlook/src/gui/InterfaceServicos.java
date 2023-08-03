@@ -262,6 +262,7 @@ private TableModel modeloTabelaServicos() {
 
 					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
 					table.setModel(modeloTabelaServicos());
+					idReferenciaExclusao = 0;
 
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, exception.getMessage());

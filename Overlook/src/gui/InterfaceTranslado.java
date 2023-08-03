@@ -62,9 +62,10 @@ public class InterfaceTranslado extends JFrame {
 	private JTextField txtIdReserva;
 	private JTable table;
 	private int idReferenciaExclusao = 0;
+
 	/**
 	 * Launch the application.
-	 */	
+	 */
 	private MaskFormatter setMascara(String mascara) {
 		MaskFormatter mask = null;
 		try {
@@ -73,37 +74,36 @@ public class InterfaceTranslado extends JFrame {
 		}
 		return mask;
 	}
-	
+
 	private TableModel modeloTabelaTranslado() {
-		
-	    DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "idViagem",
-	            "Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva" }) {
-	        Class[] columnTypes = new Class[] { Object.class, Object.class, Object.class, Object.class, Object.class,
-	                Object.class, Object.class };	       
-	        @Override
-	        public boolean isCellEditable(int row, int column) {
-	            return false;
-	        }
-	    };
 
-	    tableModel.setNumRows(0);
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "idViagem",
+				"Endereço Coleta", "Endereço Destino", "Passageiros", "Data", "Hora", "id Reserva" }) {
+			Class[] columnTypes = new Class[] { Object.class, Object.class, Object.class, Object.class, Object.class,
+					Object.class, Object.class };
 
-	    try {
-	        MySQLConector leitor = new MySQLConector();
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
-	        for (HistoricoTranslado p : leitor.leituraTabela()) {
-	            tableModel.addRow(new Object[] { p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(),
-	                    p.getNumeroPassageiros(), p.getData(), p.getHora(), p.getIdReserva() });
-	        }
+		tableModel.setNumRows(0);
 
-	    } catch (Exception exception) {
-	        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar a tabela");
-	    }
+		try {
+			MySQLConector leitor = new MySQLConector();
 
-	    return tableModel;
+			for (HistoricoTranslado p : leitor.leituraTabela()) {
+				tableModel.addRow(new Object[] { p.getIdViagem(), p.getEnderecoColeta(), p.getEnderecoDestino(),
+						p.getNumeroPassageiros(), p.getData(), p.getHora(), p.getIdReserva() });
+			}
+
+		} catch (Exception exception) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao atualizar a tabela");
+		}
+
+		return tableModel;
 	}
-
-
 
 	public static void main(String[] args) {
 
@@ -124,19 +124,16 @@ public class InterfaceTranslado extends JFrame {
 			}
 		});
 	}
-	
-	
-	
-	
 
 	/**
 	 * Create the frame.
 	 */
 	public InterfaceTranslado() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceTranslado.class.getResource("/interfaces/imagens/iconeOverlook.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(InterfaceTranslado.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 777, 504);
-		setSize(1280,720); 
+		setSize(1280, 720);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		contentPane = new JPanel();
@@ -145,14 +142,13 @@ public class InterfaceTranslado extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel_9 = new JLabel("Id Reserva");
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_9.setForeground(new Color(38, 9, 55));
 		lblNewLabel_9.setBounds(33, 202, 206, 14);
 		contentPane.add(lblNewLabel_9);
-		
-		
+
 		JButton btnRemoverHistorico = new JButton("Remover");
 		btnRemoverHistorico.setBackground(new Color(225, 225, 225));
 		btnRemoverHistorico.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -160,33 +156,30 @@ public class InterfaceTranslado extends JFrame {
 		btnRemoverHistorico.setBounds(742, 686, 157, 23);
 		btnRemoverHistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
+
 				try {
-					
-				
+
 					ControladorDeAcessos idExclusao = new ControladorDeAcessos();
 					idExclusao.exclusaoHistoricoTranslado(idReferenciaExclusao);
-					
-					
-					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");	
+
+					JOptionPane.showMessageDialog(null, "Exclusão feita com sucesso");
 					table.setModel(modeloTabelaTranslado());
-					
-					
+					idReferenciaExclusao = 0;
+
 				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null, exception.getMessage());	
-					
+					JOptionPane.showMessageDialog(null, exception.getMessage());
+
 				}
 			}
 		});
 
-		
-				JLabel lblNewLabel_8 = new JLabel("Histórico de viagens");
-				lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
-				lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
-				lblNewLabel_8.setForeground(new Color(38, 9, 55));
-				lblNewLabel_8.setBounds(1102, 115, 151, 23);
-				contentPane.add(lblNewLabel_8);
-		
+		JLabel lblNewLabel_8 = new JLabel("Histórico de viagens");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_8.setForeground(new Color(38, 9, 55));
+		lblNewLabel_8.setBounds(1102, 115, 151, 23);
+		contentPane.add(lblNewLabel_8);
+
 		txtIdReserva = new JTextField();
 		txtIdReserva.setBounds(33, 218, 297, 23);
 		txtIdReserva.addKeyListener(new KeyAdapter() {
@@ -217,15 +210,9 @@ public class InterfaceTranslado extends JFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBounds(1, 26, 872, 0);
 		txtIdReserva.setDocument(new Validador(50));
-		
-		
-		
-		
-	
+
 		table.setModel(modeloTabelaTranslado());
 		contentPane.add(table);
-		
-		
 
 		JFormattedTextField ftxtfData = new JFormattedTextField(setMascara("##/##/####"));
 		ftxtfData.setBounds(33, 551, 126, 23);
@@ -243,18 +230,16 @@ public class InterfaceTranslado extends JFrame {
 		btnAdicionarhistorico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				
-				
 				String QuantidadeDePassageiros = txtQuantidadePassageiros.getText();
 				if (QuantidadeDePassageiros.equals("")) {
 					QuantidadeDePassageiros = "0";
 				}
-				
+
 				String idReserva = txtIdReserva.getText();
 				if (idReserva.equals("")) {
 					idReserva = "0";
 				}
-				
+
 				int numeroidReserva = Integer.parseInt(idReserva);
 				int numeroPassageiros = Integer.parseInt(QuantidadeDePassageiros);
 
@@ -269,33 +254,32 @@ public class InterfaceTranslado extends JFrame {
 					horaFormatada = hora;
 
 				} catch (Exception exception) {
-					JOptionPane.showMessageDialog(null,"Data digitada é inválida");	
+					JOptionPane.showMessageDialog(null, "Data digitada é inválida");
 				}
 
 				try {
 
-				ControladorDeAcessos historicotranslado = new ControladorDeAcessos();
-					historicotranslado.RegistroHistoricoDeViagem(numeroidReserva ,txtEnderecoColeta.getText(),
+					ControladorDeAcessos historicotranslado = new ControladorDeAcessos();
+					historicotranslado.RegistroHistoricoDeViagem(numeroidReserva, txtEnderecoColeta.getText(),
 							txtEnderecoDestino.getText(), numeroPassageiros, dataFormatada, horaFormatada);
-	
-				ControladorDeAcessos registroServico = new ControladorDeAcessos();
-					 registroServico.registroServicoTranslado(numeroidReserva, numeroPassageiros);
-					 
-					 JOptionPane.showMessageDialog(null,"Registro efetuado com sucesso");
-					 
-						ftxtfData.setText("");
-						txtEnderecoColeta.setText("");
-						txtEnderecoDestino.setText("");
-						ftxtHora.setText("");
-						txtQuantidadePassageiros.setText("");
-						txtIdReserva.setText("");
-						table.setModel(modeloTabelaTranslado());
-						
+
+					ControladorDeAcessos registroServico = new ControladorDeAcessos();
+					registroServico.registroServicoTranslado(numeroidReserva, numeroPassageiros);
+
+					JOptionPane.showMessageDialog(null, "Registro efetuado com sucesso");
+
+					ftxtfData.setText("");
+					txtEnderecoColeta.setText("");
+					txtEnderecoDestino.setText("");
+					ftxtHora.setText("");
+					txtQuantidadePassageiros.setText("");
+					txtIdReserva.setText("");
+					table.setModel(modeloTabelaTranslado());
+
 				} catch (CoreException exception) {
 
-					JOptionPane.showMessageDialog(null,"Erro: " + exception.getMessage());
+					JOptionPane.showMessageDialog(null, exception.getMessage());
 				}
-
 
 			}
 		});
@@ -330,7 +314,6 @@ public class InterfaceTranslado extends JFrame {
 		lblNewLabel_4.setBounds(33, 366, 208, 14);
 		contentPane.add(lblNewLabel_4);
 
-		
 		txtEnderecoDestino = new JTextField();
 		txtEnderecoDestino.setBounds(33, 381, 297, 23);
 		txtEnderecoDestino.setColumns(10);
@@ -357,7 +340,7 @@ public class InterfaceTranslado extends JFrame {
 		txtQuantidadePassageiros.setColumns(10);
 		contentPane.add(txtQuantidadePassageiros);
 		txtQuantidadePassageiros.setDocument(new Validador(2));
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Data");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setForeground(new Color(38, 9, 55));
@@ -369,59 +352,59 @@ public class InterfaceTranslado extends JFrame {
 		lblNewLabel_7.setForeground(new Color(38, 9, 55));
 		lblNewLabel_7.setBounds(175, 535, 70, 14);
 		contentPane.add(lblNewLabel_7);
-		
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(379, 140, 874, 537);
 		contentPane.add(scrollPane);
 		contentPane.add(btnAdicionarhistorico);
 		contentPane.add(btnRemoverHistorico);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
+
 				InterfaceServicos interfaceServicos = new InterfaceServicos();
 				interfaceServicos.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
+		btnNewButton.setIcon(
+				new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao servicos 65x23.png")));
 		btnNewButton.setBounds(0, 0, 65, 23);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnFecharTela = new JButton("");
 		btnFecharTela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				dispose();
 			}
 		});
-		btnFecharTela.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setIcon(new ImageIcon(
+				InterfaceTranslado.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
 		btnFecharTela.setBounds(1250, 0, 30, 30);
 		contentPane.add(btnFecharTela);
-		
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 				TelaInicial objTelaInicial = new TelaInicial();
 				objTelaInicial.setVisible(true);
 				dispose();
-				
+
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
+		btnNewButton_1.setIcon(
+				new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/Botao sign out 30x30.png")));
 		btnNewButton_1.setBounds(1213, 0, 30, 30);
 		contentPane.add(btnNewButton_1);
-		
+
 		JLabel lblLogoTransparente = new JLabel("");
-		lblLogoTransparente.setIcon(new ImageIcon(InterfaceTranslado.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
+		lblLogoTransparente.setIcon(new ImageIcon(
+				InterfaceTranslado.class.getResource("/interfaces/imagens/icone logo transparente 758x758.png")));
 		lblLogoTransparente.setBounds(100, 0, 758, 758);
 		contentPane.add(lblLogoTransparente);
 
-		
-			
-		
 	}
 }

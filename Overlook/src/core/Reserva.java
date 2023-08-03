@@ -15,6 +15,7 @@ public class Reserva {
 	
 	public Reserva(int numeroQuarto,String CPF ,LocalDate dataEntrada, LocalDate dataSaida, String observacaoReserva) {
 		super();
+		this.CPF = CPF;
 		this.numeroQuarto = numeroQuarto;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;

@@ -161,14 +161,14 @@ public class InterfaceWiFi extends JFrame {
 
 					txtNomeSetado.setText(wifii.getNome());
 					txtSenhaSetada.setText(wifii.getSenha());
-					
-					JOptionPane.showMessageDialog(null,"Mudança efetuada com sucesso!");	
+
+					JOptionPane.showMessageDialog(null, "Mudança efetuada com sucesso!");
 					txtNomeGet.setText("");
 					txtSenhaGet.setText("");
 
 				} catch (CoreException mensagem) {
 
-					JOptionPane.showMessageDialog(null,"Ocorreu um erro: "  + mensagem.getMessage());	
+					JOptionPane.showMessageDialog(null, "Ocorreu um erro: " + mensagem.getMessage());
 
 				}
 			}
