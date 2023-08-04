@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 
 import gui.MenuPrincipal;
 import gui.TelaInicial;
+import core.ControladorDeAcessos;
+import core.CoreException;
 import core.Quarto;
 import data.BDException;
 import data.QuartoDAO;
@@ -334,6 +336,8 @@ public class InterfaceCadastroDeQuartos {
 
 			        try {
 			            QuartoDAO.cadastrarQuarto(quarto);
+			            ControladorDeAcessos controlador = new ControladorDeAcessos();
+			            controlador.adicionarArrumacao(Integer.parseInt(textfNumQuarto.getText()));
 			            
 			            modelo = dao.carregarTabela();
 						tbLista.setModel(modelo);
@@ -345,7 +349,7 @@ public class InterfaceCadastroDeQuartos {
 			            
 			            textfNumQuarto.requestFocus();
 			            
-			        } catch (BDException e1) {
+			        } catch (BDException | CoreException e1) {
 			            JOptionPane.showMessageDialog(null, "Erro ao cadastrar quarto");
 			            e1.printStackTrace();
 			        }
@@ -528,6 +532,7 @@ public class InterfaceCadastroDeQuartos {
 	        	
 	        	quarto = quartoDAO.listar().get(selectedRow);
 	        	quartoDAO.deletar(quarto);
+	        	ControladorDeAcessos controlador = new ControladorDeAcessos();
 	        	
 	        	 DefaultTableModel modelo =(DefaultTableModel) tbLista.getModel();;
 		   			try {

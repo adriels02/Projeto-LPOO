@@ -141,13 +141,13 @@ public class InterfacePrecos extends JFrame {
 		lblNewLabel_3.setBounds(192, 510, 88, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Serviço de Quarto");
+		JLabel lblNewLabel_4 = new JLabel("Taxa Serviço de Quarto");
 		lblNewLabel_4.setForeground(new Color(38, 9, 55));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(44, 510, 106, 14);
+		lblNewLabel_4.setBounds(10, 510, 140, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Taxa Translado");
+		JLabel lblNewLabel_5 = new JLabel("Translado");
 		lblNewLabel_5.setForeground(new Color(38, 9, 55));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setBounds(191, 385, 89, 14);

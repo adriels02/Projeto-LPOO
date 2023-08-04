@@ -35,5 +35,9 @@ public interface ControleAcessoBD {
 	public void exclusaoServicoQuarto(int id) throws BDException;
 
 	public void exclusaoRestaurante(int id) throws BDException;
+	
+	public void adicionarArrumacao(Arrumacao arrumacao) throws BDException;
+	
+	public void exclusaoArrumacao(int id) throws BDException;
 
 }

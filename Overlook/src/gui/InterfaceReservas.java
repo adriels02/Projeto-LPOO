@@ -214,7 +214,7 @@ public class InterfaceReservas {
 		btnNewButton_2.setBackground(new Color(225, 225, 225));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setForeground(new Color(38, 9, 55));
-		btnNewButton_2.setBounds(1005, 650, 101, 23);
+		btnNewButton_2.setBounds(1110, 646, 101, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -257,13 +257,6 @@ public class InterfaceReservas {
 			}
 		});
 		frmCadastroDasReservas.getContentPane().add(btnNewButton_2);
-
-		JButton btnNewButton_1 = new JButton("Consultar");
-		btnNewButton_1.setBackground(new Color(225, 225, 225));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setForeground(new Color(38, 9, 55));
-		btnNewButton_1.setBounds(1116, 650, 92, 23);
-		frmCadastroDasReservas.getContentPane().add(btnNewButton_1);
 		table.setModel(modeloReservas());
 
 		JLabel lblNewLabel = new JLabel("");

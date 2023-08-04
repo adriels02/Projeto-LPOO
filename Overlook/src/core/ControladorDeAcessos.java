@@ -390,5 +390,36 @@ public class ControladorDeAcessos {
 		}
 
 	}
+	
+	public void adicionarArrumacao(int numeroQuarto) throws CoreException {
+		
+		try {
+			
+			Arrumacao arrumacao = new Arrumacao(numeroQuarto, "Arrumado");
+			repositorio.adicionarArrumacao(arrumacao);
+		} catch(BDException exception ) {
+			throw new CoreException(exception.getMessage());
+			
+		}
+		
+	}
+	
+	public void exclusaoArrumacao(int numero) throws CoreException {
+
+	
+		try {
+
+			repositorio.exclusaoArrumacao(numero);
+
+		} catch (BDException exception) {
+			throw new CoreException(exception.getMessage());
+
+		}
+
+	}
+	
+	
+	
+	
 
 }
