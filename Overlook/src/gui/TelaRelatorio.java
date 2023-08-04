@@ -17,6 +17,8 @@ import com.toedter.calendar.JDateChooser;
 
 import core.RelatorioController;
 import core.RelatorioEntidade;
+import core.RelatorioExcecoesRegraNegocio;
+import data.RelatorioDataException;
 
 import javax.swing.JButton;
 import java.awt.Toolkit;
@@ -25,6 +27,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -38,7 +41,7 @@ public class TelaRelatorio extends JFrame {
 	 */
 	private static final long serialVersionUID = 7826610023978124960L;
 	private JPanel contentPane;
-	private JLabel errorLabel;
+	private JLabel errorLabel= new JLabel("x");;
 	public static final String KEY1 = "Café da Manhã";
 	public static final String KEY2 = "Jantar";
 	public static final String KEY3 = "Almoço";
@@ -112,19 +115,30 @@ public class TelaRelatorio extends JFrame {
 				try {
 					RelatorioController rc = new RelatorioController();
 					
-
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String dataInicial = dateFormat.format(jdc1.getDate());
-					String dataFinal = dateFormat.format(jdc1_1.getDate());
+					String dataFinal = dateFormat.format(jdc1_1.getDate());					
+					
+					//atribui a um objeto de RelatorioController a um de RelatorioEntidade
 					RelatorioEntidade t = rc.selectRestaurante(dataInicial, dataFinal);
+					
+					//usamos gets de RelatorioEntidade
 					int almoco = t.getAlmoco();
 					int jantar= t.getJantar();
 					int cafeManha= t.getCafeManha();
+					
+					//Para criar o grafico em pizza passamos as chaves e os valores para o Dataset.
 					DefaultPieDataset dataset = new DefaultPieDataset();
 					dataset.setValue(KEY1, cafeManha);
 					dataset.setValue(KEY2, jantar);
 					dataset.setValue(KEY3, almoco);
-
+					
+				
+					// exception para o caso das datas nao retornarem com valres minimos parra contruir um grafico
+					if(cafeManha==0 && jantar==0 && almoco==0)throw new RelatorioDataException("Não existe valores"
+					+ " para atribuir a um Gráfico. Escolha outras Datas.");
+					
+					//criar o grafico pizza
 					JFreeChart someChart = ChartFactory.createPieChart(
 							"Gráfico Restaurante", dataset, true, true, false);
 					PiePlot plot = (PiePlot) someChart.getPlot();
@@ -134,11 +148,15 @@ public class TelaRelatorio extends JFrame {
 					plot.setExplodePercent(KEY1, 0.10);
 					plot.setSimpleLabels(true);
 
+					//3 parametros para definiçao dos labels. Do frame criado com o grafico de pizza. {0} é a string ex: Almoco: . {1} é o valor ex: 30.
+					//{2} é a porcentagem.
+					//o segundo e terceiro parametros são referentes ao tipo de decimal usado para o valor e porcentagem.
 					StandardPieSectionLabelGenerator gen = new StandardPieSectionLabelGenerator(
 							"{0}: {1} ({2})", new DecimalFormat("0"), new DecimalFormat("0%"));
 					plot.setLabelGenerator(gen);
 
-					JFrame f = new JFrame("Gráfico Restaurante");
+					//cria o jfframe do grafico pizza
+					JFrame f = new JFrame("");
 					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					f.getContentPane().add(new ChartPanel(someChart) {
 						@Override
@@ -208,6 +226,8 @@ public class TelaRelatorio extends JFrame {
 		lblLogoTelas.setIcon(new ImageIcon(TelaRelatorio.class.getResource("/interfaces/imagens/logo telas 480x320.png")));
 		lblLogoTelas.setBounds(750, 170, 480, 320);
 		contentPane.add(lblLogoTelas);
+		errorLabel.setLocation(142, 475);
+		errorLabel.setSize(579, 42);
 
 
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));

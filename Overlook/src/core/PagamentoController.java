@@ -210,7 +210,9 @@ public class PagamentoController {
 				String hora = x.format(formatacao);
 				String senhaUser = "honduras";
 				String senhaMaster = "senegal";
+				//achar o path do $HOME unix ou Documents Windows
 				String enderecoDocumentos = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
+				
 				ArrayList<String> nomeServico = pgmt.getNomeServico();
 				ArrayList<Double> precoServico = pgmt.getPrecoServico();
 				pgc.inserirDadosController(pgmt);
@@ -219,14 +221,19 @@ public class PagamentoController {
 
 
 
-				FileOutputStream fos = new FileOutputStream(enderecoDocumentos +"\\Id da fatura" + pgmt.getIdFatura() + "   dd_MM_yyyy HH_mm_ss " + hora + ".pdf");
+				//o path e o nome do pdf que voce desejar.
+				FileOutputStream fos = new FileOutputStream(enderecoDocumentos +"\\Id da fatura " + pgmt.getIdFatura() + "   dd_MM_yyyy HH_mm_ss " + hora + ".pdf");
 
-
+				//nome do arquivo e senhas
 				PdfWriter writer = new PdfWriter(fos, new WriterProperties().setStandardEncryption(senhaUser.getBytes(), 
 						senhaMaster.getBytes(), 
 						EncryptionConstants.ALLOW_PRINTING, 
 						EncryptionConstants.ENCRYPTION_AES_128 | EncryptionConstants.DO_NOT_ENCRYPT_METADATA));
+			
+				//pdf é construido com suas especificacoes
 				PdfDocument pdf = new PdfDocument(writer);	
+				
+				//documento é construido com pdf
 				Document doc = new Document(pdf);
 
 
@@ -237,36 +244,33 @@ public class PagamentoController {
 
 
 
-
+				//define as larguras das colunas. Usadas no design do pdf
 				float [] LarguraColunaNomeData = {1300F,400F};   
 				float [] larguraColunaCpfTipoPagamento = {160F,360F,210F};
 				float [] larguraIdFaturaIdCliente = {210F,510F};
 
-
-				// Creating an ImageData object       
-
+				//path das imagens
 				ImageData logoTopo = ImageDataFactory.create(arquivoLogo);              
 				ImageData logoFundoTranstarente = ImageDataFactory.create(arquivoFundoTransparente);
-
-				// Creating an Image object        
+				//constroi as imagens
 				Image image = new Image(logoTopo); 
-
 				Image imageLogoFundoTransparente = new Image(logoFundoTranstarente); 
-
+				//define tamanho e posiçao da Logo de Fundo
 				imageLogoFundoTransparente.scaleToFit(480, 480 );
 				imageLogoFundoTransparente.setFixedPosition(60, 180);
 
+				//Cria as Tabelas
 				Table tableNomeData = new Table(LarguraColunaNomeData);
 				Table tableCpfDataNasc = new Table(larguraColunaCpfTipoPagamento);
 				Table tableIdFaturaTipoPgmt = new Table(larguraIdFaturaIdCliente);
-
+				//adiciona as imagens
 				doc.add(image.setMarginTop(33f)); 
 				doc.add(imageLogoFundoTransparente); 
 				tableNomeData.addCell(new Cell().add("Nome: "+ pgmt.getNomecliente()+""));  
-				
+				//formata a data
 				formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				hora = x.format(formatacao);
-				
+				//adiciona as informaçoes ao pdf
 				tableNomeData.addCell(new Cell().add("Data: "+ hora));
 
 				doc.add(tableNomeData);                  
@@ -285,7 +289,7 @@ public class PagamentoController {
 				for (int i = 0; i < nomeServico.size(); i++) {
 					doc.add(new Paragraph("Serviço: "+ nomeServico.get(i)+ "  " +"Preço: R$" + precoServico.get(i).toString()).setMarginLeft(50f));
 				}
-				doc.add(new Paragraph("Preço Total Do(s) Quarto(s) Reservado(s): "+pgmt.getTotalPrecoQuarto()+""));
+			//	doc.add(new Paragraph("Preço Total Do(s) Quarto(s) Reservado(s): "+pgmt.getTotalPrecoQuarto()+""));
 				doc.add(new Paragraph("Total  "+pgmt.getPrecoFinal()+"").setMarginLeft(390f).setBold().setFontSize(13f));
 				doc.add(new Paragraph("Overlook 2023").setMarginLeft(210f).setBold().setFontSize(11f));
 				doc.close();
