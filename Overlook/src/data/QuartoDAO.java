@@ -6,18 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import core.Quarto;
-import gui.InterfaceCadastroDeQuartos;
 
 public class QuartoDAO {
 	
 	static Connection conn;
 
 	public static void cadastrarQuarto(Quarto quarto) throws BDException {
-		String sql = "INSERT INTO Quarto(numeroQuarto,andar, tipoQuarto, disponibilidade, precoQuarto,\r\n"
-				+ "	capacidade,descricaoQuarto) VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Quarto(numeroQuarto,andar, tipoQuarto, disponibilidade, precoQuarto, capacidade,descricaoQuarto) VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 
 		try {
@@ -30,7 +29,7 @@ public class QuartoDAO {
 			stmt.setDouble(5, quarto.getPrecoQuarto());
 			stmt.setInt(6, quarto.getCapacidade());
 			stmt.setString(7, quarto.getDescricaoQuarto());
-			stmt.executeUpdate() ;
+			stmt.execute() ;
 			
 		} catch (SQLException e) {
 			throw new BDException("Ocorreu um erro ao tentar cadastrar o quarto: " + e);
@@ -55,15 +54,16 @@ public class QuartoDAO {
 	
 	
 	public ArrayList<Quarto> listarQuartos(int numeroQuarto) throws BDException {
-		ArrayList<Quarto> quartos = new ArrayList<>();
-		String sql = "SELECT * FROM Quarto WHERE andar LIKE ? ORDER BY numeroQuarto";
+		ArrayList<Quarto> quartos = new ArrayList<Quarto>();
+		String sql = "SELECT * FROM Quarto WHERE numeroQuarto = ? ORDER BY numeroQuarto";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
-			stmt = (PreparedStatement) conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, numeroQuarto);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                Quarto quarto = new Quarto(); 
@@ -73,7 +73,7 @@ public class QuartoDAO {
                quarto.setDisponibilidade(rs.getBoolean("disponibilidade"));
                quarto.setPrecoQuarto(rs.getDouble("precoQuarto"));
                quarto.setCapacidade(rs.getInt("capacidade"));
-               quarto.setDescricaoQuarto(rs.getString("descricao"));
+               quarto.setDescricaoQuarto(rs.getString("descricaoQuarto"));
                
                quartos.add(quarto);
             }
@@ -99,9 +99,54 @@ public class QuartoDAO {
 		return quartos;
 	}
 	
-	public void editar (Quarto quarto)throws BDException {
-		String sql = "UPDATE Quarto SET numeroQuarto = ?, andar = ?, tipoQuarto = ?, disponibilidade = ?, \\r\\n"
-				+ ", precoQuarto = ?, capacidade = ?, descricao = ? WHERE numeroQuarto = ?";
+	public ArrayList<Quarto> listar() throws BDException {
+		ArrayList<Quarto> quartos = new ArrayList<Quarto>();
+		String sql = "SELECT * FROM Quarto ";
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
+			stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+               Quarto quarto = new Quarto(); 
+               quarto.setNumeroQuarto(rs.getInt("numeroQuarto"));
+               quarto.setAndar(rs.getInt("andar"));
+               quarto.setTipoQuarto(rs.getString("tipoQuarto"));
+               quarto.setDisponibilidade(rs.getBoolean("disponibilidade"));
+               quarto.setPrecoQuarto(rs.getDouble("precoQuarto"));
+               quarto.setCapacidade(rs.getInt("capacidade"));
+               quarto.setDescricaoQuarto(rs.getString("descricaoQuarto"));
+               
+               quartos.add(quarto);
+            }
+        } catch (SQLException e) {
+            throw new BDException("Erro ao listar quartos: " + e);
+        } finally {
+        	try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+                throw new BDException("Erro ao fechar a conexão: " + e);
+			} finally {
+                try {
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    throw new BDException("Erro ao fechar a conexão: " + e);
+                }
+            }
+        }
+		return quartos;
+	}
+	
+	
+	public  boolean editar (Quarto quarto)throws BDException {
+		String sql = "UPDATE Quarto SET numeroQuarto = ?, idReserva = null, andar = ?, tipoQuarto = ?, disponibilidade = ?, precoQuarto = ?, capacidade = ?, descricaoQuarto = ? WHERE numeroQuarto = ?";
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
@@ -136,9 +181,10 @@ public class QuartoDAO {
                 }
             }
         }
+		return false;
 	}
 	
-	public void deletar (Quarto quarto) throws BDException{
+	public boolean deletar (Quarto quarto) throws BDException{
 		String sql= "DELETE FROM Quarto WHERE numeroQuarto = ?";
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -147,8 +193,10 @@ public class QuartoDAO {
 			conn = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/overlook_db", "overlook_user", "#BDhotel123");
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, quarto.getNumeroQuarto());
-			stmt.execute();
-			
+			int rowsDeleted = stmt.executeUpdate();
+	        
+		       
+			return rowsDeleted > 0;
 		}catch (SQLException e) {
 			throw new BDException("Erro ao apagar quarto: " + e);
 		}finally {
@@ -227,7 +275,47 @@ public class QuartoDAO {
 			
 		 }
 	       
+	   public boolean VerificarNumeroQuarto (int numeroCadastro) throws BDException {
+		   		String sql = "SELECT COUNT(*) FROM Quarto WHERE numeroQuarto = ?";
+		   		PreparedStatement stmt = null;
+		        
+		        try  { 
+		        	conn = new AcessoBancodeDados().conexaoBD();
+		        	stmt = conn.prepareStatement(sql);
+		            stmt.setInt(1, numeroCadastro);
+		            
+		            ResultSet resultSet = stmt.executeQuery();
+		            
+		            if (resultSet.next()) {
+		                int count = resultSet.getInt(1);
+		                if (count > 0) {
+		                	 JOptionPane.showMessageDialog(null,"Já existe um quarto com esse número." );
+		                }   
+		            }
+		        }catch (SQLException e) {
+					throw new BDException("Erro ao verificar número do quarto " + e);
+				}finally {
+		        	try {
+						if (stmt != null) {
+							stmt.close();
+						}
+					} catch (SQLException e) {
+		                throw new BDException("Erro ao fechar a conexão: " + e);
+					} finally {
+		                try {
+		                    if (conn != null) {
+		                        conn.close();
+		                    }
+		                } catch (SQLException e) {
+		                    throw new BDException("Erro ao fechar a conexão: " + e);
+		                }
+		            }
+			
+				}
+				return true;
+	   } 
 }
+
 
 
 
