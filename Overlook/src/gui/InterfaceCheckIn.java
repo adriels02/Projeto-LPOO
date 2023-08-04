@@ -1,6 +1,11 @@
-package view;
+package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
@@ -10,15 +15,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
+import core.ValidarCaracteres;
+import javax.swing.ImageIcon;
 
 public class InterfaceCheckIn extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldNome;
-	private JTextField textFieldCheckIn;
-	private JTextField textFieldAtualizar;
+	private JTextField textNome;
+	private JTextField textData;
+	private JTextField textAtualizar;
 
 	/**
 	 * Launch the application.
@@ -40,32 +46,63 @@ public class InterfaceCheckIn extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceCheckIn() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCheckIn.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 468, 332);
+		
+		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		
-		JLabel lblNome = new JLabel("Nome:");
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNome.setForeground(new Color(38, 9, 55));
+		lblNome.setBounds(30, 118, 46, 14);
 		
-		textFieldNome = new JTextField();
-		textFieldNome.setColumns(10);
+		textNome = new JTextField();
+		textNome.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textNome.setBounds(118, 114, 319, 23);
+		textNome.setColumns(10);
+		textNome.setDocument(new ValidarCaracteres(45, ValidarCaracteres.TipoEntrada.NOME));
 		
-		JLabel lblNewLabelDataCheckIn = new JLabel("Data Check-In");
+		JLabel lblNewLabelDataCheckIn = new JLabel("Data");
+		lblNewLabelDataCheckIn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabelDataCheckIn.setForeground(new Color(38, 9, 55));
+		lblNewLabelDataCheckIn.setBounds(30, 164, 81, 14);
 		
-		JLabel lblNewLabel_1 = new JLabel("Bem vindo ao Check-In");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblBemVindo = new JLabel("Bem vindo ao Check-In");
+		lblBemVindo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblBemVindo.setForeground(new Color(38, 9, 55));
+		lblBemVindo.setBounds(21, 33, 432, 36);
+		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		textFieldCheckIn = new JTextField();
-		textFieldCheckIn.setColumns(10);
+		textData = new JTextField();
+		textData.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textData.setBounds(118, 160, 319, 23);
+		textData.setColumns(10);
+		textData.setDocument(new ValidarCaracteres(10, ValidarCaracteres.TipoEntrada.DATA));
 		
 		JLabel lblNewLabelAtualizar = new JLabel("Atualizar");
+		lblNewLabelAtualizar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabelAtualizar.setForeground(new Color(38, 9, 55));
+		lblNewLabelAtualizar.setBounds(30, 214, 81, 14);
 		
-		textFieldAtualizar = new JTextField();
-		textFieldAtualizar.setColumns(10);
+		textAtualizar = new JTextField();
+		textAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textAtualizar.setBounds(118, 210, 319, 23);
+		textAtualizar.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Realizar Check-In");
+		btnNewButton.setBackground(new Color(225, 225, 225));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(new Color(38, 9, 55));
+		btnNewButton.setBounds(24, 277, 142, 23);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 		
 
@@ -73,70 +110,39 @@ public class InterfaceCheckIn extends JFrame {
 		});
 		
 		JButton btnNewButton_1 = new JButton("Deletar ");
+		btnNewButton_1.setBackground(new Color(225, 225, 225));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(38, 9, 55));
+		btnNewButton_1.setBounds(185, 275, 119, 23);
 		
 		JButton btnNewButton_2 = new JButton("Atualizar");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
-					.addGap(5))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(57)
-					.addComponent(textFieldNome, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-					.addGap(156))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNewLabelDataCheckIn, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textFieldCheckIn, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-					.addGap(156))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNewLabelAtualizar, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(57)
-					.addComponent(textFieldAtualizar, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-					.addGap(156))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-					.addGap(33)
-					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-					.addGap(27)
-					.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-					.addGap(5))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(21)
-					.addComponent(lblNewLabel_1)
-					.addGap(27)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNome))
-						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabelDataCheckIn))
-						.addComponent(textFieldCheckIn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(20)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabelAtualizar)
-						.addComponent(textFieldAtualizar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(39)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2)))
-		);
-		contentPane.setLayout(gl_contentPane);
+		btnNewButton_2.setBackground(new Color(225, 225, 225));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setForeground(new Color(38, 9, 55));
+		btnNewButton_2.setBounds(322, 275, 116, 23);
+		contentPane.setLayout(null);
+		contentPane.add(lblBemVindo);
+		contentPane.add(lblNome);
+		contentPane.add(textNome);
+		contentPane.add(lblNewLabelDataCheckIn);
+		contentPane.add(textData);
+		contentPane.add(lblNewLabelAtualizar);
+		contentPane.add(textAtualizar);
+		contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton_1);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.setIcon(new ImageIcon(InterfaceCheckIn.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+				
+		});
+		btnFecharTela.setBounds(438, 0, 30, 30);
+		contentPane.add(btnFecharTela);
 	}
 }
 

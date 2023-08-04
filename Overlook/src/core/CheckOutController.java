@@ -1,4 +1,4 @@
-package controler;
+package core;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import core.CheckOut;
-import core.ConnectionFactory;
+
+import data.ConnectionFactory;
 
 public class CheckOutController {
 

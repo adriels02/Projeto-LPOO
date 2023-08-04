@@ -26,7 +26,7 @@ public class AcessoBancodeDados{
 		
 			
 		} catch (SQLException e) {
-			//JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cessar o Banco de Dados " + e.getMessage());
+			
 			JOptionPane.showMessageDialog( null, "Ocorreu um erro ao cessar o Banco de Dados ", "Mensagem",JOptionPane.ERROR_MESSAGE);
 		}
 		

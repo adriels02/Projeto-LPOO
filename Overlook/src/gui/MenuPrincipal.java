@@ -126,14 +126,19 @@ public class MenuPrincipal extends JFrame {
 		bntReserva.setBackground(new Color(225, 225, 225));
 		contentPane.add(bntReserva);
 		
-		JButton bntCheckIn = new JButton("Check");
+		JButton bntCheckIn = new JButton("Check-In");
 		bntCheckIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				InterfaceCheckIn objInterfaceCheckIn =  new InterfaceCheckIn();
+				objInterfaceCheckIn.setVisible(true);
+				
+				
 			}
 		});
 		bntCheckIn.setFont(new Font("Tahoma", Font.BOLD, 13));
 		bntCheckIn.setForeground(new Color(38, 9, 55));
-		bntCheckIn.setBounds(462, 354, 160, 80);
+		bntCheckIn.setBounds(462, 354, 160, 35);
 		bntCheckIn.setBackground(new Color(225, 225, 225));
 		contentPane.add(bntCheckIn);
 		
@@ -246,6 +251,21 @@ public class MenuPrincipal extends JFrame {
 		btnPrecos.setBounds(462, 455, 160, 80);
 		contentPane.add(btnPrecos);
 			
+		JButton btnCheckout = new JButton("Check-Out");
+		btnCheckout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceCheckOut objInterfaceCheckOut =  new InterfaceCheckOut();
+				objInterfaceCheckOut.setVisible(true);
+				
+				
+				
+			}
+		});
+		btnCheckout.setForeground(new Color(38, 9, 55));
+		btnCheckout.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnCheckout.setBackground(new Color(225, 225, 225));
+		btnCheckout.setBounds(462, 399, 160, 35);
+		contentPane.add(btnCheckout);
 		
 		
 		JLabel lblLogoTransparente = new JLabel("");
@@ -259,6 +279,7 @@ public class MenuPrincipal extends JFrame {
 		lblImagemTela.setBounds(0, 0, 1280, 720);
 		contentPane.add(lblImagemTela);
 		
+
 
 
 

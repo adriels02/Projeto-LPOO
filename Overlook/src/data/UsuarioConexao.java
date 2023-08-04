@@ -30,7 +30,7 @@ public class UsuarioConexao {
 			
 			
 		} catch (SQLException e) {
-			//JOptionPane.showMessageDialog(null, "Erro em UsuarioConexao " + e);
+			
 			JOptionPane.showMessageDialog( null, "Erro ao tentar conectar o usuário", "Mensagem",JOptionPane.ERROR_MESSAGE);
 			return null;
 		
@@ -55,7 +55,7 @@ public class UsuarioConexao {
 			
 				
 		} catch (SQLException e) {
-			//JOptionPane.showMessageDialog(null, "Erro em AlterarNovoUsuario " + e);
+			
 			JOptionPane.showMessageDialog( null, "Erro ao inserir um novo usuário", "Mensagem",JOptionPane.ERROR_MESSAGE);
 		    
 			

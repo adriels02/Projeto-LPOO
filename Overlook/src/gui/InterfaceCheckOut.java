@@ -1,27 +1,30 @@
-package view;
+package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import core.ValidarCaracteres;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class InterfaceCheckOut extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldNome;
-	private JTextField textFieldCheckIn;
-	private JTextField textFieldAtualizar;
+	private JTextField textData;
+	private JTextField textAtualizar;
+	private JTextField textNome;
 
 	/**
 	 * Launch the application.
@@ -43,96 +46,115 @@ public class InterfaceCheckOut extends JFrame {
 	 * Create the frame.
 	 */
 	public InterfaceCheckOut() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InterfaceCheckOut.class.getResource("/interfaces/imagens/iconeOverlook.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 468, 332);
+		
+		setLocationRelativeTo(null);
+		setUndecorated(true);
+		
+		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setForeground(new Color(38, 9, 55));
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNome.setBounds(23, 118, 63, 14);
+		lblNome.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		textFieldNome = new JTextField();
-		textFieldNome.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldNome.setColumns(10);
+		JLabel lblNewLabelDataCheckIn = new JLabel("Data");
+		lblNewLabelDataCheckIn.setForeground(new Color(38, 9, 55));
+		lblNewLabelDataCheckIn.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabelDataCheckIn.setBounds(23, 164, 63, 14);
+		lblNewLabelDataCheckIn.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel lblNewLabelDataCheckIn = new JLabel("Data Check-Out:");
-		lblNewLabelDataCheckIn.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblBenvindo = new JLabel("Bem vindo ao Check-Out");
+		lblBenvindo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblBenvindo.setForeground(new Color(38, 9, 55));
+		lblBenvindo.setBounds(11, 33, 432, 36);
+		lblBenvindo.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblNewLabel_1 = new JLabel("Bem vindo ao Check-Out");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textData = new JTextField();
+		textData.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textData.setBounds(111, 160, 319, 23);
+		textData.setColumns(10);
+		textData.setDocument(new ValidarCaracteres(10, ValidarCaracteres.TipoEntrada.DATA));
 		
-		textFieldCheckIn = new JTextField();
-		textFieldCheckIn.setColumns(10);
+		JLabel lblNewLabelAtualizar = new JLabel("Atualizar");
+		lblNewLabelAtualizar.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabelAtualizar.setForeground(new Color(38, 9, 55));
+		lblNewLabelAtualizar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabelAtualizar.setBounds(23, 214, 83, 14);
 		
-		JLabel lblNewLabelAtualizar = new JLabel("Atualizar:");
-		
-		textFieldAtualizar = new JTextField();
-		textFieldAtualizar.setColumns(10);
+		textAtualizar = new JTextField();
+		textAtualizar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textAtualizar.setBounds(111, 210, 319, 23);
+		textAtualizar.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Realizar Check-Out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBackground(new Color(225, 225, 225));
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(new Color(38, 9, 55));
+		btnNewButton.setBounds(17, 277, 142, 23);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBackground(new Color(225, 225, 225));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setForeground(new Color(38, 9, 55));
+		btnNewButton_1.setBounds(178, 277, 119, 23);
 		
 		JButton btnNewButton_2 = new JButton("Atualizar");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(5)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 432, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNome, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(57)
-					.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblNewLabelDataCheckIn, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textFieldCheckIn, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(25)
-					.addComponent(lblNewLabelAtualizar, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(47)
-					.addComponent(textFieldAtualizar, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(15)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-					.addGap(27)
-					.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(21)
-					.addComponent(lblNewLabel_1)
-					.addGap(27)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNome))
-						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabelDataCheckIn))
-						.addComponent(textFieldCheckIn, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(20)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textFieldAtualizar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabelAtualizar))
-					.addGap(39)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2)))
-		);
-		contentPane.setLayout(gl_contentPane);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBackground(new Color(225, 225, 225));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setForeground(new Color(38, 9, 55));
+		btnNewButton_2.setBounds(315, 277, 116, 23);
+		contentPane.setLayout(null);
+		contentPane.add(lblBenvindo);
+		contentPane.add(lblNome);
+		contentPane.add(lblNewLabelDataCheckIn);
+		contentPane.add(textData);
+		contentPane.add(lblNewLabelAtualizar);
+		contentPane.add(textAtualizar);
+		contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton_1);
+		contentPane.add(btnNewButton_2);
+		
+		textNome = new JTextField();
+		textNome.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textNome.setColumns(10);
+		textNome.setBounds(111, 114, 319, 23);
+		
+		textNome.setDocument(new ValidarCaracteres(45, ValidarCaracteres.TipoEntrada.NOME));
+		contentPane.add(textNome);
+		
+		JButton btnFecharTela = new JButton("");
+		btnFecharTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				
+			}
+		});
+		btnFecharTela.setIcon(new ImageIcon(InterfaceCheckOut.class.getResource("/interfaces/imagens/Botao Fechar quadrado 30x30.png")));
+		btnFecharTela.setBounds(438, 0, 30, 30);
+		contentPane.add(btnFecharTela);
 	}
 }
 
